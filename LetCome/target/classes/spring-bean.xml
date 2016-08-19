@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+    <bean id="productDAO" class="com.letcome.dao.ProductDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <bean id="categoryDAO" class="com.letcome.dao.CategoryDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <bean id="usersDAO" class="com.letcome.dao.UsersDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <bean id="imagesDAO" class="com.letcome.dao.ImageDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <bean id="userService" class="com.letcome.service.UserService">
+        <property name="userDao" ref="usersDAO"></property>
+    </bean>
+    <bean id="imageService" class="com.letcome.service.ImageService">
+        <property name="imageDao" ref="imagesDAO"></property>
+        <property name="productDao" ref="productDAO"></property>
+    </bean>
+    <bean id="categoryService" class="com.letcome.service.CategoryService">
+        <property name="categoryDao" ref="categoryDAO"></property>
+    </bean>
+    <bean id="productService" class="com.letcome.service.ProductService">
+        <property name="productDao" ref="productDAO"></property>
+    </bean>
+</beans>
