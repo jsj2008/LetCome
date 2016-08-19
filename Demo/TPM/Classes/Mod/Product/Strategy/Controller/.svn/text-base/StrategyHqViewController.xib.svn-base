@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StrategyHqViewController">
+            <connections>
+                <outlet property="hqTable" destination="ELL-jX-QSn" id="xo5-Nb-QV6"/>
+                <outlet property="nextBtn" destination="VaA-SB-tXq" id="rOt-Ij-tCv"/>
+                <outlet property="nextView" destination="ObW-Ha-lkI" id="DNy-eV-Gjg"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ObW-Ha-lkI">
+                    <rect key="frame" x="0.0" y="602" width="375" height="65"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C4s-7u-vMH">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="t2Q-J3-65f"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaA-SB-tXq">
+                            <rect key="frame" x="10" y="11" width="355" height="44"/>
+                            <color key="backgroundColor" red="0.31372549020000001" green="0.54901960780000003" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="U4v-Ch-2bh"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <state key="normal" title="Button">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_DD_u.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dyc-Nd-YFs">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="ng0-x2-1YX"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="VaA-SB-tXq" firstAttribute="centerY" secondItem="ObW-Ha-lkI" secondAttribute="centerY" id="5wJ-ep-XyZ"/>
+                        <constraint firstItem="C4s-7u-vMH" firstAttribute="leading" secondItem="ObW-Ha-lkI" secondAttribute="leading" id="Ah7-LS-Vha"/>
+                        <constraint firstAttribute="trailing" secondItem="VaA-SB-tXq" secondAttribute="trailing" constant="10" id="QfW-dB-zl7"/>
+                        <constraint firstItem="Dyc-Nd-YFs" firstAttribute="leading" secondItem="ObW-Ha-lkI" secondAttribute="leading" id="Qub-ha-o99"/>
+                        <constraint firstAttribute="trailing" secondItem="C4s-7u-vMH" secondAttribute="trailing" id="RUg-Ud-h0e"/>
+                        <constraint firstAttribute="trailing" secondItem="Dyc-Nd-YFs" secondAttribute="trailing" id="THi-Oy-AHL"/>
+                        <constraint firstItem="VaA-SB-tXq" firstAttribute="leading" secondItem="ObW-Ha-lkI" secondAttribute="leading" constant="10" id="WJW-zH-K4O"/>
+                        <constraint firstItem="Dyc-Nd-YFs" firstAttribute="top" secondItem="ObW-Ha-lkI" secondAttribute="top" id="d1f-AZ-5oD"/>
+                        <constraint firstItem="C4s-7u-vMH" firstAttribute="top" secondItem="ObW-Ha-lkI" secondAttribute="top" id="m5J-6M-QQM"/>
+                        <constraint firstAttribute="height" constant="65" id="o7n-e4-lTB"/>
+                        <constraint firstItem="VaA-SB-tXq" firstAttribute="centerX" secondItem="ObW-Ha-lkI" secondAttribute="centerX" id="zMG-4x-1Tu"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ELL-jX-QSn" customClass="QUTableView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="602"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="ObW-Ha-lkI" secondAttribute="trailing" id="DY8-0F-MlW"/>
+                <constraint firstItem="ObW-Ha-lkI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Lqr-jH-biM"/>
+                <constraint firstItem="ObW-Ha-lkI" firstAttribute="top" secondItem="ELL-jX-QSn" secondAttribute="bottom" id="Pbg-yT-gIa"/>
+                <constraint firstItem="ELL-jX-QSn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Pnb-VK-sD5"/>
+                <constraint firstAttribute="trailing" secondItem="ELL-jX-QSn" secondAttribute="trailing" id="Pv9-EB-ykn"/>
+                <constraint firstItem="ELL-jX-QSn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="X9c-zb-o72"/>
+                <constraint firstAttribute="bottom" secondItem="ObW-Ha-lkI" secondAttribute="bottom" id="qvw-4F-oSA"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="line_DD_u.png" width="100" height="2"/>
+    </resources>
+</document>

@@ -1,0 +1,13 @@
+//
+//  SetViewController.h
+//  QianFangGuJie
+//
+//  Created by chenyi on 15/6/16.
+//  Copyright (c) 2015年 JYZD. All rights reserved.
+//
+
+#import "MyViewController.h"
+
+@interface SetViewController : AppViewController
+
+@end

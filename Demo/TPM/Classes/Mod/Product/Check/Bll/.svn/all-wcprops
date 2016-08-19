@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/tpz_app/!svn/ver/3183/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Check/Bll
+END
+CheckDetailBll.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tpz_app/!svn/ver/2992/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Check/Bll/CheckDetailBll.h
+END
+CheckDetailBll.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tpz_app/!svn/ver/3148/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Check/Bll/CheckDetailBll.m
+END
+DealHistoryBll.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tpz_app/!svn/ver/2992/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Check/Bll/DealHistoryBll.h
+END
+CheckListBll.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/tpz_app/!svn/ver/2978/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Check/Bll/CheckListBll.h
+END
+DealHistoryBll.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tpz_app/!svn/ver/3183/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Check/Bll/DealHistoryBll.m
+END
+CheckListBll.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/tpz_app/!svn/ver/3183/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Check/Bll/CheckListBll.m
+END

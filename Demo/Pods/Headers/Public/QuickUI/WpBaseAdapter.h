@@ -1,0 +1,1 @@
+../../../QuickUI/QuickUI/QuickUI/Base/QuickUI/NetAdaptor/WpBaseAdapter.h

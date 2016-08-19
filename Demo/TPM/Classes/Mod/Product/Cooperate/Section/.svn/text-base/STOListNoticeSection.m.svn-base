@@ -1,0 +1,13 @@
+//
+//  STOListNoticeSection.m
+//  STO
+//
+//  Created by tongshangren on 16/4/8.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "STOListNoticeSection.h"
+
+@implementation STOListNoticeSection
+
+@end

@@ -1,0 +1,58 @@
+//
+//  InfomationManager.h
+//  A50
+//
+//  Created by chenyi on 15/10/16.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#ifndef InfomationManager_h
+#define InfomationManager_h
+#import "BaseManager.h"
+
+#import "AdMock.h"
+#import "TradeCostStatisticsMock.h"
+#import "ScrollTradeInfoMock.h"
+#import "NeedNoticecntMock.h"
+#import "NeedNoticecntEntity.h"
+
+@interface InfomationManager : BaseManager
+
+@property(strong,nonatomic)AdMock* adMock;
+@property(strong,nonatomic)AdParam* adParam;
+@property(strong,nonatomic)TradeCostStatisticsMock* tradeCostMock;
+@property(strong,nonatomic)TradeCostStatisticsParam* tradeCostParam;
+
+@property(strong,nonatomic)ScrollTradeInfoMock* tradeStrategyInfoMock;
+@property(strong,nonatomic)ScrollTradeInfoParam* tradeStrategyInfoParam;
+
+@property(strong,nonatomic)ScrollTradeInfoMock* tradeWinInfoMock;
+@property(strong,nonatomic)ScrollTradeInfoParam* tradeWinInfoParam;
+
+@property (nonatomic,strong) NeedNoticecntMock *dockMock;
+@property (nonatomic,strong) NeedNoticecntParam *dockParam;
+@property (nonatomic,strong,readonly) NeedNoticecntEntity *dockEntity;
+
++(InfomationManager *)shareInfomationManager;
+
+/**获取广告**/
+-(void)getAd:(ManagerReturnBlock)returnBlock;
+
+/*!
+ *  @brief 获取交易撮合时间统计
+ *
+ *  @param returnBlock 
+ */
+-(void)getTradeCost:(ManagerReturnBlock)returnBlock;
+
+-(void)getTradeStrategyInfoWithNum:(NSString*)num andBlock:(ManagerReturnBlock)returnBlock;
+-(void)getTradeWinInfoWithNum:(NSString*)num andBlock:(ManagerReturnBlock)returnBlock;
+
+/*检查Dock是否更新*/
+-(void)checkDockState:(ManagerReturnBlock)returnBlock;
+/*检查Dock是否更新*/
+-(void)checkDockStateWithSwiftBlock:(SManagerReturnBlock)returnBlock;
+
+@end
+
+#endif

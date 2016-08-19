@@ -1,0 +1,343 @@
+//
+//  MineViewController.m
+//  A50
+//
+//  Created by  rjt on 15/10/29.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "MineViewController.h"
+#import "SetListEntity.h"
+#import "SetListSection.h"
+#import "SetViewController.h"
+#import "MessageViewController.h"
+#import "MyWebViewController.h"
+#import "CustomServiceController.h"
+#import "CPBAmountViewController.h"
+#import "MessageListMock.h"
+#import "InfomationManager.h"
+#import "IndexViewController.h"
+#import "DissentAndCompensateViewController.h"
+@interface MineViewController ()<UIAlertViewDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *iconView;
+@property (weak, nonatomic) IBOutlet UILabel *userID;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbName;
+
+@property(nonatomic,strong)UITapGestureRecognizer *loginGesture;
+
+
+@property(strong,nonatomic)MessageListParam* messageListParam;   //消息数量查询
+@property(strong,nonatomic)MessageListMock* messageListMock;    //消息列表查询
+- (IBAction)goBack:(id)sender;
+@end
+
+@implementation MineViewController
+
+- (void)viewDidLoad {
+    self.title = @"我的";
+    [super viewDidLoad];
+    [self userLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSet) name:kPasswordWindowHide object:nil];
+    // Do any additional setup after loading the view from its nib.
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshListStatus) name:kDockChange object:nil];
+
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    // 显示导航条
+    [[self navigationController] setNavigationBarHidden:YES animated:NO];
+    [self.pAdaptor.pSources clear];
+    [self checkDockState];
+    [self refreshSet];
+
+}
+
+
+-(void)refreshListStatus{
+    [self refreshListStatus:[InfomationManager shareInfomationManager].dockEntity];
+}
+
+-(void)checkDockState{
+    IndexViewController *controller=[AppUtil findIndex];
+    DEFINED_WEAK_SELF
+    
+    [[InfomationManager shareInfomationManager] checkDockState:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if ([entity isKindOfClass:[NeedNoticecntEntity class]]) {
+            [_self refreshListStatus:(NeedNoticecntEntity*)entity];
+        }
+    }];
+    
+    if ([UserInfoManager hasLogin]) {
+        [controller dockMineReset];
+    }
+    
+}
+
+-(void)refreshListStatus:(NeedNoticecntEntity*)dockEntity{
+    SetListEntity* e = (SetListEntity*)[self.pAdaptor.pSources entityWithTag:7];
+    if ([[dockEntity.records objectForKey:@"msg"]intValue]>0) {
+        e.showAlertImg=YES;
+    }
+    e = (SetListEntity*)[self.pAdaptor.pSources entityWithTag:9];
+    if ([[dockEntity.records objectForKey:@"agreement"]intValue]>0) {
+        e.showAlertImg=YES;
+    }
+    
+    [self.pAdaptor notifyChanged];
+}
+
+//加载用户信息
+- (void)userLoad{
+    [self.iconView setBackgroundImage:[UIImage imageNamed:@"icon_user.png"] forState:UIControlStateNormal];
+    [[UserInfoManager shareUserInfoManager] getHeadImgForBtn:self.iconView];
+    [WpCommonFunction setView:self.iconView cornerRadius:self.iconView.frame.size.height/2 color:LOGIN_HEAD_GRAY.CGColor  borderWidth:2];      //设置背景为圆角
+    NSString* userName = [[UserInfoManager shareUserInfoManager] getUserNickName];
+    NSString* ID = [[UserInfoManager shareUserInfoManager] getUserID];
+    self.userID.text = [NSString stringWithFormat:@"ID %@",ID];
+    self.lbName.text = userName;
+}
+
+-(void)gotoLogin{
+    [[PasswordWindow shareWindow] showWithLogin];
+}
+
+-(void)refreshSet{
+    [self initQuickUI];
+    [self initQuickMock];
+    [self userLoad];
+}
+
+-(void)initQuickUI{
+    
+    self.pAdaptor = [QUFlatAdaptor adaptorWithTableView:self.pTableView nibArray:@[@"SetListSection",@"AppFlatEmptySection"] delegate:self];
+    
+    QUEntity* empty=[QUEntity entityWithLine:QU_FLAT_COLOR_LINE];
+    [self.pAdaptor.pSources addEntity:empty withSection:[SetEmptyListSection class]];
+    
+    SetListEntity* entity11 = [SetListEntity entity];
+    entity11.sectionList = @"我的认证";
+    entity11.descText = @"--";
+    entity11.icon = [UIImage imageNamed:@"user_auth"];
+    entity11.tag = 11;
+    entity11.selectionStyle = UITableViewCellSelectionStyleGray;
+    entity11.lineBottomColor = QU_FLAT_COLOR_LINE;
+    entity11.pIndentBottomLevel = 1;
+    entity11.selectedBgColor = QU_FLAT_COLOR_CELL_BG_SELECTED;
+    [self.pAdaptor.pSources addEntity:entity11 withSection:[SetListSection class]];
+    
+    SetListEntity* entity3 = [SetListEntity entity];
+    entity3.sectionList = @"异议/补偿";
+    entity3.descText = @"";
+    entity3.icon = [UIImage imageNamed:@"user_objection"];
+    entity3.tag = 3;
+    entity3.selectionStyle = UITableViewCellSelectionStyleGray;
+    entity3.selectedBgColor = QU_FLAT_COLOR_CELL_BG_SELECTED;
+    [self.pAdaptor.pSources addEntity:entity3 withSection:[SetListSection class]];
+    empty = [QUEntity entityWithLineTop:QU_FLAT_COLOR_LINE lineBottom:QU_FLAT_COLOR_LINE];
+    [self.pAdaptor.pSources addEntity:empty withSection:[SetEmptyListSection class]];
+    
+    SetListEntity* entity5 = [SetListEntity entity];
+    entity5.sectionList = @"拉勾宝";
+    entity5.descText = @"--";
+    entity5.icon = [UIImage imageNamed:@"user_lgb"];
+    entity5.tag = 5;
+    entity5.selectionStyle = UITableViewCellSelectionStyleGray;
+    entity5.lineBottomColor = QU_FLAT_COLOR_LINE;
+    entity5.pIndentBottomLevel = 1;
+    entity5.selectedBgColor = QU_FLAT_COLOR_CELL_BG_SELECTED;
+    [self.pAdaptor.pSources addEntity:entity5 withSection:[SetListSection class]];
+    
+    SetListEntity* entity6 = [SetListEntity entity];
+    entity6.sectionList = @"微信公众号";
+    entity6.icon = [UIImage imageNamed:@"user_wechat"];
+    entity6.tag = 6;
+    entity6.selectionStyle = UITableViewCellSelectionStyleGray;
+    entity6.selectedBgColor = QU_FLAT_COLOR_CELL_BG_SELECTED;
+    [self.pAdaptor.pSources addEntity:entity6 withSection:[SetListSection class]];
+    
+    empty = [QUEntity entityWithLineTop:QU_FLAT_COLOR_LINE lineBottom:QU_FLAT_COLOR_LINE];
+    [self.pAdaptor.pSources addEntity:empty withSection:[SetEmptyListSection class]];
+    
+
+    SetListEntity* entity7 = [SetListEntity entity];
+    entity7.sectionList = @"@私信";
+    entity7.icon = [UIImage imageNamed:@"user_letter"];
+    entity7.descText = @"";
+    entity7.showAlertImg=NO;
+    entity7.tag = 7;
+    entity7.selectionStyle = UITableViewCellSelectionStyleGray;
+    entity7.lineBottomColor = QU_FLAT_COLOR_LINE;
+    entity7.pIndentBottomLevel = 1;
+    entity7.selectedBgColor = QU_FLAT_COLOR_CELL_BG_SELECTED;
+    [self.pAdaptor.pSources addEntity:entity7 withSection:[SetListSection class]];
+    
+    SetListEntity* entity8 = [SetListEntity entity];
+    entity8.sectionList = @"我的客服";
+    entity8.icon = [UIImage imageNamed:@"user_service"];
+    entity8.tag = 8;
+    entity8.selectionStyle = UITableViewCellSelectionStyleGray;
+    entity8.lineBottomColor = QU_FLAT_COLOR_LINE;
+    entity8.pIndentBottomLevel = 1;
+    entity8.selectedBgColor = QU_FLAT_COLOR_CELL_BG_SELECTED;
+    [self.pAdaptor.pSources addEntity:entity8 withSection:[SetListSection class]];
+    
+    SetListEntity* entity10 = [SetListEntity entity];
+    entity10.sectionList = @"设置";
+    entity10.icon = [UIImage imageNamed:@"user_setting"];
+    entity10.tag = 10;
+    entity10.selectionStyle = UITableViewCellSelectionStyleGray;
+    entity10.selectedBgColor = QU_FLAT_COLOR_CELL_BG_SELECTED;
+    [self.pAdaptor.pSources addEntity:entity10 withSection:[SetListSection class]];
+
+    empty = [QUEntity entityWithLineTop:QU_FLAT_COLOR_LINE lineBottom:nil];
+    [self.pAdaptor.pSources addEntity:empty withSection:[SetEmptyListSection class]];
+
+    [self.pAdaptor setSectionFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 15) sectionClassName:@"AppFlatEmptySection"];
+
+    [self.pAdaptor notifyChanged];
+    
+}
+-(void)initQuickMock{
+    [self changeListState];
+}
+
+
+-(void)changeListState{
+    if ([UserInfoManager hasLogin]) {
+        DEFINED_WEAK_SELF
+        
+        [[UserInfoManager shareUserInfoManager] refreshCpb:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+            CPBAmountEntity* cpbEntity = (CPBAmountEntity*)entity;
+            if (cpbEntity && [cpbEntity.result isEqualToString:@"Y"] && cpbEntity.available && [cpbEntity.available doubleValue] >= 0) {
+                NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+                [formatter setPositiveFormat:@"###,##0.00;"];
+                NSString *money = @"";
+                
+                NSNumber *availableMoney = [NSNumber numberWithDouble:[cpbEntity.available doubleValue]];
+                money = [formatter stringFromNumber:availableMoney];
+            
+                
+                SetListEntity* e = (SetListEntity*)[_self.pAdaptor.pSources entityWithTag:5];
+                e.descText = [NSString stringWithFormat:@"¥ %@",money];
+                [_self.pAdaptor notifyChanged];
+            }
+        }];
+        [[ProductsManager shareProductsManager] checkLevel:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+            QualificationLevelEntity* ent = (QualificationLevelEntity*)entity;
+            if (ent) {
+                
+                SetListEntity* e = (SetListEntity*)[_self.pAdaptor.pSources entityWithTag:11];
+                e.descText = ent.name;
+                [_self.pAdaptor notifyChanged];
+            }
+        }];
+    }
+}
+
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor forSection:(QUSection *)section forEntity:(QUEntity *)entity{
+    
+    if ([section isKindOfClass:[SetListSection class]]) {
+        SetListEntity* e = (SetListEntity*)entity;
+        SetListSection* s = (SetListSection*)section;
+        s.title.text = e.sectionList;
+        s.iconImage.image = e.icon;
+        s.desc.text = e.descText;
+        if (e.showAlertImg) {
+            s.messageImage.hidden=NO;
+        }
+        else
+        {
+            s.messageImage.hidden=YES;
+        }
+    }
+}
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor selectedSection:(QUSection *)section entity:(QUEntity *)entity{
+
+
+    if(entity.tag == 5)
+    {
+        CPBAmountEntity* e = [UserInfoManager shareUserInfoManager].cpbEntity;
+        if (e) {
+
+                CPBAmountViewController *controller = [[CPBAmountViewController alloc]initWithNibName:@"CPBAmountViewController" bundle:nil];
+                controller.available = e.available;
+                controller.freeze = e.freeze;
+                [self.navigationController.navigationController pushViewController:controller animated:YES];
+
+        }else{
+            DEFINED_WEAK_SELF
+            [[ViewControllerManager sharedManager] showWaitView:self.view];
+            [[UserInfoManager shareUserInfoManager] refreshCpb:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+                [[ViewControllerManager sharedManager] hideWaitView];
+                CPBAmountEntity* ent = (CPBAmountEntity*)entity;
+                        CPBAmountViewController *controller = [[CPBAmountViewController alloc]initWithNibName:@"CPBAmountViewController" bundle:nil];
+                        controller.available = ent.available;
+                        controller.freeze = ent.freeze;
+                        [_self.navigationController.navigationController pushViewController:controller animated:YES];
+            }];
+        }
+    }
+    
+    if (entity.tag == 6) {
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = @"策略梦工厂";
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"已复制“策略梦工厂”微信公众号，请打开微信添加" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"打开", nil];
+        [alert show];
+    }
+ 
+    if (entity.tag == 3) {
+        DissentAndCompensateViewController *controller = [[DissentAndCompensateViewController alloc]initWithNibName:@"DissentAndCompensateViewController" bundle:nil];
+        [self.navigationController.navigationController pushViewController:controller animated:YES];
+    }
+    if(entity.tag == 7){
+        
+        MessageViewController* controller = [[MessageViewController alloc]initWithNibName:@"MessageViewController" bundle:nil];
+        [self.navigationController.navigationController pushViewController:controller animated:YES];
+        
+    }
+
+    
+    if (entity.tag == 8) {
+        CustomServiceController *controller = [[CustomServiceController alloc]initWithNibName:@"CustomServiceController" bundle:nil];
+
+        [self.navigationController.navigationController pushViewController:controller animated:YES];
+    }
+    
+    if (entity.tag == 10) {
+        SetViewController* controller = [[SetViewController alloc]initWithNibName:@"SetViewController" bundle:nil];
+        [self.navigationController.navigationController pushViewController:controller animated:YES];
+    }
+
+    if (entity.tag == 11) {
+        MyWebViewController* controller = [[MyWebViewController alloc]initWithNibName:@"MyWebViewController" bundle:nil];
+        controller.url = [NSString stringWithFormat:@"%@/riskcontrol/qualification/index?session_id=%@",[ConfigManager shareConfigManager].h5Url,[[UserInfoManager shareUserInfoManager] getSessionID]];
+        controller.title = @"认证等级";
+        controller.isBack2History = NO;
+        [self.navigationController.navigationController pushViewController:controller animated:YES];
+    }
+    
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex!= alertView.cancelButtonIndex) {
+        NSString *str = @"weixin://";
+        
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:str]];
+    }
+}
+
+- (IBAction)goBack:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+@end

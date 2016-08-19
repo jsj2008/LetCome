@@ -1,0 +1,195 @@
+//
+//  TPMIndexSection.m
+//  TPM
+//
+//  Created by tongshangren on 16/7/27.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "TPMIndexSection.h"
+#import "UIImageView+WebCache.h"
+#import "AdEntity.h"
+#import "MyWebViewController.h"
+#import "ScrollNoticeEntity.h"
+
+@implementation TPMIndexSection
+-(void)awakeFromNib{
+    [self.searchFrame.layer setCornerRadius:2.0];
+    self.searchFrame.layer.masksToBounds=YES;
+}
+@end
+
+
+
+@implementation TPMAdSection
+-(void)awakeFromNib{
+
+    placeHolderImg = [UIImage imageNamed:@"banner_loading"];
+    self.scrollView.showsHorizontalScrollIndicator = NO; //不显示水平滑动线
+    self.scrollView.showsVerticalScrollIndicator = NO;//不显示垂直滑动线
+    self.scrollView.pagingEnabled=YES;//scrollView不会停在页面之间，即只会显示第一页或者第二页，不会各一半显示
+    self.scrollView.delegate = self;
+    self.pageCtrl.userInteractionEnabled=NO; //pagecontroller不响应点击操作
+}
+
+-(void)tapAdv{
+    MyWebViewController *web = [[MyWebViewController alloc] initWithNibName:@"MyWebViewController" bundle:nil];
+    AdRecordsEntity* adv = ((AdRecordsEntity*)(advs[self.pageCtrl.currentPage]));
+    if(adv.title){
+        web.title = adv.title;
+    }else{
+        web.title = kAppName;
+    }
+    web.url = adv.link;
+    UIViewController *ctrl = [AppUtil findIndex];
+    [ctrl.navigationController pushViewController:web animated:YES];
+}
+
+
+
+- (void)tapAdvsender:(id)sender
+{
+    UITapGestureRecognizer *tap = (UITapGestureRecognizer *)sender;
+    UIImageView *selectedImage = (UIImageView *)tap.view;
+    AdRecordsEntity *entity = advs[selectedImage.tag - 1000];
+    if ([entity.iscert isEqualToString:@"1"]) {//需要登录才能跳转
+        
+        if ([UserInfoManager hasLogin]) {
+            [self tapAdv];
+        }else{
+            NSArray *windowsArr = [UIApplication sharedApplication].windows;
+            [WpCommonFunction showNotifyHUDAtViewBottom:windowsArr.lastObject withErrorMessage:@"请先登录"];
+            [[PasswordWindow shareWindow] showWithLogin];
+        }
+    }
+    else{//不必登录
+        [self tapAdv];
+    }
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    CGPoint offset = scrollView.contentOffset;
+    NSInteger page = offset.x / (self.bounds.size.width);
+    [self scroll2Page:page-1 needDelay:NO];
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    [[WHOnceTask shareOnceTask] removeTask:kScrollAdvKey];
+    [[WHOnceTask shareOnceTask]expired:kScrollAdvKey validTime:kScrollAdvVal];
+}
+
+-(void)scroll2Page:(NSInteger)page needDelay:(BOOL)delay{
+    if (self.pageCtrl.numberOfPages>1) {
+        [self.scrollView setContentOffset:CGPointMake(self.bounds.size.width * (page+1),self.scrollView.contentOffset.y) animated:YES];
+        if (page>=self.pageCtrl.numberOfPages) {
+            self.pageCtrl.currentPage = 0; //计算当前的页码
+            if (delay) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.scrollView setContentOffset:CGPointMake(self.bounds.size.width * (self.pageCtrl.currentPage+1),self.scrollView.contentOffset.y) animated:NO]; //返回首页
+                });
+            }else{
+                [self.scrollView setContentOffset:CGPointMake(self.bounds.size.width * (self.pageCtrl.currentPage+1),self.scrollView.contentOffset.y) animated:NO]; //返回首页
+            }
+        }else if(page<0){
+            self.pageCtrl.currentPage = self.pageCtrl.numberOfPages - 1; //计算当前的页码
+            if (delay) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.scrollView setContentOffset:CGPointMake(self.bounds.size.width * (self.pageCtrl.currentPage+1),self.scrollView.contentOffset.y) animated:NO]; //返回首页
+                });
+            }else{
+                [self.scrollView setContentOffset:CGPointMake(self.bounds.size.width * (self.pageCtrl.currentPage+1),self.scrollView.contentOffset.y) animated:NO]; //返回首页
+            }
+        }
+        else{
+            self.pageCtrl.currentPage = page; //计算当前的页码
+        }
+    }
+}
+
+-(void)scrollToNext{
+    [self scroll2Page:self.pageCtrl.currentPage+1 needDelay:YES];
+}
+
+-(void)loadAdvs:(NSArray *)ads{
+    if (ads) {
+        if (ads!=advs) {
+            advs = ads;
+            self.pageCtrl.numberOfPages = [advs count];
+            self.pageCtrl.currentPage = 0;
+            for (UIView *aView in self.scrollView.subviews) {
+                [aView removeFromSuperview];
+            }
+            self.scrollView.contentSize=CGSizeMake(self.bounds.size.width*(advs.count+2), self.bounds.size.height);
+            UIImageView *firstImg = [[UIImageView alloc] init];
+            UIImageView *lastImg = [[UIImageView alloc] init];
+            lastImg.tag = 1000 + advs.count - 1;
+            firstImg.tag = 1000 + 0;
+            AdRecordsEntity *ent = advs[[advs count]-1];
+            [lastImg sd_setImageWithURL:[NSURL URLWithString:ent.pic] placeholderImage:placeHolderImg];
+            CGRect rect = self.frame;
+            rect.origin.x = 0;
+            lastImg.frame = rect;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAdvsender:)];
+            [lastImg addGestureRecognizer:tap];
+            lastImg.userInteractionEnabled = YES;
+            
+            [self.scrollView addSubview:lastImg];
+            for (int i=0; i<[advs count]; ++i) {
+                AdRecordsEntity *e = advs[i];
+                UIImageView *image = [[UIImageView alloc] init];
+                image.tag = 1000 + i;
+                [image sd_setImageWithURL:[NSURL URLWithString:e.pic] placeholderImage:placeHolderImg];
+                CGRect rect = self.frame;
+                rect.origin.x = (i+1)*rect.size.width;
+                image.frame = rect;
+                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAdvsender:)];
+                [image addGestureRecognizer:tap];
+                image.userInteractionEnabled = YES;
+                if (i==0) {
+                    [firstImg sd_setImageWithURL:[NSURL URLWithString:e.pic] placeholderImage:placeHolderImg];
+                    CGRect rect = self.frame;
+                    rect.origin.x = ([advs count]+1)*rect.size.width;
+                    firstImg.frame = rect;
+                    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAdvsender:)];
+                    [firstImg addGestureRecognizer:tap];
+                    firstImg.userInteractionEnabled = YES;
+                }
+                [self.scrollView addSubview:image];
+            }
+            [self.scrollView addSubview:firstImg];
+            [self.scrollView setContentOffset:CGPointMake(self.bounds.size.width ,self.scrollView.contentOffset.y) animated:NO];
+        }
+    }else{
+        //放置默认图片
+        self.pageCtrl.numberOfPages = 1;
+        self.pageCtrl.currentPage = 0;
+        UIImageView *image = [[UIImageView alloc] initWithImage:placeHolderImg];
+        image.frame = self.bounds;
+        [self.scrollView addSubview:image];
+    }
+}
+@end
+
+
+
+
+
+
+
+@implementation TPMTableSection
+
+-(void)awakeFromNib{
+    if (iPhone6Plus) {
+        self.frame=CGRectMake(0, 0, self.frame.size.width, 325);
+    }
+}
+
+@end
+
+
+
+
+
+@implementation TPMOtherSection
+
+@end

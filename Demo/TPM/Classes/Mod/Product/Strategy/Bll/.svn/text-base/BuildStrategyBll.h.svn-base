@@ -1,0 +1,13 @@
+//
+//  BuildStrategyBll.h
+//  TPM
+//
+//  Created by admin on 16/7/25.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+#import <QUBLL.h>
+#import <QuickUI/QuickUI.h>
+
+@interface BuildStrategyBll : QUBLL<QURefreshBaseViewDelegate>
+
+@end

@@ -1,0 +1,191 @@
+//
+//  SetPhoneNumViewController.m
+//  STO
+//
+//  Created by chenyi on 16/4/13.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "SetPhoneNumViewController.h"
+#import "UserInfoManager.h"
+#import "SendMobileCodeForauthEntity.h"
+//#import "MineStrategyViewController.h"
+#import "SetNewPhoneViewController.h"
+//#import "FloatingSection.h"
+#import "CustomIOSAlertView.h"
+#import "CheckMobileCodeEntity.h"
+#define Color_Bg_blue Color_Bg_RGB(80.0f, 140.0f, 240.0f)
+#define Color_Bg_White Color_Bg_RGB(255.0f, 255.0f, 255.0f)
+
+@interface SetPhoneNumViewController ()<UITextFieldDelegate>
+{
+NSTimer * timer ;
+}
+@property(assign,nonatomic)NSInteger counter;
+@property(assign,nonatomic)BOOL isTime;    //正在倒计时
+
+@end
+
+@implementation SetPhoneNumViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"修改手机";
+    self.phoneNumText.delegate = self;
+    self.codeTextField.delegate = self;
+    self.nextBtn.layer.cornerRadius = 3.0;
+    self.codeBtn.layer.cornerRadius = 3.0;
+    self.phoneNumText.text = [[UserInfoManager shareUserInfoManager] getUserPhonenumber];
+    self.phoneNumText.enabled = NO;
+    [self.codeBtn addTarget:self action:@selector(getCode) forControlEvents:UIControlEventTouchUpInside];
+    [self.nextBtn addTarget:self action:@selector(gotoNext) forControlEvents:UIControlEventTouchUpInside];
+    [self.codeTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+
+    [self resetStatus];
+    // Do any additional setup after loading the view from its nib.
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    
+    if (textField == self.codeTextField) {
+        if (textField.text.length>0) {
+            self.nextBtn.enabled = YES;
+            [self.nextBtn setTitleColor:Color_Bg_White forState:UIControlStateNormal];
+            [self.nextBtn setBackgroundColor:Color_Bg_blue];
+        }else{
+
+            [self.nextBtn setBackgroundColor:kColorBgBtnDisabled];
+            self.nextBtn.enabled = NO;
+            [self.nextBtn setTitleColor:kColorTextBtnDisabled forState:UIControlStateNormal];
+
+        }
+        if (textField.text.length > 6) {
+            textField.text = [textField.text substringToIndex:6];
+        }
+    }
+}
+
+-(void)resetStatus{
+    self.isTime = NO;
+    self.codeTextField.text = @"";
+    self.codeTextField.placeholder = @"请输入6位数字验证码";
+    //兼容ios7及以前版本
+    self.codeBtn.enabled = YES;
+    [self.codeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+    [self.codeBtn setTitleColor:Color_Bg_757575 forState:UIControlStateNormal];
+    [self.codeBtn setBackgroundColor:[UIColor clearColor]];
+    [self.codeBtn setBackgroundImage:[UIImage imageNamed:@"btn_30"] forState:UIControlStateNormal];
+    [self.nextBtn setBackgroundColor:kColorBgBtnDisabled];
+    self.nextBtn.enabled = NO;
+    [self.nextBtn setTitleColor:kColorTextBtnDisabled forState:UIControlStateNormal];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    [self resetStatus];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    if (timer) {
+        [timer invalidate];
+    }
+    [super viewWillDisappear:animated];
+}
+
+-(void)getCode{
+
+    self.counter = 60;
+    DEFINED_WEAK_SELF
+    [[UserInfoManager shareUserInfoManager]getOldMobileCodeReturnBlock:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if (val.result) {
+            timer =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(showTime:) userInfo:nil repeats:YES];
+            SendMobileCodeForauthEntity *e = (SendMobileCodeForauthEntity *)entity;
+            if ([e.result isEqualToString:@"Y"]) {
+
+                 [WpCommonFunction showNotifyHUDAtViewBottom:_self.view withErrorMessage:@"发送成功"];
+
+            }else{
+                
+                [WpCommonFunction showNotifyHUDAtViewBottom:_self.view withErrorMessage:@"发送失败"];
+                if (timer) {
+                    [timer invalidate];
+                }
+                 _self.codeBtn.enabled = YES;
+                [_self.codeBtn setTitleColor:Color_Bg_757575 forState:UIControlStateNormal];
+                [_self.codeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+                [_self.codeBtn setBackgroundImage:[UIImage imageNamed:@"btn_30"] forState:UIControlStateNormal];
+                [_self.codeBtn setBackgroundColor:[UIColor clearColor]];
+   
+            }
+        }
+    }];
+}
+
+-(void)showTime:(NSTimer*)time{
+    
+    if (self.counter == 0) {
+        [time invalidate];
+        self.isTime = NO;
+        [self.codeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+        [self.codeBtn setTitleColor:Color_Bg_757575 forState:UIControlStateNormal];
+        [self.codeBtn setBackgroundImage:[UIImage imageNamed:@"btn_30"] forState:UIControlStateNormal];
+        [self.codeBtn setBackgroundColor:[UIColor clearColor]];
+        self.codeBtn.enabled = YES;
+    }else{
+        self.isTime = YES;
+        self.counter--;
+        [self.codeBtn setTitle:[NSString stringWithFormat:@"(%lds)重新获取",(long)self.counter] forState:UIControlStateNormal];
+        [self.codeBtn setTitle:[NSString stringWithFormat:@"(%lds)重新获取",(long)self.counter] forState:UIControlStateDisabled];
+        [self.codeBtn setTitleColor:kColorTextBtnDisabled forState:UIControlStateNormal];
+        [self.codeBtn setBackgroundImage:[UIImage imageNamed:@"gray"] forState:UIControlStateNormal];
+        self.codeBtn.enabled = NO;
+    }
+}
+
+
+-(void)gotoNext{
+
+    [self.codeTextField resignFirstResponder];
+
+    NSLog(@"%@",self.codeTextField.text);
+    DEFINED_WEAK_SELF
+    [[UserInfoManager shareUserInfoManager]checkOldMobileCodeWithMobile_Code:self.codeTextField.text returnBlock:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if (val.result) {
+            CheckMobileCodeEntity *e = (CheckMobileCodeEntity *)entity;
+            if (e.result) {
+                SetNewPhoneViewController *controller = [[SetNewPhoneViewController alloc]initWithNibName:@"SetNewPhoneViewController" bundle:nil];
+                [_self.navigationController pushViewController:controller animated:YES];
+            }else{
+            
+                 [WpCommonFunction showNotifyHUDAtViewCenter:self.view withErrorMessage:@"验证码错误"];
+            }
+        }
+    }];
+}
+
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+    [self.phoneNumText resignFirstResponder];
+    [self.codeTextField resignFirstResponder];
+
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

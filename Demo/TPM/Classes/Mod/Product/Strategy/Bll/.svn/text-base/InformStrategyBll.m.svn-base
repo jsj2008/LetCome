@@ -1,0 +1,277 @@
+//
+//  InformStrategyBll.m
+//  TPM
+//
+//  Created by admin on 16/7/25.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#define kInformProfitKey @"kInformProfitKey"
+#define kInformProfitVal 3
+
+#import "InformStrategyBll.h"
+#import "InformStrategyListSection.h"
+#import "InformStrategyDetailViewController.h"
+#import "BuildMarketViewController.h"
+#import "TodoListEntity.h"
+#import "EmptyListSection.h"
+
+@implementation InformStrategyBll
+
+-(void)loadBll
+{
+    [super loadBll];
+}
+
+-(void)initQuickUI:(QUTableView *)tableView
+{
+    self.pAdaptor = [QUFlatAdaptor adaptorWithTableView:tableView nibArray:@[@"InformStrategyListSection", @"EmptyListSection"] delegate:self];
+    
+    //[self.pAdaptor.pSources addEntity:[QUEntity entity] withSection:[InformStrategyListSection class]];
+    
+}
+
+
+-(void)QUAdaptor:(QUAdaptor*)adaptor willDidLoadSection:(QUSection*)section willDidLoadEntity:(QUEntity*)entity
+{
+    if ([section isKindOfClass:[InformStrategyListSection class]]) {
+        
+        InformStrategyListSection *s = (InformStrategyListSection *)section;
+        s.pageControl.userInteractionEnabled = NO;
+        s.pageControl.numberOfPages = 30;
+        s.pageControl.currentPage = 6;
+        [s.informBtn addTarget:self action:@selector(informBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [s.hqBtn addTarget:self action:@selector(hqBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+    }
+    
+}
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor forSection:(QUSection *)section forEntity:(QUEntity *)entity
+{
+    if ([section isKindOfClass:[InformStrategyListSection class]] && [entity isKindOfClass:[TodoListRecordsEntity class]]) {
+        
+        InformStrategyListSection *s = (InformStrategyListSection *)section;
+        TodoListRecordsEntity *e = (TodoListRecordsEntity *)entity;
+        
+        //协议编号
+        s.pnoLabel.text = [NSString stringWithFormat:@"协议编号：%@", e.pno];
+        //时间
+        NSDateFormatter *formater = [[NSDateFormatter alloc]init];
+        formater.dateFormat = @"MM-dd HH:mm";
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:e.start_time.integerValue];
+        s.timeLabel.text = [formater stringFromDate:date];
+        //投资人
+        s.investorSymbolLabel.text = e.dealer_replace;
+        //投资单元
+        s.investUnitLabel.text = [NSString stringWithFormat:@"投资单元 %@万", e.fund];
+        //
+        [s.hqBtn setTitle:e.stock_name forState:UIControlStateNormal];
+        //总股数
+        s.totalStockAmountLabel.text = [NSString stringWithFormat:@"%@股", e.amount];
+        //买入价
+        s.buyPriceLabel.text = [NSString stringWithFormat:@"%@元", [NSString stringWithFormat:@"%.2f", e.buy_deal_price_avg.floatValue]];
+        
+        if (e.profitEntity) {
+            //浮盈亏
+            NSMutableString *floatStr = [NSMutableString stringWithFormat:@"%.2f", e.profitEntity.profit.floatValue];
+            if (e.profitEntity.profit.floatValue >= 1000) {
+                
+                [floatStr insertString:@"," atIndex:floatStr.length - 6];
+                if (e.profitEntity.profit.floatValue >= 1000000) {
+                    
+                    [floatStr insertString:@"," atIndex:floatStr.length - 9];
+                }
+                s.floatingLabel.text = floatStr;
+            }
+            //浮盈亏率
+            s.floatingRateLabel.text = [NSString stringWithFormat:@"+%.2f%%", e.profitEntity.profit_rate.floatValue * 100];
+            //现价
+            s.currentPriceLabel.text = [NSString stringWithFormat:@"%.2f元", e.profitEntity.cur_price.floatValue];
+            //涨跌
+            NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"+%.2f元", e.profitEntity.price_proift.floatValue] attributes:nil];
+            [attrStr addAttribute:NSForegroundColorAttributeName value:Color_Up_Red range:NSMakeRange(0, attrStr.length - 1)];
+            [s.upDownLabel setAttributedText:attrStr];
+
+            
+        }
+        //履约比例
+        for (NSLayoutConstraint *c in s.lineView.constraints) {
+            if ([c.identifier isEqualToString:@"redPercent"]) {
+                
+                c.constant = 0;
+            }
+            
+            if ([c.identifier isEqualToString:@"indicatorConstraints"]) {
+                
+                c.constant = 150;
+            }
+        }
+        
+        //按钮tag
+        s.informBtn.tag = [[self.pAdaptor.pSources entityArray] indexOfObject:e];
+    }
+}
+
+
+#pragma mark - 按钮
+- (void)hqBtnClicked:(UIButton *)btn
+{
+    BuildMarketViewController *controller = [BuildMarketViewController controllerWithCode:@"000035"];
+    [self.controller.navigationController pushViewController:controller animated:NO];
+}
+
+
+- (void)informBtnClicked:(UIButton *)sender
+{
+    InformStrategyDetailViewController *controller = [[InformStrategyDetailViewController alloc] initWithNibName:@"InformStrategyDetailViewController" bundle:nil];
+    controller.todoEntity = [[self.pAdaptor.pSources entityArray] objectAtIndex:sender.tag];
+    
+    [self.controller.navigationController.navigationController pushViewController:controller animated:NO];
+}
+
+
+
+-(void)initTimer
+{
+    if (![[WHTimerManager shareTimerManager]hasNotifyName:kInformProfitKey]) {
+        
+        [[WHTimerManager shareTimerManager] addTarget:self selector:@selector(refreshProfit) notifyName:kInformProfitKey];
+    }
+}
+
+-(void)controllerDidAppear
+{
+    [super controllerWillAppear];
+    [self refresh];
+    [self initTimer];
+}
+
+-(void)controllerDidDisappear{
+    [super controllerDidDisappear];
+    [[WHTimerManager shareTimerManager] removeTarget:self notifyName:kInformProfitKey];
+}
+
+-(void)show{
+    [super show];
+    [self initTimer];
+}
+
+-(void)hide{
+    [super hide];
+    [[WHTimerManager shareTimerManager] removeTarget:self notifyName:kInformProfitKey];
+}
+
+
+- (void)refreshTable
+{
+    if ([self.pAdaptor.pSources entityArrayByClass:[TodoListRecordsEntity class]].count == 0) {
+        
+        [self.pAdaptor.pSources clear];
+        [self.pAdaptor.pSources addEntity:[QUEntity entity] withSection:[EmptyListSection class]];
+    }
+    
+    [self.pAdaptor.refreshHeaderView endRefreshing];
+    [self.pAdaptor.refreshFooterView endRefreshing];
+    [self.pAdaptor notifyChanged];
+}
+
+-(void)refreshViewBeginRefreshing:(MJRefreshComponent *)refreshView
+{
+    if ([refreshView isKindOfClass:[MJRefreshHeader class]]) {
+        
+        [self refreshTodoList:@"0"];
+    }
+    
+    if ([refreshView isKindOfClass:[MJRefreshFooter class]]) {
+        
+        NSString *startId = @"0";
+        for (TodoListRecordsEntity *e in [self.pAdaptor.pSources entityArrayByClass:[TodoListRecordsEntity class]]) {
+            
+            startId = e.ID;
+        }
+        [self refreshTodoList:startId];
+    }
+    
+}
+
+- (void)refreshTodoList:(NSString *)startid
+{
+    DEFINED_WEAK_SELF
+    [[ProductsManager shareProductsManager]getTodoListInformationWithStartId:startid Block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        
+        if (val.result && [entity isKindOfClass:[TodoListEntity class]]) {
+            
+            if ([startid isEqualToString:@"0"]) {
+                
+                [_self.pAdaptor.pSources clear];
+                //
+                
+            }
+            for (TodoListRecordsEntity *re in ((TodoListEntity *)entity).records) {
+                
+                [_self.pAdaptor.pSources addEntity:re withSection:[InformStrategyListSection class]];
+            }
+            
+            
+        }
+        
+        [_self refreshTable];
+    }];
+}
+
+- (void)refresh
+{
+    [self refreshTodoList:@"0"];
+}
+
+- (void)refreshProfit
+{
+    if ([[WHOnceTask shareOnceTask]expired:kInformProfitKey validTime:kInformProfitVal] && self.pTableView.hidden == NO) {
+        
+        [self getProfitData];
+    }
+}
+
+- (void)getProfitData
+{
+    NSMutableArray *id_arr = [NSMutableArray array];
+    
+    for(TodoListRecordsEntity * e in [self.pAdaptor.pSources entityArrayByClass:[TodoListRecordsEntity class]]){
+        [id_arr addObject:e.ID];
+    }
+    if ([id_arr count]>0) {
+        DEFINED_WEAK_SELF
+        [[ProductsManager shareProductsManager] refreshProfitByIds:id_arr andBlock:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+            if (val.result && [entity isKindOfClass:[ProfitEntity class]]) {
+                ProfitEntity* pe = (ProfitEntity*)entity;
+                for (ProfitRecordsEntity* re in pe.records) {
+                    for(TodoListRecordsEntity * e in [_self.pAdaptor.pSources entityArrayByClass:[TodoListRecordsEntity class]]){
+                        if ([e.ID isEqualToString:re.key_id]) {
+                            if (0>1) {//过滤条件
+                                [_self.pAdaptor.pSources removeEntity:e];
+                            }else{
+                                e.profitEntity = re;
+                            }
+                            break;
+                        }
+                    }
+                }
+                [_self refreshTable];
+            }
+        }];
+    }
+}
+
+
+-(void)dealloc
+{
+    [[WHTimerManager shareTimerManager] removeTarget:self notifyName:kInformProfitKey];
+}
+
+
+
+
+
+@end

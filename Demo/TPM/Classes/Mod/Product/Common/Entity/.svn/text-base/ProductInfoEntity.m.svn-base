@@ -1,0 +1,29 @@
+//
+//  IFProductInfoEntity.m
+//  QianFangGuJie
+//
+//  Created by 李荣 on 15/3/6.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+
+#import "ProductInfoEntity.h"
+
+@implementation ProductInfoEntity
+-(NSString*)parseJson:(NSDictionary*)json{
+    NSDictionary *jsonDict = (NSDictionary *)json;
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:jsonDict];
+
+    NSDictionary *rootDict = nil;
+    NSMutableDictionary *tempDict = [NSMutableDictionary dictionaryWithCapacity:2];
+    
+    [dict enumerateKeysAndObjectsUsingBlock:^(id key, NSDictionary *obj, BOOL *stop) {
+        
+        [tempDict addEntriesFromDictionary:obj];
+        
+    }];
+    
+    rootDict = tempDict;
+    return [rootDict JSONString];
+    
+}
+@end

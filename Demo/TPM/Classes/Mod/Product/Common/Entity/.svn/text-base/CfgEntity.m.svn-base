@@ -1,0 +1,13 @@
+//
+//  CfgEntity.m
+//  QianFangGuJie
+//
+//  Created by  rjt on 15/10/8.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "CfgEntity.h"
+
+@implementation CfgEntity
+
+@end

@@ -1,0 +1,31 @@
+//
+//  UserAgreementList.h
+//  TPZ
+//
+//  Created by chenyi on 16/3/1.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface UserAgreementListEntity : QUEntity
+
+@property (nonatomic,strong)NSArray *records;
+
+@end
+
+
+@interface UserAgreementListRecordsEntity : QUEntity
+
+/*协议ID*/
+@property (nonatomic,copy)NSString *ID;
+/*协议名称*/
+@property (nonatomic,copy)NSString *name;
+/*签署状态 1：已签署 0：未签署*/
+@property (nonatomic,copy)NSString *status;
+/*签署时间署*/
+@property (nonatomic,copy)NSString *sign_time;
+/*发布时间*/
+@property (nonatomic,copy)NSString *create_time;
+
+@end

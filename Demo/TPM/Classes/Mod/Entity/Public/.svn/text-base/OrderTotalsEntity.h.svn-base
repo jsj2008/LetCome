@@ -1,0 +1,30 @@
+//
+//  OrderTotalsEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/3/2.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface OrderTotalsEntity : QUEntity
+
+/*失败记录总数*/
+@property (nonatomic,copy)NSString *fail_total;
+/*待触发列表记录总数*/
+@property (nonatomic,copy)NSString *process_total;
+/*未回报记录总数*/
+@property (nonatomic,copy)NSString *noresponse_total;
+/*异议总数*/
+@property (nonatomic,copy)NSString *dissent_total;
+/*修正总数*/
+@property (nonatomic,copy)NSString *fix_total;
+/*点卖列表记录总数*/
+@property (nonatomic,copy)NSString *pend_total;
+/*7交易日结算总数*/
+@property (nonatomic,copy)NSString *settlement_7d_total;
+/*30交易日结算总数*/
+@property (nonatomic,copy)NSString *settlement_30d_total;
+
+@end

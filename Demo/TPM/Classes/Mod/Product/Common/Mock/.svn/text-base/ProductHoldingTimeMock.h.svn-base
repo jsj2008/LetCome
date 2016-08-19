@@ -1,0 +1,17 @@
+//
+//  ProductHoldingTimeMock.h
+//  QianFangGuJie
+//
+//  Created by  rjt on 15/5/6.
+//  Copyright (c) 2015年 JYZD. All rights reserved.
+//
+
+#import "AppMock.h"
+
+@interface ProductHoldingTimeParam : AppParam
+@property (nonatomic,copy) NSString *p_type;
+@end
+
+@interface ProductHoldingTimeMock : AppMock
+
+@end

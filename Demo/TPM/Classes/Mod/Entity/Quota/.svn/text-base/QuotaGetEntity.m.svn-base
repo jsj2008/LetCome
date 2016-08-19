@@ -1,0 +1,13 @@
+//
+//  QuotaGetEntity.m
+//  QianFangGuJie
+//
+//  Created by 李荣 on 15/3/25.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+
+#import "QuotaGetEntity.h"
+
+@implementation QuotaGetEntity
+
+@end

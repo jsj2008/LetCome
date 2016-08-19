@@ -1,0 +1,492 @@
+//
+//  TradeCostViewController.m
+//  TPM
+//
+//  Created by tongshangren on 16/7/29.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "TradeCostViewController.h"
+#import "ResponseView.h"
+#import "NoticeView.h"
+#import "PrePolicyCheckEntity.h"
+#import "BuyOrderEntity.h"
+#import "CreatePolicyEntity.h"
+
+#import "StrategyNotificationView.h"
+#import "ResetNameViewController.h"
+#import "MyWebViewController.h"
+#import "ConfirmRiskEntity.h"
+#import "AgreementManager.h"
+#import "GetuserUnsignedAgreementEntity.h"
+#import "GetAgreementInfoEntity.h"
+#import "ArticleListEntity.h"
+#import "ArticleContentEntity.h"
+
+@interface TradeCostViewController ()<UIAlertViewDelegate>
+@property(assign,nonatomic)BOOL agree;
+@property(nonatomic,strong)ResponseView *responseView;
+@property(nonatomic,strong)NoticeView *noticeView1;
+@property(nonatomic,strong)NoticeView *noticeView2;
+@property(nonatomic,strong)NoticeView *investAgreement;
+
+@property(nonatomic,strong)StrategyNotificationView *notificationView;
+@property(assign,nonatomic)BOOL riskConfirm;
+@property(nonatomic,strong)ProductAgreementView *agreementView;
+@end
+
+@implementation TradeCostViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title=@"策略人费用";
+    
+    
+
+    [self.btnPay.layer setCornerRadius:2.0];
+    self.btnPay.layer.masksToBounds=YES;
+    [self.btnPay addTarget:self action:@selector(showResponseView) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.btnAgree addTarget:self action:@selector(clickAgreeCheckBox) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnNotice1 addTarget:self action:@selector(notickFunc1) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnNotice2 addTarget:self action:@selector(notickFunc2) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    
+    NSArray *nibContents3 = [[NSBundle mainBundle] loadNibNamed:@"NoticeView" owner:nil options:nil];
+    self.investAgreement= [nibContents3 objectAtIndex:0];
+    [self prepareContentView];
+
+    
+    self.lblBidBond.text=[self formatFund:self.schemeDetailEntity.bid_bond currency:YES];
+    self.lblBreakCost.text=[self formatFund:self.schemeDetailEntity.break_cost currency:YES];
+
+    self.lblFee.text=[self formatFund:self.schemeDetailEntity.fee currency:YES];
+}
+
+
+-(NSString *)formatFund:(NSString *)fund currency:(BOOL)needCNY{
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+    formatter.numberStyle =kCFNumberFormatterCurrencyStyle;
+    NSString *newFund = [formatter stringFromNumber:[NSNumber numberWithFloat:[fund floatValue]]];
+    newFund =[newFund stringByReplacingOccurrencesOfString:@"$" withString:@"￥"];
+    if (!needCNY) {
+        newFund =[newFund stringByReplacingOccurrencesOfString:@"￥" withString:@""];
+    }
+    return newFund;
+}
+
+
+
+
+-(void)prepareContentView{
+    
+    DEFINED_WEAK_SELF
+    dispatch_queue_t  queue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_sync(queue, ^{
+        NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"NoticeView" owner:nil options:nil];
+        _self.noticeView1= [nibContents objectAtIndex:0];
+        [_self.noticeView1 showContent:@"1.策略人拉勾宝账户中冻结的，用于对投资人执行策略产生交易亏损赔付的专项保证金。</br>2.强平</br>· 当亏损赔付履约比例值触发或向下击穿8％时，策略人将自动放弃向投资人发出平仓策略的权利，而授权投资人自行于次日进行平仓，并同意接受结果。</br> 亏损赔付履约比例：投资人持仓过程中在每日收盘后，将根据策略人冻结的亏损赔付履约金和投资单元的收盘浮盈，动态评估策略人承担亏损赔付的能力。值＝（亏损赔付履约金＋收盘浮盈）／买入成交金额× 100％。</br>3.策略人以亏损赔付履约金为限承担投资人交易亏损赔付。"];
+        
+        NSArray *nibContents2 = [[NSBundle mainBundle] loadNibNamed:@"NoticeView" owner:nil options:nil];
+        _self.noticeView2= [nibContents2 objectAtIndex:0];
+        [_self.noticeView2 showContent:@"1.策略人拉勾宝账户中冻结的，用于在收盘浮盈未达到12%及以上而向投资人发出平仓通知时，对投资人机会成本进行补偿的专项保证金</br>成本补偿 = 买入成交金额 ×（1%+0.06%×未到期天数）</br>2.补偿剩余的资金将予以退还"];
+    });
+    
+    [[AgreementManager shareAgreementManager]getArticleList:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if ([entity isKindOfClass:[ArticleListEntity class]]) {
+            ArticleListEntity *e=(ArticleListEntity*)entity;
+            if (e.records.count>0){
+                
+                NSDictionary *dic=e.records[0];
+                QUJsonParse *jsonParse = [[QUJsonParse alloc]init];
+                NSData * jsonData = [NSJSONSerialization dataWithJSONObject:dic options:kNilOptions error:nil];
+                
+                NSString *jsStr=[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                
+                ArticleListListEntity* ee =[jsonParse objFromString:jsStr withClass:[ArticleListListEntity class]];
+
+                _self.lblInvestAgreementTitle.text=[NSString stringWithFormat:@"《%@》",ee.name];
+                [_self getAgreementContentByID:ee.ID];
+                
+                
+            }
+        }
+    }];
+}
+
+
+-(void)getAgreementContentByID:(NSString *)ID{
+    DEFINED_WEAK_SELF
+    [[AgreementManager shareAgreementManager]getArticleContentByID:ID nickname_t:self.policyEntity.investor_code uid_t:self.policyEntity.investor_id scheme_id:self.policyEntity.scheme_id Block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if ([entity isKindOfClass:[ArticleContentEntity class]]) {
+            ArticleContentEntity *e=(ArticleContentEntity *)entity;
+                [_self.investAgreement showContent:e.content];
+            UITapGestureRecognizer *ges=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showInvestAgreement)];
+            [_self.lblInvestAgreementTitle addGestureRecognizer:ges];
+        }
+    }];
+ 
+}
+
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+
+-(void)setBtn:(UIButton *)btn enabled:(BOOL)enable{
+    if (enable) {
+        [btn setEnabled:YES];
+        [btn setBackgroundColor:[UIColor colorWithRed:83.0/255.0 green:142.0/255.0 blue:237.0/255.0 alpha:1.0]];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }else{
+        [btn setEnabled:NO];
+        [btn setBackgroundColor:[UIColor colorWithRed:224.0/255.0 green:224.0/255.0 blue:224.0/255.0 alpha:1.0]];
+        [btn setTitleColor:[UIColor colorWithRed:190.0/255.0 green:190.0/255.0 blue:190.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    }
+}
+
+
+-(void)clickAgreeCheckBox{
+    if (self.agree) {
+        self.agree=NO;
+        [self setBtn:self.btnPay enabled:NO];
+        [self.btnAgree setImage:[UIImage imageNamed:@"checkbox.png"] forState:UIControlStateNormal];
+    }
+    else{
+        self.agree=YES;
+        [self.btnAgree setImage:[UIImage imageNamed:@"checkbox_s.png"] forState:UIControlStateNormal];
+        [self setBtn:self.btnPay enabled:YES];
+    }
+}
+
+
+-(void)notickFunc1{
+    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    [window addSubview:self.noticeView1];
+}
+
+-(void)notickFunc2{
+    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    [window addSubview:self.noticeView2];
+}
+
+
+
+
+-(void)showInvestAgreement{
+    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    [window addSubview:self.investAgreement];
+}
+
+
+
+
+
+-(void)showResponseView{
+    //获取屏幕
+    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    int winwidth=[UIScreen mainScreen].bounds.size.width;
+    int winheight=[UIScreen mainScreen].bounds.size.height;
+    
+    NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"ResponseView" owner:nil options:nil];
+    self.responseView= [nibContents objectAtIndex:0];
+    self.responseView.controller=self;
+    self.responseView.frame=CGRectMake(0,0, winwidth, winheight);
+    self.responseView.backgroundColor=[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3];
+    
+    
+    self.responseView.lblBreakCost.text=[self formatFund:self.schemeDetailEntity.break_cost currency:NO];
+    self.responseView.lblBidBond.text=[self formatFund:self.schemeDetailEntity.bid_bond currency:NO];
+    NSString *freezefund=[NSString stringWithFormat:@"%.2f",[self.schemeDetailEntity.break_cost floatValue]+[self.schemeDetailEntity.bid_bond floatValue]];
+    self.responseView.lblFreezeFund.text=[self formatFund:freezefund currency:YES];
+    
+    self.responseView.lblFee.text=[self formatFund:self.schemeDetailEntity.fee currency:NO];
+    self.responseView.lblFeeTotal.text=[self formatFund:self.schemeDetailEntity.fee currency:YES];
+    
+    
+    //    self.responseView.lblPrePayFee.text=self.publishSection.lblInfoFee.text;
+    //    self.responseView.lblFrozenFee.text=self.publishSection.lblFreezingFee.text;
+    
+    
+    //    self.responseView.amountBll=self;
+    [self.responseView.btnStart setEnabled:YES];
+    [self.responseView.btnStart addTarget:self action:@selector(clickStart) forControlEvents:UIControlEventTouchUpInside];
+    //    [self.responseView.btnRepublish addTarget:self action:@selector(clickStart) forControlEvents:UIControlEventTouchUpInside];
+    [window addSubview:self.responseView];
+    //    [self.responseView showStartView];
+}
+
+
+-(void)delayEnabledBtn:(UIButton *)btn{
+    [btn setEnabled:NO];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [btn setEnabled:YES];
+    });
+}
+
+-(void)clickStart{
+    
+    
+    [self delayEnabledBtn:self.responseView.btnStart];
+    
+    
+    if (![UserInfoManager hasLogin]) {
+        [[PasswordWindow shareWindow] showWithLogin];
+        return;
+    }
+    
+    NSString *lastNotificationTime=[[NSUserDefaults standardUserDefaults] objectForKey:@"lastNotificationTime"];
+    if (!lastNotificationTime||[lastNotificationTime isEqualToString:@""]) {
+        lastNotificationTime=@"0";
+    }
+    NSTimeInterval nstime=[[NSDate date] timeIntervalSince1970];
+    NSString *now = [NSString stringWithFormat:@"%ld", (long)nstime];
+    int duration=[now intValue]-[lastNotificationTime intValue];
+    
+    
+    DEFINED_WEAK_SELF
+    [[ProductsManager shareProductsManager]prePolicyCheckBySchemeID:self.policyEntity.scheme_id investor_id:self.policyEntity.investor_id stock_Code:self.policyEntity.stock_code fund:self.policyEntity.fund cell_id:self.policyEntity.cell_id Block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if ([entity isKindOfClass:[PrePolicyCheckEntity class]]) {
+            PrePolicyCheckEntity *e=(PrePolicyCheckEntity *)entity;
+            if ([e.result isEqualToString:@"Y"]) {
+                [_self publish];
+            }
+            else if ([e.result isEqualToString:@"N"]&&e.reason){
+                ResetNameViewController *nick;
+                UIAlertView *alert;
+                switch ([e.reason intValue]) {
+                    case 1:
+                        //去认证
+                        [_self showNotificationWithTitle:@"认证通知" msg:e.msg];
+                        _self.notificationView.btnFrame.hidden=NO;
+                        [_self.notificationView.btnLeft setTitle:@"下次再说" forState:UIControlStateNormal];
+                        [_self.notificationView.btnRight setTitle:@"立即认证" forState:UIControlStateNormal];
+                        [_self.notificationView.btnRight addTarget:_self action:@selector(getQualification) forControlEvents:UIControlEventTouchUpInside];
+                        break;
+                    case 2:
+                        //风险确认弹框（要用msg_id进行风险确认）
+                        [_self showNotificationWithTitle:@"风险提醒" msg:e.msg];
+                        _self.notificationView.btnFrame.hidden=YES;
+                        _self.notificationView.btnConfirm.tag=[e.msg_id intValue];
+                        [_self.notificationView.btnConfirm addTarget:_self action:@selector(confirmRisk:) forControlEvents:UIControlEventTouchUpInside];
+                        [_self.notificationView.btnConfirm setTitle:@"知道了" forState:UIControlStateNormal];
+                        break;
+                    case 3:
+                        //亏损过多确认框
+                        if (duration<(86400*7)||_self.riskConfirm) {
+                            [_self publish];
+                            break;
+                        }
+                        [_self showNotificationWithTitle:@"风险告知" msg:e.msg];
+                        _self.notificationView.btnFrame.hidden=NO;
+                        [_self.notificationView.btnRight setTitle:@"确认" forState:UIControlStateNormal];
+                        [_self.notificationView.btnRight addTarget:_self action:@selector(riskConfirmFunc) forControlEvents:UIControlEventTouchUpInside];
+                        
+                        [_self.notificationView.btnLeft setTitle:@"不再提醒" forState:UIControlStateNormal];
+                        _self.notificationView.btnLeft.tag=[e.msg_id intValue];
+                        [_self.notificationView.btnLeft addTarget:_self action:@selector(skipNoticeForOneWeek) forControlEvents:UIControlEventTouchUpInside];
+                        break;
+                    case 4:
+                        alert=[[UIAlertView alloc]initWithTitle:nil message:e.msg delegate:self cancelButtonTitle:@"放弃" otherButtonTitles:@"继续", nil];
+                        alert.tag=101;
+                        [alert show];
+                        break;
+                    case 5:
+                        alert=[[UIAlertView alloc]initWithTitle:nil message:e.msg delegate:self cancelButtonTitle:@"放弃" otherButtonTitles:@"继续", nil];
+                        alert.tag=101;
+                        [alert show];
+                        break;
+                    case 6:
+                        alert=[[UIAlertView alloc]initWithTitle:nil message:e.msg delegate:self cancelButtonTitle:@"放弃" otherButtonTitles:@"去充值", nil];
+                        alert.tag=106;
+                        [alert show];
+                        break;
+                    case 10:
+                        //去获取未签署合约列表
+                        [_self checkAllUnsignedAgreementWithType:e.agreement_type];
+                        break;
+                    case 20:
+                        //去设置昵称
+                        nick = [ResetNameViewController controller];
+                        nick.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.4];
+                        nick.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+                        [_self presentViewController:nick animated:YES completion:nil];
+                        //                        nick.delegate = _self;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }];
+}
+
+
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex==1) {
+        if (alertView.tag==101) {
+            [self publish];
+        }
+        if (alertView.tag==106) {
+            //去充值
+            [self gotoDepositView];
+        }
+    }
+}
+
+
+
+-(void)gotoDepositView{
+    MyWebViewController *webview = [MyWebViewController controller];
+    //    webview.delegate = self;
+    webview.url = [NSString stringWithFormat:@"%@/cpb/gotoCpb?type=1&session_id=%@",[ConfigManager shareConfigManager].h5Url,[[UserInfoManager shareUserInfoManager] getSessionID]];
+    webview.title = @"充值";
+    webview.isBack2History = NO;
+    [self.navigationController pushViewController:webview animated:YES];
+}
+
+
+//检查所有未签署协议
+-(void)checkAllUnsignedAgreementWithType:(NSString *)type{
+    DEFINED_WEAK_SELF
+    [[AgreementManager shareAgreementManager]getuserUnsignedAgreementWithType:type block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if ([entity isKindOfClass:[GetuserUnsignedAgreementEntity class]]) {
+            GetuserUnsignedAgreementEntity *e=(GetuserUnsignedAgreementEntity*)entity;
+            if (e.res_data){
+                //NSLog(@"展示未签署协议");
+                
+                NSMutableArray *IDArray=[[NSMutableArray alloc]initWithCapacity:0];
+                for (GetuserUnsignedAgreementRes_dataEntity *ee in e.res_data) {
+                    [IDArray addObject:ee.ID];
+                }
+                if (e.res_data.count==0) {
+                    [_self publish];
+                }
+                else if (e.res_data.count==1) {
+                    GetuserUnsignedAgreementRes_dataEntity *ee=e.res_data[0];
+                    [_self getAgreementInfoWithID:IDArray[0] title:ee.name];
+                }
+            }
+        }
+    }];
+}
+
+
+//根据协议ID弹窗
+-(void)getAgreementInfoWithID:(NSString *)ID title:(NSString *)title{
+    DEFINED_WEAK_SELF
+    //NSString *ID=[NSString stringWithFormat:@"%@",[IDArray objectAtIndex:0]];
+    [[AgreementManager shareAgreementManager] getAgreementInfoWithID:ID block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if (val.result) {
+            GetAgreementInfoEntity *e = (GetAgreementInfoEntity *)entity;
+            if (e.content) {
+                NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"ProductAgreementView" owner:nil options:nil];
+                _self.agreementView  = [nibContents lastObject];
+                //_self.agreementView.agreementViewDelegate = _self;
+                
+                if (e) {
+                    //[_self.controller presentViewController:controller animated:NO completion:nil];
+                    
+                    _self.agreementView.frame=[UIScreen mainScreen].bounds;
+                    _self.agreementView.lblTitle.text=title;
+                    
+                    NSAttributedString *attrStr = [[NSAttributedString alloc] initWithData:[e.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+                    _self.agreementView.agreementAttributedString=attrStr;
+                    _self.agreementView.agreementTextView.font = [UIFont systemFontOfSize:12.f];
+                    _self.agreementView.agreementString=attrStr.string;
+                    [_self.agreementView fixViewFrame];
+                    _self.agreementView.ID=ID;
+                    //[_self.view addSubview:_self.agreementView];
+                    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+                    
+                    [_self.navigationController.view addSubview:_self.agreementView];
+                }
+                
+            }
+        }
+    }];
+}
+
+
+
+-(void)riskConfirmFunc{
+    self.riskConfirm=YES;
+}
+
+-(void)skipNoticeForOneWeek{
+    NSTimeInterval nstime=[[NSDate date] timeIntervalSince1970];
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)nstime];
+    [[NSUserDefaults standardUserDefaults] setObject:timeSp forKey:@"lastNotificationTime"];
+}
+
+//弹出提示窗口
+-(void)showNotificationWithTitle:(NSString *)title msg:(NSString *)msg{
+    NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"StrategyNotificationView" owner:nil options:nil];
+    self.notificationView= [nibContents objectAtIndex:0];
+    //获取屏幕
+    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    int winwidth=[UIScreen mainScreen].bounds.size.width;
+    int winheight=[UIScreen mainScreen].bounds.size.height;
+    self.notificationView.frame=CGRectMake(0,0, winwidth, winheight);
+    self.notificationView.backgroundColor=[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3];
+    self.notificationView.lblTitle.text=title;
+    self.notificationView.lblContent.text=msg;
+    [window addSubview:self.notificationView];
+}
+
+//弹出认证页面
+-(void)getQualification{
+    MyWebViewController* controller = [[MyWebViewController alloc]initWithNibName:@"MyWebViewController" bundle:nil];
+    controller.url = [NSString stringWithFormat:@"%@/riskcontrol/qualification/index?session_id=%@",[ConfigManager shareConfigManager].h5Url,[[UserInfoManager shareUserInfoManager] getSessionID]];
+    controller.title = @"认证等级";
+    controller.isBack2History = NO;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+
+//根据msg_id（btn的tag值）确认风险
+-(void)confirmRisk:(UIButton *)btn{
+    NSString * ID=[NSString stringWithFormat:@"%ld",(long)btn.tag];
+    DEFINED_WEAK_SELF
+    [[ProductsManager shareProductsManager]confirmRiskByID:ID block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if ([entity isKindOfClass:[ConfirmRiskEntity class]]) {
+            ConfirmRiskEntity *e=(ConfirmRiskEntity *)entity;
+            if ([e.result isEqualToString:@"Y"]) {
+                [_self publish];
+                [_self.notificationView removeFromSuperview];
+            }
+        }
+    }];
+    
+}
+
+
+
+
+-(void)publish{
+    DEFINED_WEAK_SELF
+    [[ProductsManager shareProductsManager]createPolicyBySchemeID:self.policyEntity.scheme_id investor_id:self.policyEntity.investor_id stock_Code:self.policyEntity.stock_code fund:self.policyEntity.fund cell_id:self.policyEntity.cell_id Block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+
+        if ([entity isKindOfClass:[CreatePolicyEntity class]]) {
+            CreatePolicyEntity *e=(CreatePolicyEntity *)entity;
+            if (e.ID) {
+                _self.responseView.pidString=e.ID;
+                _self.responseView.investor_code=_self.policyEntity.investor_code;
+                [_self.responseView startFunc];
+            }
+        }
+        else{
+            [_self.responseView removeFromSuperview];
+        }
+    }];
+}
+
+
+
+@end

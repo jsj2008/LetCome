@@ -1,0 +1,32 @@
+//
+//  GestureHeader.h
+//  StarGame
+//
+//  Created by bizmatch on 15-2-23.
+//  Copyright (c) 2015年 Shanghai-electric. All rights reserved.
+//
+
+#ifndef StarGame_GestureHeader_h
+#define StarGame_GestureHeader_h
+
+#endif
+
+#define kTEST_ACOUNT_KEY   [NSString stringWithFormat:@"%@_%@",@"JUAPP_ACCONT_KEY",[getUserInfoManager getUserID]]
+#define kTEST_ACOUNT_USE @"PWD_USE"
+
+#define kGestureOffset 40
+
+typedef enum GestureView_Mode{
+    GestureView_Mode_Reset,//重置密码锁
+    GestureView_Mode_Forget,//忘记密码锁
+    GestureView_Mode_Active,//激活密码锁
+    GestureView_Mode_Lock,//解锁密码锁
+    
+}GestureView_Mode;
+
+#define RGBHexColor(hexValue, alphaValue) [UIColor colorWithRed:((float)((hexValue & 0xFF0000) >> 16))/255.0 green:((float)((hexValue & 0xFF00) >> 8))/255.0 blue:((float)(hexValue & 0xFF))/255.0 alpha:alphaValue]
+
+typedef enum ePasswordSate {
+    ePasswordUnset,//未设置
+    ePasswordExist//密码设置成功
+}ePasswordSate;

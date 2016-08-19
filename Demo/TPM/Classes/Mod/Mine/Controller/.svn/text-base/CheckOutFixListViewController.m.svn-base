@@ -1,0 +1,172 @@
+//
+//  CheckOutFixListViewController.m
+//  A50
+//
+//  Created by tongshangren on 15/11/9.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "CheckOutFixListViewController.h"
+#import "ProductCheckOutFixListSection.h"
+#import "ProductCheckOutFixDetailsViewController.h"
+#import "ProductCheckOutFixListEntity.h"
+#import "ProductBargainFixEntity.h"
+#import "ProductCheckOutNoneSection.h"
+#import "UIBarButtonItem+YL.h"
+
+@interface CheckOutFixListViewController ()
+
+@end
+
+@implementation CheckOutFixListViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"我的补偿";
+    self.manager = [ProductsManager shareProductsManager];
+//    self.navigationItem.leftBarButtonItem = [UIBarButtonItem buttonItemWithIcon:@"nav_back" highlightedIcon:@"nav_back" target:self action:@selector(back)];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    [self refreshList:@"0"];
+}
+
+- (void)back {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor forSection:(QUSection *)section forEntity:(QUEntity *)entity{
+    
+    if ([section isKindOfClass:[ProductCheckOutFixListSection class]]) {
+        ProductBargainFixRecordsEntity* e = (ProductBargainFixRecordsEntity*)entity;
+        ProductCheckOutFixListSection* s = (ProductCheckOutFixListSection*)section;
+ 
+        NSDate *temp = [NSDate dateWithTimeIntervalSince1970:[e.create_time integerValue]];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateStyle:NSDateFormatterMediumStyle];
+        [formatter setTimeStyle:NSDateFormatterShortStyle];
+        [formatter setDateFormat:@"YYYY-MM-dd HH:mm"]; // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时
+        NSString* dateStr = [formatter stringFromDate:temp];
+        NSString *year=[dateStr substringToIndex:4];
+        NSString *thisYear=[[NSString stringWithFormat:@"%@",[NSDate date]]substringToIndex:4];
+        
+        if (![year isEqualToString:thisYear]) {
+            s.lblDate.text=[dateStr substringToIndex:11];
+        }
+        else{
+            NSString *dateStr2=[dateStr substringFromIndex:5];
+            dateStr2=[dateStr2 substringToIndex:11];
+            s.lblDate.text=dateStr2;
+        }
+        
+        s.btnPay.layer.cornerRadius = 5;
+        if ([e.state isEqualToString:@"0"]) {
+            [s.btnPay setTitle:@"支付" forState:UIControlStateNormal];
+            s.btnPay.hidden = NO;
+            s.lblState.hidden = YES;
+        }else{
+        
+            s.btnPay.hidden = YES;
+            s.lblState.hidden = NO;
+            s.lblState.text = e.state_name;
+            if ([e.state isEqualToString:@"2"]) {
+                s.lblState.textColor = [UIColor colorWithRed:250/255.0 green:75/255.0 blue:50/255.0 alpha:1.0];
+            }else{
+            
+                s.lblState.textColor = Color_Bg_757575;
+            }
+        }
+        if ([e.state isEqualToString:@"0"]||[e.state isEqualToString:@"1"]||[e.state isEqualToString:@"4"]) {
+            s.lblFloat.text=[NSString stringWithFormat:@"¥ -%.2f",[e.delta_profit floatValue]];
+            s.lblFloat.textColor=Color_Down_Green;
+        }else{
+        
+            s.lblFloat.text=[NSString stringWithFormat:@"¥ +%.2f",[e.delta_profit floatValue]];
+            s.lblFloat.textColor=Color_Up_Red;
+        }
+        
+        s.lblType.text = e.type_name;
+
+    }
+    else if ([section isKindOfClass:[ProductCheckOutNoneSection class]])
+    {
+        ProductCheckOutNoneSection* s = (ProductCheckOutNoneSection*)section;
+        s.lblNoneInfo.text=@"暂无补偿记录";
+    }
+}
+
+-(void)initQuickUI{
+    self.pAdaptor = [QUFlatAdaptor adaptorWithTableView:self.pTableView nibArray:@[@"ProductCheckOutFixListSection",@"ProductCheckOutNoneSection"] delegate:self];
+
+    [self.pAdaptor setRefreshDelegateFooter:self];
+    [self.pAdaptor setRefreshDelegateHeader:self];
+}
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor selectedSection:(QUSection *)section entity:(QUEntity *)entity{
+    if ([entity isKindOfClass:[ProductBargainFixRecordsEntity class]]) {
+        ProductCheckOutFixDetailsViewController* controller = [[ProductCheckOutFixDetailsViewController alloc]initWithNibName:@"ProductCheckOutFixDetailsViewController" bundle:nil];
+        ProductBargainFixRecordsEntity* e = (ProductBargainFixRecordsEntity*)entity;
+        controller.entity = e;
+        controller.superController=self;
+
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+}
+
+
+-(void)refreshList:(NSString *)startid{
+    
+    [[ViewControllerManager sharedManager] showWaitView:self.view];
+    DEFINED_WEAK_SELF
+    [self.manager getCheckOutFixListWithPage:[startid intValue] block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        [[ViewControllerManager sharedManager] hideWaitView];
+
+        if (val.result && [entity isKindOfClass:[ProductBargainFixEntity class]]) {
+            
+            if ([startid intValue]==0) {
+                [self.pAdaptor.pSources clear];
+                [self.pAdaptor.pSources addEntity:[QUEntity entity] withSection:[ProductCheckOutFixHeadSection class]];
+            }
+            
+            for ( ProductBargainFixRecordsEntity *e in ((ProductBargainFixEntity*)entity).records) {
+                
+                [_self.pAdaptor.pSources addEntity:e withSection:[ProductCheckOutFixListSection class]];
+            }
+            
+        }
+        if ([self.pAdaptor.pSources entityArrayByClass:[ProductBargainFixRecordsEntity class]].count == 0) {
+            [_self.pAdaptor.pSources clear];
+            [self.pAdaptor.pSources addEntity:[QUEntity entity] withSection:[ProductCheckOutNoneSection class]];
+        }
+        [_self.pAdaptor notifyChanged];
+        
+        [_self.pAdaptor.refreshHeaderView endRefreshing];
+        [_self.pAdaptor.refreshFooterView endRefreshing];
+    }];
+}
+
+// 开始进入刷新状态就会调用
+- (void)refreshViewBeginRefreshing:(MJRefreshComponent *)refreshView{
+    if ([refreshView isKindOfClass:[MJRefreshHeader class]]) {
+        [self refreshList:@"0"];
+    }
+    if ([refreshView isKindOfClass:[MJRefreshFooter class]]) {
+        NSString *startid = @"0";
+        for(ProductBargainFixRecordsEntity * e in [self.pAdaptor.pSources entityArrayByClass:[ProductBargainFixRecordsEntity class]]){
+            startid =  e.ID;
+        }
+        [self refreshList:startid];
+    }
+}
+
+
+@end

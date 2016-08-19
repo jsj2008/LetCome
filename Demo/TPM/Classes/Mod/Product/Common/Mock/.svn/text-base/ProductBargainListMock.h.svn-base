@@ -1,0 +1,26 @@
+//
+//  ProductBargainListMock.h
+//  QianFangGuJie
+//
+//  Created by 财道 on 15/1/13.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+//查询用户异议列表
+
+#import "AppMock.h"
+#import "ProductBargainListEntity.h"
+
+@interface ProductBargainListParam : AppParam
+
+/**产品类型 Stock，au，ag，spif*/
+@property(strong,nonatomic)NSString* p_type;  //交易类型
+//@property(strong,nonatomic)NSString* p_id;  //交易id
+@property (nonatomic,copy) NSString *from_time;
+@property(strong,nonatomic)NSString* to_time;
+@property(copy,nonatomic)NSString* limit;   //可选，为0返回所有
+@property(copy,nonatomic)NSString* offset;  //从第几条开始选
+@property(copy,nonatomic)NSString* start_id;
+@end
+@interface ProductBargainListMock : AppMock
+
+@end

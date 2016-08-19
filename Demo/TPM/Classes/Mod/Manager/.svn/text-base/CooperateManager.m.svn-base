@@ -1,0 +1,50 @@
+//
+//  CooperateManager.m
+//  TPM
+//
+//  Created by tongshangren on 16/7/28.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "CooperateManager.h"
+
+@implementation CooperateManager
+
+static CooperateManager *_cooperateManager = nil;
+
++(instancetype)shareCooperateManager{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _cooperateManager = [[self alloc]init];
+        [_cooperateManager initMock];
+        
+    });
+    return _cooperateManager;
+}
+
+
+-(void)initMock{
+    self.policyListMock=[PolicyListMock mock];
+    self.policyListParam=[PolicyListParam param];
+}
+
+
+
+-(void)getPolicyListByCode:(NSString *)stock_code
+                   startID:(NSString *)start_id
+                     limit:(NSString *)limit
+                     block:(ManagerReturnBlock)returnBlock{
+    self.policyListParam.stock_code = stock_code;
+    self.policyListParam.start_id=start_id;
+    self.policyListParam.limit=limit;
+    
+    self.policyListMock.returnBlock =^(QUNetAdaptor *adaptor,QUNetResponse *response,AppMock *mock){
+        if(returnBlock!=nil){
+            returnBlock([BaseManager convertResult:adaptor response:response],mock,response.pEntity);
+        }
+    };
+    [self.policyListMock run:self.policyListParam];    
+}
+
+
+@end

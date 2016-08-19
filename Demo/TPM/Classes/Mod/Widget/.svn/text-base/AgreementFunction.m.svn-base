@@ -1,0 +1,313 @@
+//
+//  AgreementFunction.m
+//  A50
+//
+//  Created by tongshangren on 15/12/30.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "AgreementFunction.h"
+
+@implementation AgreementFunction
+
+
+
+static AgreementFunction *_agreementFunction = nil;
+
++ (AgreementFunction *)shareAgreementFunction
+{
+    if (_agreementFunction == nil) {
+        _agreementFunction = [[self alloc]init];
+
+    }
+    return _agreementFunction;
+}
+
++(instancetype)agreement{
+    return [[self alloc] init];
+}
+
+
+
++ (AgreementFunction *)AgreementViewInit
+{
+    if (_agreementFunction == nil) {
+        _agreementFunction = [[self alloc]init];
+        
+        int winwidth=[UIScreen mainScreen].bounds.size.width;
+        int winheight=[UIScreen mainScreen].bounds.size.height;
+        _agreementFunction.bgview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, winwidth, winheight)];
+        _agreementFunction.bgview.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+        _agreementFunction.bgview.tag=299;
+        
+        
+    }
+    return _agreementFunction;
+}
+
+
+
+-(void)closeFunc:(UIButton *)btn{
+    UIResponder * resp =[btn nextResponder];
+    while (resp) {
+        if ([resp isKindOfClass:[UIView class]]) {
+            UIView* v = (UIView*)resp;
+            if (v.tag == 299) {
+                self.alreadyShow=NO;
+                [v removeFromSuperview];
+                break;
+            }
+        }
+        resp = [resp nextResponder];
+    }
+    
+//    [self.bgview removeFromSuperview];
+}
+
+- (CGSize)sizeWithAttributedString:(NSAttributedString *)string frameWidth:(float)width font:(UIFont *)font
+{
+    int winwidth=[UIScreen mainScreen].bounds.size.width;
+    CGRect rect = [string boundingRectWithSize:CGSizeMake(width, 1000) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesFontLeading  |NSStringDrawingUsesLineFragmentOrigin context:nil];
+    //CGRect rect=CGRectMake(0, 0, 320, 300);
+    return rect.size;
+}
+
+-(BOOL)showAgreementWithTitle:(NSString *)title content:(NSString *)content{
+    
+    if (self.alreadyShow) {
+        return NO;
+    }
+
+    //获取屏幕
+    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    int winwidth=[UIScreen mainScreen].bounds.size.width;
+    int winheight=[UIScreen mainScreen].bounds.size.height;
+    
+    //底色70%透明度
+
+    self.bgview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, winwidth, winheight)];
+    self.bgview.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+    self.bgview.tag=299;
+    [window addSubview:self.bgview];
+    self.alreadyShow=YES;
+    
+    //协议框
+    NSAttributedString *agreetext = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    CGSize size=[self sizeWithAttributedString:agreetext frameWidth:(winwidth-90) font:[UIFont systemFontOfSize:12.f]];
+    
+    int agreementViewHeight=winheight-80;
+    if (size.height+120<winheight-80) {
+        agreementViewHeight=size.height+120;
+    }
+    
+    UIView *agreementView=[[UIView alloc]initWithFrame:CGRectMake(10, (winheight-agreementViewHeight)/2, winwidth-20, agreementViewHeight)];
+    agreementView.backgroundColor=[UIColor whiteColor];
+    agreementView.layer.masksToBounds = YES;
+    agreementView.layer.cornerRadius=8.0;
+    [self.bgview addSubview:agreementView];
+    
+ 
+    
+    //关闭按钮
+    self.btnClose=[[UIButton alloc]initWithFrame:CGRectMake(winwidth-50, 10, 20, 20)];
+    [self.btnClose setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
+    [self.btnClose setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateHighlighted];
+    [self.btnClose addTarget: self action:@selector(closeFunc:) forControlEvents:UIControlEventTouchUpInside];
+    [agreementView addSubview:self.btnClose];
+    
+    
+    //title
+    UILabel *titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 30, winwidth-60, 60)];
+    titleLabel.textAlignment=UITextAlignmentCenter;
+    titleLabel.font=[UIFont systemFontOfSize:18.0];
+    titleLabel.lineBreakMode=NSLineBreakByCharWrapping;
+    titleLabel.numberOfLines=0;
+    titleLabel.text=title;
+    titleLabel.textColor=Color_Bg_222222;
+
+    [agreementView addSubview:titleLabel];
+    
+    
+    //textView
+    UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(20, 90, winwidth-60,agreementViewHeight-110)];
+    NSAttributedString *attrStr = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    textView.attributedText=attrStr;
+    textView.editable=NO;
+    textView.selectable=NO;
+    textView.font = [UIFont systemFontOfSize:12.f];
+//    if (agreementViewHeight<winheight-80) {
+//        textView.scrollEnabled=NO;
+//    }else{
+//        textView.scrollEnabled=YES;
+//    }
+    [agreementView addSubview:textView];
+    
+    return YES;
+    
+}
+
+
+
+
+
+
+
+
+-(BOOL)showContent:(NSString *)content{
+    
+    if (self.alreadyShow) {
+        return NO;
+    }
+
+    
+    //获取屏幕
+    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    int winwidth=[UIScreen mainScreen].bounds.size.width;
+    int winheight=[UIScreen mainScreen].bounds.size.height;
+    
+    //底色70%透明度
+    
+//    self.bgview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, winwidth, winheight)];
+//    self.bgview.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+//    self.bgview.tag=299;
+    [window addSubview:self.bgview];
+//    self.alreadyShow=YES;
+    
+    //协议框
+    NSAttributedString *agreetext = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    CGSize size=[self sizeWithAttributedString:agreetext frameWidth:(winwidth-100) font:[UIFont systemFontOfSize:12.f]];
+
+
+    
+    int agreementViewHeight=winheight-80;
+    if (size.height+120<winheight-80) {
+        agreementViewHeight=size.height+120;
+    }
+    
+    self.agreementView=[[UIView alloc]initWithFrame:CGRectMake(25, (winheight-agreementViewHeight)/2, winwidth-50, agreementViewHeight)];
+    self.agreementView.backgroundColor=[UIColor whiteColor];
+    self.agreementView.layer.masksToBounds = YES;
+    self.agreementView.layer.cornerRadius=8.0;
+    [self.bgview addSubview:self.agreementView];
+    
+    
+    
+    //关闭按钮
+    self.btnClose=[[UIButton alloc]initWithFrame:CGRectMake(winwidth-41, (winheight-agreementViewHeight)/2-16, 32, 32)];
+    [self.btnClose setBackgroundImage:[UIImage imageNamed:@"layer_close2"] forState:UIControlStateNormal];
+    [self.btnClose setBackgroundImage:[UIImage imageNamed:@"layer_close2"] forState:UIControlStateHighlighted];
+    [self.btnClose addTarget: self action:@selector(closeFunc:) forControlEvents:UIControlEventTouchUpInside];
+    [self.bgview addSubview:self.btnClose];
+    
+
+    
+    //textView
+    self.textView = [[UITextView alloc]initWithFrame:CGRectMake(20, 20, winwidth-85,agreementViewHeight-40)];
+    NSAttributedString *attrStr = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    self.textView.attributedText=attrStr;
+    self.textView.editable=NO;
+    self.textView.selectable=NO;
+    self.textView.font = [UIFont systemFontOfSize:12.f];
+
+    
+    
+    [self.agreementView addSubview:self.textView];
+    
+    return YES;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+-(BOOL)showMessageWithTitle:(NSString *)title content:(NSString *)content{
+    
+    if (self.alreadyShow) {
+        return NO;
+    }
+    
+    
+    //获取屏幕
+    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    int winwidth=[UIScreen mainScreen].bounds.size.width;
+    int winheight=[UIScreen mainScreen].bounds.size.height;
+    
+    //底色70%透明度
+    self.bgview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, winwidth, winheight)];
+    self.bgview.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+    self.bgview.tag=299;
+    [window addSubview:self.bgview];
+    self.alreadyShow=YES;
+    
+    //协议框
+    NSAttributedString *agreetext = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    CGSize size=[self sizeWithAttributedString:agreetext frameWidth:winwidth*0.72-40 font:[UIFont systemFontOfSize:12.f]];
+    
+    int agreementViewWidth=winwidth*0.72;
+    int agreementViewHeight=144;
+    if (size.height+125>144) {
+        agreementViewHeight=size.height+125;
+    }
+    if (size.height+125>winheight-80){
+        agreementViewHeight=winheight-80;
+    }
+    UIView *agreementView=[[UIView alloc]initWithFrame:CGRectMake((winwidth-agreementViewWidth)/2, (winheight-agreementViewHeight)/2, agreementViewWidth, agreementViewHeight)];
+    agreementView.backgroundColor=[UIColor whiteColor];
+    agreementView.layer.masksToBounds = YES;
+    agreementView.layer.cornerRadius=8.0;
+    [self.bgview addSubview:agreementView];
+    
+    
+    
+    
+    //title
+    UILabel *titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 20, agreementViewWidth-40, 50)];
+    titleLabel.textAlignment=UITextAlignmentCenter;
+    titleLabel.text=title;
+    titleLabel.lineBreakMode=NSLineBreakByCharWrapping;
+    titleLabel.numberOfLines=0;
+    titleLabel.textColor=Color_Bg_222222;
+    titleLabel.font=[UIFont systemFontOfSize:18.0];
+    [agreementView addSubview:titleLabel];
+    
+    
+    //textView
+    UITextView *textView=[[UITextView alloc]initWithFrame:CGRectMake(20, 70, agreementViewWidth-40, agreementViewHeight-45-60)];
+    NSAttributedString *attrStr = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    textView.attributedText=attrStr;
+    textView.editable=NO;
+    textView.selectable=NO;
+    textView.font = [UIFont systemFontOfSize:12.f];
+    if (agreementViewHeight<winheight-80) {
+        textView.scrollEnabled=NO;
+    }else{
+        textView.scrollEnabled=YES;
+    }
+    [agreementView addSubview:textView];
+    
+    
+    //确认按钮
+    self.btnClose=[[UIButton alloc]initWithFrame:CGRectMake(0, agreementViewHeight-44, agreementViewWidth, 44)];
+    [self.btnClose setTitle:@"确认" forState:UIControlStateNormal];
+    [self.btnClose setTitle:@"确认" forState:UIControlStateHighlighted];
+    [self.btnClose setTitleColor:Color_Bg_RGB(10, 127, 251) forState:UIControlStateHighlighted];
+    [self.btnClose setTitleColor:Color_Bg_RGB(10, 127, 251) forState:UIControlStateNormal];
+    [self.btnClose addTarget: self action:@selector(closeFunc:) forControlEvents:UIControlEventTouchUpInside];
+    [agreementView addSubview:self.btnClose];
+    
+    UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, agreementViewHeight-45, agreementViewWidth, 1)];
+    lineView.backgroundColor=Color_Bg_RGB(221, 221, 221);
+    [agreementView addSubview:lineView];
+
+    return YES;
+}
+
+
+@end

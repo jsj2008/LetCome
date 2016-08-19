@@ -1,0 +1,17 @@
+//
+//  BuyOrderEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/2/26.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface BuyOrderEntity : QUEntity
+
+/*订单id （成功时返回）*/
+@property (nonatomic,strong) NSString *order_id;
+
+
+@end

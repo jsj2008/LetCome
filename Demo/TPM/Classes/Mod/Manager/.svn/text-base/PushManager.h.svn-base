@@ -1,0 +1,49 @@
+//
+//  PushManager.h
+//  QianFangGuJie
+//
+//  Created by  rjt on 15/8/18.
+//  Copyright (c) 2015年 JYZD. All rights reserved.
+//
+
+#import "BaseManager.h"
+#import "PopupMsgMock.h"
+#import "ReadMsgMock.h"
+
+@interface PushManager : BaseManager
+single_interface(PushManager);
+
+@property (nonatomic,strong) PopupMsgMock *popupMsgMock;
+@property (nonatomic,strong) PopupMsgParam *popupMsgParam;
+
+@property (nonatomic,strong) ReadMsgMock *readMsgMock;
+@property (nonatomic,strong) ReadMsgParam *readMsgParam;
+
+/*!
+ *  @brief  消息处理
+ *
+ *  @return 返回是否获取消息
+ */
+-(BOOL)handleMsg:(NSDictionary*)dict;
+
+/*!
+ *  @brief  检查登录用户是否更新
+ *
+ *  @param uid 当前登录用户
+ */
+-(void)checkDTokenWithUid:(NSString*)uid;
+
+
+/*!
+ *  @brief  保存token
+ *
+ *  @param token
+ *
+ *  @return 返回是否保存成功
+ */
+-(BOOL)saveTaken:(NSString*)token;
+
+-(void)getPushMsg:(ManagerReturnBlock)returnBlock;
+
+-(void)readPushMsg:(NSString*)msgId andBlock:(ManagerReturnBlock)returnBlock;
+@end

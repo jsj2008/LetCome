@@ -1,0 +1,116 @@
+//
+//  IntroViewController.m
+//  QianFangGuJie
+//
+//  Created by  rjt on 15/6/10.
+//  Copyright (c) 2015年 JYZD. All rights reserved.
+//
+
+#import "IntroViewController.h"
+
+@interface IntroViewController ()
+@property (nonatomic, strong) UISwipeGestureRecognizer *gesture;
+@property (nonatomic, strong) NSArray* imgs;
+@property int imgIndex;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+- (IBAction)finishClicked:(id)sender;
+- (IBAction)jumpClicked:(id)sender;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageCtrl;
+@end
+
+@implementation IntroViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    
+    UISwipeGestureRecognizer* leftgesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showNextImg)];
+    leftgesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:leftgesture];
+    
+    
+    UISwipeGestureRecognizer* rightgesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showPrevImg)];
+    rightgesture.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:rightgesture];
+    
+    
+//    if(iPhone4){
+//        self.imgs = @[@"01_i4s.png",@"02_i4s.png",@"03_i4s.png",@"04_i4s.png"];
+//    }else{
+//        self.imgs = @[@"01_i6p.png",@"02_i6p.png",@"03_i6p.png",@"04_i6p.png"];
+//    }
+    
+    if(iPhone4){
+        self.imgs = @[@"01_i4s.png",@"02_i4s.png",@"03_i4s.png"];
+    }else{
+        self.imgs = @[@"01_i6p.png",@"02_i6p.png",@"03_i6p.png"];
+    }
+    self.imgIndex = 0;
+    
+    [self showNextImg];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+}
+
+-(void)showNextImg{
+    if (self.imgIndex>=0 && self.imgIndex<self.imgs.count) {
+        
+        //set up crossfade transition
+        CATransition *transition = [CATransition animation];
+        transition.type = kCATransitionPush;
+        transition.subtype = kCATransitionFromRight;
+        //apply transition to imageview backing layer
+        [self.imageView.layer addAnimation:transition forKey:nil];
+        //cycle to next image
+        //        UIImage *currentImage = self.imageView.image;
+        
+        self.imgIndex++;
+        self.imageView.image = [UIImage imageNamed:self.imgs[self.imgIndex-1]];
+        self.pageCtrl.currentPage = self.imgIndex-1;
+    }
+}
+
+-(void)showPrevImg{
+    
+    if (self.imgIndex>1) {
+        CATransition *transition = [CATransition animation];
+        transition.type = kCATransitionPush;
+        transition.subtype = kCATransitionFromLeft;
+        //apply transition to imageview backing layer
+        [self.imageView.layer addAnimation:transition forKey:nil];
+        self.imgIndex--;
+        self.imageView.image = [UIImage imageNamed:self.imgs[self.imgIndex-1]];
+        self.pageCtrl.currentPage = self.imgIndex-1;
+    }
+}
+
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+- (IBAction)finishClicked:(id)sender {
+    // 保存已经看完的标记
+    if(self.imgIndex == self.imgs.count){
+        [self jumpClicked:sender];
+    }
+}
+
+- (IBAction)jumpClicked:(id)sender {
+    [WpCommonFunction saveDeviceLookoverGuidePageToLocal];
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+@end

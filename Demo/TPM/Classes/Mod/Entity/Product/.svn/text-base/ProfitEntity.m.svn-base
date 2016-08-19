@@ -1,0 +1,37 @@
+//
+//  ProfitEntity.m
+//  TPZ
+//
+//  Created by chenyi on 16/2/26.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "ProfitEntity.h"
+
+@implementation ProfitEntity
+-(NSString*)parseJson:(NSDictionary*)json{
+    NSDictionary *jsonDict = (NSDictionary *)json;
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:jsonDict];
+    
+    NSDictionary *rootDict = nil;
+    
+    //点卖列表状态
+    NSMutableArray *fundArr = [NSMutableArray array];
+    
+    [dict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        NSMutableDictionary *newObj = [NSMutableDictionary dictionaryWithDictionary:obj];
+        [newObj setObject:key forKey:@"key_id"];
+        [fundArr addObject:newObj];
+    }];
+    
+    rootDict = @{@"records":fundArr};
+    
+    return [rootDict JSONString];
+    
+}
+@end
+
+@implementation ProfitRecordsEntity
+
+
+@end

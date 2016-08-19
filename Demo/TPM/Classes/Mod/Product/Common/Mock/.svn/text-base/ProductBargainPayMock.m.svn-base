@@ -1,0 +1,27 @@
+//
+//  ProductBargainPayMock.m
+//  QianFangGuJie
+//
+//  Created by 李荣 on 15/1/19.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+
+#import "ProductBargainPayMock.h"
+
+@implementation ProductBargainPayParam
+
+@end
+@implementation ProductBargainPayMock
+-(NSString*)getOperatorType{
+    return @"/public/amendments_pay";
+}
+-(Class)getEntityClass{
+    return [ProductBargainPayEntity class];
+}
+-(void)QUNetAdaptor:(QUNetAdaptor *)adaptor response:(QUNetResponse *)response{
+    
+    if (response.pReason == QU_SERVICE_BACK_OK) {
+        [self.delegate QUMock:self entity:response.pEntity];
+    }
+}
+@end

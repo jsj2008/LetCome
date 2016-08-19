@@ -1,0 +1,35 @@
+//
+//  TPMIndexViewController.m
+//  TPM
+//
+//  Created by tongshangren on 16/7/27.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "TPMIndexViewController.h"
+#import "TPMIndexBll.h"
+
+@interface TPMIndexViewController ()
+@property (nonatomic,strong) TPMIndexBll *indexBll;
+@end
+
+@implementation TPMIndexViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.title = @"投资人TM策略征集";
+    
+    
+    self.indexBll = [TPMIndexBll bllWithController:self tableView:self.indexTableView];
+    
+    
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+
+@end

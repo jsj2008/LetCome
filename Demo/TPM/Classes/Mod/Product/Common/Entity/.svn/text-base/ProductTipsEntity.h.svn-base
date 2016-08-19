@@ -1,0 +1,13 @@
+//
+//  ProductTipsEntity.h
+//  A50
+//
+//  Created by tongshangren on 15/11/11.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface ProductTipsEntity : QUEntity
+@property(copy,nonatomic)NSString* text; //提示信息
+@end

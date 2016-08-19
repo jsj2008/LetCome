@@ -1,0 +1,48 @@
+//
+//  ProductKChartMock.m
+//  QianFangGuJie
+//
+//  Created by 余龙 on 15/1/13.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+
+#import "ProductKChartMock.h"
+
+@implementation ProductKChartParam
+
+
+- (NSString *)sendMethod {
+    return @"GET";
+}
+
+- (NSString *)days {
+    return @"120";
+}
+
+@end
+
+
+@implementation ProductKChartMock
+
+- (NSString *)getOperatorType
+{
+    return @"kChartInterface";
+}
+
+- (Class)getEntityClass
+{
+    return [ProductKChartEntity class];
+}
+
+- (NSString *)getAliasName {
+    return @"ProductKChart";
+}
+
+//-(void)QUNetAdaptor:(QUNetAdaptor *)adaptor response:(QUNetResponse *)response{
+//    
+//    if (response.pReason == QU_SERVICE_BACK_OK&&response.pEntity)
+//    {
+//        [self.delegate QUMock:self entity:response.pEntity];
+//    }
+//}
+@end

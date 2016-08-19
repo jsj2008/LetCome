@@ -1,0 +1,57 @@
+//
+//  CustomPageControl.m
+//  TPM
+//
+//  Created by admin on 16/8/1.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "CustomPageControl.h"
+
+@implementation CustomPageControl
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+}
+*/
+
+
+- (void)updateDots
+{
+    for(int i=0;i<[self.subviews count];i++){
+        
+        if([(UIView *)[self.subviews objectAtIndex:i] isKindOfClass:[UIView class]]){//目前pageControl控件小点是一个view
+            UIView *dot=[self.subviews objectAtIndex:i];
+            if(i==self.currentPage - 1){
+                dot.backgroundColor=[UIColor orangeColor];
+                
+            }else if (i < self.currentPage){
+                
+                dot.backgroundColor = [UIColor grayColor];
+            }else if (i == (self.subviews.count - 1)){
+                
+                dot.backgroundColor = [UIColor redColor];
+            }
+            else{
+                dot.backgroundColor = [UIColor orangeColor];
+                
+                
+            }
+        }
+        
+    }
+}
+
+-(void)setCurrentPage:(NSInteger)currentPage
+{
+    [super setCurrentPage:currentPage];
+    
+    [self updateDots];
+}
+
+
+
+@end

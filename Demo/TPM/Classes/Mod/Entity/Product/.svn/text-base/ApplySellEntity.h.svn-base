@@ -1,0 +1,17 @@
+//
+//  ApplySellEntity.h
+//  TPM
+//
+//  Created by chenyi on 16/7/26.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import <QuickUI/QuickUI.h>
+
+@interface ApplySellEntity : QUEntity
+
+/*委托ID*/
+@property(nonatomic,strong)NSString *order_id;
+/*提交结果 'Y':通过/'N:不通过*/
+@property(nonatomic,strong)NSString *result;
+@end

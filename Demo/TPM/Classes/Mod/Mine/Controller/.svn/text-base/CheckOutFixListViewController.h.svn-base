@@ -1,0 +1,15 @@
+//
+//  CheckOutFixListViewController.h
+//  A50
+//
+//  Created by tongshangren on 15/11/9.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "MyViewController.h"
+
+@interface CheckOutFixListViewController : AppViewController
+
+@property(strong,nonatomic) ProductsManager* manager;
+//-(void)refreshPayList:(NSString *)startid;
+@end

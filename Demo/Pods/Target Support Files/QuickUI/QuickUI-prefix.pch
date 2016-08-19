@@ -1,0 +1,21 @@
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#endif
+
+//
+//  QU_PrefixHeader.pch
+//  QuickUI
+//
+//  Created by  rjt on 15/12/15.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#ifndef QU_PrefixHeader_pch
+#define QU_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import <UIKit/UIKit.h>
+#import "Caidao.h"
+
+#endif /* QU_PrefixHeader_pch */

@@ -1,0 +1,24 @@
+//
+//  ProductCheckOutFixListSection.h
+//  A50
+//
+//  Created by tongshangren on 15/11/10.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "QUSection.h"
+
+@interface ProductCheckOutFixListSection : QUSection
+@property (weak, nonatomic) IBOutlet UILabel *lblDate;
+@property (weak, nonatomic) IBOutlet UILabel *lblFloat;
+@property (weak, nonatomic) IBOutlet UILabel *lblState;
+@property (weak, nonatomic) IBOutlet UIButton *btnPay;
+@property (weak, nonatomic) IBOutlet UILabel *lblType;
+
+@end
+
+
+@interface ProductCheckOutFixHeadSection : QUSection
+
+
+@end

@@ -1,0 +1,43 @@
+//
+//  ProductAgreementView.h
+//  A50
+//
+//  Created by tongshangren on 15/12/17.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "QUSection.h"
+#import "SignAgreementMock.h"
+
+
+
+@protocol ProductAgreementViewDelegate <NSObject>
+
+@required//必须实现的代理方法
+
+-(void)closeAgreementView;
+
+
+@end
+
+
+
+@interface ProductAgreementView : QUSection<QUMockDelegate>
+@property (weak, nonatomic) IBOutlet UIView *agreementView;
+@property (weak, nonatomic) IBOutlet UITextView *agreementTextView;
+@property (weak, nonatomic) IBOutlet UIButton *btnClose;
+@property (weak, nonatomic) IBOutlet UIButton *btnAgree;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+
+@property(strong,nonatomic)NSString *agreementString;
+@property(strong,nonatomic)NSString *ID;
+@property(strong,nonatomic)NSString *title;
+
+@property(strong,nonatomic)NSAttributedString *agreementAttributedString;
+
+
+@property(strong,nonatomic)SignAgreementMock *signMock;
+@property (nonatomic,assign) id<ProductAgreementViewDelegate> agreementViewDelegate;
+
+-(void)fixViewFrame;
+@end

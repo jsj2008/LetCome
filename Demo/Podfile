@@ -1,0 +1,11 @@
+platform :ios, '7.0' 
+target "TPM" do
+  #pod 'FMDB'
+  #pod 'MBProgressHUD', '~> 0.9.1'
+  #pod 'ReactiveCocoa'
+  #pod 'AFNetworking', '~> 3.0'
+  pod 'UMengAnalytics-NO-IDFA'
+  pod 'JSPatch'
+  pod 'QuickUI' , :svn => 'https://192.168.5.101/svn/jyzd_app/jyzd_iOS/trunk/QuickUI_v2'
+  xcodeproj 'TPM.xcodeproj'
+end

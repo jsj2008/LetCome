@@ -1,0 +1,60 @@
+{
+  "name": "QuickUI",
+  "version": "2.0.0",
+  "summary": "This is QuickUI created by Kinghy.",
+  "description": "Haha",
+  "homepage": "https://github.com/kinghy/QuickUI",
+  "license": "MIT",
+  "authors": "kinghy",
+  "platforms": {
+    "ios": "7.0"
+  },
+  "source": {
+    "svn": "https://rongjiachen@192.168.5.101/svn/jyzd_app/jyzd_iOS/trunk/QuickUI_v2",
+    "tag": "2.0.0"
+  },
+  "prefix_header_file": "QuickUI/QuickUI/QU_PrefixHeader.pch",
+  "dependencies": {
+    "OpenUDID": [
+
+    ],
+    "SCLAlertView-Objective-C": [
+
+    ],
+    "MBProgressHUD": [
+
+    ],
+    "SDWebImage": [
+
+    ],
+    "AMPopTip": [
+
+    ],
+    "FMDB": [
+
+    ],
+    "AFNetworking": [
+      "~> 3.0"
+    ],
+    "MJRefresh": [
+
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "Base",
+      "source_files": "QuickUI/QuickUI/Base/**/*.{h,m}",
+      "public_header_files": "QuickUI/QuickUI/Base/**/*.h"
+    },
+    {
+      "name": "ThirdParty",
+      "source_files": "QuickUI/QuickUI/ThirdParty/**/*.{h,m}",
+      "public_header_files": "QuickUI/QuickUI/ThirdParty/**/*.h"
+    },
+    {
+      "name": "Tools",
+      "source_files": "QuickUI/QuickUI/Tools/**/*.{h,m}",
+      "public_header_files": "QuickUI/QuickUI/Tools/**/*.h"
+    }
+  ]
+}

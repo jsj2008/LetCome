@@ -1,0 +1,29 @@
+//
+//  SellStrategyListSection.h
+//  TPM
+//
+//  Created by  rjt on 16/7/28.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import <QuickUI/QuickUI.h>
+
+@interface SellStrategyListSection : QUSection
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UIButton *hqBtn;
+@property (weak, nonatomic) IBOutlet UIButton *sellStrategyBtn;
+@property (weak, nonatomic) IBOutlet UILabel *pnoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *startTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dealerReplaceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *fundLabel;
+@property (weak, nonatomic) IBOutlet UIButton *stockNameLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *leftAmountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sellAmountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *amountLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *buyPriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sellPriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+
+@end

@@ -1,0 +1,29 @@
+//
+//  StrategyNotificationView.m
+//  STO
+//
+//  Created by tongshangren on 16/4/1.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "StrategyNotificationView.h"
+
+@implementation StrategyNotificationView
+
+-(void)awakeFromNib{
+    self.noticeFrame.layer.cornerRadius=10;
+    self.noticeFrame.layer.masksToBounds = YES;
+    [self.btnClose addTarget:self action:@selector(clickClose) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnConfirm addTarget:self action:@selector(clickClose) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnRight addTarget:self action:@selector(clickClose) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnLeft addTarget:self action:@selector(clickClose) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.btnFrame.hidden=YES;
+}
+
+
+-(void)clickClose{
+    [self removeFromSuperview];
+}
+
+@end

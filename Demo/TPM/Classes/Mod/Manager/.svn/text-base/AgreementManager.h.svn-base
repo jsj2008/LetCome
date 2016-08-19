@@ -1,0 +1,87 @@
+//
+//  AgreementManager.h
+//  STO
+//
+//  Created by tongshangren on 16/3/28.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "BaseManager.h"
+
+#import "GetAgreementInfoMock.h"
+#import "GetuserUnsignedAgreementMock.h"
+#import "SignAgreementMock.h"
+#import "ArticleListMock.h"
+#import "ArticleContentMock.h"
+#import "SignedArticleContentMock.h"
+#import "SignedArticleListMock.h"
+#import "UserAgreementListMock.h"
+
+@interface AgreementManager : BaseManager
+
+/*获取未签署协议列表*/
+@property(strong,nonatomic)GetuserUnsignedAgreementMock* getuserUnsignedAgreementMock;
+@property(strong,nonatomic)GetuserUnsignedAgreementParam* getuserUnsignedAgreementParam;
+
+/*获取用户协议详情*/
+@property(strong,nonatomic)GetAgreementInfoMock* getAgreementInfoMock;
+@property(strong,nonatomic)GetAgreementInfoParam* getAgreementInfoParam;
+
+/*用户签署协议*/
+@property(strong,nonatomic)SignAgreementMock* signAgreementMock;
+@property(strong,nonatomic)SignAgreementParam* signAgreementParam;
+
+/*协议合约列表取得*/
+@property(strong,nonatomic)ArticleListMock* articleListMock;
+@property(strong,nonatomic)ArticleListParam* articleListParam;
+
+/*协议合约内容取得*/
+@property(strong,nonatomic)ArticleContentMock* articleContentMock;
+@property(strong,nonatomic)ArticleContentParam* articleContentParam;
+
+/*已签协议合约（交易合作协议）内容取得*/
+@property(strong,nonatomic)SignedArticleContentMock* signedArticleContentMock;
+@property(strong,nonatomic)SignedArticleContentParam* signedArticleContentParam;
+
+/*已签协议合约（交易合作协议）列表取得*/
+@property(strong,nonatomic)SignedArticleListMock* signedArticleListMock;
+@property(strong,nonatomic)SignedArticleListParam* signedArticleListParam;
+
+/*已签协议合约（交易合作协议）列表取得*/
+@property(strong,nonatomic)UserAgreementListMock* userAgreementListMock;
+@property(strong,nonatomic)UserAgreementListParam* userAgreementListParam;
+
+
+
+
+
++(AgreementManager *)shareAgreementManager;
+
+/** 检查是否签署协议 **/
+-(void)getuserUnsignedAgreementWithType:(NSString *)prd_type block:(ManagerReturnBlock)returnBlock;
+
+/** 获取合约列表 **/
+-(void)getAgreeList:(ManagerReturnBlock)returnBlock;
+
+/** 获取协议内容 **/
+-(void)getAgreementInfoWithID:(NSString *)ID block:(ManagerReturnBlock)returnBlock;
+
+//根据id签署协议
+-(void)signAgreementWithID:(NSString *)ID block:(ManagerReturnBlock)returnBlock;
+
+
+/** 获取合约内容 **/
+-(void)getAgreementContentWithID:(NSString *)ID andEntity:(QUEntity *)entity block:(ManagerReturnBlock)returnBlock;
+
+/** 获取协议列表 **/
+-(void)getArticleList:(ManagerReturnBlock)returnBlock;
+
+
+/** 协议合约内容取得 **/
+-(void)getArticleContentByID:(NSString *)ID
+                  nickname_t:(NSString *)nickname_t
+                       uid_t:(NSString *)uid_t
+                   scheme_id:(NSString *)scheme_id
+                       Block:(ManagerReturnBlock)returnBlock;
+
+@end

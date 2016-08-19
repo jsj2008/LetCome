@@ -1,0 +1,24 @@
+//
+//  TPMIndexBll.h
+//  TPM
+//
+//  Created by tongshangren on 16/7/27.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUBLL.h"
+
+@class STOHqEntity;
+@class TradeCostStatisticsEntity;
+@class TPMAdSection;
+@interface TPMIndexBll : QUBLL
+{
+    TPMAdSection *adSection;
+}
+
+@property (strong, nonatomic) NSArray *advs;
+
+@property (strong, nonatomic) ProductPanKouEntity *hqShEntity;
+@property (strong, nonatomic) HqRecordsEntity *hqSzEntity;
+@property (strong, nonatomic) HqRecordsEntity *hqCyEntity;
+@end

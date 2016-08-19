@@ -1,0 +1,21 @@
+//
+//  StrategyHqViewController.h
+//  TPM
+//
+//  Created by admin on 16/7/26.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "AppViewController.h"
+
+@interface StrategyHqViewController : AppViewController
+
+@property (nonatomic, copy) NSString *code;
+@property (weak, nonatomic) IBOutlet UIButton *nextBtn;
+@property (weak, nonatomic) IBOutlet UIView *nextView;
+
+
++(instancetype)controllerWithCode:(NSString*)code;
+
+-(void)gotoNext;//点击按钮前往下一个页面
+@end

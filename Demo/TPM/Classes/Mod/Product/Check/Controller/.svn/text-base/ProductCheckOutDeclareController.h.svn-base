@@ -1,0 +1,46 @@
+//
+//  ProductCheckOutDeclareController.h
+//  QianFangGuJie
+//
+//  Created by 财道 on 15/1/12.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+
+#import "MyViewController.h"
+#import "ProductDissentListEntity.h"
+
+@class ProductBargainDeclaredMock;
+@class ProductBargainDeclaredParam;
+@class ProductBargainDeclaredEntity;
+@class ProductCheckOutDetailsEntity;
+@class PorductCheckOutDissentSection;
+@class ProductSellInfoEntity;
+
+@interface ProductCheckOutDeclareController : AppViewController{
+    
+    UIButton *_selectedBtn;
+    /**int。1买入价 2卖出价 3盈亏分配 4交易数量 5亏损赔付 6履约金解冻*/
+    NSString *_selectedPoint;
+    
+}
+@property (nonatomic,strong) ProductSellInfoEntity *sellinfo;
+@property (weak, nonatomic) IBOutlet QUTableView *myView;
+@property (nonatomic,strong) NSString *selectedPoint;
+@property(strong,nonatomic)NSString* buyPrice;     //买入均价
+@property(strong,nonatomic)NSString* sellPrice;    //卖出均价
+@property(strong,nonatomic)NSString* tradeAmount;   //交易数量
+@property(strong,nonatomic)NSString* profitAllocation;  //盈利分配
+@property(strong,nonatomic)NSString* lossPay;          //亏损赔付
+@property(strong,nonatomic)NSString* penalty;          //违约金
+@property(copy,nonatomic)NSString* p_id;            //产品id
+@property(strong,nonatomic)NSString* jingdu;            //精度
+@property(strong,nonatomic)NSString* p_type;            //产品类型
+@property(nonatomic,weak)PorductCheckOutDissentSection* mySection;
+@property(nonatomic,strong)ProductBargainDeclaredEntity* myEntity;
+@property (nonatomic,strong)ProductDissentListRecordsEntity* entity;
+@property (nonatomic) BOOL canAddObservers;
+@property (nonatomic) BOOL keyboardIsVisible;
+@property(strong,nonatomic) ProductsManager* manager;
+@property (strong,nonatomic)NSString *pno;
+-(void)commit;
+@end

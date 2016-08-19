@@ -1,0 +1,47 @@
+//
+//  ConfigManager.h
+//  QianFangGuJie
+//
+//  Created by  rjt on 15/10/8.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "Singleton.h"
+
+@class CfgMock;
+@interface ConfigManager : BaseManager{
+    NSString* _h5Url;
+    NSString* _serverUrlUser;
+    NSString* _serverUrlProd;
+    NSString* _serverUrlJava;
+    NSString* _serverUrlQtqr;
+    NSString* _customerServiceAddress;
+    NSString* _hqUrlDay;
+    NSString* _hqUrlNight;
+    NSString* _cfgVersion;
+    NSString* _cpbLoginUrl;
+    NSString* _cpbRegUrl;
+    CfgMock*  _cfgMock;
+}
+single_interface(ConfigManager);
+
+@property (nonatomic,readonly) NSString* h5Url;
+@property (nonatomic,readonly) NSString* serverUrlUser;
+@property (nonatomic,readonly) NSString* serverUrlProd;
+@property (nonatomic,readonly) NSString* serverUrlJava;
+@property (nonatomic,readonly) NSString* customerServiceAddress;
+@property (nonatomic,readonly) NSString* hqUrlDay;
+@property (nonatomic,readonly) NSString* hqUrlNight;
+@property (nonatomic,readonly) NSString* cfgVersion;
+@property (nonatomic,readonly) NSString* cpbLoginUrl;
+@property (nonatomic,readonly) NSString* cpbRegUrl;
+
+
+-(void)updateCfg;
+
+-(void)checkHotfix;//检查补丁
+-(void)runHotfix;//执行补丁
+-(void)testRunHotfix;//执行测试补丁
+
+@end

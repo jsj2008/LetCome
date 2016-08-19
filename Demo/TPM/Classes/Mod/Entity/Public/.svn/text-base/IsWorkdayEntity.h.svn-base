@@ -1,0 +1,16 @@
+//
+//  IsWorkdayEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/3/2.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface IsWorkdayEntity : QUEntity
+
+/*Y:是,N:否*/
+@property (nonatomic,copy)NSString *result;
+
+@end

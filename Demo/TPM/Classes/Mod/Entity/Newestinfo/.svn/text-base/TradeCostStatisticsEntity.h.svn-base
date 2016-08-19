@@ -1,0 +1,16 @@
+//
+//  TradeCostStatisticsEntity.h
+//  TPZ
+//
+//  Created by  rjt on 16/3/10.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface TradeCostStatisticsEntity : QUEntity
+
+@property (nonatomic,copy)NSString *cooperate_cost;	//合作速度	string
+@property (nonatomic,copy)NSString *earn_cost;	//赚钱速度	string
+
+@end

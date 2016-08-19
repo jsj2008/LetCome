@@ -1,0 +1,118 @@
+//
+//  LoginViewController.m
+//  QianFangGuJie
+//
+//  Created by 李荣 on 15/1/6.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+
+#import "LoginViewController.h"
+#import "GestureUtil.h"
+#import "UserInfoManager.h"
+#import "PushManager.h"
+
+
+@interface LoginViewController ()
+
+
+/** 账户手机号数组（保存在本地的） */
+@property (strong, nonatomic) NSArray *accountMobileArray;
+- (IBAction)backClicked:(id)sender;
+
+@end
+
+@implementation LoginViewController
+
++(instancetype)login{
+    LoginViewController *login = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+    return login;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+        
+    }
+    return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"登陆页"];
+    // 显示状态栏
+//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    // 显示导航条
+    [[self navigationController] setNavigationBarHidden:YES animated:NO];
+
+//    self.bigConfirmBtn.hidden = ![UserInfoManager shareUserInfoManager].isBigConfirmOpen;
+    
+    
+}
+
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"登陆页"];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+//#pragma mark -登录成功
+//-(void)LoginSuccess:(LoginEntity*)e{
+//    [super LoginSuccess:e];
+//    
+//    [self LoginSuccessShowWithIndexController];
+//    
+//    [[PushManager sharePushManager] checkDTokenWithUid:[[UserInfoManager shareUserInfoManager] getUserID]];
+//    
+//    kShareAppDelegate.isFirst = NO;
+//}
+
+#pragma mark -登录成功
+-(void)LoginSuccess:(LoginEntity*)e{
+    [super LoginSuccess:e];
+    [self LoginSuccessShowWithIndexController];
+    [[PushManager sharePushManager] checkDTokenWithUid:[[UserInfoManager shareUserInfoManager] getUserID]];
+    
+    kShareAppDelegate.isFirst = NO;
+//    if ([self.mark isEqualToString:@"login"]) {
+//        for (MyViewController* controller in self.navigationController.childViewControllers) {
+//            if ([controller isKindOfClass:[IndexViewController class]]) {
+//                [self.navigationController popToViewController:controller animated:YES];
+//            }
+//        }
+//    }else if ([self.mark isEqualToString:@"gesture"]) {
+//        [self.gesture loginCallback:YES];
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//    }else if ([self.mark isEqualToString:@"passwordwindow"]) {
+//        [self stopSuccess];
+//        [self performSelector:@selector(gotoBack) withObject:nil afterDelay:.7f];
+//        
+//    }else if([self.mark isEqualToString:@"GestureReset"]){
+//        [self.resetGestureDelegate resetGesture];
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//    }else{
+//        [self stopSuccess];
+//        
+//        [self performSelector:@selector(popBack) withObject:nil afterDelay:.7f];
+//    }
+}
+
+
+
+- (IBAction)backClicked:(id)sender {
+    if (self.pwdDelegate && [self.pwdDelegate respondsToSelector:@selector(pwdViewControllerDidClose:)]) {
+        [self.pwdDelegate pwdViewControllerDidClose:self];
+    }
+}
+@end

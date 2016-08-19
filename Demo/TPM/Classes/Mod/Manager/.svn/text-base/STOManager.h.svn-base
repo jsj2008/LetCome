@@ -1,0 +1,80 @@
+//
+//  STOManager.h
+//  STO
+//
+//  Created by  rjt on 16/3/22.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "BaseManager.h"
+#import "STOSearchEntity.h"
+#import "HqMock.h"
+#import "HqEntity.h"
+#import "HoldTimeMock.h"
+#import "BuyOrderMock.h"
+#import "ProductMinKChartMock.h"
+#import "ProductPanKouMock.h"
+#import "ProductVolChartMock.h"
+#import "ProductKChartMock.h"
+#import "ProductChartMock.h"
+
+@interface STOManager : BaseManager
+@property (nonatomic,strong) STOSearchEntity* stoEntity;
+@property (nonatomic,strong) HqEntity* hqEntity;
+
+@property (nonatomic,strong) HqMock *hqMock;
+@property (nonatomic,strong) HqParam *hqParam;
+
+//分时
+@property (nonatomic,strong)ProductChartMock *chartMock;
+@property (nonatomic,strong)ProductChartParam *chartParam;
+
+
+//交易量
+@property (nonatomic,strong)ProductVolChartMock *volchartMock;
+@property (nonatomic,strong)ProductVolChartParam *volchartParam;
+//k线
+@property (nonatomic,strong)ProductKChartMock *kChartMock;
+@property (nonatomic,strong)ProductKChartParam *kChartParam;
+
+@property (nonatomic,strong)ProductMinKChartMock *min30KChartMock;
+@property (nonatomic,strong)ProductMinKChartParam *min30KChartParam;
+
+@property (nonatomic,strong)ProductMinKChartMock *min5KChartMock;
+@property (nonatomic,strong)ProductMinKChartParam *min5KChartParam;
+
+@property (nonatomic,strong)ProductMinKChartMock *min15KChartMock;
+@property (nonatomic,strong)ProductMinKChartParam *min15KChartParam;
+
+@property (nonatomic,strong)ProductMinKChartMock *min60KChartMock;
+@property (nonatomic,strong)ProductMinKChartParam *min60KChartParam;
+
+@property (nonatomic,strong) ProductPanKouParam* pankouParam;
+@property (nonatomic,strong) ProductPanKouMock* pankouMock;
+
++(instancetype)managerWithEntity:(STOSearchEntity*)entity;
+-(instancetype)initWithEntity:(STOSearchEntity*)entity;
+/** 初始化mock 在对象创建时被调用，子类重载 **/
+-(void)initMock;
+-(void)refreshHq:(ManagerReturnBlock)returnBlock;
+
+-(void)refreshPankou:(ManagerReturnBlock)returnBlock;
+/** 刷新分时图**/
+-(void)refreshChart:(ManagerReturnBlock)returnBlock;
+
+/** 刷新交易量图**/
+-(void)refreshVolChart:(ManagerReturnBlock)returnBlock;
+
+/** 刷新K线图**/
+-(void)refreshKChart:(ManagerReturnBlock)returnBlock;
+/** 刷新分钟k线 **/
+-(void)refreshMin30KChart:(ManagerReturnBlock)returnBlock;
+
+-(void)refreshMin5KChart:(ManagerReturnBlock)returnBlock;
+-(void)refreshMin15KChart:(ManagerReturnBlock)returnBlock;
+-(void)refreshMin60KChart:(ManagerReturnBlock)returnBlock;
+
+
+
+
+@end

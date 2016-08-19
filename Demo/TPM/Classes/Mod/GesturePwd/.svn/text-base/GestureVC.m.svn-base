@@ -1,0 +1,367 @@
+//
+//  GestureVC.m
+//  
+//
+//  Created by guosm on 15/1/23.
+//  Copyright (c) 2015年 gsm. All rights reserved.
+//
+//#import "AppCFG.h"
+#import "GestureVC.h"
+#import "GesturePwdView.h"
+#import "GestureUtil.h"
+#import "WpCommonFunction.h"
+#import "Login2ViewController.h"
+
+@interface GestureVC ()<PasswordDelegate,ResetGestureDelegate,PasswordViewControllerDelegate>{
+    NSMutableArray *smalBtnArray;
+    BOOL isError;
+}
+@property (weak, nonatomic) IBOutlet GesturePwdView *pswView;
+
+@end
+
+@implementation GestureVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    smalBtnArray = [[NSMutableArray alloc] initWithCapacity:9];
+    
+    
+//    self.pswView = [[GesturePwdView alloc]initWithFrame:CGRectMake(0, 200, 320, 320)];
+    self.pswView.delegate = self;
+    //self.pswView.backgroundColor = [UIColor clearColor];
+    //[self.view addSubview:self.pswView];
+    
+    for (int i = 0; i<9; i++) {
+        
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(145 + (i % 3) * (5 + 8), 100 + (i / 3) * (8 + 5), 8, 8);
+        [btn setBackgroundImage:[UIImage imageNamed:@"smal_off"] forState:UIControlStateNormal];
+        [btn setBackgroundImage:[UIImage imageNamed:@"smal_on"] forState:UIControlStateSelected];
+        btn.userInteractionEnabled = NO;     //用户交互
+        btn.alpha = 0.9;
+        btn.tag = i+10000;
+        [btn setHidden:YES];
+        
+        [smalBtnArray addObject:btn];
+        [self.view addSubview:btn];
+    }
+        [self initUI];
+}
+
+-(void)initUI{
+    //三种状态，已设置密码、激活密码锁、重置密码
+    switch (self.runMode) {
+        case GestureView_Mode_Active:
+            [self.cancelBtn setHidden:NO];
+            [self.pwdTitle setText:@"设置手势密码"];
+            [self.userName setText:@""];
+            [self.tipLable setText:@"绘制解锁图案"];
+            self.tipLable4.hidden = NO;
+            [self.tipLable4 setText:@"（至少连接4个点）"];
+            [self.pwdBtn setTitle:@"验证登录密码" forState:UIControlStateNormal];
+            //[self createSmallView:nil];
+//            [self.userPhoto setHidden:NO];
+            [self.userPhotoQuan setHidden:NO];
+            self.switchBtn.hidden = YES;
+            self.pwdBtn.hidden = YES;
+            break;
+        case GestureView_Mode_Forget:
+            [self.cancelBtn setHidden:NO];
+            [self.pwdTitle setText:@"关闭手势密码"];
+            [self.userName setText:@""];
+            [self.tipLable setText:@"请验证手势密码"];
+            [self.pwdBtn setTitle:@"验证登录密码" forState:UIControlStateNormal];
+            //[self.tipLable4 setText:@"（至少连接4个点）"];
+            self.tipLable4.hidden = YES;
+            //[self createSmallView:nil];
+            [self.cancelBtn setHidden:NO];
+//            [self.userPhoto setHidden:NO];
+            [self.userPhotoQuan setHidden:NO];
+            self.switchBtn.hidden = YES;
+            self.pwdBtn.hidden = YES;
+            break;
+        case GestureView_Mode_Reset:
+            [self.cancelBtn setHidden:NO];
+            [self.pwdTitle setText:@"修改手势密码"];
+            [self.userName setText:@""];
+            [self.tipLable setText:@"输入原手势密码"];
+            [self.pwdBtn setTitle:@"忘记手势密码" forState:UIControlStateNormal];
+            //[self.tipLable4 setText:@"（至少连接4个点）"];
+            self.tipLable4.hidden = YES;
+            //[self createSmallView:nil];
+            [self.cancelBtn setHidden:NO];
+//            [self.userPhoto setHidden:NO];
+            [self.userPhotoQuan setHidden:NO];
+            self.switchBtn.hidden = YES;
+            self.pwdBtn.hidden = NO;
+            break;
+        case GestureView_Mode_Lock:
+            [self.cancelBtn setHidden:NO];
+            [self.pwdTitle setText:@""];
+            [self.userName setText:@""];
+            [self.tipLable setText:@"请绘制解锁图案"];
+            [self.tipLable4 setText:@"（至少连接4个点）"];
+            [self.pwdBtn setTitle:@"验证登录密码" forState:UIControlStateNormal];
+            self.tipLable4.hidden = YES;
+            //[self createSmallView:nil];
+            [self.cancelBtn setHidden:YES];
+//            [self.userPhoto setHidden:NO];
+            [self.userPhotoQuan setHidden:NO];
+            self.switchBtn.hidden = NO;
+            self.pwdBtn.hidden = NO;
+            self.navigationController.navigationBarHidden = YES;
+            break;
+        default:
+            break;
+    }
+    
+//    if ([self.pswView ] == ePasswordUnset) {//没有设置手势密码
+
+//    }else if(self.runMode == GestureView_Mode_Active){
+//        self.userPhoto.layer.masksToBounds = YES;
+//        self.userPhoto.layer.cornerRadius = 25;
+//        //        self.userPhoto.image = [ShareUtil getLogo];
+//        [self.userPhoto setHidden:NO];
+//        [self.userPhotoQuan setHidden:NO];
+//        [self.pwdTitle setText:@"手势密码输入"];
+//        [self.tipLable setText:@""];
+//        [self.tipLable4 setText:@""];
+//        [self.cancelBtn setHidden:YES];
+//    }else if(self.runMode == GestureView_Mode_Reset){
+//        self.userPhoto.layer.masksToBounds = YES;
+//        self.userPhoto.layer.cornerRadius = 25;
+//        //        self.userPhoto.image = [ShareUtil getLogo];
+//        [self.userPhoto setHidden:NO];
+//        [self.userPhotoQuan setHidden:NO];
+//        [self.pwdTitle setText:@"手势密码输入"];
+//        [self.tipLable setText:@""];
+//        [self.tipLable4 setText:@""];
+//        [self.cancelBtn setHidden:NO];
+//    }
+//    
+//    if(!self.isSet){
+//
+//    }
+
+
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //UIImage* image = [[WHGlobalHelper shareGlobalHelper]get:kUserHeadingIMG];
+    [getUserInfoManager getHeadImg:self.userPhoto];
+//
+    [WpCommonFunction setView:self.userPhoto cornerRadius:self.userPhoto.frame.size.height/2  color:Color_Bg_Headimg.CGColor borderWidth:2];      //设置背景为圆角
+
+}
+
+// 用于记录第一次设置的手势密码的小视图
+-(void)createSmallView:(NSMutableArray *)array{
+    
+    
+    for (int i = 0; i < [smalBtnArray count]; i++) {
+        UIButton *tempBtn = [smalBtnArray objectAtIndex:i];
+        [tempBtn setHidden:NO];
+        if (isError) {
+            tempBtn.selected = NO;
+        }else{
+            [self setSelectes:tempBtn with:array];
+        }
+    }
+}
+
+-(void)setSelectes:(UIButton *)button with:(NSMutableArray *)array{
+    if (array.count != 0) {
+        for (int j = 0; j < array.count; j++) {
+            if ((button.tag - 9999) == [array[j] integerValue]) {
+                button.selected = YES;
+                
+            }
+        }
+    }
+}
+
+
+-(void)theResoutOfInput:(NSString *)alertSender withResult:(NSString *)resultSender{
+    
+    [self.tipLable setText:alertSender];
+    [self.tipLable setTextColor:Color_Gesture_Font];
+    
+    if([alertSender hasPrefix:@"至少连接4个点，请重新输入"]||[alertSender hasPrefix:@"密码错误"]|| [alertSender hasPrefix:@"两次不一致,请重新绘制"]){
+        self.tipLable4.hidden = YES;
+        isError = YES;
+        [self.tipLable setTextColor:Color_Gesture_Failed];
+        [self shakeAnimationForView:self.tipLable];
+        
+    }else if ([alertSender hasPrefix:@"请再绘制一次"]){
+        
+        isError = NO;
+        
+    }else if([alertSender hasPrefix:@"创建密码成功"]){
+        
+        isError = NO;
+        self.successView.layer.cornerRadius = 10;
+        [UIView animateWithDuration:10.0 animations:^{
+            self.successView.hidden = NO;
+        } completion:^(BOOL finished) {
+            
+//             self.successView.hidden = YES;
+        }];
+       
+        [self closeController];
+
+    
+        
+    }else if ([alertSender hasPrefix:@"输入密码正确"]){
+        isError = NO;
+        if(self.runMode == GestureView_Mode_Active){
+            [self closeController];
+        }else if(self.runMode == GestureView_Mode_Reset){
+            [self.pswView unlock];
+            [self.pswView resetPassword];
+            [self.pwdTitle setText:@"手势密码设置"];
+            [self.userName setText:@""];
+            [self.tipLable setText:@"请绘制解锁图案"];
+            self.tipLable4.hidden = NO;
+            //[self createSmallView:nil];
+            //[self.cancelBtn setHidden:YES];
+            //[self.userPhoto setHidden:YES];
+            isError = NO;
+        }else if(self.runMode == GestureView_Mode_Forget){
+            [self.pswView clearPassword];
+            [self closeController];
+        }else if (self.runMode == GestureView_Mode_Lock){
+            [self closeController];
+            if (self.delegate && [self.delegate respondsToSelector:@selector(pwdViewControllerUnlocked:)]) {
+                [self.delegate pwdViewControllerUnlocked:self];
+            }
+        }
+    }
+    
+    
+    //用于判断是否需要创建小图密码框
+    if ([self.pswView isPasswordState] == ePasswordUnset) {//没有设置手势密码
+        
+        NSMutableArray *selectedNumArray = [[NSMutableArray alloc] initWithCapacity:10];
+        
+        [selectedNumArray removeAllObjects];
+        //将返回过来的手势密码字符串分解成数组保存
+        NSInteger selectedNumber = [resultSender integerValue];
+        while (selectedNumber) {
+            int temp = selectedNumber % 10 ;
+            selectedNumber = selectedNumber / 10;
+            [selectedNumArray addObject:[NSString stringWithFormat:@"%d",temp]];
+        }
+        //[self createSmallView:selectedNumArray];
+    }
+    
+}
+
+#pragma mark 抖动动画
+- (void)shakeAnimationForView:(UIView *)view
+{
+    CALayer *viewLayer = view.layer;
+    CGPoint position = viewLayer.position;
+    CGPoint left = CGPointMake(position.x - 10, position.y);
+    CGPoint right = CGPointMake(position.x + 10, position.y);
+    
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [animation setFromValue:[NSValue valueWithCGPoint:left]];
+    [animation setToValue:[NSValue valueWithCGPoint:right]];
+    [animation setAutoreverses:YES]; // 平滑结束
+    [animation setDuration:0.08];
+    [animation setRepeatCount:3];
+    
+    [viewLayer addAnimation:animation forKey:nil];
+}
+
+#pragma mark 密码delegate
+-(void)callbackGestureContinueFalse{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请重新运行" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)resetGesture{
+//[self.tipLable setText:@"请绘制解锁图案"];
+[self theResoutOfInput:(NSString *)@"输入密码正确" withResult:(NSString *)@""];
+}
+
+#pragma marks - 代理
+-(void)pwdViewControllerSwitchForgetPwd:(UIViewController*)vc{
+    [[ViewControllerManager sharedManager] dismissAllController:self];
+    [AppUtil exitAccountGo2Forget:NO];
+    
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+- (IBAction)forgetAction:(UIButton *)sender {
+    
+    [self.pswView resetPassword];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请重新运行" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
+}
+
+- (IBAction)cancelAction:(UIButton *)sender {
+    
+    [self closeController];
+}
+
+-(void)closeController{
+    if(self.navigationController == nil ){
+        if (self.parent) {
+            [self.parent setCallback];
+        }
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+//    else{
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(pwdViewControllerDidClose:)]) {
+        [self.delegate pwdViewControllerDidClose:self];
+    }
+}
+
+- (IBAction)switchClicked:(id)sender {
+    [self closeController];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(pwdViewControllerSwitchAccount:)]) {
+        [self.delegate pwdViewControllerSwitchAccount:self];
+    }
+}
+
+- (IBAction)pwdClicked:(id)sender {
+    //[self closeController];
+    if (self.runMode==GestureView_Mode_Reset) {
+        Login2ViewController *login2controller = [[Login2ViewController alloc]initWithNibName:@"Login2ViewController" bundle:[NSBundle mainBundle]];
+        login2controller.mark = @"GestureReset";
+        login2controller.resetGestureDelegate= self;
+        login2controller.pwdDelegate = self;
+        [self presentViewController:login2controller animated:YES completion:nil];
+        
+    }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(pwdViewControllerSwitchAnotherWay:)]) {
+        [self.delegate pwdViewControllerSwitchAnotherWay:self];
+    }
+}
+
+
+
+@end

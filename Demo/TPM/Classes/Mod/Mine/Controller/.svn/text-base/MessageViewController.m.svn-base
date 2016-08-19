@@ -1,0 +1,296 @@
+//
+//  MessageViewController.m
+//  QianFangGuJie
+//
+//  Created by 财道 on 15/1/16.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+
+#import "MessageViewController.h"
+#import "MessageSection.h"
+#import "messageEntity.h"
+#import "MessageMock.h"
+#import "WpCommonFunction.h"
+#import "QUFlatLine.h"
+#import "MessageListMock.h"
+#import "MessageManager.h"
+#import "MyWebViewController.h"
+#import "NeedNoticecntEntity.h"
+
+@interface MessageViewController ()
+@property(strong,nonatomic)MessageParam* param;
+@property(assign ,nonatomic)NSInteger lastNum;
+@property(assign ,nonatomic)NSInteger startid;
+@property(strong,nonatomic)MessageItemEntity* myMessage;
+@property(strong,nonatomic)MessageListMock* messageListMock;
+@property (strong,nonatomic) NSMutableArray *dataSource;
+@property(strong,nonatomic)MessageManager* manager;
+
+
+@property(nonatomic,strong)MessageSection *messageSection;
+
+@property(nonatomic,copy)NSString *titleStr;
+@property(nonatomic,copy)NSString *timeStr;
+@end
+
+@implementation MessageViewController
+
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    // 显示导航条
+    
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title =@"@私信";
+    [self.segmentedCtrl addTarget:self action:@selector(segSwitch:) forControlEvents:UIControlEventValueChanged];
+    
+    [self resetAnnoMsg];
+    
+    self.pTableView.userInteractionEnabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    
+    self.manager = [[MessageManager alloc] init];
+    [self getMessageList:@"0"];
+    self.msg_type=@"0";
+    
+    [self refreshNoticeCount];
+}
+
+
+-(void)refreshNoticeCount{
+    
+    [self refreashAnnoMsg];
+}
+
+
+-(void)refreashAnnoMsg{
+    DEFINED_WEAK_SELF
+
+    NSString *time=[[NSUserDefaults standardUserDefaults]objectForKey:@"anno_msg_time"];
+    [self.manager getNoticeCountWithType:@"anno_msg" Time:time block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if ([entity isKindOfClass:[NeedNoticecntEntity class]]) {
+            _self.imgPublicMsgNtc.hidden=YES;
+            NeedNoticecntEntity *e=(NeedNoticecntEntity *)entity;
+            
+            if ([[e.records objectForKey:@"anno_msg"]intValue]>0) {
+                _self.imgPublicMsgNtc.hidden=NO;
+            }
+        }
+        [_self refreashSysMsg];
+    }];
+}
+
+
+-(void)resetAnnoMsg{
+    self.imgPublicMsgNtc.hidden=YES;
+    NSString *time=[NSString stringWithFormat:@"%d",[[ProductsManager shareProductsManager]getServerTime]];
+    NSString *key = @"anno_msg_time";
+    [[NSUserDefaults standardUserDefaults] setObject:time forKey:key];
+}
+
+
+-(void)refreashSysMsg{
+    DEFINED_WEAK_SELF
+    
+    NSString *time=[[NSUserDefaults standardUserDefaults]objectForKey:@"system_msg_time"];
+    [self.manager getNoticeCountWithType:@"system_msg" Time:time block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if ([entity isKindOfClass:[NeedNoticecntEntity class]]) {
+            _self.imgSystemMsgNtc.hidden=YES;
+            NeedNoticecntEntity *e=(NeedNoticecntEntity *)entity;
+            
+            if ([[e.records objectForKey:@"system_msg"]intValue]>0) {
+                _self.imgSystemMsgNtc.hidden=NO;
+            }
+        }
+        [_self refreashNoticeMsg];
+    }];
+}
+
+
+-(void)resetSysMsg{
+    self.imgSystemMsgNtc.hidden=YES;
+    NSString *time=[NSString stringWithFormat:@"%d",[[ProductsManager shareProductsManager]getServerTime]];
+    NSString *key = @"system_msg_time";
+    [[NSUserDefaults standardUserDefaults] setObject:time forKey:key];
+}
+
+
+-(void)refreashNoticeMsg{
+    DEFINED_WEAK_SELF
+    
+    NSString *time=[[NSUserDefaults standardUserDefaults]objectForKey:@"notice_msg_time"];
+    [self.manager getNoticeCountWithType:@"notice_msg" Time:time block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if ([entity isKindOfClass:[NeedNoticecntEntity class]]) {
+            _self.imgAlertMsgNtc.hidden=YES;
+            NeedNoticecntEntity *e=(NeedNoticecntEntity *)entity;
+            
+            if ([[e.records objectForKey:@"notice_msg"]intValue]>0) {
+                _self.imgAlertMsgNtc.hidden=NO;
+            }
+        }
+    }];
+}
+
+-(void)resetNoticeMsg{
+    self.imgAlertMsgNtc.hidden=YES;
+    NSString *time=[NSString stringWithFormat:@"%d",[[ProductsManager shareProductsManager]getServerTime]];
+    NSString *key = @"notice_msg_time";
+    [[NSUserDefaults standardUserDefaults] setObject:time forKey:key];
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+
+    self.messageSection.lblTime.textColor =  CPB_COLOR_11;
+    self.messageSection.lblTitle.textColor = CPB_COLOR_11;
+}
+
+-(void)segSwitch:(UISegmentedControl *)segmented{
+
+    if (segmented.selectedSegmentIndex == 0) {
+        self.msg_type = @"0";
+        [self resetAnnoMsg];
+        
+    }
+    if (segmented.selectedSegmentIndex == 1){
+    
+        self.msg_type = @"500";
+        [self resetSysMsg];
+        
+    }
+    if (segmented.selectedSegmentIndex == 2) {
+    
+        self.msg_type = @"3";
+        [self resetNoticeMsg];
+        
+    }
+    [self getMessageList:@"0"];
+
+}
+
+
+-(void)getMessageList:(NSString*)startid{
+    self.startid = [startid integerValue];
+    
+    DEFINED_WEAK_SELF
+    [self.manager getMessageByStartId:startid type:self.msg_type block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        
+        if (_self.startid==0) {
+            [_self.pAdaptor.pSources clear];
+        }
+        
+        if (val.result) {
+            MessageItemEntity* e = (MessageItemEntity*)entity;
+            _self.lastNum = [e.records count];
+            for (MessageItemRecordsEntity* item in e.records) {
+                
+                item.tag=(int)_self.pAdaptor.pSources.count;
+                [_self.pAdaptor.pSources addEntity:item withSection:[MessageSection class]];
+            }
+            [_self.pAdaptor notifyChanged];
+        }
+        [_self.pAdaptor.refreshHeaderView endRefreshing];
+        [_self.pAdaptor.refreshFooterView endRefreshing];
+
+        [_self.dataSource removeAllObjects];
+        [_self.pTableView reloadData];
+    }];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+
+
+-(void)initQuickUI{
+    self.pAdaptor = [QUFlatAdaptor adaptorWithTableView:self.pTableView nibArray:@[@"MessageSection"] delegate:self];
+
+    [self.pAdaptor setRefreshDelegateHeader:self];
+    [self.pAdaptor setRefreshDelegateFooter:self];
+    self.pAdaptor.delegate = self;
+    [self.pTableView setSeparatorColor:[UIColor redColor]];
+    
+}
+
+-(void)QUMock:(QUMock *)mock entity:(QUEntity *)entity{
+    
+    [self.pAdaptor notifyChanged];
+
+}
+
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor forSection:(QUSection *)section forEntity:(QUEntity *)entity{
+    if ([section isMemberOfClass:[MessageSection class]]) {
+        
+        MessageSection* s = (MessageSection*)section;
+        MessageItemRecordsEntity* e = (MessageItemRecordsEntity*)entity;
+        //计算s.lblCategory.text的宽度大小
+        CGSize categorySize = [s.lblCategory.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil].size;
+        s.lblCategory.frame = CGRectMake(15, 20, categorySize.width, 20);
+        
+        s.lblTitle.text = e.message_title;
+        s.lblTitle.textColor =Color_Bg_222222;
+         s.lblTime.text = [WpCommonFunction changeDateFomat:e.create_time DateMark:@"4"];
+        s.lblTime.textColor = Color_Bg_757575;
+        if([e.read_status isEqualToString:@"1"])
+        {
+            s.lblTitle.textColor =  CPB_COLOR_11;
+            s.lblTime.textColor =  CPB_COLOR_11;
+        }
+    }
+}
+
+-(void)refreshViewBeginRefreshing:(MJRefreshComponent *)refreshView{
+    if ([refreshView isKindOfClass:[MJRefreshHeader class]]) {
+        [self getMessageList:@"0"];
+        
+    }else{
+        [self getMessageList:[NSString stringWithFormat:@"%d",self.startid + self.lastNum]];
+    }
+    
+}
+
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor selectedSection:(QUSection *)section entity:(QUEntity *)entity{
+
+    if ([entity isKindOfClass:[MessageItemRecordsEntity class]]) {
+        
+        MessageItemRecordsEntity* e = (MessageItemRecordsEntity*)entity;
+        if ([e.read_status isEqualToString: @"0"]) {
+            UIApplication * app = [UIApplication sharedApplication];
+            app.applicationIconBadgeNumber = app.applicationIconBadgeNumber - 1;
+            e.read_status = @"1";
+        }
+        
+        self.timeStr = e.create_time;
+        self.titleStr = e.message_title;
+        MessageSection *s = (MessageSection *)section;
+        self.messageSection = s;
+        for(int i=0 ;i<self.dataSource.count;i++)
+        {
+            MessageItemRecordsEntity *ee = self.dataSource[i];
+            
+            if([ee.msg_id isEqualToString:e.msg_id])
+            {
+                ee.read_status = @"1";
+            }
+        }
+        
+        MyWebViewController *web = [[MyWebViewController alloc] initWithNibName:@"MyWebViewController" bundle:nil];
+        web.url = [NSString stringWithFormat:@"%@/message/index?name=%@&time=%@&msgId=%@&uid=%@&session_id=%@",[ConfigManager shareConfigManager].h5Url,[e.message_title stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],e.create_time,e.msg_id,[[UserInfoManager shareUserInfoManager] getUserID],[[UserInfoManager shareUserInfoManager] getSessionID]];
+        web.title = @"消息详情";
+        [self.navigationController pushViewController:web animated:YES];
+    }
+}
+
+@end

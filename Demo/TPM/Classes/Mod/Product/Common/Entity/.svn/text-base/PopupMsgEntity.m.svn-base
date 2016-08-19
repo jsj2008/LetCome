@@ -1,0 +1,13 @@
+//
+//  PopupMsgEntity.m
+//  A50
+//
+//  Created by  rjt on 15/12/30.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "PopupMsgEntity.h"
+
+@implementation PopupMsgEntity
+
+@end

@@ -1,0 +1,25 @@
+//
+//  ProductMinKChartMock.h
+//  A50
+//
+//  Created by  rjt on 15/10/19.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "AppMock.h"
+
+
+@interface ProductMinKChartParam : AppParam
+/**产品代码*/
+@property (nonatomic,copy) NSString *code;
+/**K线天数*/
+@property (nonatomic,copy) NSString *days;
+/**分钟K线*/
+@property (nonatomic,copy) NSString *min;
+
+@end
+
+
+@interface ProductMinKChartMock : AppMock
+
+@end

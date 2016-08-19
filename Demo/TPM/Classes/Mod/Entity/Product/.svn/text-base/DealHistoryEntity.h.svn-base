@@ -1,0 +1,35 @@
+//
+//  DealHistoryEntity.h
+//  TPM
+//
+//  Created by chenyi on 16/7/26.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import <QuickUI/QuickUI.h>
+
+@interface DealHistoryEntity : QUEntity
+
+@property(nonatomic,strong)NSArray *records;
+@end
+
+@interface DealHistoryRecordsEntity : QUEntity
+
+/*成交价格*/
+@property(nonatomic,strong)NSString *deal_price;
+/*成交数量*/
+@property(nonatomic,strong)NSString *deal_amount;
+/*成交金额*/
+@property(nonatomic,strong)NSString *deal_fund;
+/*买卖标志1 买2 卖*/
+@property(nonatomic,strong)NSString *sell_buy;
+/*交易时间*/
+@property(nonatomic,strong)NSString *deal_time;
+/*买卖标志1 买2 卖*/
+@property(nonatomic,strong)NSString *type_name;
+/*交易类型翻译*/
+@property(nonatomic,strong)NSString *state_name;
+/*状态翻译*/
+@property(nonatomic,strong)NSString *type;
+
+@end

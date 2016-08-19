@@ -1,0 +1,22 @@
+//
+//  MessageEntity.h
+//  QianFangGuJie
+//
+//  Created by 李荣 on 15/1/16.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+
+#import "QUEntity.h"
+@interface MessageItemEntity : QUEntity
+@property(strong,nonatomic)NSMutableArray* records;
+@end
+@interface MessageItemRecordsEntity : QUEntity
+@property(strong,nonatomic)NSString* sender_id;     //送信者ID
+@property(strong,nonatomic)NSString* msg_id;      //消息编号
+@property(strong,nonatomic)NSString* msg_type;    //0-公告 1-通知 2-活动 3-提醒
+@property(strong,nonatomic)NSString* message_title;  //消息标题
+@property(strong,nonatomic)NSString* read_status;    //消息状态
+@property(strong,nonatomic)NSString* Msg_content;   //消息内容
+@property(strong,nonatomic)NSString* create_time;    //消息发送时间
+
+@end

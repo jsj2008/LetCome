@@ -1,0 +1,21 @@
+//
+//  CfgMock.h
+//  QianFangGuJie
+//
+//  Created by  rjt on 15/10/8.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "AppMock.h"
+#import "CfgEntity.h"
+@interface CfgParam : AppParam
+/**App版本号*/
+@property (nonatomic,copy) NSString *version;
+/**配置文件版本号*/
+@property (nonatomic,copy) NSString *ini_version;
+
+@end
+
+@interface CfgMock : AppMock
+
+@end

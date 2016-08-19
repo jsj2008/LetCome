@@ -1,0 +1,128 @@
+//
+//  ProductMultiAgreementView.m
+//  A50
+//
+//  Created by tongshangren on 15/12/29.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "ProductMultiAgreementView.h"
+#import "AgreementManager.h"
+#import "SignAgreementEntity.h"
+
+@implementation ProductMultiAgreementView
+
+-(void)awakeFromNib{
+    [self.btnClose addTarget:self action:@selector(removeAgreementView) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnAgree addTarget:self action:@selector(agreeFunc) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnAgree setEnabled:NO];
+    [self.btnAgree setTitleColor:CPB_COLOR_11 forState:UIControlStateNormal];
+    [self.btnAgree setTitleColor:CPB_COLOR_11 forState:UIControlStateHighlighted];
+    self.agreementView.layer.masksToBounds = YES;
+    self.agreementView.layer.cornerRadius=8;
+    
+
+    UITapGestureRecognizer* closeRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeAgreementView)];
+    [self.bgView addGestureRecognizer:closeRecognizer];
+    
+    self.lblTitle1.text=self.title1;
+    self.lblTitle2.text=self.title2;
+    
+    self.checkBoxClicked1=NO;
+    self.checkBoxClicked2=NO;
+    
+    [self.btnCheckBox1 addTarget:self action:@selector(checkBoxClickedFunc1) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnCheckBox2 addTarget:self action:@selector(checkBoxClickedFunc2) forControlEvents:UIControlEventTouchUpInside];
+  
+}
+
+
+
+
+
+
+-(void)checkBoxClickedFunc1{
+    if (self.checkBoxClicked1) {
+        self.checkBoxClicked1=NO;
+        [self.btnCheckBox1 setImage:[UIImage imageNamed:@"dis_checkbox.png"] forState:UIControlStateNormal];
+        [self.btnCheckBox1 setImage:[UIImage imageNamed:@"dis_checkbox.png"] forState:UIControlStateHighlighted];
+    }
+    else{
+        self.checkBoxClicked1=YES;
+        [self.btnCheckBox1 setImage:[UIImage imageNamed:@"checkbox.png"] forState:UIControlStateNormal];
+        [self.btnCheckBox1 setImage:[UIImage imageNamed:@"checkbox.png"] forState:UIControlStateHighlighted];
+    }
+    
+    if (self.checkBoxClicked1&&self.checkBoxClicked2) {
+        [self.btnAgree setEnabled:YES];
+        [self.btnAgree setTitleColor:Color_Bg_007aff forState:UIControlStateNormal];
+        [self.btnAgree setTitleColor:Color_Bg_007aff forState:UIControlStateHighlighted];
+    }
+    else{
+        [self.btnAgree setEnabled:NO];
+        [self.btnAgree setTitleColor:CPB_COLOR_11 forState:UIControlStateNormal];
+        [self.btnAgree setTitleColor:CPB_COLOR_11 forState:UIControlStateHighlighted];
+    }
+}
+
+-(void)checkBoxClickedFunc2{
+    if (self.checkBoxClicked2) {
+        self.checkBoxClicked2=NO;
+        [self.btnCheckBox2 setImage:[UIImage imageNamed:@"dis_checkbox.png"] forState:UIControlStateNormal];
+        [self.btnCheckBox2 setImage:[UIImage imageNamed:@"dis_checkbox.png"] forState:UIControlStateHighlighted];
+    }
+    else{
+        self.checkBoxClicked2=YES;
+        [self.btnCheckBox2 setImage:[UIImage imageNamed:@"checkbox.png"] forState:UIControlStateNormal];
+        [self.btnCheckBox2 setImage:[UIImage imageNamed:@"checkbox.png"] forState:UIControlStateHighlighted];
+    }
+    
+    if (self.checkBoxClicked1&&self.checkBoxClicked2) {
+        [self.btnAgree setEnabled:YES];
+        [self.btnAgree setTitleColor:Color_Bg_007aff forState:UIControlStateNormal];
+        [self.btnAgree setTitleColor:Color_Bg_007aff forState:UIControlStateHighlighted];
+    }
+    else{
+        [self.btnAgree setEnabled:NO];
+        [self.btnAgree setTitleColor:CPB_COLOR_11 forState:UIControlStateNormal];
+        [self.btnAgree setTitleColor:CPB_COLOR_11 forState:UIControlStateHighlighted];
+    }
+}
+
+
+-(void)agreeFunc{
+    
+    [self.btnAgree setEnabled:NO];
+    
+    NSString *ID=[NSString stringWithFormat:@"%@,%@",self.ID1,self.ID2];
+    DEFINED_WEAK_SELF
+    [[AgreementManager shareAgreementManager]signAgreementWithID:ID block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if ([entity isKindOfClass:[SignAgreementEntity class]]) {
+            SignAgreementEntity *en = (SignAgreementEntity *)entity;
+            
+            if ([en.result isEqualToString:@"Y"]) {
+                _self.btnAgree.titleLabel.text=@"已签署";
+                _self.btnAgree.titleLabel.textAlignment=VerticalAlignmentMiddle;
+                [_self.btnAgree setTitle:@"已签署" forState:UIControlStateNormal];
+                [_self.btnAgree setTitleColor:Color_Confirm_Gray forState:UIControlStateNormal];
+                [_self performSelector:@selector(removeAgreementView) withObject:nil afterDelay:2.0f];
+            }
+            else{
+                [_self.btnAgree setEnabled:YES];
+                [WpCommonFunction messageBoxTwoButtonWithMessage:@"协议签署出现错误，请重新签署" andTitle:@"提示" andLeftButton:nil andRightButton:@"确定" andTag:1000 andDelegate:_self];
+            }
+            
+            
+        }
+    }];
+}
+
+
+
+-(void)removeAgreementView{
+    
+    [self removeFromSuperview];
+}
+
+
+@end

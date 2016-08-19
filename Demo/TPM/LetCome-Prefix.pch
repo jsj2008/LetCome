@@ -1,0 +1,18 @@
+//
+//  QianFangGuJie.pch
+//  QianFangGuJie
+//
+//  Created by 余龙 on 14/12/21.
+//  Copyright (c) 2014年 余龙. All rights reserved.
+//
+
+#ifndef QianFangGuJie_QianFangGuJie_pch
+#define QianFangGuJie_QianFangGuJie_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "Caidao.h"
+#import "AppHeaders.h"
+
+#endif

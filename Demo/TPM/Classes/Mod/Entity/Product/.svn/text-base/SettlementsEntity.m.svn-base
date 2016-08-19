@@ -1,0 +1,19 @@
+//
+//  SettlementsEntity.m
+//  TPZ
+//
+//  Created by chenyi on 16/2/26.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "SettlementsEntity.h"
+
+@implementation SettlementsEntity
+
+@end
+
+
+@implementation SettlementsRecordsEntity
+
+
+@end

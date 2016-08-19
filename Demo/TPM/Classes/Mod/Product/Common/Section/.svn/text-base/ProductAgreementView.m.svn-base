@@ -1,0 +1,104 @@
+//
+//  ProductAgreementView.m
+//  A50
+//
+//  Created by tongshangren on 15/12/17.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "ProductAgreementView.h"
+#import "AgreementManager.h"
+#import "SignAgreementEntity.h"
+
+
+
+
+@implementation ProductAgreementView
+@synthesize agreementViewDelegate = _agreementViewDelegate;
+
+
+-(void)awakeFromNib{
+     [self.btnClose addTarget:self action:@selector(removeAgreementView) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnAgree addTarget:self action:@selector(agreeFunc) forControlEvents:UIControlEventTouchUpInside];
+    self.agreementView.layer.masksToBounds = YES;
+    self.agreementView.layer.cornerRadius=8;
+    
+}
+
+
+
+
+
+-(void)agreeFunc{
+    
+    [self.btnAgree setEnabled:NO];
+
+   
+    DEFINED_WEAK_SELF
+    [[AgreementManager shareAgreementManager]signAgreementWithID:self.ID block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if ([entity isKindOfClass:[SignAgreementEntity class]]) {
+            SignAgreementEntity *en = (SignAgreementEntity *)entity;
+            
+            if ([en.result isEqualToString:@"Y"]) {
+                _self.btnAgree.titleLabel.text=@"已签署";
+                _self.btnAgree.titleLabel.textAlignment=VerticalAlignmentMiddle;
+                [_self.btnAgree setTitle:@"已签署" forState:UIControlStateNormal];
+                [_self.btnAgree setTitleColor:Color_Confirm_Gray forState:UIControlStateNormal];
+                [_self performSelector:@selector(removeAgreementView) withObject:nil afterDelay:2.0f];
+            }
+            else{
+                [_self.btnAgree setEnabled:YES];
+                [WpCommonFunction messageBoxTwoButtonWithMessage:@"协议签署出现错误，请重新签署" andTitle:@"提示" andLeftButton:nil andRightButton:@"确定" andTag:1000 andDelegate:_self];
+            }
+            
+            
+        }
+    }];
+}
+
+
+
+-(void)fixViewFrame{
+    
+    int winwidth=[UIScreen mainScreen].bounds.size.width;
+    int winheight=[UIScreen mainScreen].bounds.size.height;
+    CGSize size=[self sizeWithAttributedString:self.agreementAttributedString frameWidth:(winwidth-60) font:[UIFont systemFontOfSize:12.f]];
+    
+    int agreementViewHeight=winheight-80;
+    if (size.height+170<winheight-80) {
+        agreementViewHeight=size.height+170;
+    }
+    
+    
+    self.agreementView.frame=CGRectMake(10, (winheight-agreementViewHeight)/2, winwidth-20, agreementViewHeight);
+
+    self.agreementTextView.frame=CGRectMake(20, 90, winwidth-60, agreementViewHeight-90-55);
+    
+    self.agreementTextView.attributedText=self.agreementAttributedString;
+    
+    
+    [self.agreementTextView setScrollsToTop:YES];
+    self.agreementTextView.contentOffset = CGPointMake(0, 0);
+ 
+}
+
+
+
+
+- (CGSize)sizeWithAttributedString:(NSAttributedString *)string frameWidth:(float)width font:(UIFont *)font
+{
+
+    CGRect rect = [string boundingRectWithSize:CGSizeMake(width, 8000) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesFontLeading  |NSStringDrawingUsesLineFragmentOrigin context:nil];
+    return rect.size;
+}
+
+
+
+
+-(void)removeAgreementView{
+    [_agreementViewDelegate closeAgreementView];
+    [self removeFromSuperview];
+}
+
+
+@end

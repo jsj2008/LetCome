@@ -1,0 +1,16 @@
+//
+//  UidMobileCodeCheckEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/3/1.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface UidMobileCodeCheckEntity : QUEntity
+
+/*Y:发送成功 N:发送失败*/
+@property (nonatomic,copy)NSString *result;
+
+@end

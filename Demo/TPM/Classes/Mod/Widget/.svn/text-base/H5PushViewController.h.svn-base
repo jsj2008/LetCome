@@ -1,0 +1,16 @@
+//
+//  AdvViewController.h
+//  QianFangGuJie
+//
+//  Created by  rjt on 15/4/14.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface H5PushViewController : UIViewController
+@property (nonatomic,strong) NSString* url;
+@property (nonatomic,weak) MyViewController* parent;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (nonatomic,strong) NSString* method;//POST,GET
+@end

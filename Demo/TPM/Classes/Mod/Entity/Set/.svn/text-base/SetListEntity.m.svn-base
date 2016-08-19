@@ -1,0 +1,13 @@
+//
+//  SetListEntity.m
+//  TPM
+//
+//  Created by chenyi on 16/7/25.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "SetListEntity.h"
+
+@implementation SetListEntity
+
+@end

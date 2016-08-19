@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InformStrategyDetailViewController">
+            <connections>
+                <outlet property="btnView" destination="AT4-B2-xvT" id="Dvi-GS-FPs"/>
+                <outlet property="confirmBtn" destination="oUz-la-Wkl" id="jSZ-dD-2E6"/>
+                <outlet property="informDetailTable" destination="nVb-lE-Pc0" id="udJ-1c-5fk"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AT4-B2-xvT">
+                    <rect key="frame" x="0.0" y="602" width="375" height="65"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUz-la-Wkl">
+                            <rect key="frame" x="10" y="11" width="355" height="44"/>
+                            <color key="backgroundColor" red="0.31372549020000001" green="0.54901960780000003" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="veb-5i-fxN"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <state key="normal" title="通知确认">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_DD_u.png" translatesAutoresizingMaskIntoConstraints="NO" id="fmj-PX-mtI">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="unl-do-owy"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="fmj-PX-mtI" secondAttribute="trailing" id="C3X-j5-qSK"/>
+                        <constraint firstAttribute="bottom" secondItem="oUz-la-Wkl" secondAttribute="bottom" constant="10" id="ONa-Wp-YM4"/>
+                        <constraint firstAttribute="height" constant="65" id="WJq-Nh-gya"/>
+                        <constraint firstItem="fmj-PX-mtI" firstAttribute="leading" secondItem="AT4-B2-xvT" secondAttribute="leading" id="ZvU-tx-0hG"/>
+                        <constraint firstItem="oUz-la-Wkl" firstAttribute="centerX" secondItem="AT4-B2-xvT" secondAttribute="centerX" id="j7t-rb-WYO"/>
+                        <constraint firstItem="oUz-la-Wkl" firstAttribute="leading" secondItem="AT4-B2-xvT" secondAttribute="leading" constant="10" id="rdS-WL-oOT"/>
+                        <constraint firstItem="fmj-PX-mtI" firstAttribute="top" secondItem="AT4-B2-xvT" secondAttribute="top" id="rno-S9-cP8"/>
+                        <constraint firstItem="oUz-la-Wkl" firstAttribute="centerY" secondItem="AT4-B2-xvT" secondAttribute="centerY" id="ylY-Am-Oud"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nVb-lE-Pc0" customClass="QUTableView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="602"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="nVb-lE-Pc0" secondAttribute="trailing" id="D87-xH-qDF"/>
+                <constraint firstItem="AT4-B2-xvT" firstAttribute="top" secondItem="nVb-lE-Pc0" secondAttribute="bottom" id="Fqy-2p-hFT"/>
+                <constraint firstItem="AT4-B2-xvT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Y6y-rf-LUo"/>
+                <constraint firstItem="nVb-lE-Pc0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="cxF-52-AVZ"/>
+                <constraint firstItem="nVb-lE-Pc0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lUa-A1-X2m"/>
+                <constraint firstAttribute="bottom" secondItem="AT4-B2-xvT" secondAttribute="bottom" id="r9I-Rr-T4W"/>
+                <constraint firstAttribute="trailing" secondItem="AT4-B2-xvT" secondAttribute="trailing" id="uz7-9K-LC2"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="line_DD_u.png" width="100" height="2"/>
+    </resources>
+</document>

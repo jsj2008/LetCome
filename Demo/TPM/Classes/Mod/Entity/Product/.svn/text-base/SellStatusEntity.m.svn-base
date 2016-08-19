@@ -1,0 +1,13 @@
+//
+//  SellStatusEntity.m
+//  TPZ
+//
+//  Created by chenyi on 16/2/26.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "SellStatusEntity.h"
+
+@implementation SellStatusEntity
+
+@end

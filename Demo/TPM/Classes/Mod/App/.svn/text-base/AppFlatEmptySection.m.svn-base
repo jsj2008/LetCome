@@ -1,0 +1,15 @@
+//
+//  AppFlatEmptySection.m
+//  CaoPanBao
+//
+//  Created by zhuojian on 14-6-26.
+//  Copyright (c) 2014年 weihui. All rights reserved.
+//
+
+#import "AppFlatEmptySection.h"
+
+@implementation AppFlatEmptySection
+
+@end
+
+

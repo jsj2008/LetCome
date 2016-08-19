@@ -1,0 +1,31 @@
+//
+//  ProductHoldingTimeMock.m
+//  QianFangGuJie
+//
+//  Created by  rjt on 15/5/6.
+//  Copyright (c) 2015年 JYZD. All rights reserved.
+//
+
+#import "ProductHoldingTimeMock.h"
+#import "ProductHoldingTimeEntity.h"
+
+@implementation ProductHoldingTimeParam
+
+@end
+
+
+@implementation ProductHoldingTimeMock
+
+- (NSString *)getOperatorType
+{
+    return @"/public/hold_time";
+}
+
+
+- (Class)getEntityClass
+{
+    return [ProductHoldingTimeEntity class];
+}
+
+
+@end

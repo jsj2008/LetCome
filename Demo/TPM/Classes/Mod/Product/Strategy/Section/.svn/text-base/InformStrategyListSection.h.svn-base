@@ -1,0 +1,43 @@
+//
+//  InformStrategyListSection.h
+//  TPM
+//
+//  Created by admin on 16/7/29.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import <QuickUI/QuickUI.h>
+
+@interface InformStrategyListSection : QUSection
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (weak, nonatomic) IBOutlet UIButton *informBtn;
+@property (weak, nonatomic) IBOutlet UIButton *hqBtn;
+
+@property (weak, nonatomic) IBOutlet UIImageView *redLine;
+@property (weak, nonatomic) IBOutlet UIView *lineView;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *pnoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *investUnitLabel;
+@property (weak, nonatomic) IBOutlet UILabel *investorSymbolLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalStockAmountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *floatingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *floatingRateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *buyPriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *currentPriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *upDownLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *dealDayLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *redPercenetLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yellowPercentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bluePercentLabel;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+
+@end
+
+
+
+
+

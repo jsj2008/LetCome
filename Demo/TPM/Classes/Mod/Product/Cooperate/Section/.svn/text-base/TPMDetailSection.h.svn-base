@@ -1,0 +1,30 @@
+//
+//  TPMDetailSection.h
+//  TPM
+//
+//  Created by tongshangren on 16/7/29.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import <QuickUI/QuickUI.h>
+
+@interface TPMDetailSection : QUSection
+
+@property (weak, nonatomic) IBOutlet UIButton *btnStockKLine;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblUserID;
+@property (weak, nonatomic) IBOutlet UILabel *lblFund;
+@property (weak, nonatomic) IBOutlet UILabel *lblHoldTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblBuyTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblBuyWay;
+@property (weak, nonatomic) IBOutlet UILabel *lblBuyTimes;
+@property (weak, nonatomic) IBOutlet UILabel *lblApplySellDate;
+@property (weak, nonatomic) IBOutlet UILabel *lblApplySellTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblSellTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblSellWay;
+@property (weak, nonatomic) IBOutlet UILabel *lblSellTimes;
+
+
+
+
+@end

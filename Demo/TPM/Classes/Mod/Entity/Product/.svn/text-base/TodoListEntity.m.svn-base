@@ -1,0 +1,18 @@
+//
+//  TodoListEntity.m
+//  TPM
+//
+//  Created by chenyi on 16/7/26.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "TodoListEntity.h"
+
+@implementation TodoListEntity
+
+@end
+
+@implementation TodoListRecordsEntity
+
+
+@end

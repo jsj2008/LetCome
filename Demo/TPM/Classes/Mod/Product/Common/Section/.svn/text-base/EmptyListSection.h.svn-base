@@ -1,0 +1,14 @@
+//
+//  EmptyListSection.h
+//  STO
+//
+//  Created by  rjt on 16/3/31.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUSection.h"
+
+@interface EmptyListSection : QUSection
+@property (weak, nonatomic) IBOutlet UIButton *publishBtn;
+
+@end

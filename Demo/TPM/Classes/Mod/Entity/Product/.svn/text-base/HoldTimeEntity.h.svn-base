@@ -1,0 +1,16 @@
+//
+//  HoldTimeEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/2/26.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface HoldTimeEntity : QUEntity
+
+/*持仓时间*/
+@property (nonatomic,copy)NSString *time;
+
+@end

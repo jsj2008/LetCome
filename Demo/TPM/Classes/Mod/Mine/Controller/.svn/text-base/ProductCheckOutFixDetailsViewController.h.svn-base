@@ -1,0 +1,27 @@
+//
+//  ProductCheckOutFixDetailsViewController.h
+//  A50
+//
+//  Created by chenyi on 15/11/9.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+//#import "MyViewController.h"
+#import "ProductBargainFixEntity.h"
+#import "ProductBargainPayMock.h"
+@interface ProductCheckOutFixDetailsViewController : AppViewController
+
+@property (weak, nonatomic) IBOutlet UIButton *btnPay;
+
+@property (nonatomic,weak)ProductBargainFixRecordsEntity *entity;
+
+@property (nonatomic,weak)MyViewController *superController;
+
+@property (strong,nonatomic) ProductBargainPayParam* payParam;
+@property (strong,nonatomic) ProductBargainPayMock* payMock;
+
+@property (weak, nonatomic) IBOutlet QUTableView *myTableView;
+
+@property (weak, nonatomic) IBOutlet UIView *btnPayView;
+
+@end

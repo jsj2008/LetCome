@@ -1,0 +1,14 @@
+//
+//  ProductHoldingTimeEntity.h
+//  QianFangGuJie
+//
+//  Created by 童尚仁 on 15/7/9.
+//
+
+#import "QUEntity.h"
+
+@interface ProductHoldingTimeEntity : QUEntity
+
+@property(strong,nonatomic)NSString* time;
+
+@end

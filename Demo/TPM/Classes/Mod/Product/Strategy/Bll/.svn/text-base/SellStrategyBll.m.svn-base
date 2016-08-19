@@ -1,0 +1,242 @@
+//
+//  SellStrategyBll.m
+//  TPM
+//
+//  Created by admin on 16/7/25.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "SellStrategyBll.h"
+#import "SellStrategyListSection.h"
+#import "SellMarketViewController.h"
+#import "SellStrategyViewController.h"
+#import "SellingListEntity.h"
+#import "EmptyListSection.h"
+
+@implementation SellStrategyBll
+
+-(void)loadBll
+{
+    [super loadBll];
+    [self refreshList];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshList) name:kOrderSelled object:nil];
+}
+
+-(void)initQuickUI:(QUTableView *)tableView
+{
+    
+    self.pAdaptor = [QUFlatAdaptor adaptorWithTableView:tableView nibArray:@[@"SellStrategyListSection",@"EmptyListSection"] delegate:self];
+    [self.pAdaptor setRefreshDelegateHeader:self];
+    [self.pAdaptor setRefreshDelegateFooter:self];
+
+}
+
+-(void)QUAdaptor:(QUAdaptor*)adaptor willDidLoadSection:(QUSection*)section willDidLoadEntity:(QUEntity*)entity
+{
+    if ([section isKindOfClass:[SellStrategyListSection class]]) {
+        SellStrategyListSection *s = (SellStrategyListSection *)section;
+        [s.hqBtn addTarget:self action:@selector(hqBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [s.sellStrategyBtn addTarget:self action:@selector(buildStrategyBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [s.sellStrategyBtn setTitleColor:kBtnTextDisableColor forState:UIControlStateDisabled];
+        s.sellStrategyBtn.layer.cornerRadius = 3.f;
+
+    }
+}
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor forSection:(QUSection *)section forEntity:(QUEntity *)entity{
+    if ([section isKindOfClass:[SellStrategyListSection class]]) {
+        SellStrategyListSection *s = (SellStrategyListSection *)section;
+        SellingListRecordsEntity *e = (SellingListRecordsEntity*)entity;
+        s.pnoLabel.text = [NSString stringWithFormat:@"协议编号：%@",e.pno];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MM-dd HH:mm"];
+        s.startTimeLabel.text = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[e.start_time integerValue]]];
+        
+        s.dealerReplaceLabel.text = e.dealer_replace;
+        s.fundLabel.text = [NSString stringWithFormat:@"投资单元 %ld万",e.fund.integerValue/10000];
+        [s.stockNameLabel setTitle:e.stock_name forState:UIControlStateNormal];
+        s.stockNameLabel.tag = [e.ID integerValue];
+        s.sellAmountLabel.text = [NSString stringWithFormat:@"%@股",e.sell_amount];
+        s.amountLabel.text = [NSString stringWithFormat:@"%@股",e.amount];
+        s.leftAmountLabel.text = [NSString stringWithFormat:@"%ld股",[e.amount integerValue]-[e.sell_amount integerValue]];
+        if (e.profitEntity) {
+            s.sellPriceLabel.text = [NSString stringWithFormat:@"%.2f元",[e.profitEntity.sell_deal_price_avg floatValue]];
+            s.buyPriceLabel.text = [NSString stringWithFormat:@"%.2f元",[e.profitEntity.buy_deal_price_avg floatValue]];
+            s.priceLabel.text = [NSString stringWithFormat:@"%.2f元",[e.profitEntity.cur_price floatValue]];
+        }else{
+            s.sellPriceLabel.text = [NSString stringWithFormat:@"%.2f元",[e.sell_deal_price_avg floatValue]];
+            s.buyPriceLabel.text = [NSString stringWithFormat:@"%.2f元",[e.buy_deal_price_avg floatValue]];
+        }
+
+        s.sellStrategyBtn.tag = [e.ID integerValue];
+
+        
+        if ([e.state isEqualToString:@"2"] && [e.profitEntity.is_trade_time isEqualToString:@"Y"]) {
+            [s.sellStrategyBtn setTitle:@"投资人正在卖出"forState:UIControlStateDisabled];
+            [s.sellStrategyBtn setBackgroundColor:kBtnDisableColor];
+            s.sellStrategyBtn.enabled = NO;
+        }else{
+
+            [s.sellStrategyBtn setTitle:[NSString stringWithFormat:@"平仓策略(%@/%@)",e.times,e.max_times] forState:UIControlStateDisabled];
+            [s.sellStrategyBtn setTitle:[NSString stringWithFormat:@"平仓策略(%@/%@)",e.times,e.max_times] forState:UIControlStateNormal];
+            if ([e.profitEntity.is_trade_time isEqualToString:@"N"]) {
+                s.sellStrategyBtn.enabled = NO;
+                [s.sellStrategyBtn setBackgroundColor:kBtnDisableColor];
+            }else{
+                s.sellStrategyBtn.enabled = YES;
+                [s.sellStrategyBtn setBackgroundColor:kBtnColor];
+            }
+        }
+        
+        s.progressView.progress = [e.times floatValue]/[e.max_times floatValue];
+    }
+}
+
+#pragma mark - 按钮
+- (void)buildStrategyBtnClicked:(UIButton *)btn
+{
+    NSArray* arr = [self.pAdaptor.pSources entityArray];
+    for (int i=0; i<arr.count; ++i) {
+        SellingListRecordsEntity *e = arr[i];
+        if (e.ID.integerValue == btn.tag) {
+            SellStrategyViewController *controller = [SellStrategyViewController controllerWithEntity:e];
+            [self.controller.navigationController.navigationController pushViewController:controller animated:YES];
+            break;
+        }
+    }
+}
+
+- (void)hqBtnClicked:(UIButton *)btn
+{
+    NSArray* arr = [self.pAdaptor.pSources entityArray];
+    for (int i=0; i<arr.count; ++i) {
+        SellingListRecordsEntity *e = arr[i];
+        if (e.ID.integerValue == btn.tag) {
+            SellMarketViewController *controller = [SellMarketViewController controllerWithCode:e.code entity:e];
+            [self.controller.navigationController.navigationController pushViewController:controller animated:YES];
+            break;
+        }
+
+        
+    }
+
+}
+
+
+
+-(void)refreshViewBeginRefreshing:(MJRefreshComponent *)refreshView{
+    if ([refreshView isKindOfClass:[MJRefreshHeader class]]) {
+        [self refreshList];
+    }
+    if ([refreshView isKindOfClass:[MJRefreshFooter class]]) {
+        NSString *startid = @"0";
+        for(SellingListRecordsEntity * e in [self.pAdaptor.pSources entityArrayByClass:[SellingListRecordsEntity class]]){
+            startid =  e.ID;
+        }
+        [self refreshListWithStartid:startid];
+    }
+}
+
+-(void)refreshList{
+    [self refreshListWithStartid:@"0"];
+}
+
+-(void)refreshListWithStartid:(NSString *)startid{
+    DEFINED_WEAK_SELF
+    [[ProductsManager shareProductsManager] getSellingListInformationWithStartId:startid Block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if (val.result && [entity isKindOfClass:[SellingListEntity class]]) {
+            SellingListEntity* e = (SellingListEntity*)entity;
+            if ([startid isEqualToString:@"0" ]) {
+                [_self.pAdaptor.pSources clear];
+            }
+            for (int i=0; i<e.records.count; ++i) {
+                [self.pAdaptor.pSources addEntity:e.records[i] withSection:[SellStrategyListSection class]];
+            }
+//            [self.pAdaptor notifyChanged];
+        }
+        [_self refreshTable];
+    }];
+}
+
+- (void)refreshTable
+{
+    if ([self.pAdaptor.pSources entityArrayByClass:[SellingListRecordsEntity class]].count == 0) {
+        
+        [self.pAdaptor.pSources clear];
+        [self.pAdaptor.pSources addEntity:[QUEntity entity] withSection:[EmptyListSection class]];
+    }
+    
+    [self.pAdaptor.refreshHeaderView endRefreshing];
+    [self.pAdaptor.refreshFooterView endRefreshing];
+    [self.pAdaptor notifyChanged];
+}
+
+
+-(void)initTimer{
+    if (![[WHTimerManager shareTimerManager] hasNotifyName:kSellProfitKey]) {
+        [[WHTimerManager shareTimerManager] addTarget:self selector:@selector(refreshProfit) notifyName:kSellProfitKey];
+    }
+}
+
+-(void)controllerDidDisappear{
+    [super controllerDidDisappear];
+    [[WHTimerManager shareTimerManager] removeTarget:self notifyName:kSellProfitKey];
+    [[WHOnceTask shareOnceTask] removeTask:kSellProfitKey];
+}
+
+
+-(void)controllerWillAppear{
+    [super controllerWillAppear];
+    [self initTimer];
+}
+
+
+-(void)show{
+    [super show];
+    [self initTimer];
+}
+
+-(void)hide{
+    [super hide];
+    [[WHTimerManager shareTimerManager] removeTarget:self notifyName:kSellProfitKey];
+    [[WHOnceTask shareOnceTask] removeTask:kSellProfitKey];
+}
+
+-(void)refreshProfit{
+    if ([[WHOnceTask shareOnceTask]expired:kSellProfitKey validTime:kSellProfitVal] && self.pTableView.isHidden == NO) {
+        NSMutableArray *id_arr = [NSMutableArray array];
+        
+        for(SellingListRecordsEntity * e in [self.pAdaptor.pSources entityArrayByClass:[SellingListRecordsEntity class]]){
+            [id_arr addObject:e.ID];
+        }
+        DEFINED_WEAK_SELF
+        if (id_arr.count != 0) {
+            
+            [[ProductsManager shareProductsManager] refreshProfitByIds:id_arr andBlock:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+                if (val.result && [entity isKindOfClass:[ProfitEntity class]]) {
+                    ProfitEntity* pe = (ProfitEntity*)entity;
+                    for (ProfitRecordsEntity* re in pe.records) {
+                        for(SellingListRecordsEntity * e in [_self.pAdaptor.pSources entityArrayByClass:[SellingListRecordsEntity class]]){
+                            if ([e.ID isEqualToString:re.key_id]) {
+                                e.profitEntity = re;
+                                if ([re.state floatValue]>500) {
+                                    [_self.pAdaptor.pSources removeEntity:e];
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    [self.pAdaptor notifyChanged];
+                }
+            }];
+            
+        }
+    }
+}
+-(void)dealloc{
+    [[WHTimerManager shareTimerManager] removeTarget:self notifyName:kSellProfitKey];
+    [[WHOnceTask shareOnceTask] removeTask:kSellProfitKey];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+@end

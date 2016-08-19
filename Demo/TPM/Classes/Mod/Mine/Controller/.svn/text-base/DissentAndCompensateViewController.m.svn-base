@@ -1,0 +1,92 @@
+//
+//  DissentAndCompensateViewController.m
+//  STO
+//
+//  Created by chenyi on 16/5/10.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "DissentAndCompensateViewController.h"
+#import "SetListEntity.h"
+#import "SetListSection.h"
+#import "ProductDissentListViewController.h"
+#import "CheckOutFixListViewController.h"
+@interface DissentAndCompensateViewController ()
+
+@end
+
+@implementation DissentAndCompensateViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"异议/补偿";
+    // Do any additional setup after loading the view from its nib.
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)initQuickUI{
+    
+    self.pAdaptor = [QUFlatAdaptor adaptorWithTableView:self.myTab nibArray:@[@"SetListSection",@"AppFlatEmptySection"] delegate:self];
+    
+    SetListEntity* entity1 = [SetListEntity entity];
+    entity1.sectionList = @"我的异议";
+    entity1.tag = 1;
+    entity1.selectionStyle = UITableViewCellSelectionStyleGray;
+    entity1.lineBottomColor = QU_FLAT_COLOR_LINE;
+    entity1.pIndentBottomLevel = 1;
+    entity1.selectedBgColor = QU_FLAT_COLOR_CELL_BG_SELECTED;
+    [self.pAdaptor.pSources addEntity:entity1 withSection:[SetSimpleListSection class]];
+    
+    SetListEntity* entity2 = [SetListEntity entity];
+    entity2.sectionList = @"我的补偿";
+    entity2.tag = 2;
+    entity2.selectionStyle = UITableViewCellSelectionStyleGray;
+    entity2.selectedBgColor = QU_FLAT_COLOR_CELL_BG_SELECTED;
+    [self.pAdaptor.pSources addEntity:entity2 withSection:[SetSimpleListSection class]];
+    
+    QUEntity* empty=[QUEntity entityWithLineTop:QU_FLAT_COLOR_LINE lineBottom:nil];
+    [self.pAdaptor.pSources addEntity:empty withSection:[SetEmptyListSection class]];
+    [self.pAdaptor setSectionFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 15) sectionClassName:@"AppFlatEmptySection"];
+    
+    [self.pAdaptor notifyChanged];
+    
+}
+-(void)QUAdaptor:(QUAdaptor *)adaptor forSection:(QUSection *)section forEntity:(QUEntity *)entity{
+    
+    if ([section isKindOfClass:[SetSimpleListSection class]]) {
+        SetListEntity* e = (SetListEntity*)entity;
+        SetSimpleListSection* s = (SetSimpleListSection*)section;
+        CGRect tempFrame = s.title.frame;
+        s.title.frame = tempFrame;
+        s.title.text = e.sectionList;
+    }
+}
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor selectedSection:(QUSection *)section entity:(QUEntity *)entity{
+    
+    if (entity.tag == 1) {
+        ProductDissentListViewController *controller = [[ProductDissentListViewController alloc]initWithNibName:@"ProductDissentListViewController" bundle:nil];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    if (entity.tag == 2) {
+
+        CheckOutFixListViewController *controller = [[CheckOutFixListViewController alloc]initWithNibName:@"CheckOutFixListViewController" bundle:nil];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

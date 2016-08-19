@@ -1,0 +1,14 @@
+//
+//  ConfirmRiskEntity.h
+//  STO
+//
+//  Created by tongshangren on 16/4/6.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface ConfirmRiskEntity : QUEntity
+
+@property (nonatomic,copy) NSString *result;
+@end

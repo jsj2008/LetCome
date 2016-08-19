@@ -1,0 +1,13 @@
+//
+//  StrategyViewController.h
+//  TPM
+//
+//  Created by admin on 16/7/25.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "AppViewController.h"
+
+@interface StrategyViewController : AppViewController
+
+@end

@@ -1,0 +1,286 @@
+//
+//  ProductCheckOutDeclareController.m
+//  QianFangGuJie
+//
+//  Created by 财道 on 15/1/12.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+
+#import "ProductCheckOutDeclareController.h"
+#import "ProductBargainDeclaredMock.h"
+#import "ProductBargainDeclaredEntity.h"
+#import "PorductCheckOutDissentSection.h"
+#import "ProductDissentListEntity.h"
+#import "UIBarButtonItem+YL.h"
+#import "CustomIOSAlertView.h"
+@interface ProductCheckOutDeclareController ()<UITextFieldDelegate,UITextViewDelegate,ProductCheckOutDissentDelegate>
+
+@end
+
+@implementation ProductCheckOutDeclareController
+
+- (void)viewDidLoad
+{
+    self.title = @"异议申请";
+    [super viewDidLoad];
+    
+    self.canAddObservers = YES;
+    self.keyboardIsVisible = NO;
+    
+    [self addObserver];
+    
+    UITapGestureRecognizer *singleTapGR =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(tapAnywhereToDismissKeyboard:)];
+    [ self.view addGestureRecognizer:singleTapGR];
+    
+    if (self.jingdu==nil||[self.jingdu isEqual:@""]) {
+        self.jingdu = @"2";
+    }
+    
+    self.pTableView.scrollEnabled=NO;
+    //_selectedPoint=@"0";
+    self.selectedPoint = @"0";
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem buttonItemWithIcon:@"back_white" highlightedIcon:@"back_white" target:self action:@selector(back)];
+   
+    self.manager=[ProductsManager shareProductsManager];
+    
+    [_mySection.btnCommit setBackgroundColor:Color_Bg_RGB(245.0f, 75.0f, 25.0f)];
+    
+    _mySection.btnCommit.enabled = YES;
+}
+
+- (void)back {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)tapAnywhereToDismissKeyboard:(UIGestureRecognizer *)gestureRecognizer {
+    [_mySection.textView endEditing:YES];
+    [_mySection.myValueTextField endEditing:YES];
+    
+}
+
+- (void)addObserver {
+    
+    if(_canAddObservers)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+        _canAddObservers = NO;
+    }
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    if(_keyboardIsVisible) return;
+    
+    [UIView animateWithDuration:0.2f animations:^{
+        CGRect f = self.pTableView.frame;
+        f.origin.y -= KEYBOARD_HEIGHT + PREDICTION_BAR_HEIGHT-15;
+        self.pTableView.frame = f;
+    }];
+    _keyboardIsVisible = YES;
+}
+
+-(void)keyboardWillHide:(NSNotification *)notification
+{
+    if(!_keyboardIsVisible) return;
+    
+    [UIView animateWithDuration:0.2f animations:^{
+        CGRect f = self.pTableView.frame;
+        f.origin.y += KEYBOARD_HEIGHT + PREDICTION_BAR_HEIGHT-15;
+        self.pTableView.frame = f;
+
+         [_mySection.btnCommit setBackgroundColor:Color_Bg_RGB(245.0f, 75.0f, 25.0f)];
+        _mySection.btnCommit.enabled = YES;
+    }];
+    _keyboardIsVisible = NO;
+    
+}
+
+
+
+
+-(void)initQuickUI{
+    self.pAdaptor = [QUFlatAdaptor adaptorWithTableView:self.pTableView nibArray:@[@"PorductCheckOutDissentSection"] delegate:self];
+    self.myEntity = [ProductBargainDeclaredEntity entity];
+    self.myEntity.selectionStyle = UITableViewCellSelectionStyleNone;
+    [self.pAdaptor.pSources addEntity:self.myEntity withSection:[PorductCheckOutDissentSection class]];
+}
+
+
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor willDidLoadSection:(QUSection *)section willDidLoadEntity:(QUEntity *)entity{
+    
+    if ([section isMemberOfClass:[PorductCheckOutDissentSection class]]) {
+        PorductCheckOutDissentSection *s = (PorductCheckOutDissentSection *)section;
+        _mySection = s;
+        _mySection.parentController=self;
+        _mySection.baseDelegate=self;
+        //添加代理
+        s.textView.delegate = self;
+        s.myValueTextField.delegate = self;
+        //事件
+        s.btnCommit.layer.cornerRadius = 3.0;
+        [s.btnCommit addTarget:self action:@selector(commit) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    return [self validateNumber:string];
+}
+
+- (BOOL)validateNumber:(NSString*)number {
+    BOOL res = YES;
+    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"-0123456789."];
+    int i = 0;
+    while (i < number.length) {
+        NSString * string = [number substringWithRange:NSMakeRange(i, 1)];
+        NSRange range = [string rangeOfCharacterFromSet:tmpSet];
+        if (range.length == 0) {
+            res = NO;
+            break;
+        }
+        i++;
+    }
+    return res;
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if (text.length == 0) {
+        
+        return YES;
+    }
+    else if (textView.text.length>150) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+
+#pragma mark - WpAlertViewDelegate
+- (void)wpAlertViewDelegateConfirmButtonClick:(id)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+- (void)textViewDidChange:(UITextView *)textView {
+    
+    if (textView.text.length>0) {
+        _mySection.placeHolderLabel.hidden=YES;
+       
+    }else
+        _mySection.placeHolderLabel.hidden=NO;
+    
+    
+    CGRect line = [textView caretRectForPosition:
+                   textView.selectedTextRange.start];
+    CGFloat overflow = line.origin.y + line.size.height
+    - ( textView.contentOffset.y + textView.bounds.size.height
+       - textView.contentInset.bottom - textView.contentInset.top );
+    if ( overflow > 0 ) {
+        // We are at the bottom of the visible text and introduced a line feed, scroll down (iOS 7 does not do it)
+        // Scroll caret to visible area
+        CGPoint offset = textView.contentOffset;
+        offset.y += overflow + 7; // leave 7 pixels margin
+        // Cannot animate with setContentOffset:animated: or caret will not appear
+        [UIView animateWithDuration:.2 animations:^{
+            [textView setContentOffset:offset];
+        }];
+    }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+}
+
+-(void)commit{
+    
+
+    if ([self.mySection.pointLabel.text isEqualToString:@"请选择"]) {
+        
+        [WpCommonFunction showNotifyHUDAtViewCenter:self.view withErrorMessage:@"请选择异议点"];
+        return;
+    }
+    if(_mySection.myValueTextField.text.length==0 && ![_mySection.myValueTextField isHidden]){
+        
+        [WpCommonFunction showNotifyHUDAtViewCenter:self.view withErrorMessage:@"请填写您认为的值"];
+        return;
+    }
+    if (![self validateNumber:_mySection.myValueTextField.text]&& ![_mySection.myValueTextField isHidden]) {
+        
+        [WpCommonFunction showNotifyHUDAtViewCenter:self.view withErrorMessage:@"请输入数字"];
+        return;
+    }
+    if (self.mySection.textView.text.length==0) {
+        
+        [WpCommonFunction showNotifyHUDAtViewCenter:self.view withErrorMessage:@"请输入您的理由"];
+        return;
+    }
+    if(self.mySection.textView.text.length>150){
+        [WpCommonFunction showNotifyHUDAtViewCenter:self.view withErrorMessage:@"您的理由不能超过150字"];
+        return;
+    }
+    
+    if(self.mySection.textView.text.length<5&&self.mySection.textView.text.length>0){
+        
+        [WpCommonFunction showNotifyHUDAtViewCenter:self.view withErrorMessage:@"您的理由不足5个字"];
+        return;
+    }
+    
+    
+    [[ViewControllerManager sharedManager] showWaitView:self.navigationController.view];
+    
+    NSLog(@"＝＝＝＝＝申报内容：%@",self.mySection.textView.text);
+    
+    [self.manager declareBargainWithReason:self.mySection.textView.text
+                                     price:![self.mySection.myValueTextField isHidden] ? self.mySection.myValueTextField.text : @"0"
+                                     point:self.selectedPoint
+                                       pid:self.p_id
+                                      type:@""
+                                     block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+                                         if(val.result){
+                                             [[ViewControllerManager sharedManager] hideWaitView];
+                                             ProductBargainDeclaredEntity* e = (ProductBargainDeclaredEntity*)entity;
+                                             if ([e.result isEqualToString:@"Y"]) {
+                                                 [WpCommonFunction showNotifyHUDAtViewCenter:self.view withErrorMessage:@"异议申请提交成功"];
+                                                 [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(gotoPayDetail) userInfo:nil repeats:NO];
+                                                 
+                                             }else{
+                                                 
+                                                 [WpCommonFunction messageBoxOneButtonWithMessage:e.error_msg andTitle:nil andButton:@"确定" andTag:0 andDelegate:self];
+                            
+
+                                             }
+                                         }
+                                         [[ViewControllerManager sharedManager ] hideWaitView];
+                                     }];
+ 
+}
+
+-(void)gotoPayDetail{
+
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+   
+    if (buttonIndex == 0) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }
+    
+}
+
+
+@end
+
+
+
+
+

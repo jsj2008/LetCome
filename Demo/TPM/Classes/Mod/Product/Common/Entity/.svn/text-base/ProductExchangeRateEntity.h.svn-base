@@ -1,0 +1,18 @@
+//
+//  ProductExchangeRateEntity.h
+//  A50
+//
+//  Created by chenyi on 15/10/30.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface ProductExchangeRateEntity : QUEntity
+@property (nonatomic,copy) NSString *date;
+@property (nonatomic,copy) NSString *rate_to_foreign;
+@property (nonatomic,copy) NSString *rate_from_foreign;
+@property (nonatomic,copy) NSString *currency;
+@property (nonatomic,copy) NSString *create_time;
+@property (nonatomic,copy) NSString *update_time;
+@end

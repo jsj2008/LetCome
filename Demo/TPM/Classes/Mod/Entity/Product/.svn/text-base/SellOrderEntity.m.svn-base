@@ -1,0 +1,13 @@
+//
+//  SellOrderEntity.m
+//  TPZ
+//
+//  Created by chenyi on 16/2/26.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "SellOrderEntity.h"
+
+@implementation SellOrderEntity
+
+@end

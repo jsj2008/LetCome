@@ -1,0 +1,13 @@
+//
+//  NickNameEntity.m
+//  QianFangGuJie
+//
+//  Created by  rjt on 15/4/30.
+//  Copyright (c) 2015年 JYZD. All rights reserved.
+//
+
+#import "NickNameEntity.h"
+
+@implementation NickNameEntity
+
+@end

@@ -1,0 +1,22 @@
+//
+//  ProductDissentListCellSection.h
+//  A50
+//
+//  Created by tongshangren on 15/11/11.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "QUSection.h"
+
+@interface ProductDissentListCellSection : QUSection
+@property (weak, nonatomic) IBOutlet UILabel *lblTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblPoint;
+@property (weak, nonatomic) IBOutlet UILabel *lblStatus;
+@property (weak, nonatomic) IBOutlet UILabel *lblIsFix;
+
+@end
+
+
+@interface ProductDissentHeadSection : QUSection
+
+@end

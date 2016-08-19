@@ -1,0 +1,16 @@
+//
+//  NoticeView.h
+//  TPM
+//
+//  Created by tongshangren on 16/8/2.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface NoticeView : UIView
+@property (weak, nonatomic) IBOutlet UIView *agreementView;
+@property (weak, nonatomic) IBOutlet UIButton *btnClose;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+-(void)showContent:(NSString *)content;
+@end

@@ -1,0 +1,66 @@
+//
+//  AmendmentsEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/2/29.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface AmendmentsEntity : QUEntity
+
+@property (nonatomic,strong) NSArray *records;
+
+@end
+
+
+@interface AmendmentsRecordsEntity : QUEntity
+
+/*异议ID*/
+@property (nonatomic,copy)NSString *ID;
+/*产品id*/
+@property (nonatomic,copy)NSString *p_id;
+/*用途(修正数据)*/
+@property (nonatomic,copy)NSString *usefor;
+/*开始时间*/
+@property (nonatomic,copy)NSString *start_time;
+/*单号*/
+@property (nonatomic,copy)NSString *pno;
+/*交易金额*/
+@property (nonatomic,copy)NSString *fund;
+/*修正后盈利*/
+@property (nonatomic,copy)NSString *profit;
+/*原盈利*/
+@property (nonatomic,copy)NSString *last_profit;
+/*差额*/
+@property (nonatomic,copy)NSString *delta_profit;
+/*修正单创建时间*/
+@property (nonatomic,copy)NSString *create_time;
+/*状态 0 未支付 1 已支付 2 未补偿 3 已补偿 4支付中*/
+@property (nonatomic,copy)NSString *state;
+/*状态翻译文字*/
+@property (nonatomic,copy)NSString *state_name;
+/*产品代码*/
+@property (nonatomic,copy)NSString *code;
+/*数量*/
+@property (nonatomic,copy)NSString *amount;
+/*支付人id*/
+@property (nonatomic,copy)NSString *payer_uid;
+/*支付人昵称*/
+@property (nonatomic,copy)NSString *payer_nickname;
+/*支付人类型*/
+@property (nonatomic,copy)NSString *payer_type;
+/*接收人id*/
+@property (nonatomic,copy)NSString *payee_uid;
+/*接收人昵称*/
+@property (nonatomic,copy)NSString *payee_nickname;
+/*收款人类型*/
+@property (nonatomic,copy)NSString *payee_type;
+/*支付时间 未支付或未补偿时为0*/
+@property (nonatomic,copy)NSString *pay_time;
+/*修正方式*/
+@property (nonatomic,copy)NSString *fix_way;
+
+@end
+

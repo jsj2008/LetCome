@@ -1,0 +1,43 @@
+/* 
+  Localizable.strings
+  QianFangGuJie
+
+  Created by 余龙 on 14/12/31.
+  Copyright (c) 2014年 余龙. All rights reserved.
+*/
+
+
+"ServiceCallError1" = "请求超时，请稍后重试";
+"ServiceCallError2" = "网络异常，请检查你的手机是否联网"; //"抱歉，系统繁忙，请稍后再试！";
+"ServiceCallError3" = "服务请求异常";
+
+"MyViewController_back"="返回";
+"AlertView_ConfirmButton_Text" = "确定";
+
+
+//股票
+"CPBSTOBuyNewStock_searchBar_alert_1" = "您输入的股票信息有有误，请重新输入！";
+"CPBSTOBuyNewStock_searchBar_alert_2" = "请输入您需要搜索的股票代码，名称，或者拼音";
+
+//点买指令title
+"NavgationBarTitle_1" = "点买指令";
+"NavgationBarTitle_2" = "修改点买指令";
+
+//flotageTitle
+"floatagerTypeMarketPriceBuy" = "点买回报";//即时买入
+"floatagerTypeTriggerPriceBuy" = "触发买入";//触发价全额买入
+"floatagerTypeMarketPriceSell" = "即时卖出回报";//即时卖出
+"floatagerTypeTriggerPriceSell" = "触发卖出回报";//触发价卖出
+"floatagerTypeModifyOrderMarketBuy" = "即时买入回报";//修改指令即时买入
+"floatagerTypeModifyOrderMarketSell" = "即时卖出回报";//修改指令即时卖出
+//footerText
+//success
+"floatagerMarketPriceTypeSuccessTextBuy" = "点买成功！";
+"floatagerMarketPriceTypeSuccessTextSell" = "点卖成功！";
+"floatagerTriggerPriceTypeSuccessText" = "已进入申报队列！";
+//fail
+"floatagerMarketPriceTypeFailTextBuy" = "点买失败！";
+"floatagerMarketPriceTypeFailTextSell" = "点卖失败！";
+"floatagerTriggerPriceTypeFailText" = "申报失败！";
+
+"CPBOrderOptionController_alert_agreements"="请勾选\"我已阅读并同意以下协议规则\"";

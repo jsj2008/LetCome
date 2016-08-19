@@ -1,0 +1,122 @@
+//
+//  AdvViewController.m
+//  QianFangGuJie
+//
+//  Created by  rjt on 15/4/14.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+
+#import "H5PushViewController.h"
+#import "UIWebView+Clean.h"
+#import "CPBAmountViewController.h"
+#import "H5ViewController.h"
+
+
+@interface H5PushViewController ()<UIWebViewDelegate>
+
+- (IBAction)closeClicked:(id)sender;
+
+@end
+
+@implementation H5PushViewController
+{
+    MyViewController *controller;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    self.webView.delegate = self;
+
+    
+    NSString *str = self.url;
+    str = [str stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    if ([[self.method uppercaseString] isEqualToString:@"GET"]) {
+        NSURL *url = [NSURL URLWithString:str];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [self.webView loadRequest:request];
+    }else{
+        NSArray *arr = [str componentsSeparatedByString:@"?"];
+        NSURL *url = [NSURL URLWithString:arr[0]];
+        NSMutableURLRequest *postReq = [[NSMutableURLRequest alloc]initWithURL: url];
+        [postReq setHTTPMethod: @"POST"];
+        if (arr.count>1) {
+            [postReq setHTTPBody: [arr[1] dataUsingEncoding: NSUTF8StringEncoding]];
+        }
+        [self.webView loadRequest:postReq];
+    }
+    
+    controller=[MyViewController alloc];
+    int winwidth=[UIScreen mainScreen].bounds.size.width;
+    int winheight=[UIScreen mainScreen].bounds.size.height;
+    controller.view.frame=CGRectMake(0, 0, winwidth, winheight);
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+-(void)viewWillAppear:(BOOL)animated{
+    
+    self.navigationController.navigationBar.hidden=YES;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+
+}
+
+
+
+- (IBAction)closeClicked:(id)sender {
+    
+    self.navigationController.navigationBar.hidden=NO;
+    [self.navigationController popToViewController:self.parent animated:YES];
+
+}
+
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    
+    if ([H5ViewController isClosed:request]) {
+        [self closeClicked:nil];
+        return NO;
+    }
+    
+    if ([H5ViewController isSessionTimeout:request]) {
+//        [self closeClicked:nil];
+        self.navigationController.navigationBar.hidden=NO;
+        [AppUtil switchIndex:NO];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.7f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [AppMock launchSessionTimeoutViewController:[ViewControllerManager sharedManager].currentController1];       //跳转登陆界面2
+        });
+        return NO;
+    }
+    
+    NSString *requestString = [[request URL] absoluteString];
+    
+    NSString *codeString = [requestString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSArray *components = [codeString componentsSeparatedByString:@":"];
+ 
+    return YES;
+}
+
+
+
+
+-(NSString*)urlStringResolve:(NSString *)urlstring
+{
+    NSArray *components = [urlstring componentsSeparatedByString:@"@"];
+    
+    return (NSString *)[components objectAtIndex:1];
+}
+
+
+
+
+
+
+-(void)dealloc{
+    [self.webView cleanForDealloc];
+    NSLog(@"%@ has dealloc",self.class);
+}
+@end

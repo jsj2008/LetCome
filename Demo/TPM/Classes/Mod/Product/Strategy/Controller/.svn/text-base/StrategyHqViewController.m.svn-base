@@ -1,0 +1,127 @@
+//
+//  StrategyHqViewController.m
+//  TPM
+//
+//  Created by admin on 16/7/26.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "StrategyHqViewController.h"
+#import "ChartBll.h"
+#import "STODBManager.h"
+
+@interface StrategyHqViewController ()
+@property (weak, nonatomic) IBOutlet QUTableView *hqTable;
+@property (nonatomic, strong) ChartBll *hqBll;
+@property (nonatomic, strong) STOManager *manager;
+
+@end
+
+@implementation StrategyHqViewController
+
++(instancetype)controllerWithCode:(NSString*)code
+{
+    StrategyHqViewController *controller = [[self alloc] initWithNibName:@"StrategyHqViewController" bundle:nil];
+    controller.code = code;
+    STOSearchEntity *entity = [[STODBManager shareSTODBManager] accurateSearchWithStockCode:code];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 44)];
+
+    UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, 150, 17)];
+    name.text = entity.stockName;
+    name.font = [UIFont systemFontOfSize:16.f];
+    name.textAlignment = NSTextAlignmentCenter;
+    name.textColor = Color_Bg_222222;
+    [view addSubview:name];
+    UILabel *scode = [[UILabel alloc] initWithFrame:CGRectMake(0, name.frame.size.height+10, 150, 11)];
+    scode.font = [UIFont systemFontOfSize:10.f];
+    scode.text = [NSString stringWithFormat:@"%@",entity.codeShsz];
+    scode.textAlignment = NSTextAlignmentCenter;
+    scode.textColor = CPB_COLOR_9;
+    [view addSubview:scode];
+    
+    controller.navigationItem.titleView = view;
+
+//    controller.title = entity.stockName
+    controller.manager = [STOManager managerWithEntity:entity];
+    return controller;
+}
+
+
+- (void)viewDidLoad {
+    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    
+    self.nextBtn.layer.cornerRadius =3.f;
+    [self.nextBtn addTarget:self action:@selector(gotoNext) forControlEvents:UIControlEventTouchUpInside];
+    self.nextView.hidden = YES;
+}
+
+-(void)initQuickUI
+{
+    self.hqBll = [ChartBll bllWithController:self tableView:self.hqTable manager:self.manager];
+    [self.hqBll show];
+}
+
+- (void)initTimer
+{
+    if (![[WHTimerManager shareTimerManager]hasNotifyName:kDetailHqRefresh]) {
+        
+        [[WHTimerManager shareTimerManager] addTarget:self selector:@selector(refreshHqData) notifyName:kDetailHqRefresh];
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self initTimer];
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [[WHTimerManager shareTimerManager]removeTarget:self notifyName:kDetailHqRefresh];
+}
+
+- (void)refreshHqData
+{
+    if ([[WHOnceTask shareOnceTask]expired:kDetailHqRefresh validTime:kDetailHqVal]) {
+        
+        [self getHqData];
+    }
+}
+
+- (void)getHqData
+{
+    DEFINED_WEAK_SELF
+    [self.manager refreshPankou:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        ProductPanKouEntity *e = (ProductPanKouEntity *)entity;
+        
+        [_self.hqBll refreshPankou:e];
+    }];
+}
+
+-(void)dealloc
+{
+    [[WHTimerManager shareTimerManager] removeTarget:self notifyName:kDetailHqRefresh];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+-(void)gotoNext{
+
+}
+
+@end

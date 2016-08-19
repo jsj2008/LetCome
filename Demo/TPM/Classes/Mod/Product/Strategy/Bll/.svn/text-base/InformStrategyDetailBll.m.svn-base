@@ -1,0 +1,298 @@
+//
+//  InformStrategyDetailBll.m
+//  TPM
+//
+//  Created by admin on 16/8/1.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#define kInformOrderProfitKey @"kInformOrderProfitKey"
+#define kInformOrderProfitVal 3
+#define LessProfitAlertView 100
+#define kAlertError 200
+
+#import "InformStrategyDetailBll.h"
+#import "InformDetailSection.h"
+#import "PreApplySellCheckEntity.h"
+#import <CustomIOSAlertView.h>
+#import "FloatingSection.h"
+#import "ApplySellEntity.h"
+
+@interface InformStrategyDetailBll ()<UIAlertViewDelegate>
+
+@property (nonatomic, strong) InformDetailTimeSection *detailTimeSection;
+
+@end
+
+@implementation InformStrategyDetailBll
+
+
+-(void)loadBll
+{
+    [super loadBll];
+}
+
+-(void)initQuickUI:(QUTableView *)tableView
+{
+    self.pAdaptor = [QUFlatAdaptor adaptorWithTableView:tableView nibArray:@[@"InformDetailSection"] delegate:self];
+    
+    [self.pAdaptor.pSources addEntity:[QUEntity entity] withSection:[InformDetailHeadSection class]];
+    [self.pAdaptor.pSources addEntity:[QUEntity entity] withSection:[InformDetailTimeSection class]];
+    [self.pAdaptor.pSources addEntity:[QUEntity entity] withSection:[InformDetailTipSection class]];
+}
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor forSection:(QUSection *)section forEntity:(QUEntity *)entity
+{
+    if ([section isKindOfClass:[InformDetailHeadSection class]]) {
+        
+        InformDetailHeadSection *s = (InformDetailHeadSection *)section;
+        
+        //投资人
+        s.investorLabel.text = self.todoEntity.dealer_replace;
+        //投资单元
+        s.investUnitLabel.text = [NSString stringWithFormat:@"投资单元 %d万", self.todoEntity.fund.intValue / 10000];
+        //股票名称
+        s.stockNameLabel.text = self.todoEntity.stock_name;
+        //交易日
+        s.todayLabel.text = self.todoEntity.trade_day;
+        s.leftTimeLabel.text = [NSString stringWithFormat:@"剩余%d日", self.todoEntity.max_trade_day.intValue - self.todoEntity.trade_day.intValue];
+        [s updatePercent:self.todoEntity.trade_day.floatValue / self.todoEntity.max_trade_day.floatValue * 100];
+        //收益浮盈
+        if (self.todoEntity.profitEntity) {
+            
+            s.floatProfitLabel.text = [NSString stringWithFormat:@"%.2f%%", self.todoEntity.profitEntity.profit_rate.floatValue * 100];
+            [s updateProfitPercent:self.todoEntity.profitEntity.profit_rate.floatValue / 0.12 * 100];
+        }
+        
+    }
+}
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor willDidLoadSection:(QUSection *)section willDidLoadEntity:(QUEntity *)entity
+{
+    if ([section isKindOfClass:[InformDetailTimeSection class]]) {
+        
+        self.detailTimeSection = (InformDetailTimeSection *)section;
+        
+        self.detailTimeSection.donotCutdownLabel.hidden = YES;
+    }
+}
+
+#pragma mark - 刷新Profit
+
+-(void)controllerDidAppear
+{
+    [super controllerDidAppear];
+    [self initTimer];
+}
+
+-(void)controllerDidDisappear{
+    [super controllerDidDisappear];
+    [[WHTimerManager shareTimerManager] removeTarget:self notifyName:kInformOrderProfitKey];
+    [[WHOnceTask shareOnceTask] removeTask:kInformOrderProfitKey];
+}
+
+-(void)initTimer{
+    if (![[WHTimerManager shareTimerManager] hasNotifyName:kInformOrderProfitKey]) {
+        [[WHTimerManager shareTimerManager] addTarget:self selector:@selector(getProfit) notifyName:kInformOrderProfitKey];
+    }
+}
+
+- (void)getProfit
+{
+    [self refreshProfit];
+    
+    double servertime = [[ProductsManager shareProductsManager] getServerTime];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm:ss"];
+    
+    NSString *nowTime = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:servertime]];
+    NSArray *timeArr = [nowTime componentsSeparatedByString:@":"];
+    //NSLog(@"%@", timeArr);
+    
+    NSDateFormatter *serverFormatter = [[NSDateFormatter alloc] init];
+    [serverFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *serverDate = [NSDate dateWithTimeIntervalSince1970:servertime];
+    NSString *serverTimeStr = [serverFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:servertime]];
+    serverTimeStr = [serverTimeStr substringToIndex:10];
+    NSString *endTime = [NSString stringWithFormat:@"%@ 18:00:00", serverTimeStr];
+    NSDate *endDate = [serverFormatter dateFromString:endTime];
+    
+    NSTimeInterval cutdownSeconds = [endDate timeIntervalSinceDate:serverDate];
+    //NSLog(@"%f", [endDate timeIntervalSinceDate:serverDate]);
+    
+    if ([nowTime compare:@"15:30:00"] == 1 && [nowTime compare:@"18:00:00"] == -1) {//进入倒计时
+        
+        self.detailTimeSection.informTimeTipLabel.hidden = NO;
+        self.detailTimeSection.cutdownTimeLabel.hidden = NO;
+        self.detailTimeSection.indicatorView.hidden = NO;
+        self.detailTimeSection.donotCutdownLabel.hidden = YES;
+        
+        NSString *secondStr = [NSString stringWithFormat:@"%02d", (int)cutdownSeconds % 60];
+        NSString *minuteStr = [NSString stringWithFormat:@"%02d", (int)cutdownSeconds / 60 % 60];
+        NSString *hourStr = [NSString stringWithFormat:@"%02d", (int)cutdownSeconds / 3600];
+        
+        self.detailTimeSection.cutdownTimeLabel.text = [NSString stringWithFormat:@"%@:%@:%@", hourStr, minuteStr, secondStr];
+        
+    }
+    else{
+        
+        self.detailTimeSection.informTimeTipLabel.hidden = YES;
+        self.detailTimeSection.cutdownTimeLabel.hidden = YES;
+        self.detailTimeSection.indicatorView.hidden = YES;
+        self.detailTimeSection.donotCutdownLabel.hidden = NO;
+        
+    }
+
+
+}
+
+-(void)refreshProfit{
+    if ([[WHOnceTask shareOnceTask]expired:kInformOrderProfitKey validTime:kInformOrderProfitVal]) {
+        NSMutableArray *id_arr = [NSMutableArray array];
+        [id_arr addObject:self.todoEntity.ID];
+        DEFINED_WEAK_SELF
+        if (id_arr.count != 0) {
+            
+            [[ProductsManager shareProductsManager] refreshProfitByIds:id_arr andBlock:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+                if (val.result && [entity isKindOfClass:[ProfitEntity class]]) {
+                    ProfitEntity* pe = (ProfitEntity*)entity;
+                    if ([pe.records count]==1) {
+                        ProfitRecordsEntity* record = (ProfitRecordsEntity*)pe.records[0];
+                        if ([record.state floatValue]>=0) {
+                            _self.todoEntity.profitEntity = record;
+                        }
+                    }
+                    [_self.pAdaptor notifyChanged];
+                }
+            }];
+        }
+    }
+}
+
+#pragma mark - 通知平仓按钮
+- (void)confirmBtnClicked
+{
+    //通知平仓前校验
+    [self preInformSellCheck];
+
+}
+
+//12%的弹窗展示
+- (void)moreProfitAlertViewShow
+{
+    CustomIOSAlertView *alertView = [[CustomIOSAlertView alloc] init];
+    NSArray *nibsArr = [[NSBundle mainBundle] loadNibNamed:@"FloatingSection" owner:self options:nil];
+    FloatingSection *floatingSection = nibsArr[0];
+    [alertView setContainerView:floatingSection];
+    DEFINED_WEAK_SELF
+    [alertView setOnButtonTouchUpInside:^(CustomIOSAlertView *alertView, int buttonIndex) {
+        
+        if (buttonIndex == 0) {//取消
+            
+            //NSLog(@"取消");
+        }
+        else if (buttonIndex == 1){//通知平仓
+            
+            //NSLog(@"确定");
+            [_self applyInformSell];
+        }
+    }];
+    
+    [alertView setButtonTitles:@[@"取消", @"确定"]];
+    [alertView show];
+
+}
+
+//普通弹窗
+- (void)lessProfitAlertViewShow
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"通知平仓" message:@"根据您的策略，利润未到达12%，是否确认通知平仓？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alertView.tag = LessProfitAlertView;
+    [alertView show];
+}
+
+//通知平仓前校验
+- (void)preInformSellCheck
+{
+    DEFINED_WEAK_SELF
+    [[ProductsManager shareProductsManager] applySellPreCheckWithP_id:self.todoEntity.ID block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+       
+        if (val.result && [entity isKindOfClass:[PreApplySellCheckEntity class]]) {
+            
+            PreApplySellCheckEntity *e = (PreApplySellCheckEntity *)entity;
+            
+            if ([e.result isEqualToString:@"Y"]) {//两种情况到达12%和未到达12%
+                
+                if ([e.reason isEqualToString:@"0"]) {//到达12%
+                    [_self moreProfitAlertViewShow];
+                    
+                }else if ([e.reason isEqualToString:@"1"]){//未到12%
+                    
+                    [_self lessProfitAlertViewShow];
+                }
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"网络异常" message:@"请点击确认去查看策略是否通知平仓成功" delegate:_self cancelButtonTitle: @"确认"otherButtonTitles:nil];
+            alert.tag = kAlertError;
+            [alert show];
+            
+        }
+        
+    }];
+}
+
+//通知平仓
+- (void)applyInformSell
+{
+    DEFINED_WEAK_SELF
+    [[ViewControllerManager sharedManager]showWaitView:self.controller.view];
+    [[ProductsManager shareProductsManager] applySellWithP_id:self.todoEntity.ID block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        
+        if (val.result && [entity isKindOfClass:[ApplySellEntity class]]) {
+            [[ViewControllerManager sharedManager]hideWaitView];
+            ApplySellEntity *e = (ApplySellEntity *)entity;
+            if ([e.result isEqualToString:@"Y"]) {
+                
+                [WpCommonFunction showNotifyHUDAtViewCenter:_self.controller.view withErrorMessage:@"投资人接收了您的平仓通知"];
+                //跳转待平仓列表
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [(AppViewController*)_self.controller doBack:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:KApplySelled object:nil];
+                });
+                
+            }
+            
+            
+        }else{
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"网络异常" message:@"请点击确认去查看策略是否平仓成功" delegate:_self cancelButtonTitle: @"确认"otherButtonTitles:nil];
+            alert.tag = kAlertError;
+            [alert show];
+        }
+
+        
+    }];
+}
+
+
+#pragma mark - alertViewDelegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == LessProfitAlertView) {
+        
+        if (buttonIndex == 0) {
+            
+            //NSLog(@"取消");
+        }else if (buttonIndex == 1){//通知平仓
+            
+            [self applyInformSell];
+        }
+    }else if (alertView.tag == kAlertError){
+        
+        [[ViewControllerManager sharedManager] hideWaitView];
+    }
+}
+
+
+@end

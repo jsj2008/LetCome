@@ -1,0 +1,18 @@
+//
+//  CfgEntity.h
+//  QianFangGuJie
+//
+//  Created by  rjt on 15/10/8.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface CfgEntity : QUEntity
+@property(nonatomic,copy)NSString *result;
+@property(nonatomic,copy)NSString *error_code;
+@property(nonatomic,copy)NSString *is_update;
+@property(nonatomic,copy)NSString *ini_version;
+@property(nonatomic,copy)NSString *version;
+@property(nonatomic,strong)NSMutableDictionary *res_data;
+@end

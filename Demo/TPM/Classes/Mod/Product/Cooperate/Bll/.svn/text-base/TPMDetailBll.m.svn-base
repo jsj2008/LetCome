@@ -1,0 +1,96 @@
+//
+//  TPMDetailBll.m
+//  TPM
+//
+//  Created by tongshangren on 16/7/29.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "TPMDetailBll.h"
+#import "TPMDetailSection.h"
+#import "StrategyHqViewController.h"
+#import "TPMDetailViewController.h"
+
+
+
+
+@interface TPMDetailBll()
+{
+   __weak TPMDetailViewController *_detailViewController;
+}
+@property(nonatomic,strong)TPMDetailSection *detailSection;
+
+@end
+
+
+@implementation TPMDetailBll
+
+
+
+
+-(void)loadBll{
+    [super loadBll];
+    TPMDetailViewController *c = (TPMDetailViewController *)self.controller;
+    _detailViewController = c;//获取控制器，便于此bll使用
+}
+
+
+-(void)initQuickUI:(QUTableView *)tableView{
+    
+    self.pAdaptor = [QUFlatAdaptor adaptorWithTableView:tableView nibArray:@[@"TPMDetailSection"] delegate:self backGroundClr:[UIColor colorWithRed:244.0/255.0 green:244.0/255.0 blue:244.0/255.0 alpha:1.0]];
+    [self.pAdaptor.pSources addEntity:[QUEntity entity] withSection:[TPMDetailSection class]];
+
+    [self.pAdaptor notifyChanged];
+
+}
+
+
+
+
+
+-(void)getDetailInfo{
+    DEFINED_WEAK_SELF
+    [[ProductsManager shareProductsManager]getSchemeDetailBySchemeID:_detailViewController.policyEntity.scheme_id Block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if ([entity isKindOfClass:[SchemeDetailEntity class]]) {
+            SchemeDetailEntity *e=(SchemeDetailEntity *)entity;
+            _self.schemeDetailEntity=e;
+            _detailSection.lblFund.text=[NSString stringWithFormat:@"%d万",[e.fund intValue]/10000];
+            _detailSection.lblHoldTime.text=e.hold_time;
+            _detailSection.lblBuyTime.text=e.buy_time;
+            _detailSection.lblBuyWay.text=e.buy_way;
+            _detailSection.lblBuyTimes.text=e.buy_times;
+            _detailSection.lblApplySellDate.text=e.apply_sell_date;
+            _detailSection.lblApplySellTime.text=e.apply_sell_time;
+            _detailSection.lblSellTime.text=e.sell_time;
+            _detailSection.lblSellWay.text=e.sell_way;
+            _detailSection.lblSellTimes.text=e.sell_times;
+        }
+    }];
+}
+
+
+
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor forSection:(QUSection *)section forEntity:(QUEntity *)entity{
+    if ([section isKindOfClass:[TPMDetailSection class]]) {
+        self.detailSection= (TPMDetailSection *)section;
+        [self.detailSection.btnStockKLine addTarget:self action:@selector(showKLine) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.detailSection.btnStockKLine setTitle:_detailViewController.policyEntity.stock_name forState:UIControlStateNormal];
+        self.detailSection.lblUserID.text=_detailViewController.policyEntity.investor_code;
+//        self.detailSection.lblFund.text=[NSString stringWithFormat:@"%d万",[_detailViewController.policyEntity.fund intValue]/10000];
+        
+        
+        [self getDetailInfo];
+    }
+}
+
+
+-(void)showKLine{
+    StrategyHqViewController *controller = [StrategyHqViewController controllerWithCode:_detailViewController.policyEntity.stock_code];
+    [self.controller.navigationController pushViewController:controller animated:YES];
+}
+
+
+
+@end

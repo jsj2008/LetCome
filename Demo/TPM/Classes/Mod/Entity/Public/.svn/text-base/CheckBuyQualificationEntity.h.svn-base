@@ -1,0 +1,24 @@
+//
+//  CheckBuyQualificationEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/3/2.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface CheckBuyQualificationEntity : QUEntity
+
+/*提交结果 'Y':通过/'N:不通过*/
+@property (nonatomic,copy)NSString *result;
+/*当前等级*/
+@property (nonatomic,copy)NSString *current_lv;
+/*提示框信息*/
+@property (nonatomic,copy)NSString *msg;
+
+@property (nonatomic,copy)NSString *reason;
+
+
+
+@end

@@ -1,0 +1,1 @@
+../../../QuickUI/QuickUI/QuickUI/Tools/NSString+SHA1.h

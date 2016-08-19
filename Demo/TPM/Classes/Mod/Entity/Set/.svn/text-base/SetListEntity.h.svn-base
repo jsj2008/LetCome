@@ -1,0 +1,17 @@
+//
+//  SetListEntity.h
+//  TPM
+//
+//  Created by chenyi on 16/7/25.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import <QuickUI/QuickUI.h>
+
+@interface SetListEntity : QUEntity
+@property(nonatomic,copy)NSString* sectionList;     //section label名字
+@property(nonatomic,strong)UIImage *icon;
+@property(nonatomic,copy)NSString *laText;  //要现实的文本
+@property(nonatomic,copy)NSString *descText;  //描述文字
+@property(nonatomic,assign)BOOL showAlertImg;
+@end

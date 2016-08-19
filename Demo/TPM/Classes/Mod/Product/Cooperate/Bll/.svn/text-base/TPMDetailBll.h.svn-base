@@ -1,0 +1,13 @@
+//
+//  TPMDetailBll.h
+//  TPM
+//
+//  Created by tongshangren on 16/7/29.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUBLL.h"
+#import "SchemeDetailEntity.h"
+@interface TPMDetailBll : QUBLL
+@property(nonatomic,strong)SchemeDetailEntity *schemeDetailEntity;
+@end

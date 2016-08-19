@@ -1,0 +1,18 @@
+//
+//  UserDeviceEntity.h
+//  QianFangGuJie
+//
+//  Created by  rjt on 15/8/18.
+//  Copyright (c) 2015年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface UserDeviceEntity : QUEntity
+/** result	处理结果		True：成功  false：失败 */
+@property (nonatomic,copy) NSString *result;
+
+@property (nonatomic,copy) NSString *code;
+@property (nonatomic,copy) NSString *msg;
+
+@end

@@ -1,0 +1,22 @@
+//
+//  IntegralEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/3/2.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface IntegralEntity : QUEntity
+
+/*异议ID*/
+@property (nonatomic,copy)NSString *avaiable;
+/*产品id*/
+@property (nonatomic,copy)NSString *rule;
+/*用途(修正数据)*/
+@property (nonatomic,copy)NSString *expiretime;
+/*开始时间*/
+@property (nonatomic,copy)NSString *useaccount;
+
+@end

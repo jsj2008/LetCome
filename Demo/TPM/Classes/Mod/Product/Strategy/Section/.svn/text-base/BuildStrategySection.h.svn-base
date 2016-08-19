@@ -1,0 +1,67 @@
+//
+//  BuildStrategySection.h
+//  TPM
+//
+//  Created by admin on 16/7/26.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import <QuickUI/QuickUI.h>
+#import "STOKeyBoard.h"
+#import "BuildRepositoryStrategyBll.h"
+
+@interface BuildStrategySection : QUSection
+
+@end
+
+
+@interface BuildStrategyHeadSection : QUSection
+
+@property (weak, nonatomic) IBOutlet UIView *backView;
+
+@property (weak, nonatomic) IBOutlet UILabel *amountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *inverstorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *stockNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *investUnitLabel;
+
+
+- (void)updatePercent:(CGFloat)percent;
+
+@end
+
+
+@interface BuildStrategyMiddleSection : QUSection
+
+@property (weak, nonatomic) IBOutlet UILabel *stockNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *waitingBuyLabel;
+@property (weak, nonatomic) IBOutlet UIProgressView *fundProgressView;
+
+
+
+@end
+
+
+
+@interface BuildStrategyChooseSesction : QUSection<UITextFieldDelegate,KeyBoardDelegate>
+@property (weak, nonatomic) IBOutlet UIView *textFieldView;
+@property (weak, nonatomic) IBOutlet UIView *buttonsView;
+
+@property (weak, nonatomic) IBOutlet UITextField *inputFundTextField;
+@property (weak, nonatomic) IBOutlet UIButton *allBtn;
+@property (weak, nonatomic) IBOutlet UIButton *halfBtn;
+@property (weak, nonatomic) IBOutlet UIButton *oneThirdBtn;
+@property (weak, nonatomic) IBOutlet UIButton *oneForthBtn;
+@property (weak, nonatomic) IBOutlet UIButton *oneFifthBtn;
+@property (weak, nonatomic) IBOutlet UILabel *curPriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *buyStockAmountLabel;
+
+@property (nonatomic, strong) BuildRepositoryStrategyBll *bll;
+@property (nonatomic, strong) STOKeyBoard *keyBoard;
+@property (nonatomic, strong) MyViewController *controller;
+
+-(void)checkConfirm;
+-(void)textHasChanged;
+
+@end
+
+

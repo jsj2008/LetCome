@@ -1,0 +1,26 @@
+//
+//  IndexViewController.h
+//  TPZ
+//
+//  Created by  rjt on 16/2/26.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "AppDockViewController.h"
+#import "ProductAgreementView.h"
+
+@interface IndexViewController : AppDockViewController<UINavigationControllerDelegate,DockDelegate>
+
+@property(strong,nonatomic)ProductAgreementView *agreementView;
+-(void)go2Home:(BOOL)animated;
+//-(void)go2Pay:(BOOL)animated;
+//-(void)go2MyStrategy:(BOOL)animated;
+-(void)go2Check:(BOOL)animated;
+
+//-(void)go2PublishStrategy:(BOOL)animated;
+//-(void)checkDock:(ManagerReturnBlock)block;
+//-(void)checkPayDock:(ManagerReturnBlock)block;
+-(void)checkAllUnsignedAgreement;
+-(void)dockMineReset;
+-(void)go2Strategy:(BOOL)animated;
+@end

@@ -1,0 +1,22 @@
+//
+//  CandleChart+Gesture.h
+//  A50
+//
+//  Created by  rjt on 16/1/29.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "CandleChart.h"
+
+@interface CandleChart (Gesture)
+
+@property (nonatomic,strong) CALayer *pressLine;
+@property (nonatomic,strong) CATextLayer *pressTextLine;
+@property (nonatomic,strong) CALayer *pressRectLine;
+
+@property (nonatomic) CGPoint originPoint;
+@property (nonatomic) CGPoint currentPoint;
+
+@property (nonatomic) BOOL openGesture;
+
+@end

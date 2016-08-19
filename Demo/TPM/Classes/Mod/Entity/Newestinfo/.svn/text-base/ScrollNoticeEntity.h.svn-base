@@ -1,0 +1,20 @@
+//
+//  ScrollNoticeEntity.h
+//  A50
+//
+//  Created by  rjt on 15/10/20.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface ScrollNoticeEntity : QUEntity
+@property (strong,nonatomic) NSArray* records;
+@end
+
+@interface ScrollNoticeRecordsEntity : QUEntity
+@property (strong,nonatomic) NSString* ID;   //通知id	int
+@property (strong,nonatomic) NSString* title;	//标题	string
+@property (strong,nonatomic) NSString* link;	//点击的链接地址	string
+@property (strong,nonatomic) NSString* create_time;	//记录创建时间	 string
+@end

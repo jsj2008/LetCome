@@ -1,0 +1,13 @@
+//
+//  SendMobileCodeEntity.m
+//  TPZ
+//
+//  Created by chenyi on 16/3/1.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "SendMobileCodeEntity.h"
+
+@implementation SendMobileCodeEntity
+
+@end

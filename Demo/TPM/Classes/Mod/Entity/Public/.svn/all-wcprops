@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/tpz_app/!svn/ver/2934/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public
+END
+PublicmnOrderTotalsEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/PublicmnOrderTotalsEntity.h
+END
+UserDissentOrdersEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/UserDissentOrdersEntity.m
+END
+GetUserQuotaEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/GetUserQuotaEntity.m
+END
+GetTimeEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/GetTimeEntity.h
+END
+AmendmentsEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/AmendmentsEntity.m
+END
+PublicmnOrderTotalsEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/PublicmnOrderTotalsEntity.m
+END
+OrderTotalsEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/OrderTotalsEntity.h
+END
+GetTimeEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/GetTimeEntity.m
+END
+DissentOrderEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/DissentOrderEntity.h
+END
+AmendmentsPayEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/AmendmentsPayEntity.h
+END
+IntegralEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/IntegralEntity.h
+END
+CheckBuyQualificationEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/CheckBuyQualificationEntity.h
+END
+OrderTotalsEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/OrderTotalsEntity.m
+END
+DissentOrderEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/DissentOrderEntity.m
+END
+AmendmentsPayEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/AmendmentsPayEntity.m
+END
+IntegralEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/IntegralEntity.m
+END
+CheckBuyQualificationEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/CheckBuyQualificationEntity.m
+END
+IsWorkdayEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/IsWorkdayEntity.h
+END
+ApplyBuyQualificationEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/ApplyBuyQualificationEntity.h
+END
+GetOvertimeIntegralEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/GetOvertimeIntegralEntity.h
+END
+GetWorkdayEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/GetWorkdayEntity.h
+END
+QualificationLevelEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/tpz_app/!svn/ver/2934/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/QualificationLevelEntity.h
+END
+IsWorkdayEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/IsWorkdayEntity.m
+END
+ApplyBuyQualificationEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/ApplyBuyQualificationEntity.m
+END
+GetOvertimeIntegralEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/GetOvertimeIntegralEntity.m
+END
+GetWorkdayEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/GetWorkdayEntity.m
+END
+QualificationLevelEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/tpz_app/!svn/ver/2934/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/QualificationLevelEntity.m
+END
+UserDissentOrdersEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/UserDissentOrdersEntity.h
+END
+GetUserQuotaEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/GetUserQuotaEntity.h
+END
+AmendmentsEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Public/AmendmentsEntity.h
+END

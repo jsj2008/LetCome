@@ -1,0 +1,128 @@
+//
+//  InfomationManager.m
+//  A50
+//
+//  Created by chenyi on 15/10/16.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "InfomationManager.h"
+
+
+@interface InfomationManager()
+
+@end
+@implementation InfomationManager
+
+static InfomationManager *_singleAccount = nil;
++ (InfomationManager *)shareInfomationManager
+{
+    if (_singleAccount == nil) {
+        _singleAccount = [[self alloc]init];
+        [_singleAccount initMock];
+    }
+    return _singleAccount;
+}
+
++ (id)allocWithZone:(struct _NSZone *)zone
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _singleAccount = [super allocWithZone:zone];
+    });
+    return _singleAccount;
+}
+
+-(void)initMock{
+
+    self.adMock = [AdMock mock];
+    self.adParam = [AdParam param];
+    
+    self.tradeCostMock = [TradeCostStatisticsMock mock];
+    self.tradeCostParam = [TradeCostStatisticsParam param];
+    
+    self.tradeStrategyInfoMock = [ScrollTradeInfoMock mock];
+    self.tradeStrategyInfoParam = [ScrollTradeInfoParam param];
+    
+    self.tradeWinInfoMock = [ScrollTradeInfoMock mock];
+    self.tradeWinInfoParam = [ScrollTradeInfoParam param];
+
+}
+
+
+
+/**获取广告**/
+-(void)getAd:(ManagerReturnBlock)returnBlock{
+    self.adMock.returnBlock = ^(QUNetAdaptor *adaptor,QUNetResponse *response,QUMock *mock){
+        if(returnBlock!=nil){
+            returnBlock([BaseManager convertResult:adaptor response:response],mock,response.pEntity);
+        }
+    };
+    [self.adMock run:self.adParam ignoreError:YES];
+}
+
+-(void)getTradeCost:(ManagerReturnBlock)returnBlock{
+    self.tradeCostMock.returnBlock = ^(QUNetAdaptor *adaptor,QUNetResponse *response,QUMock *mock){
+        if(returnBlock!=nil){
+            returnBlock([BaseManager convertResult:adaptor response:response],mock,response.pEntity);
+        }
+    };
+    [self.tradeCostMock run:self.tradeCostParam ignoreError:YES];
+}
+
+-(void)getTradeStrategyInfoWithNum:(NSString*)num andBlock:(ManagerReturnBlock)returnBlock{
+    self.tradeStrategyInfoParam.num = num;
+    self.tradeStrategyInfoParam.type = @"1";
+    self.tradeStrategyInfoMock.returnBlock = ^(QUNetAdaptor *adaptor,QUNetResponse *response,QUMock *mock){
+        if(returnBlock!=nil){
+            returnBlock([BaseManager convertResult:adaptor response:response],mock,response.pEntity);
+        }
+    };
+    [self.tradeStrategyInfoMock run:self.tradeStrategyInfoParam ignoreError:YES];
+}
+
+-(void)getTradeWinInfoWithNum:(NSString*)num andBlock:(ManagerReturnBlock)returnBlock{
+    self.tradeWinInfoParam.num = num;
+    self.tradeWinInfoParam.type = @"2";
+    self.tradeWinInfoMock.returnBlock = ^(QUNetAdaptor *adaptor,QUNetResponse *response,QUMock *mock){
+        if(returnBlock!=nil){
+            returnBlock([BaseManager convertResult:adaptor response:response],mock,response.pEntity);
+        }
+    };
+    [self.tradeWinInfoMock run:self.tradeWinInfoParam ignoreError:YES];
+}
+
+/*检查Dock是否更新*/
+-(void)checkDockState:(ManagerReturnBlock)returnBlock{
+    self.dockParam=[NeedNoticecntParam param];
+    self.dockMock=[NeedNoticecntMock mock];
+    
+    
+    //按照p_type拼装一个参数
+    self.dockParam.type=@"msg,agreement,agreement_show,article_show";
+    
+    NSString *key = @"tab_mine_reset_time";
+    self.dockParam.from_time=[[NSUserDefaults standardUserDefaults]objectForKey:key];
+
+    
+    self.dockMock.returnBlock =^(QUNetAdaptor *adaptor,QUNetResponse *response,AppMock *mock){
+        
+        if ([response.pEntity isKindOfClass:[NeedNoticecntEntity class]]) {
+            _dockEntity=(NeedNoticecntEntity *)(response.pEntity);
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDockChange object:nil];
+        }
+        if(returnBlock!=nil){
+            
+            returnBlock([BaseManager convertResult:adaptor response:response],mock,response.pEntity);
+        }
+    };
+    [self.dockMock run:self.dockParam];
+}
+/*检查Dock是否更新*/
+-(void)checkDockStateWithSwiftBlock:(SManagerReturnBlock)returnBlock{
+    [self checkDockState:returnBlock];
+}
+
+
+
+@end

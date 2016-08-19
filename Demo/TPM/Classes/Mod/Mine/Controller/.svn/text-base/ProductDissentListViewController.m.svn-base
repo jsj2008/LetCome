@@ -1,0 +1,186 @@
+//
+//  ProductDissentListViewController.m
+//  A50
+//
+//  Created by tongshangren on 15/11/11.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "ProductDissentListViewController.h"
+#import "ProductDissentListCellSection.h"
+#import "ProductCheckOutFixListEntity.h"
+#import "UIBarButtonItem+YL.h"
+#import "ProductBargainListEntity.h"
+#import "ProductsManager.h"
+#import "ProductCheckOutNoneSection.h"
+#import "ProductBargainContentViewController.h"
+
+@interface ProductDissentListViewController ()
+
+@end
+
+@implementation ProductDissentListViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.title=@"我的异议";
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+
+    [self loadViewDataSource:@"0"];
+}
+
+-(void)goTodisagreementController{
+    
+
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+- (void)refreshViewBeginRefreshing:(MJRefreshComponent *)refreshView{
+    if ([refreshView isKindOfClass:[MJRefreshHeader class]]) {
+        [self loadViewDataSource:@"0"];
+    }
+    if ([refreshView isKindOfClass:[MJRefreshFooter class]]) {
+        NSString *startid = @"0";
+        for(ProductBargainListRecordsEntity * e in [self.pAdaptor.pSources entityArrayByClass:[ProductBargainListRecordsEntity class]]){
+            startid =  e.ID;
+        }
+        [self loadViewDataSource:startid];
+    }
+}
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor forSection:(QUSection *)section forEntity:(QUEntity *)entity{
+
+    if ([section isKindOfClass:[ProductDissentListCellSection class]]) {
+        ProductBargainListRecordsEntity* e = (ProductBargainListRecordsEntity*)entity;
+        ProductDissentListCellSection* s = (ProductDissentListCellSection*)section;
+    
+        NSDate *temp = [NSDate dateWithTimeIntervalSince1970:[e.create_time integerValue]];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateStyle:NSDateFormatterMediumStyle];
+        [formatter setTimeStyle:NSDateFormatterShortStyle];
+        [formatter setDateFormat:@"YYYY-MM-dd HH:mm"]; // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时
+        NSString* dateStr = [formatter stringFromDate:temp];
+        NSString *year=[dateStr substringToIndex:4];
+        NSString *thisYear=[[NSString stringWithFormat:@"%@",[NSDate date]]substringToIndex:4];
+        
+        if (![year isEqualToString:thisYear]) {
+            s.lblTime.text=[dateStr substringToIndex:11];
+        }
+        else{
+            NSString *dateStr2=[dateStr substringFromIndex:5];
+            dateStr2=[dateStr2 substringToIndex:11];
+            s.lblTime.text=dateStr2;
+        }
+        
+        switch ([e.point intValue]) {
+            case 1:
+                s.lblPoint.text=@"买入价";
+                break;
+            case 2:
+                s.lblPoint.text=@"卖出价";
+                break;
+            case 3:
+                s.lblPoint.text=@"合作权益";
+                break;
+            case 5:
+                s.lblPoint.text=@"合作权益";
+                break;
+            case 7:
+                s.lblPoint.text=@"其他";
+                break;
+            case 8:
+                s.lblPoint.text=@"信息服务费";
+                break;
+            case 10:
+                s.lblPoint.text=@"结算";
+                break;
+            default:
+                s.lblPoint.text=@"其他";
+                break;
+        }
+        
+        switch ([e.state intValue]) {
+            case 0:
+                s.lblStatus.text=@"等待受理";
+                s.lblStatus.textColor = [UIColor colorWithRed:250/255.0 green:75/255.0 blue:50/255.0 alpha:1.0];
+                break;
+            case 1:
+                s.lblStatus.text=@"受理中";
+                s.lblStatus.textColor = Color_Bg_222222;
+                break;
+            case 2:
+                s.lblStatus.text=@"无修正";
+                s.lblStatus.textColor = Color_Bg_222222;
+                break;
+            case 3:
+                s.lblStatus.text=@"有修正";
+                s.lblStatus.textColor = Color_Bg_222222;
+                break;
+            default:
+                s.lblStatus.text=@"— —";
+                s.lblStatus.textColor = Color_Bg_222222;
+                break;
+        }
+    }
+}
+
+-(void)initQuickUI{
+    self.pAdaptor = [QUFlatAdaptor adaptorWithTableView:self.pTableView nibArray:@[@"ProductDissentListCellSection",@"ProductCheckOutNoneSection"] delegate:self];
+    [self.pAdaptor setRefreshDelegateFooter:self];
+    [self.pAdaptor setRefreshDelegateHeader:self];
+}
+
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor selectedSection:(QUSection *)section entity:(QUEntity *)entity{
+
+    if ([entity isKindOfClass:[ProductBargainListRecordsEntity class]]) {
+        
+        ProductBargainContentViewController* controller = [[ProductBargainContentViewController alloc]initWithNibName:@"ProductBargainContentViewController" bundle:nil];
+        ProductBargainListRecordsEntity* e = (ProductBargainListRecordsEntity*)entity;
+        
+        controller.recordsEntity=[[ProductBargainListRecordsEntity alloc]init];
+        controller.recordsEntity=e;
+
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+}
+
+- (void)loadViewDataSource:(NSString *)startId {
+    
+    DEFINED_WEAK_SELF
+    [[ProductsManager shareProductsManager] getBargainListWithPage:[startId intValue] block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        
+        if (val.result && [entity isKindOfClass:[ProductBargainListEntity class]]) {
+            if ([startId isEqualToString:@"0"]) {
+                [_self.pAdaptor.pSources clear];
+                [_self.pAdaptor.pSources addEntity:[QUEntity entity] withSection:[ProductDissentHeadSection class]];
+            }
+
+            for ( ProductBargainListRecordsEntity *e in ((ProductBargainListEntity*)entity).records) {
+                
+                [_self.pAdaptor.pSources addEntity:e withSection:[ProductDissentListCellSection class]];
+            }
+            [_self.pAdaptor notifyChanged];
+        }
+        
+        if ([self.pAdaptor.pSources entityArrayByClass:[ProductBargainListRecordsEntity class]].count == 0) {
+            [_self.pAdaptor.pSources clear];
+            [_self.pAdaptor.pSources addEntity:[QUEntity entity] withSection:[ProductCheckOutNoneSection class]];
+        }
+        [_self.pAdaptor notifyChanged];
+        
+        [_self.pAdaptor.refreshHeaderView endRefreshing];
+        [_self.pAdaptor.refreshFooterView endRefreshing];
+    }];
+}
+
+@end

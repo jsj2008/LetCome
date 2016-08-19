@@ -1,0 +1,17 @@
+//
+//  SetNewPhoneViewController.h
+//  STO
+//
+//  Created by chenyi on 16/4/13.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "AppViewController.h"
+
+@interface SetNewPhoneViewController : AppViewController
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+@property (weak, nonatomic) IBOutlet UIButton *getCodeBtn;
+@property (weak, nonatomic) IBOutlet UITextField *codeTextField;
+@property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
+
+@end

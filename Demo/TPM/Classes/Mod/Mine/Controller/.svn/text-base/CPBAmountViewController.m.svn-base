@@ -1,0 +1,232 @@
+//
+//  CPBAmountViewController.m
+//  QianFangGuJie
+//
+//  Created by 李荣 on 15/3/30.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+
+#import "CPBAmountViewController.h"
+
+#import "LimitListSection.h"
+#import "H5ViewController.h"
+#import "H5PushViewController.h"
+#import "MyWebViewController.h"
+#import "SetListSection.h"
+#import "SetListEntity.h"
+@interface CPBAmountViewController ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *iconImage;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic)  LGBFooterSection *footView;
+@property (weak, nonatomic)  LGBFooterSection *tableFootView;
+@end
+
+@implementation CPBAmountViewController
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+   
+    [super viewWillAppear:animated];
+    [self MyQUTableView:self.pTableView scrollToBottomSection:self.tableFootView andEntity:nil];
+}
+
+
+//加载当前用户信息
+- (void)userInfo{
+    UserInfoManager * manager = [UserInfoManager shareUserInfoManager];
+    //用户头像
+    [manager getHeadImg:self.iconImage];
+    self.iconImage.layer.masksToBounds = YES;
+    self.iconImage.layer.cornerRadius = self.iconImage.frame.size.width/2;
+    if(![manager.myEntity.prod_username isEqualToString:@""] && ![manager.myEntity.prod_username isEqualToString:@"****"])
+    {
+        self.nameLabel.text = manager.myEntity.prod_username;
+   
+    }else if([manager.myEntity.bind_prod isEqualToString:@"0"])
+    {
+        self.nameLabel.text = @"未绑定";
+        
+    }
+    else
+    {
+        //如果没有拉钩宝昵称，暂时不显示
+        // controller.bind_prod = e.bind_prod;
+        self.nameLabel.text = @"";
+    }
+    self.lblCPBAccount.text = [NSString stringWithFormat:@"拉钩宝账号：%@",manager.myEntity.prod_username];
+    
+}
+
+- (void)viewDidLoad {
+    
+    self.title = @"拉勾宝账户";
+    [super viewDidLoad];
+    [WpCommonFunction setView:self.iconImage cornerRadius:0 color:CPB_HEAD_GRAY.CGColor borderWidth:1];
+    //加载用户信息
+    [self userInfo];
+    NSString *useMoney = nil;
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setPositiveFormat:@"###,##0.00;"];
+    NSNumber *availableMoney = [NSNumber numberWithDouble:[self.available doubleValue]];
+    useMoney = [NSString stringWithFormat:@"¥ %@",[formatter stringFromNumber:availableMoney]];
+    NSMutableAttributedString *useMoneyStr = [[NSMutableAttributedString alloc]initWithString:useMoney];
+    [useMoneyStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, 1)];
+    NSString *freeze = nil;
+    NSNumber *freezeMoney = [NSNumber numberWithDouble:[self.freeze doubleValue]];
+    freeze = [NSString stringWithFormat:@"¥ %@",[formatter stringFromNumber:freezeMoney]];
+    NSMutableAttributedString *freezeStr = [[NSMutableAttributedString alloc]initWithString:freeze];
+    [freezeStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, 1)];
+    if (iPhone4 || iPhone5) {
+        
+        [useMoneyStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:23] range:NSMakeRange(2, useMoney.length-2)];
+        [freezeStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:23] range:NSMakeRange(2, freeze.length-2)];
+        
+    }
+    self.lblUseMoney.attributedText = useMoneyStr;
+    self.lblFreeze.attributedText = freezeStr;
+}
+
+
+-(void)initQuickUI{
+    
+    self.footView = [QUNibHelper loadNibArray:@[@"SetListSection"] ofClass:[LGBFooterSection class]];
+    [self.pTableView addSubview:self.footView];
+    
+    self.pAdaptor = [QUFlatAdaptor adaptorWithTableView:self.pTableView nibArray:@[@"LimitListSection",@"AppFlatEmptySection",@"SetListSection"] delegate:self backGroundClr:[UIColor clearColor]];
+    
+    QUEntity* empty=[QUEntity entityWithLine:QU_FLAT_COLOR_LINE];
+    //空行
+    [self.pAdaptor.pSources addEntity:empty withSection:[AppFlatEmptySection class]];
+    SetListEntity* entity1 = [SetListEntity entity];
+    entity1.sectionList = @"充值";
+    entity1.tag = 1;
+    entity1.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    entity1.selectionStyle = UITableViewCellSelectionStyleGray;
+    entity1.lineBottomColor = QU_FLAT_COLOR_LINE;
+    entity1.pIndentBottomLevel = 1;
+    entity1.selectedBgColor = QU_FLAT_COLOR_CELL_BG_SELECTED;
+    [self.pAdaptor.pSources addEntity:entity1 withSection:[LimitListSection class]];
+    
+    SetListEntity* entity2 = [SetListEntity entity];
+    entity2.sectionList = @"提现";
+    entity2.tag = 2;
+    entity2.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    [self.pAdaptor.pSources addEntity:entity2 withSection:[LimitListSection class]];
+    empty = [QUEntity entityWithLineTop:QU_FLAT_COLOR_LINE lineBottom:QU_FLAT_COLOR_LINE];
+    [self.pAdaptor.pSources addEntity:empty withSection:[SetEmptyListSection class]];
+    
+    SetListEntity* entity3 = [SetListEntity entity];
+    entity3.sectionList = @"账户流水";
+    entity3.tag = 3;
+    entity3.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    entity3.selectionStyle = UITableViewCellSelectionStyleGray;
+    entity3.selectedBgColor = QU_FLAT_COLOR_CELL_BG_SELECTED;
+    [self.pAdaptor.pSources addEntity:entity3 withSection:[LimitListSection class]];
+    empty = [QUEntity entityWithLineTop:QU_FLAT_COLOR_LINE lineBottom:nil];
+    [self.pAdaptor.pSources addEntity:empty withSection:[SetEmptyListSection class]];
+    
+    [self.pAdaptor.pSources addEntity:[QUEntity entity] withSection:[LGBFooterSection class]];
+    [self.pAdaptor setRefreshDelegateHeader:self];
+    [self.pAdaptor notifyChanged];
+
+}
+
+
+-(void)MyQUTableView:(UITableView *)tableView scrollToBottomSection:(QUSection *)section andEntity:(QUEntity *)entity{
+
+    if (tableView.contentSize.height<=tableView.frame.size.height) {
+        section.hidden = YES;
+        self.footView.hidden = NO;
+        self.footView.frame = CGRectMake(0, tableView.frame.size.height-self.footView.frame.size.height, tableView.frame.size.width, self.footView.frame.size.height);
+    }else{
+        section.hidden = NO;
+        self.footView.hidden = YES;
+    }
+
+}
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor forSection:(QUSection *)section forEntity:(QUEntity *)entity{
+    if ([entity isKindOfClass:[SetListEntity class]]) {
+        SetListEntity* e = (SetListEntity*)entity;
+        LimitListSection* s = (LimitListSection*)section;
+        s.lblName.text = e.sectionList;
+        s.lblValue.hidden = YES;
+    }
+}
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor selectedSection:(QUSection *)section entity:(QUEntity *)entity{
+    if ([entity isKindOfClass:[SetListEntity class]]) {
+        SetListEntity* e = (SetListEntity*)entity;
+        if (e.tag == 3) {
+            [self accountClicked:nil];
+        }
+        if (e.tag == 1) {
+            [self rechargeClicked:nil];
+        }
+        if (e.tag == 2) {
+            [self cashClicked:nil];
+        }
+    }
+}
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+
+
+- (IBAction)rechargeClicked:(id)sender {
+
+    MyWebViewController *webview = [MyWebViewController controller];
+    //    webview.delegate = self;
+    webview.url = [NSString stringWithFormat:@"%@/cpb/gotoCpb?type=1&session_id=%@",[ConfigManager shareConfigManager].h5Url,[[UserInfoManager shareUserInfoManager] getSessionID]];
+    webview.title = @"充值";
+    webview.isBack2History = NO;
+    [self.navigationController pushViewController:webview animated:YES];
+}
+
+
+
+- (IBAction)cashClicked:(id)sender {
+    MyWebViewController *webview = [MyWebViewController controller];
+//    webview.delegate = self;
+    webview.url = [NSString stringWithFormat:@"%@/cpb/gotoCpb?type=2&session_id=%@",[ConfigManager shareConfigManager].h5Url,[[UserInfoManager shareUserInfoManager] getSessionID]];
+    webview.title = @"提现";
+    webview.isBack2History = NO;
+    [self.navigationController pushViewController:webview animated:YES];
+}
+
+- (IBAction)accountClicked:(id)sender {
+    
+    H5PushViewController *webview = [[H5PushViewController alloc] init];
+    webview.parent=self;
+    webview.url = [NSString stringWithFormat:@"%@/cpb/gotoCpb?type=3&session_id=%@",[ConfigManager shareConfigManager].h5Url,[[UserInfoManager shareUserInfoManager] getSessionID]];
+    [self.navigationController pushViewController:webview animated:YES];
+    
+}
+
+-(void)refreshViewBeginRefreshing:(MJRefreshComponent *)refreshView{
+   [[UserInfoManager shareUserInfoManager] refreshCpb:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+       CPBAmountEntity* e = (CPBAmountEntity*)entity;
+       if ([e.result isEqualToString:@"Y"]) {
+           self.available = e.available;
+           self.freeze = e.freeze;
+           [self.pAdaptor notifyChanged];
+       }
+       [self.pAdaptor.refreshHeaderView endRefreshing];
+   }];
+}
+
+-(void)presentHasDismissed:(NSObject *)userInfo{
+    [self.pAdaptor.refreshHeaderView beginRefreshing];
+}
+
+@end

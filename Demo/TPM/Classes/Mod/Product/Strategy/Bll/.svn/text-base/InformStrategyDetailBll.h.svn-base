@@ -1,0 +1,17 @@
+//
+//  InformStrategyDetailBll.h
+//  TPM
+//
+//  Created by admin on 16/8/1.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import <QuickUI/QuickUI.h>
+#import <QUBLL.h>
+#import "TodoListEntity.h"
+
+@interface InformStrategyDetailBll : QUBLL
+
+@property (nonatomic, strong) TodoListRecordsEntity *todoEntity;
+
+@end

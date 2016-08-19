@@ -1,0 +1,107 @@
+//
+//  PushManager.m
+//  QianFangGuJie
+//
+//  Created by  rjt on 15/8/18.
+//  Copyright (c) 2015年 JYZD. All rights reserved.
+//
+
+#import "PushManager.h"
+#import "UserDeviceMock.h"
+#import "UserDeviceEntity.h"
+
+#define PUSH_REGIETERED_TOKEN @"PUSH_REGIETERED_TOKEN"
+#define PUSH_LASTEST_TOKEN @"PUSH_LASTESTED_TOKEN"
+
+#define PUSH_TOKEN_KEY @"PUSH_TOKEN_KEY"
+#define PUSH_UID_KEY @"PUSH_UID_KEY"
+
+@implementation PushManager{
+    UserDeviceMock *pushMock;
+    
+}
+single_implementation(PushManager);
+
+-(instancetype)init{
+    if (self = [super init]) {
+        [self initMock];
+    }
+    return self;
+}
+
+-(void)initMock{
+    self.popupMsgMock = [PopupMsgMock mock];
+    self.popupMsgParam = [PopupMsgParam param];
+    self.readMsgMock = [ReadMsgMock mock];
+    self.readMsgParam = [ReadMsgParam param];
+}
+
+-(BOOL)saveTaken:(NSString *)token{
+    
+    NSString * str = [token stringByReplacingOccurrencesOfString:@"<" withString:@""];
+    str = [str stringByReplacingOccurrencesOfString:@">" withString:@""];
+    
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    [def setObject:str forKey:PUSH_LASTEST_TOKEN];
+    [def synchronize];
+    return YES;
+}
+
+
+-(void)checkDTokenWithUid:(NSString *)uid{
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+//    NSDictionary *regToken = [def objectForKey:PUSH_REGIETERED_TOKEN];
+    NSString *lastToken = [def objectForKey:PUSH_LASTEST_TOKEN];
+//
+//    if (regToken == nil || regToken[PUSH_TOKEN_KEY] == nil || regToken[PUSH_UID_KEY]==nil
+//        || (lastToken!=nil && uid!=nil && (![regToken[PUSH_TOKEN_KEY] isEqualToString:lastToken] || ![regToken[PUSH_UID_KEY] isEqualToString:uid]) )) {
+        UserDeviceParam * param = [UserDeviceParam param];
+        param.dev_id = lastToken;
+//        NSLog(@"dev_id = %@",param.dev_id);
+        pushMock = [UserDeviceMock mock];
+        pushMock.returnBlock = ^(QUNetAdaptor *adaptor,QUNetResponse *response,AppMock *mock){
+            if (response.pRetCode == NET_SUCCESS_CODE) {
+//                NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+//                UserDeviceEntity* e = (UserDeviceEntity*)response.pEntity;
+//                if ([e.result isEqualToString:@"Y"]) {
+//                    [userDef setObject:@{PUSH_TOKEN_KEY:lastToken,PUSH_UID_KEY:uid} forKey:PUSH_REGIETERED_TOKEN];
+//                }
+//                [userDef synchronize];
+            }
+        };
+        [pushMock run:param ignoreError:YES];
+//    }
+}
+
+-(BOOL)handleMsg:(NSDictionary*)dict{
+    // 处理推送消息
+    NSString *message = [[dict objectForKey:@"aps"]objectForKey:@"alert"];
+    if (message!=nil && ![message isEqualToString:@""]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"消息推送" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil ,nil];
+        [alert show];
+    }
+    return YES;
+}
+
+
+-(void)getPushMsg:(ManagerReturnBlock)returnBlock{
+
+    self.popupMsgMock.returnBlock = ^(QUNetAdaptor *adaptor,QUNetResponse *response,AppMock *mock){
+        if(returnBlock!=nil){
+            returnBlock([BaseManager convertResult:adaptor response:response],mock,response.pEntity);
+        }
+    };
+    [self.popupMsgMock run:self.popupMsgParam ignoreError:YES];
+}
+
+-(void)readPushMsg:(NSString*)msgId andBlock:(ManagerReturnBlock)returnBlock{
+    self.readMsgParam.msg_id = msgId;
+    self.readMsgMock.returnBlock = ^(QUNetAdaptor *adaptor,QUNetResponse *response,AppMock *mock){
+        if(returnBlock!=nil){
+            returnBlock([BaseManager convertResult:adaptor response:response],mock,response.pEntity);
+        }
+    };
+    [self.readMsgMock run:self.readMsgParam ignoreError:YES];
+}
+
+@end

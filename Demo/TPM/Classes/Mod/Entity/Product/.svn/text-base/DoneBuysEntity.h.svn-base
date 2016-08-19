@@ -1,0 +1,72 @@
+//
+//  DoneBuysEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/3/18.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+#import "ProfitEntity.h"
+@interface DoneBuysEntity : QUEntity
+
+@property (nonatomic,copy)NSMutableArray *records;
+
+@end
+
+@interface DoneBuysRecordsEntity : QUEntity
+
+/*产品ID*/
+@property (nonatomic,copy)NSString *ID;
+/*产品类型*/
+@property (nonatomic,copy)NSString *p_type;
+/*交易单号*/
+@property (nonatomic,copy)NSString *pno;
+/*点买方向 1:多 2:空 3:双向多 4:双向空*/
+@property (nonatomic,copy)NSString *operation_direction;
+/*开始时间*/
+@property (nonatomic,copy)NSString *start_time;
+/*实际申购金额*/
+@property (nonatomic,copy)NSString *Init_fund;
+/*申购数量*/
+@property (nonatomic,copy)NSString *amount;
+/*产品代码*/
+@property (nonatomic,copy)NSString *code;
+/*点买金额*/
+@property (nonatomic,copy)NSString *fund;
+/*触发价*/
+@property (nonatomic,copy)NSString *start_price;
+/*购买方式0:市价点买 1:触发价点买*/
+@property (nonatomic,copy)NSString *buy_way;
+/*产品名称*/
+@property (nonatomic,copy)NSString *stock_name;
+/*状态翻译文字*/
+@property (nonatomic,copy)NSString *state_name;
+/*投资人Id*/
+@property (nonatomic,copy)NSString *invester_id;
+/*投资人账户*/
+@property (nonatomic,copy)NSString *invest_account;
+/*投资人名*/
+@property (nonatomic,copy)NSString *invester_name;
+/*交易市场*/
+@property (nonatomic,copy)NSString *invest_dealer;
+/*投资人开户营业部*/
+@property (nonatomic,copy)NSString *invest_open_dealer;
+/*投资人开户地*/
+@property (nonatomic,copy)NSString *invest_location;
+/*投资人头像地址*/
+@property (nonatomic,copy)NSString *invest_icon;
+/*状态： <200 待开仓 >=200 <500 待平仓 >= 500 收付款*/
+@property (nonatomic,copy)NSString *state;
+/*分配利润*/
+@property (nonatomic,copy)NSString *user_profit;
+
+@property (nonatomic,copy)NSString *profit;
+/*方案名*/
+@property (nonatomic,copy)NSString *scheme_name;
+/*投资人标志代码*/
+@property (nonatomic,copy)NSString *dealer_replace;
+//以下内容需要从profit接口获取
+@property (nonatomic,strong)ProfitRecordsEntity* profitEntity;
+
+@end

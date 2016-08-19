@@ -1,0 +1,16 @@
+//
+//  GestureUtil.h
+//  StarGame
+//
+//  Created by bizmatch on 15-2-22.
+//  Copyright (c) 2015年 Shanghai-electric. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface GestureUtil : NSObject
++(BOOL)isPwdExisted;
++(BOOL)isPwdOn;
+
++(BOOL)removePassword;
+@end

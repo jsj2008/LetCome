@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/tpz_app/!svn/ver/3292/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager
+END
+UserInfoManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/tpz_app/!svn/ver/3176/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/UserInfoManager.m
+END
+InfomationManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/InfomationManager.h
+END
+ProductsManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/tpz_app/!svn/ver/3255/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/ProductsManager.h
+END
+ConfigManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/ConfigManager.h
+END
+STOManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/STOManager.h
+END
+AgreementManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/tpz_app/!svn/ver/3213/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/AgreementManager.h
+END
+InfomationManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/InfomationManager.m
+END
+ProductsManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/tpz_app/!svn/ver/3292/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/ProductsManager.m
+END
+ConfigManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/ConfigManager.m
+END
+STOManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/STOManager.m
+END
+STODBManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/STODBManager.h
+END
+AgreementManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/tpz_app/!svn/ver/3213/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/AgreementManager.m
+END
+PushManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/PushManager.h
+END
+STODBManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/STODBManager.m
+END
+CooperateManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/tpz_app/!svn/ver/3034/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/CooperateManager.h
+END
+MessageManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/MessageManager.h
+END
+PushManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/PushManager.m
+END
+stockData.plist
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/stockData.plist
+END
+CooperateManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/tpz_app/!svn/ver/3034/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/CooperateManager.m
+END
+MessageManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/tpz_app/!svn/ver/3278/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/MessageManager.m
+END
+UserInfoManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/tpz_app/!svn/ver/3176/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Manager/UserInfoManager.h
+END

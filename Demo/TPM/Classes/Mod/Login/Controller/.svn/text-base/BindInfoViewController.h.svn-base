@@ -1,0 +1,15 @@
+//
+//  BindInfoViewController.h
+//  STO
+//
+//  Created by  rjt on 16/3/29.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "AppViewController.h"
+#import "GestureUtil.h"
+#import "GestureVC.h"
+
+@interface BindInfoViewController : AppViewController
+@property(weak,nonatomic)id<PasswordViewControllerDelegate> pwdDelegate;
+@end

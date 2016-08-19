@@ -1,0 +1,21 @@
+//
+//  GetUserQuotaEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/3/2.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface GetUserQuotaEntity : QUEntity
+
+@property (nonatomic,copy)NSDictionary *au;
+@property (nonatomic,copy)NSDictionary *aud;
+@property (nonatomic,copy)NSDictionary *ag;
+@property (nonatomic,copy)NSDictionary *agd;
+@property (nonatomic,copy)NSDictionary *stock;
+@property (nonatomic,copy)NSDictionary *stc;
+@property (nonatomic,copy)NSDictionary *spif;
+
+@end

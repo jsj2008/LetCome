@@ -1,0 +1,101 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - AMPopTip (1.0.3)
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
+  - JSPatch (1.0):
+    - JSPatch/Core (= 1.0)
+  - JSPatch/Core (1.0)
+  - MBProgressHUD (0.9.2)
+  - MJRefresh (3.1.7)
+  - OpenUDID (1.0.0)
+  - QuickUI (2.0.0):
+    - AFNetworking (~> 3.0)
+    - AMPopTip
+    - FMDB
+    - MBProgressHUD
+    - MJRefresh
+    - OpenUDID
+    - QuickUI/Base (= 2.0.0)
+    - QuickUI/ThirdParty (= 2.0.0)
+    - QuickUI/Tools (= 2.0.0)
+    - SCLAlertView-Objective-C
+    - SDWebImage
+  - QuickUI/Base (2.0.0):
+    - AFNetworking (~> 3.0)
+    - AMPopTip
+    - FMDB
+    - MBProgressHUD
+    - MJRefresh
+    - OpenUDID
+    - SCLAlertView-Objective-C
+    - SDWebImage
+  - QuickUI/ThirdParty (2.0.0):
+    - AFNetworking (~> 3.0)
+    - AMPopTip
+    - FMDB
+    - MBProgressHUD
+    - MJRefresh
+    - OpenUDID
+    - SCLAlertView-Objective-C
+    - SDWebImage
+  - QuickUI/Tools (2.0.0):
+    - AFNetworking (~> 3.0)
+    - AMPopTip
+    - FMDB
+    - MBProgressHUD
+    - MJRefresh
+    - OpenUDID
+    - SCLAlertView-Objective-C
+    - SDWebImage
+  - SCLAlertView-Objective-C (1.0.3)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
+  - UMengAnalytics-NO-IDFA (4.0.5)
+
+DEPENDENCIES:
+  - JSPatch
+  - QuickUI (from `https://192.168.5.101/svn/jyzd_app/jyzd_iOS/trunk/QuickUI_v2`)
+  - UMengAnalytics-NO-IDFA
+
+EXTERNAL SOURCES:
+  QuickUI:
+    :svn: https://192.168.5.101/svn/jyzd_app/jyzd_iOS/trunk/QuickUI_v2
+
+CHECKOUT OPTIONS:
+  QuickUI:
+    :revision: '96'
+    :svn: https://192.168.5.101/svn/jyzd_app/jyzd_iOS/trunk/QuickUI_v2
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AMPopTip: 42ab801c5d4519093908d14134c8c9d7ffc435b4
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  JSPatch: c689ea4dde17441f2f4a95d40dfedb8900c20099
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MJRefresh: f67f0750d57a4e4ae433da549359ca53b52cdc7d
+  OpenUDID: e7cb6984c7304906ad20f3a36bf087b025896b6b
+  QuickUI: 7d7a0081f987bd5807dac3a79670dec69208bee9
+  SCLAlertView-Objective-C: e83376218b431109dc5403adc63f8e9787db7b74
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  UMengAnalytics-NO-IDFA: 965a219b05475ff2a4c09a164139a27bbaa0e25b
+
+PODFILE CHECKSUM: d28a4a3bfa38665a7038c8a1eb27dfd42f138594
+
+COCOAPODS: 1.0.1

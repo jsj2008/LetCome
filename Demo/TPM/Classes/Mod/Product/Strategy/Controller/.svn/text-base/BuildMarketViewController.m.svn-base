@@ -1,0 +1,59 @@
+//
+//  BuildMarketViewController.m
+//  TPM
+//
+//  Created by  rjt on 16/7/29.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "BuildMarketViewController.h"
+#import "BuildStrategyViewController.h"
+
+@interface BuildMarketViewController ()
+
+@end
+
+@implementation BuildMarketViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self.nextBtn setTitle:@"建仓策略" forState:UIControlStateNormal];
+    self.nextView.hidden = NO;
+    
+    //[self.nextBtn addTarget:self action:@selector(buildStrategy) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)buildStrategy
+{
+    BuildStrategyViewController *controller = [[BuildStrategyViewController alloc] initWithNibName:@"BuildStrategyViewController" bundle:nil];
+    controller.buyEntity = self.buyEntity;
+    
+    [self.navigationController pushViewController:controller animated:NO];
+}
+
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+-(void)gotoNext{
+   
+    BuildStrategyViewController *controller = [[BuildStrategyViewController alloc] initWithNibName:@"BuildStrategyViewController" bundle:nil];
+    controller.buyEntity = self.buyEntity;
+    //[self.navigationController popViewControllerAnimated:NO];
+    [self.navigationController pushViewController:controller animated:NO];
+
+}
+@end

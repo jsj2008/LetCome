@@ -1,0 +1,13 @@
+//
+//  ProductTipsEntity.m
+//  A50
+//
+//  Created by tongshangren on 15/11/11.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "ProductTipsEntity.h"
+
+@implementation ProductTipsEntity
+
+@end

@@ -1,0 +1,16 @@
+//
+//  AmendmentsPayEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/3/2.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface AmendmentsPayEntity : QUEntity
+
+/*提交结果 Y：成功/N：失败*/
+@property (nonatomic,copy)NSString *result;
+
+@end

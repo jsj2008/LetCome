@@ -1,0 +1,13 @@
+//
+//  UserFirstOpenAppEntity.m
+//  TPM
+//
+//  Created by chenyi on 16/8/8.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "UserFirstOpenAppEntity.h"
+
+@implementation UserFirstOpenAppEntity
+
+@end

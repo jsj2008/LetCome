@@ -1,0 +1,27 @@
+//
+//  ArticleSampleListEntity.h
+//  STO
+//
+//  Created by admin on 16/4/29.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface ArticleSampleListEntity : QUEntity
+
+@property (nonatomic, copy) NSMutableArray *list;
+
+@end
+
+
+@interface ArticleSampleListListEntity : QUEntity
+/**
+ *  协议合约ID
+ */
+@property (nonatomic, copy) NSString *ID;
+/**
+ *  协议合约名称
+ */
+@property (nonatomic, copy) NSString *name;
+@end

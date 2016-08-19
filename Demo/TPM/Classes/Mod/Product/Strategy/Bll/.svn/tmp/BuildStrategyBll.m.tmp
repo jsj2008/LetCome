@@ -1,0 +1,134 @@
+//
+//  BuildStrategyBll.m
+//  TPM
+//
+//  Created by admin on 16/7/25.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "BuildStrategyBll.h"
+#import "BuildStrategySection.h"
+#import "BuildStrategyListSection.h"
+#import "BuyingListEntity.h"
+#import "StrategyHqViewController.h"
+#import "BuildStrategyViewController.h"
+
+@implementation BuildStrategyBll
+
+-(void)loadBll
+{
+    [super loadBll];
+}
+
+-(void)initQuickUI:(QUTableView *)tableView
+{
+    
+    self.pAdaptor = [QUFlatAdaptor adaptorWithTableView:tableView nibArray:@[@"BuildStrategyListSection"] delegate:self];
+    
+    [self.pAdaptor.pSources addEntity:[QUEntity entity] withSection:[BuildStrategyListSection class]];
+    
+}
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor forSection:(QUSection *)section forEntity:(QUEntity *)entity
+{
+    if ([section isKindOfClass:[BuildStrategyListSection class]]) {
+        
+        BuildStrategyListSection *s = (BuildStrategyListSection *)section;
+        
+        s.buildStrategyBtn.tag = 400;
+    }
+}
+
+-(void)QUAdaptor:(QUAdaptor*)adaptor willDidLoadSection:(QUSection*)section willDidLoadEntity:(QUEntity*)entity
+{
+    if ([section isKindOfClass:[BuildStrategyListSection class]]) {
+        
+        BuildStrategyListSection *s = (BuildStrategyListSection *)section;
+
+        [s.buildStrategyBtn addTarget:self action:@selector(buildStrategyBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [s.hqBtn addTarget:self action:@selector(hqBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    
+}
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor selectedSection:(QUSection *)section entity:(QUEntity *)entity
+{
+    if ([section isKindOfClass:[BuildStrategyListSection class]] && [entity isKindOfClass:[BuyingListRecordsEntity class]]) {
+        
+        BuildStrategyListSection *s = (BuildStrategyListSection *)section;
+        BuyingListRecordsEntity *e = (BuyingListRecordsEntity *)entity;
+        
+        
+    }
+}
+
+#pragma mark - 按钮
+- (void)buildStrategyBtnClicked:(UIButton *)btn
+{
+    NSLog(@"%ld", (long)btn.tag);
+    BuildStrategyViewController *controller = [[BuildStrategyViewController alloc] initWithNibName:@"BuildStrategyViewController" bundle:nil];
+    [self.controller.navigationController pushViewController:controller animated:NO];
+}
+
+- (void)hqBtnClicked:(UIButton *)btn
+{
+    StrategyHqViewController *controller = [StrategyHqViewController controllerWithCode:@"000035"];
+    [self.controller.navigationController pushViewController:controller animated:NO];
+}
+
+- (void)refreshTable
+{
+    if ([self.pAdaptor.pSources entityArrayByClass:[BuyingListRecordsEntity class]].count == 0) {
+        
+        [self.pAdaptor.pSources clear];
+    }
+    
+    [self.pAdaptor.refreshHeaderView endRefreshing];
+    [self.pAdaptor.refreshFooterView endRefreshing];
+    [self.pAdaptor notifyChanged];
+}
+
+-(void)refreshViewBeginRefreshing:(MJRefreshComponent *)refreshView
+{
+    if ([refreshView isKindOfClass:[MJRefreshHeader class]]) {
+        
+        [self refreshBuildBuysList:@"0"];
+    }
+    
+    if ([refreshView isKindOfClass:[MJRefreshFooter class]]) {
+        
+        NSString *startId = @"0";
+        for (BuyingListRecordsEntity *e in [self.pAdaptor.pSources entityArrayByClass:[BuyingListRecordsEntity class]]) {
+            
+            startId = e.ID;
+        }
+        [self refreshBuildBuysList:startId];
+    }
+    
+}
+
+- (void)refreshBuildBuysList:(NSString *)startid
+{
+    DEFINED_WEAK_SELF
+    [[ProductsManager shareProductsManager]getBuyingListInformationWithStartId:startid Block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+       
+        if (val.result && [entity isKindOfClass:[BuyingListRecordsEntity class]]) {
+            
+            if ([startid isEqualToString:@"0"]) {
+                
+                [_self.pAdaptor.pSources clear];
+                //
+                
+                
+            }
+        }
+        
+    }];
+}
+
+
+
+
+
+@end

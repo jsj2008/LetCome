@@ -1,0 +1,1 @@
+../../../QuickUI/QuickUI/QuickUI/Base/QuickUI/QUAdaptorDelegate.h

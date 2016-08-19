@@ -1,0 +1,20 @@
+//
+//  DealHistoryViewController.h
+//  TPM
+//
+//  Created by chenyi on 16/7/27.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "AppViewController.h"
+#import "DealHistoryBll.h"
+@interface DealHistoryViewController : AppViewController
+@property (weak, nonatomic) IBOutlet QUTableView *dealHistoryTab;
+
+
+@property(nonatomic,strong)DealHistoryBll *dealHistoryBll;
+@property (nonatomic,strong)NSString *historyTitle;
+@property (nonatomic,strong)NSString *type;
+@property (nonatomic,strong)NSString *p_id;
+
+@end

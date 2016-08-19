@@ -1,0 +1,13 @@
+//
+//  HoldTimeEntity.m
+//  TPZ
+//
+//  Created by chenyi on 16/2/26.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "HoldTimeEntity.h"
+
+@implementation HoldTimeEntity
+
+@end

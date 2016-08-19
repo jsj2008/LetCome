@@ -1,0 +1,34 @@
+//
+//  NeedNoticecntEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/3/1.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface NeedNoticecntEntity : QUEntity
+
+/*未读消息数量*/
+@property (nonatomic,copy) NSString *msg;
+/*平台未签署协议数量*/
+@property (nonatomic,copy) NSString *agreement;
+/*展示用平台协议数量*/
+@property (nonatomic,copy) NSString *agreement_show;
+/*展示用合约数量*/
+@property (nonatomic,copy) NSString *article_show;
+/*A50未签署协议数量*/
+@property (nonatomic,copy) NSString *a50_agreement;
+/*展示用A50协议数量*/
+@property (nonatomic,copy) NSString *a50_agreement_show;
+
+@property (nonatomic,copy) NSString *anno_msg;
+
+@property (nonatomic,copy) NSString *notice_msg;
+
+@property (nonatomic,copy) NSString *system_msg;
+
+@property(nonatomic,copy)NSDictionary *records;
+
+@end

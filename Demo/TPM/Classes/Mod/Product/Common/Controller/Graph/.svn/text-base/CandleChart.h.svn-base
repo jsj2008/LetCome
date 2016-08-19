@@ -1,0 +1,70 @@
+//
+//  CandleChart.h
+//  A50
+//  绘制蜡烛图
+//  Created by  rjt on 16/1/28.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface CandleChart : UIView{
+    int _level;//放大倍数
+    int _per;//每格数量
+    NSInteger _offset;//偏移量
+    int _hFill;
+    float _labelWidth;
+    float _labelHeight;
+    
+    BOOL _hasVol;//是否需要交易量均线
+    BOOL _resize;//是否允许缩放
+    int _precision;//价格精度
+    
+    NSArray * _records;
+    float _maxPrice;
+    float _minPrice;
+    
+    CAShapeLayer * _candlelayer;
+    CAShapeLayer * _vollayer;
+    CALayer * _candleMAlabellayer;//蜡烛图MA行
+    CALayer * _volMAlabellayer;//交易量MA行
+    CALayer * _timelabellayer;//时间行
+    
+    CALayer * _increaseLayer;//加号放大按钮
+    CALayer * _reduceLayer;//减号缩小按钮
+   
+    NSMutableArray * _layers;//存放所有CALayer
+    
+    CALayer *_newPricelayer;
+    CALayer *_newPriceLinelayer;
+    CALayer *_newPriceRectlayer;
+    CATextLayer *_newPriceTextlayer;
+    ProductPanKouEntity* _newPrice;
+    
+}
+
+/*!
+ *  @brief 蜡烛图初始化方法，创建实例后必须调用
+ *
+ *  @param hasVol 是否需要交易量
+ *  @param level  初始显示级别
+ *  @param resize  是否允许缩放
+ */
+-(void)loadKChartWithVol:(BOOL)hasVol andLevel:(int)level andResize:(BOOL)resize andPrecision:(int)precision;
+
+/*!
+ *  @brief  绘制K线图
+ *
+ *  @param records 包含K线图数据的数组
+ */
+-(void)drawChart:(NSArray*)records;
+
+/*!
+ *  @brief  绘制最新价格坐标线
+ *
+ *  @param newPrice 最新价
+ */
+-(void)drawNewPrice:(ProductPanKouEntity*)price;
+
+-(void)drawKChart;
+@end

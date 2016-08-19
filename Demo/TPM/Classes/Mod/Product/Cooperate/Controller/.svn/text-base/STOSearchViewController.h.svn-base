@@ -1,0 +1,43 @@
+//
+//  STOSearchViewController.h
+//  STO
+//
+//  Created by tongshangren on 16/3/18.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "AppViewController.h"
+
+
+@interface STOSearchViewController : AppViewController
+
+
+
+@property(nonatomic,strong)NSString *stock_total;
+@property (weak, nonatomic) IBOutlet UIView *searchFrame;
+@property (weak, nonatomic) IBOutlet UITextField *search;
+@property (weak, nonatomic) IBOutlet QUTableView *searchTab;
+@property (weak, nonatomic) IBOutlet QUTableView *detailTab;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnClean;
+@property (weak, nonatomic) IBOutlet UIButton *btnCancel;
+
+@property(assign,nonatomic)BOOL backToIndex;
+
+@property(nonatomic,assign)BOOL presented;
+
+-(void)showCancelBtn;
+-(void)hideCancelBtn;
+
+//取消
+-(void)clickCancel;
+
+//返回上页
+-(void)navBack;
+
+//清空搜索框
+-(void)clickClean;
+
+-(void)showDetail;
+
+@end

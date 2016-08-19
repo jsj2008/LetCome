@@ -1,0 +1,18 @@
+//
+//  ScrollNewTradeInfoEntity.m
+//  STO
+//
+//  Created by chenyi on 16/6/27.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "ScrollNewTradeInfoEntity.h"
+
+@implementation ScrollNewTradeInfoEntity
+
+@end
+
+@implementation ScrollNewTradeInfoRecordsEntity
+
+
+@end

@@ -1,0 +1,15 @@
+//
+//  UserFirstOpenAppEntity.h
+//  TPM
+//
+//  Created by chenyi on 16/8/8.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import <QuickUI/QuickUI.h>
+
+@interface UserFirstOpenAppEntity : QUEntity
+
+@property (nonatomic,strong)NSString *result;
+
+@end

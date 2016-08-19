@@ -1,0 +1,288 @@
+//
+//  PorductCheckOutDissentSection.m
+//  QianFangGuJie
+//
+//  Created by tongshangren on 15/10/9.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "PorductCheckOutDissentSection.h"
+#import "ProductDissentListEntity.h"
+@interface PorductCheckOutDissentSection()
+
+
+
+
+@end
+
+
+
+@implementation PorductCheckOutDissentSection
+
+{
+    
+    NSArray *dissentArray;
+    NSMutableArray *orderArray;
+
+    NSArray *lblTextArray;
+    NSArray *imageArray;
+    NSArray *btnArray;
+    NSArray *viewArray;
+    NSArray *lblArray;
+    NSInteger index;
+    NSString *selectedText;
+
+}
+@synthesize baseDelegate = _baseDelegate;
+
+@dynamic entity;
+-(void)awakeFromNib{
+
+
+    
+
+
+}
+
+
+- (void)sectionDidLoad {
+
+    self.pno = @"";
+    self.tableViewFrame.frame = CGRectMake(0, 667, 375, 667);
+    
+    self.frame = CGRectMake(0, 0, kCurrentDeviceWidth, kCurrentDeciceHeight - 64);
+//    if (kCurrentDeciceHeight < kWindowHeightIPhone5) {
+//        self.frame = CGRectMake(0, 0, kCurrentDeviceWidth, kWindowHeightIPhone5 - 64);
+//    }
+    
+    NSString* clsName=NSStringFromClass([self class]);
+    QUSectionInfo* info=[self.pAdaptor.pSectionInfo objectForKey:clsName];
+    info.frame=self.frame;
+    
+    [self.pAdaptor.pTableView reloadData];
+    
+    //self.textView.delegate = self;
+    
+    
+    
+    orderArray=[[NSMutableArray alloc]initWithCapacity:0];
+    
+    [self.btnSelectAntiPoint addTarget:self action:@selector(showSelectView) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnClose addTarget:self action:@selector(closeSelectView) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnComplete addTarget:self action:@selector(hideSelectView) forControlEvents:UIControlEventTouchUpInside];
+   
+    lblTextArray = @[self.lblBuy.text,self.lblSell.text,self.lblProfit.text,self.lblCheckOut.text,self.lblTradeFee.text,self.lblOther.text];
+    imageArray = @[self.imageBuy,self.imageSell,self.imageProfit,self.imageCheckOut,self.imageTradeFee,self.imageOther];
+    for (int i = 0; i<imageArray.count; i++) {
+        UIImageView *imageView = imageArray[i];
+        imageView.hidden = YES;
+    }
+    btnArray = @[self.btnBuy,self.btnSell,self.btnProfit,self.btnCheckOut,self.btnTradeFee,self.btnOther];
+
+    viewArray = @[self.infoView,self.buyView,self.sellView,self.checkOutView,self.settleView,self.otherView];
+    lblArray = @[self.lblBuy,self.lblSell,self.lblProfit,self.lblCheckOut,self.lblTradeFee,self.lblOther];
+    [self.btnBuy addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnSell addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnProfit addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnCheckOut addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnTradeFee addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnOther addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.viewBg.hidden = YES;
+    if (self.parentController.pno.length>0) {
+        
+        self.lblTradeID.text = self.parentController.pno;
+        self.entity = self.parentController.entity;
+        self.btnSelectTradeID.enabled = NO;
+//        self.state = @"1";
+    }
+    else{
+    
+        self.lblTradeID.text = @"";
+        self.btnSelectTradeID.enabled = YES;
+    }
+}
+
+-(void)clickBtn:(UIButton *)btn{
+    
+    if (self.parentController.pno.length>0) {
+        
+        self.entity = self.parentController.entity;
+        self.state = @"1";
+    }
+
+//    self.parentController.p_id = self.p_id;
+    for (int i = 0; i<btnArray.count; i++) {
+        if ([btn isEqual:btnArray[i]]) {
+            UIImageView *imageView = imageArray[i];
+            imageView.hidden = NO;
+            selectedText = lblTextArray[i];
+//            self.pointLabel.text = lblTextArray[i];
+            index = i;
+            UILabel *label = lblArray[i];
+            label.textColor = Color_Bg_ababab;
+            UIButton *button = btnArray[i];
+            if (button.enabled) {
+                UIView *view = viewArray[i];
+                view.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1.0];
+            }
+//            [button setTitleColor:Color_Bg_ababab forState:UIControlStateNormal];
+        
+            
+            
+        }
+        else{
+        
+            UIImageView *imageView1 = imageArray[i];
+            imageView1.hidden = YES;
+            UILabel *label1 = lblArray[i];
+            label1.textColor = Color_Bg_222222;
+            UIButton *button1 = btnArray[i];
+//            [button1 setTitleColor:Color_Bg_222222 forState:UIControlStateNormal];
+            if (button1.enabled) {
+                UIView *view1 = viewArray[i];
+                view1.backgroundColor = [UIColor whiteColor];
+            }
+            
+        }
+    }
+//    self.viewBg.hidden = YES;
+//    [UIView animateWithDuration:0.5 animations:^{
+//        self.tableViewFrame.frame = CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height);
+//    }];
+  
+}
+
+-(void)closeSelectView{
+    
+    self.viewBg.hidden = YES;
+    [UIView animateWithDuration:0.4 animations:^{
+        self.tableViewFrame.frame = CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height);
+    }];
+    
+}
+
+-(void)showSelectView{
+    
+    
+    
+        self.viewBg.hidden = NO;
+    
+    [UIView animateWithDuration:0.4 animations:^{
+//        if (self.parentController.pno.length>0) {
+//        
+//            self.tableViewFrame.frame = CGRectMake(0, -50, self.frame.size.width, self.frame.size.height);
+//        }
+//        else{
+        self.tableViewFrame.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+//        }
+    }];
+    //self.tableViewFrame.hidden=NO;
+}
+
+
+-(void)hideSelectView{
+    self.pointLabel.text = selectedText;
+    if ([self.state isEqualToString:@"1"]) {
+        switch (index) {
+                
+            case 0:
+                self.currentValue.text =[NSString stringWithFormat:@"%.2f",[self.entity.info_fee floatValue]];
+                self.myValueTextField.hidden = NO;
+                self.parentController.selectedPoint = @"8";
+                break;
+            case 1:
+                self.currentValue.text = [NSString stringWithFormat:@"%.2f",[self.entity.buy_price floatValue]];
+                self.myValueTextField.hidden = NO;
+                self.parentController.selectedPoint = @"1";
+                break;
+            case 2:
+                self.currentValue.text = [NSString stringWithFormat:@"%.2f",[self.entity.sell_price floatValue]];
+                self.myValueTextField.hidden = NO;
+                self.parentController.selectedPoint = @"2";
+                break;
+            case 3:
+                self.currentValue.text = [NSString stringWithFormat:@"%.2f",[self.entity.user_profit floatValue]];
+                self.myValueTextField.hidden = NO;
+                if (![self.entity.profit hasPrefix:@"-"]) {
+                    //                    self.currentValue.text = [NSString stringWithFormat:@"%.2f",[self.entity.user_profit floatValue]];
+                    //                    self.myValueTextField.hidden = NO;
+                    self.parentController.selectedPoint = @"3";
+                }else{
+                    
+                    //                    if (![self.entity.stop_loss_point hasPrefix:@"-"]) {
+                    //                        self.currentValue.text = @"无";
+                    //                         self.myValueTextField.hidden = YES;
+                    //                    }
+                    //                    else{
+                    //                        self.currentValue.text = [NSString stringWithFormat:@"%.2f",self.entity.stop_loss_point.floatValue];
+                    //                    }
+                    //                    self.myValueTextField.hidden = NO;
+                    self.parentController.selectedPoint = @"5";
+                }
+                break;
+                //            case 4:
+                //                if (self.entity.stop_loss_point.floatValue>=0) {
+                //                    self.currentValue.text = @"无";
+                //                     self.myValueTextField.hidden = YES;
+                //                }
+                //                else{
+                //                    self.currentValue.text = [NSString stringWithFormat:@"%.2f",self.entity.stop_loss_point.floatValue];
+                //                }
+                //                self.myValueTextField.hidden = NO;
+                //                self.parentController.selectedPoint = @"9";
+                //                break;
+                //
+            case 4:
+                
+                if ([self.entity.settlement_flag isEqualToString:@"1"]) {
+                    self.currentValue.text = @"已结算";
+                    
+                }
+                else{
+                    
+                    self.currentValue.text = @"未结算";
+                    
+                }
+                self.parentController.selectedPoint = @"10";
+                self.myValueTextField.hidden = YES;
+                break;
+                
+            case 5:
+                self.currentValue.text = @"无";
+                self.myValueTextField.hidden = YES;
+                self.parentController.selectedPoint = @"7";
+                break;
+            default:
+                self.currentValue.text = @"无";
+                self.myValueTextField.hidden = YES;
+                self.parentController.selectedPoint = @"7";
+                break;
+        }
+    }
+    
+    self.viewBg.hidden = YES;
+    [UIView animateWithDuration:0.4 animations:^{
+        self.tableViewFrame.frame = CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height);
+    }];
+   // self.tableViewFrame.hidden=YES;
+}
+
+-(void)textViewDidChange:(UITextView *)textView
+{
+
+    if (textView.text.length>0) {
+        self.placeHolderLabel.hidden=YES;
+    }else
+        self.placeHolderLabel.hidden=NO;
+    
+}
+-(void)setFrame:(CGRect)frame{
+    if (frame.size.height>700 && !IOS8_OR_LATER) {
+        frame.size.height = self.frame.size.height;
+    }
+    [super setFrame:frame];
+}
+
+
+@end

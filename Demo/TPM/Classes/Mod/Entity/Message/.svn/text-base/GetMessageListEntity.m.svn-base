@@ -1,0 +1,18 @@
+//
+//  GetMessageListEntity.m
+//  TPZ
+//
+//  Created by chenyi on 16/3/1.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "GetMessageListEntity.h"
+
+@implementation GetMessageListEntity
+
+@end
+
+@implementation GetMessageListRes_dataEntity
+
+
+@end

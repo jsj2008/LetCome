@@ -1,0 +1,16 @@
+//
+//  IncreaseQuotaEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/3/1.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface IncreaseQuotaEntity : QUEntity
+
+/*申请提交结果 “Y”:提交成功，”N”:提交失败*/
+@property (nonatomic,copy)NSString *result;
+
+@end

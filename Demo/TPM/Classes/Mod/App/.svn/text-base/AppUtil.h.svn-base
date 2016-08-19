@@ -1,0 +1,36 @@
+//
+//  AppUtil.h
+//  QianFangGuJie
+//
+//  Created by  rjt on 15/9/14.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "IndexViewController.h"
+
+@interface AppUtil : NSObject
++(void)exitAccount:(BOOL)animated;
+
++(void)exitAccountGo2Forget:(BOOL)animated;
+
++(void)switchIndex:(BOOL)animated;
+
++(BOOL)isNobleMetalDay;//是否黄金白银白天行情
++(BOOL)isNobleMetalNight;//是否黄金白银夜间行情
+
++(BOOL)isStockDay;//是否股票
+
++(UIColor*)colorWithOpen:(float)open andNew:(float)now;//根据价格差返回颜色
+
++(UIColor*)colorWithProfit:(float)profit;
+
++(IndexViewController*)findIndex;//查找Index
+
+//+(NSString*)price:(NSString*)price withCode:(NSString*)code;//根据产品code格式化价格数字
+
++(NSString*)price:(NSString*)price;
+
++(UIImage *)imageWithColor:(UIColor *)color andSize:(CGSize)imageSize;
+
+@end

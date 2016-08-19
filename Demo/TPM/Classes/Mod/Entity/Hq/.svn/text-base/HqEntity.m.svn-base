@@ -1,0 +1,23 @@
+//
+//  HqEntity.m
+//  STO
+//
+//  Created by  rjt on 16/3/22.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "HqEntity.h"
+
+@implementation HqEntity
+
+@end
+
+
+@implementation HqRecordsEntity
+-(void)setStockcode:(NSString *)stockcode{
+    if (stockcode && [stockcode isEqualToString:@"999999"]) {
+        stockcode = kStoCodeSH;
+    }
+    _stockcode = stockcode;
+}
+@end

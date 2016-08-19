@@ -1,0 +1,18 @@
+//
+//  UserUnionCheckEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/3/1.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface UserUnionCheckEntity : QUEntity
+
+/*用户UID(注册成功后返回)*/
+@property (nonatomic,copy)NSString *uid;
+/*结果*/
+@property (nonatomic,copy)NSString *result;
+
+@end

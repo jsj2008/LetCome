@@ -1,0 +1,19 @@
+//
+//  BindAllViewController.h
+//  TPZ
+//
+//  Created by  rjt on 16/4/13.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "AppViewController.h"
+#import "GestureUtil.h"
+#import "GestureVC.h"
+
+@interface BindAllViewController : AppViewController
+
+@property (strong,nonatomic) NSString* phone;
+@property (strong,nonatomic) NSString* payPswordStr;
+@property (strong,nonatomic) NSString* verifyCode;
+@property(weak,nonatomic)id<PasswordViewControllerDelegate> pwdDelegate;
+@end

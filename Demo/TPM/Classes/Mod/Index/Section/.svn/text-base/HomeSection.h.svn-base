@@ -1,0 +1,90 @@
+//
+//  HomeSection.h
+//  A50
+//
+//  Created by  rjt on 15/10/11.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "QUSection.h"
+
+@interface HomeSection : QUSection
+
+@end
+
+
+
+@interface AdvSection : QUSection<UIScrollViewDelegate>{
+    NSArray* advs;
+    UIImage *placeHolderImg;
+//    UITapGestureRecognizer *gesture;
+}
+@property (weak, nonatomic) IBOutlet UIPageControl *page;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UITextField *searchText;
+@property (weak, nonatomic) IBOutlet UIView *searchView;
+@property (weak, nonatomic) IBOutlet UIButton *searchBtn;
+
+-(void)loadAdvs:(NSArray*)ads;
+-(void)scroll2Next;
+@end
+
+@interface IndexSection : QUSection
+@property (weak, nonatomic) IBOutlet UILabel *price300Label;
+@property (weak, nonatomic) IBOutlet UILabel *rate300Label;
+@property (weak, nonatomic) IBOutlet UILabel *priceCreateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rateCreateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceMiddleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rateMiddleLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *indexBtn;
+
+
+@end
+
+
+
+@interface CalendarSection : QUSection{
+    UIButton *selectBtn;
+}
+@property (weak, nonatomic) IBOutlet UILabel *earnCostLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cooperateCostLabel;
+@property (strong,nonatomic) UIView * lineView;
+@property (strong,nonatomic) NSMutableArray * graphies;
+@property (strong,nonatomic) NSMutableArray * btns;
+@property (weak, nonatomic) IBOutlet UIView *btnView;
+@property (weak, nonatomic) IBOutlet UIButton *strategyBtn;
+@property (weak, nonatomic) IBOutlet UIButton *winBtn;
+@property (weak, nonatomic) IBOutlet UITableView *strategyTable;
+@property (weak, nonatomic) IBOutlet UITableView *winTable;
+- (IBAction)clickBtnDisplayGraph:(UIButton *)btn;
+@end
+
+@interface StrategySection : QUSection
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *time;
+@property (weak, nonatomic) IBOutlet UILabel *stockName;
+
+@property (weak, nonatomic) IBOutlet UILabel *amount;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *stopWinLabel;
+@property (weak, nonatomic) IBOutlet UIButton *publishBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *splitLine;
+@property (strong, nonatomic) NSString *stockCode;
+@end
+
+@interface WinSection : QUSection
+
+@property (weak, nonatomic) IBOutlet UILabel *amount;
+@property (weak, nonatomic) IBOutlet UILabel *profit;
+
+@property (weak, nonatomic) IBOutlet UILabel *time;
+@property (weak, nonatomic) IBOutlet UILabel *stockName;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UIButton *publishBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *splitLine;
+
+@property (strong, nonatomic) NSString *stockCode;
+
+@end
+

@@ -1,0 +1,140 @@
+//
+//  SetViewController.m
+//  QianFangGuJie
+//
+//  Created by chenyi on 15/6/16.
+//  Copyright (c) 2015年 JYZD. All rights reserved.
+//
+
+#import "SetViewController.h"
+#import "SetListEntity.h"
+#import "SetListSection.h"
+#import "ExitMock.h"
+#import "LoginViewController.h"
+#import "GesturePwdViewController.h"
+#import "AboutPageViewController.h"
+#import "PhoneLoginViewController.h"
+@interface SetViewController ()
+
+@property(strong,nonatomic)ExitParam* param;
+
+@end
+
+@implementation SetViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"设置";
+    
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"设置列表"];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+-(void)initQuickUI{
+    
+    self.pAdaptor = [QUFlatAdaptor adaptorWithTableView:self.pTableView nibArray:@[@"SetListSection",@"AppFlatEmptySection"] delegate:self];
+    
+    QUEntity* empty=[QUEntity entityWithLine:QU_FLAT_COLOR_LINE];
+    
+    [self.pAdaptor.pSources addEntity:empty withSection:[SetEmptyListSection class]];
+    
+    SetListEntity* entity4 = [SetListEntity entity];
+    entity4.sectionList = @"手机号登录";
+    entity4.tag = 4;
+    entity4.selectionStyle = UITableViewCellSelectionStyleGray;
+    entity4.lineBottomColor = QU_FLAT_COLOR_LINE;
+    entity4.pIndentBottomLevel = 1;
+    entity4.selectedBgColor = QU_FLAT_COLOR_CELL_BG_SELECTED;
+    [self.pAdaptor.pSources addEntity:entity4 withSection:[SetSimpleListSection class]];
+    
+    SetListEntity* entity2 = [SetListEntity entity];
+    entity2.sectionList = @"手势密码";
+    entity2.tag = 2;
+    entity2.selectionStyle = UITableViewCellSelectionStyleGray;
+    entity2.selectedBgColor = QU_FLAT_COLOR_CELL_BG_SELECTED;
+    [self.pAdaptor.pSources addEntity:entity2 withSection:[SetSimpleListSection class]];
+    empty = [QUEntity entityWithLineTop:QU_FLAT_COLOR_LINE lineBottom:QU_FLAT_COLOR_LINE];
+    [self.pAdaptor.pSources addEntity:empty withSection:[SetEmptyListSection class]];
+    
+    SetListEntity* entity3 = [SetListEntity entity];
+    entity3.sectionList = @"关于";
+    entity3.tag = 3;
+    entity3.selectionStyle = UITableViewCellSelectionStyleGray;
+    entity3.selectedBgColor = QU_FLAT_COLOR_CELL_BG_SELECTED;
+    [self.pAdaptor.pSources addEntity:entity3 withSection:[SetSimpleListSection class]];
+    empty = [QUEntity entityWithLineTop:QU_FLAT_COLOR_LINE lineBottom:nil];
+    [self.pAdaptor.pSources addEntity:empty withSection:[SetEmptyListSection class]];
+    empty = [QUEntity entityWithLine:QU_FLAT_COLOR_LINE];
+    [self.pAdaptor.pSources addEntity:empty withSection:[SetEmptyListSection class]];
+    
+    [self.pAdaptor.pSources addEntity:[QUFlatEntity entity] withSection:[exitSection class]];
+    empty = [QUEntity entityWithLineTop:QU_FLAT_COLOR_LINE lineBottom:nil];
+    [self.pAdaptor.pSources addEntity:empty withSection:[SetEmptyListSection class]];
+    [self.pAdaptor setSectionFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 15) sectionClassName:@"AppFlatEmptySection"];
+    
+    [self.pAdaptor notifyChanged];
+    
+}
+
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor forSection:(QUSection *)section forEntity:(QUEntity *)entity{
+    
+    if ([section isKindOfClass:[SetSimpleListSection class]]) {
+        SetListEntity* e = (SetListEntity*)entity;
+        SetSimpleListSection* s = (SetSimpleListSection*)section;
+        CGRect tempFrame = s.title.frame;
+        s.title.frame = tempFrame;
+        s.title.text = e.sectionList;
+}
+    
+    if ([section isKindOfClass:[exitSection class]]) {
+        exitSection* s = (exitSection*)section;
+        [s.exitButton addTarget:self action:@selector(Exit) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor selectedSection:(QUSection *)section entity:(QUEntity *)entity{
+    
+    if(entity.tag == 2){
+        
+        GesturePwdViewController *controller = [[GesturePwdViewController alloc] initWithNibName:@"GesturePwdViewController" bundle:nil];
+        [self.navigationController pushViewController:controller animated:YES];
+
+    }
+    if (entity.tag == 3) {
+        
+        AboutPageViewController* controller = [[AboutPageViewController alloc]initWithNibName:@"AboutPageViewController" bundle:nil];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    if (entity.tag == 4) {
+        PhoneLoginViewController *controller = [[PhoneLoginViewController alloc]initWithNibName:@"PhoneLoginViewController" bundle:nil];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+}
+-(void)QUMock:(QUMock *)mock entity:(QUEntity *)entity{
+
+}
+
+-(void)Exit{
+    
+    self.mock = [ExitMock mock];
+    self.param = [ExitParam param];
+    self.mock.delegate = self;
+    [self.mock run:self.param];
+    [self performSelector:@selector(delUser) withObject:nil afterDelay:1];
+    [[ViewControllerManager sharedManager] showWaitView:self.view];
+}
+
+-(void)delUser{
+    [[ViewControllerManager sharedManager] hideWaitView];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    [AppUtil exitAccount:NO];
+}
+
+@end

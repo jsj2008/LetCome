@@ -1,0 +1,15 @@
+//
+//  ProductDissentListViewController.h
+//  A50
+//
+//  Created by tongshangren on 15/11/11.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "MyViewController.h"
+
+@interface ProductDissentListViewController : AppViewController
+
+
+
+@end

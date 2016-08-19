@@ -1,0 +1,14 @@
+//
+//  PhoneLoginViewController.h
+//  STO
+//
+//  Created by chenyi on 16/4/13.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "AppViewController.h"
+
+@interface PhoneLoginViewController : AppViewController
+@property (weak, nonatomic) IBOutlet QUTableView *myTab;
+
+@end

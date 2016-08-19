@@ -1,0 +1,40 @@
+//
+//  ProductAgreementDetailViewController.m
+//  QianFangGuJie
+//
+//  Created by 余龙 on 15/3/30.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+
+#import "ProductAgreementDetailViewController.h"
+
+@interface ProductAgreementDetailViewController ()
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLab;
+
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+
+@end
+
+@implementation ProductAgreementDetailViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    
+    self.titleLab.text = self.titleName;
+
+
+    
+}
+
+- (void)dealloc {
+    
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self.webView loadData:[self.contentWords dataUsingEncoding:NSUnicodeStringEncoding] MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:nil];
+}
+
+@end

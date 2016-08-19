@@ -1,0 +1,184 @@
+//
+//  CandleChart+Gesture.m
+//  A50
+//
+//  Created by  rjt on 16/1/29.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "CandleChart+Gesture.h"
+#import <objc/runtime.h>
+#import "math.h"
+
+#define kPrevInputTextKey @"Gesture_openGesture"
+#define kPressLineKey @"Gesture_pressLine"
+#define kPressTextLineKey @"Gesture_pressTextLine"
+#define kPressRectLineKey @"Gesture_pressRectLine"
+#define kOriginPointKey @"kOriginPointKey"
+#define kCurrentPointKey @"kCurrentPointKey"
+
+@implementation CandleChart (Gesture)
+@dynamic openGesture;
+@dynamic pressLine;
+@dynamic pressTextLine;
+@dynamic pressRectLine;
+@dynamic originPoint;
+@dynamic currentPoint;
+
+
+-(void)setOpenGesture:(BOOL)openGesture{
+    objc_setAssociatedObject(self, kPrevInputTextKey, [NSNumber numberWithBool:openGesture], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(BOOL)openGesture{
+    return [objc_getAssociatedObject(self, kPrevInputTextKey) boolValue];
+}
+
+-(void)setPressLine:(CALayer*)pressLine{
+    objc_setAssociatedObject(self, kPressLineKey, pressLine, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(CALayer*)pressLine{
+    return objc_getAssociatedObject(self, kPressLineKey);
+}
+
+-(void)setPressTextLine:(CATextLayer*)pressTextLine{
+    objc_setAssociatedObject(self, kPressTextLineKey, pressTextLine, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(CATextLayer*)pressTextLine{
+    return objc_getAssociatedObject(self, kPressTextLineKey);
+}
+
+-(void)setPressRectLine:(CALayer*)pressRectLine{
+    objc_setAssociatedObject(self, kPressRectLineKey, pressRectLine, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(CALayer*)pressRectLine{
+    return objc_getAssociatedObject(self, kPressRectLineKey);
+}
+
+-(void)setOriginPoint:(CGPoint)originPoint{
+    objc_setAssociatedObject(self, kOriginPointKey, [NSValue valueWithCGPoint:originPoint], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(CGPoint)originPoint{
+    NSValue *value = objc_getAssociatedObject(self, kOriginPointKey);
+    return [value CGPointValue];
+}
+
+-(void)setCurrentPoint:(CGPoint)currentPoint{
+    objc_setAssociatedObject(self, kCurrentPointKey, [NSValue valueWithCGPoint:currentPoint], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(CGPoint)currentPoint{
+    NSValue *value = objc_getAssociatedObject(self, kCurrentPointKey);
+    return [value CGPointValue];
+}
+
+-(void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.pressLine removeFromSuperlayer];
+    
+    self.pressLine = nil;
+    
+    self.originPoint = CGPointMake(-1, -1);
+}
+
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCandleTouchEnd object:nil];
+    [self.pressLine removeFromSuperlayer];
+    self.pressLine = nil;
+    self.originPoint = CGPointMake(-1, -1);
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCandleTouchBegan object:nil];
+    UITouch * touch = [touches anyObject];
+    CGPoint ticklePoint = [touch locationInView:self];
+    self.originPoint = ticklePoint;
+    self.currentPoint = CGPointMake(-1, -1);
+    [self changePressLine:ticklePoint];
+    
+
+}
+
+-(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    UITouch * touch = [touches anyObject];
+    CGPoint ticklePoint = [touch locationInView:self];
+    [self changePressLine:ticklePoint];
+    if (self.currentPoint.x >= 0 && fabs(self.currentPoint.x - self.originPoint.x) > fabs(ticklePoint.x - self.originPoint.x) ) {
+        self.originPoint = ticklePoint;
+    }
+    self.currentPoint = ticklePoint;
+    [self changeCandleRangeWithNewPoint:ticklePoint andOldPoint:self.originPoint];
+}
+
+-(void)changeCandleRangeWithNewPoint:(CGPoint)newPoint andOldPoint:(CGPoint)oldPoint{
+    newPoint.x -= _candlelayer.frame.origin.x;
+    oldPoint.x -= _candlelayer.frame.origin.x;
+    
+    if (newPoint.x>=0 && oldPoint.x>=0 ) {
+        NSInteger tmpOffset = (newPoint.x - oldPoint.x)/30;
+        NSInteger minus = _records.count - (_offset + tmpOffset);
+        NSInteger total = _level * _per;
+        if ( total > (_records.count-_offset)){
+            total = (_records.count-_offset);
+        }
+        
+        if (tmpOffset != 0 && minus >= total) {
+            _offset = (_offset + tmpOffset)<0?0:(_offset + tmpOffset);
+            [CATransaction begin];
+            ///关闭隐式动画
+            [CATransaction setDisableActions:YES];
+            [self drawKChart];
+            [CATransaction commit];
+            
+        }
+    }
+}
+
+-(void)changePressLine:(CGPoint)point{
+    point.y -= _candlelayer.frame.origin.y;
+    if (self.openGesture && point.y>0 && point.y<=_candlelayer.frame.size.height) {
+        if (self.pressLine==nil) {
+            self.pressLine = [CALayer layer];
+            
+            [_candlelayer addSublayer:self.pressLine];
+            
+            self.pressLine.frame = CGRectMake(_candlelayer.frame.origin.x,point.y-7.5,_candlelayer.frame.size.width,15);
+            self.pressLine.zPosition = 1000;
+            CALayer *line = [CALayer layer];
+            line.backgroundColor = Color_Bg_RGB(150, 123, 220).CGColor;
+            line.frame = CGRectMake(0,self.pressLine.frame.size.height/2,self.pressLine.frame.size.width,1);
+            [self.pressLine addSublayer:line];
+            self.pressRectLine = [CALayer layer];
+
+            self.pressRectLine.backgroundColor = Color_Bg_RGB(150, 123, 220).CGColor;
+            
+            self.pressTextLine = [CATextLayer layer];
+            self.pressTextLine.contentsScale = 2;
+            self.pressTextLine.foregroundColor = [UIColor whiteColor].CGColor ;
+            self.pressTextLine.fontSize = 12.f; //字体的大小
+            self.pressTextLine.alignmentMode = kCAAlignmentCenter;//字体的对齐方式
+            
+            [self.pressRectLine addSublayer:self.pressTextLine];
+            [self.pressLine addSublayer:self.pressRectLine];
+        }
+        
+        [CATransaction begin];
+        ///关闭隐式动画
+        [CATransaction setDisableActions:YES];
+        if (point.x<_candlelayer.frame.size.width/2) {
+            self.pressRectLine.frame = CGRectMake(_candlelayer.frame.size.width*3/4,0,60,self.pressLine.frame.size.height);
+        }else{
+            self.pressRectLine.frame = CGRectMake(_candlelayer.frame.size.width/4-60,0,60,self.pressLine.frame.size.height);
+        }
+        self.pressTextLine.frame = self.pressRectLine.bounds;
+        self.pressTextLine.string = [NSString stringWithFormat:@"%.2f",_maxPrice - (_maxPrice-_minPrice)*(point.y/_candlelayer.frame.size.height)];
+        
+        self.pressLine.frame = CGRectMake(_candlelayer.frame.origin.x,point.y-7.5,_candlelayer.frame.size.width,15);
+        [CATransaction commit];
+    }
+}
+
+@end

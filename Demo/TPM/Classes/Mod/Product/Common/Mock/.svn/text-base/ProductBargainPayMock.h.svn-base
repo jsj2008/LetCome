@@ -1,0 +1,21 @@
+//
+//  ProductBargainPayMock.h
+//  QianFangGuJie
+//
+//  Created by 李荣 on 15/1/19.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+//支付结算修正单
+
+#import "AppMock.h"
+#import "ProductBargainPayEntity.h"
+
+@interface ProductBargainPayParam : AppParam
+
+@property (nonatomic,copy) NSString *p_type;
+@property(strong,nonatomic)NSString *p_id;
+@property(strong,nonatomic)NSString *fix_id;
+@end
+@interface ProductBargainPayMock : AppMock
+
+@end

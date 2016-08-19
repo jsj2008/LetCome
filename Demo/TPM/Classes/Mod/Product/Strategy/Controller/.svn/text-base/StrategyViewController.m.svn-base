@@ -1,0 +1,105 @@
+//
+//  StrategyViewController.m
+//  TPM
+//
+//  Created by admin on 16/7/25.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "StrategyViewController.h"
+#import "BuildStrategyBll.h"
+#import "InformStrategyBll.h"
+#import "SellStrategyBll.h"
+#import "BuildStrategySection.h"
+
+#import "StrategyHqViewController.h"
+
+typedef enum : NSUInteger {
+    NSBuildRepositorySegment = 0,
+    NsInformSellSegment = 1,
+    NsSellOrderSegment =2,
+} NsSegmentNumber;
+
+@interface StrategyViewController ()
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentView;
+@property (weak, nonatomic) IBOutlet QUTableView *buildTable;
+@property (weak, nonatomic) IBOutlet QUTableView *informTable;
+@property (weak, nonatomic) IBOutlet QUTableView *sellTabkle;
+
+@property (nonatomic, strong) BuildStrategyBll *buildBll;
+@property (nonatomic, strong) InformStrategyBll *informBll;
+@property (nonatomic, strong) SellStrategyBll *sellBll;
+
+@end
+
+@implementation StrategyViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    self.title = @"出策略";
+    self.buildTable.hidden = NO;
+    self.informTable.hidden = YES;
+    self.sellTabkle.hidden = YES;
+    
+    [self.segmentView addTarget:self action:@selector(segmentSelected:) forControlEvents:UIControlEventValueChanged];
+    //绑定bll
+    self.buildBll = [BuildStrategyBll bllWithController:self tableView:self.buildTable];
+    self.informBll = [InformStrategyBll bllWithController:self tableView:self.informTable];
+    self.sellBll = [SellStrategyBll bllWithController:self tableView:self.sellTabkle];
+    
+    //接收跳转通知
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(gotoSell) name:KApplySelled object:nil];
+    
+}
+
+- (void)segmentSelected:(UISegmentedControl *)sender
+{
+    if (sender.selectedSegmentIndex == 0) {
+        
+        self.buildTable.hidden = NO;
+        self.informTable.hidden = YES;
+        self.sellTabkle.hidden = YES;
+    }else if (sender.selectedSegmentIndex == 1){
+        
+        self.buildTable.hidden = YES;
+        self.informTable.hidden = NO;
+        self.sellTabkle.hidden = YES;
+    }
+    else{
+        self.buildTable.hidden = YES;
+        self.informTable.hidden = YES;
+        self.sellTabkle.hidden = NO;
+        
+    }
+}
+
+- (void)jumpToWhere:(NsSegmentNumber)number
+{
+    self.segmentView.selectedSegmentIndex = number;
+    [self segmentSelected:self.segmentView];
+}
+
+- (void)gotoSell
+{
+    self.segmentView.selectedSegmentIndex = 2;
+    [self segmentSelected:self.segmentView];
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

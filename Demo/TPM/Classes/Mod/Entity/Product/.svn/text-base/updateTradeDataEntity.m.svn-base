@@ -1,0 +1,41 @@
+//
+//  updateTradeDataEntity.m
+//  QianFangGuJie
+//
+//  Created by 李荣 on 15/3/13.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+
+#import "updateTradeDataEntity.h"
+
+@implementation updateTradeDataEntity
+
+@end
+
+@implementation updateTradeDataRes_dataEntity
+- (id) initWithCoder: (NSCoder *)coder
+{
+    if (self = [super init])
+    {
+        self.name=[coder decodeObjectForKey:@"name"];
+        self.version=[coder decodeObjectForKey:@"version"];
+        self.create_time=[coder decodeObjectForKey:@"create_time"];
+        self.url=[coder decodeObjectForKey:@"url"];
+        self.flag=[coder decodeObjectForKey:@"flag"];
+        self.ios_hotfix=[coder decodeObjectForKey:@"ios_hotfix"];
+        self.ios_version = [coder decodeObjectForKey:@"ios_version"];
+    }
+    return self;
+}
+- (void) encodeWithCoder: (NSCoder *)coder
+{
+    [coder encodeObject:self.name forKey:@"name"];
+    [coder encodeObject:self.version forKey:@"version"];
+    [coder encodeObject:self.create_time forKey:@"create_time"];
+    [coder encodeObject:self.url forKey:@"url"];
+    [coder encodeObject:self.flag forKey:@"flag"];
+    [coder encodeObject:self.ios_hotfix forKey:@"ios_hotfix"];
+    [coder encodeObject:self.ios_version forKey:@"ios_version"];
+    
+}
+@end

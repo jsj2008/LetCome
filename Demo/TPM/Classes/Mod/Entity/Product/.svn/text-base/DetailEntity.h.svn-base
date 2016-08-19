@@ -1,0 +1,47 @@
+//
+//  DetailEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/2/26.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface DetailEntity : QUEntity
+
+/*产品ID*/
+@property (nonatomic,copy) NSString *ID;
+/*策略人id*/
+@property (nonatomic,copy) NSString *uid;
+/*开仓日期*/
+@property (nonatomic,copy) NSString *buy_date;
+/*策略买*/
+@property (nonatomic,copy) NSString *buy_times;
+/*买入股数次数*/
+@property (nonatomic,copy) NSString *buy_amount;
+/*买入价*/
+@property (nonatomic,copy) NSString *buy_deal_avg_price;
+/*通知平仓日*/
+@property (nonatomic,copy) NSString *apply_sell_date;
+/*通知平仓日所在日*/
+@property (nonatomic,copy) NSString *apply_sell_days;
+/*通知平仓日收盘价*/
+@property (nonatomic,copy) NSString *y_close;
+/*通知平仓日收益浮盈*/
+@property (nonatomic,copy) NSString *apply_sell_profit_rate;
+/*平仓日期*/
+@property (nonatomic,copy) NSString *sell_date;
+/*策略卖次数*/
+@property (nonatomic,copy) NSString *sell_times;
+/*卖出价*/
+@property (nonatomic,copy) NSString *sell_deal_avg_price;
+/*卖出股数*/
+@property (nonatomic,copy) NSString *sell_amount;
+/*卖出成交金额*/
+@property (nonatomic,copy) NSString *sell_fund;
+/*买入成交金额*/
+@property (nonatomic,copy) NSString *buy_fund;
+/*状态 1:用户通知 2:系统通知*/
+@property (nonatomic,copy) NSString *state;
+@end

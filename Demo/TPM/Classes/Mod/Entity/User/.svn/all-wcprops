@@ -1,0 +1,281 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/tpz_app/!svn/ver/3198/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User
+END
+CPBAmountEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/CPBAmountEntity.m
+END
+MobileCodeRegCheckEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/MobileCodeRegCheckEntity.h
+END
+MobileRegisterPawnicMaskEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/MobileRegisterPawnicMaskEntity.m
+END
+UserInfoEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/UserInfoEntity.m
+END
+MobileCodeRegCheckEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/MobileCodeRegCheckEntity.m
+END
+ExitEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/ExitEntity.h
+END
+checkPicEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/checkPicEntity.h
+END
+UserFirstOpenAppEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/tpz_app/!svn/ver/3198/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/UserFirstOpenAppEntity.h
+END
+MobileRegisterEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/MobileRegisterEntity.h
+END
+SetPasswordEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/SetPasswordEntity.h
+END
+ExitEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/ExitEntity.m
+END
+checkPicEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/checkPicEntity.m
+END
+UserFirstOpenAppEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/tpz_app/!svn/ver/3198/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/UserFirstOpenAppEntity.m
+END
+ResetPasswordMaskEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/ResetPasswordMaskEntity.h
+END
+MobileRegisterEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/MobileRegisterEntity.m
+END
+CustomerServiceEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/CustomerServiceEntity.h
+END
+SetPasswordEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/SetPasswordEntity.m
+END
+UserUnionCheckEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/UserUnionCheckEntity.h
+END
+ResetPasswordMaskEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/ResetPasswordMaskEntity.m
+END
+CustomerServiceEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/CustomerServiceEntity.m
+END
+UserUnionCheckEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/UserUnionCheckEntity.m
+END
+GetsecuritycodeEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/GetsecuritycodeEntity.h
+END
+UidMobileCodeCheckEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/UidMobileCodeCheckEntity.h
+END
+UserAgreementListEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/UserAgreementListEntity.h
+END
+GetsecuritycodeEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/GetsecuritycodeEntity.m
+END
+UidMobileCodeCheckEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/UidMobileCodeCheckEntity.m
+END
+UserAgreementListEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/UserAgreementListEntity.m
+END
+UserThirdRegEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/UserThirdRegEntity.h
+END
+ChangePasswordEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/ChangePasswordEntity.h
+END
+LoginEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/LoginEntity.h
+END
+SendMobileCodeEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/SendMobileCodeEntity.h
+END
+UserThirdRegEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/UserThirdRegEntity.m
+END
+LoginEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/LoginEntity.m
+END
+ChangePasswordEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/ChangePasswordEntity.m
+END
+SendUidMobileCodeEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/SendUidMobileCodeEntity.h
+END
+MobileRegisterPawnicEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/MobileRegisterPawnicEntity.h
+END
+SendMobileCodeEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/SendMobileCodeEntity.m
+END
+SendUidMobileCodeEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/SendUidMobileCodeEntity.m
+END
+MobileRegisterPawnicEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/MobileRegisterPawnicEntity.m
+END
+MobileRegisterPawEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/MobileRegisterPawEntity.h
+END
+NickNameEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/NickNameEntity.h
+END
+CPBAmountEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/CPBAmountEntity.h
+END
+MobileRegisterPawEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/MobileRegisterPawEntity.m
+END
+NickNameEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/NickNameEntity.m
+END
+MobileRegisterPawnicMaskEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/MobileRegisterPawnicMaskEntity.h
+END
+UserInfoEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/User/UserInfoEntity.h
+END

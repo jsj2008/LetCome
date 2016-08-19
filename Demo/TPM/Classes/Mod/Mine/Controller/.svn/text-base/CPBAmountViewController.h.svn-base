@@ -1,0 +1,27 @@
+//
+//  CPBAmountViewController.h
+//  QianFangGuJie
+//
+//  Created by 李荣 on 15/3/30.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+
+#import "MyViewController.h"
+
+@interface CPBAmountViewController : AppViewController
+@property(copy,nonatomic)NSString* available;
+@property(copy,nonatomic)NSString* freeze;
+
+- (IBAction)cashClicked:(id)sender;
+- (IBAction)rechargeClicked:(id)sender;
+- (void)accountClicked:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblUseMoney;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblFreeze;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblCPBAccount;
+
+
+
+@end

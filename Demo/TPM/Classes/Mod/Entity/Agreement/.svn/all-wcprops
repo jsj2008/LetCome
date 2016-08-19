@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/tpz_app/!svn/ver/3213/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Agreement
+END
+SignAgreementEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Agreement/SignAgreementEntity.m
+END
+SignedArticleContentEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Agreement/SignedArticleContentEntity.m
+END
+ArticleContentEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Agreement/ArticleContentEntity.h
+END
+SignedArticleListEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Agreement/SignedArticleListEntity.m
+END
+ArticleListEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/tpz_app/!svn/ver/3213/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Agreement/ArticleListEntity.h
+END
+ArticleContentEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Agreement/ArticleContentEntity.m
+END
+GetAgreementInfoEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Agreement/GetAgreementInfoEntity.h
+END
+GetuserUnsignedAgreementEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/tpz_app/!svn/ver/3185/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Agreement/GetuserUnsignedAgreementEntity.h
+END
+ArticleListEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Agreement/ArticleListEntity.m
+END
+GetAgreementInfoEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Agreement/GetAgreementInfoEntity.m
+END
+GetuserUnsignedAgreementEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Agreement/GetuserUnsignedAgreementEntity.m
+END
+SignAgreementEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Agreement/SignAgreementEntity.h
+END
+SignedArticleContentEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Agreement/SignedArticleContentEntity.h
+END
+SignedArticleListEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/tpz_app/!svn/ver/2891/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Entity/Agreement/SignedArticleListEntity.h
+END

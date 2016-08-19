@@ -1,0 +1,13 @@
+//
+//  ProductHqEntity.m
+//  QianFangGuJie
+//
+//  Created by  rjt on 15/5/19.
+//  Copyright (c) 2015年 JYZD. All rights reserved.
+//
+
+#import "ProductHqEntity.h"
+
+@implementation ProductHqEntity
+
+@end

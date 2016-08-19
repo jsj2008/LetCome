@@ -1,0 +1,39 @@
+//
+//  GetuserUnsignedAgreementEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/3/1.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface GetuserUnsignedAgreementEntity : QUEntity
+
+@property(strong,nonatomic)NSString* result;
+@property(assign,nonatomic)NSInteger error_code;
+@property(strong,nonatomic)NSMutableArray* res_data;
+
+@property (nonatomic,strong) NSMutableString *id_list;
+
+@end
+
+@interface GetuserUnsignedAgreementRes_dataEntity : QUEntity
+
+//建议ID
+@property(strong,nonatomic)NSString* ID;
+//版本号
+@property(strong,nonatomic)NSString* version;
+//协议名称
+@property(strong,nonatomic)NSString* name;
+
+@property(strong,nonatomic)NSString* sign_time;
+//协议发布时间
+@property(strong,nonatomic)NSString* publish_time;
+
+@property(strong,nonatomic)NSString* create_time;
+//协议状态
+@property (nonatomic,copy) NSString *status;
+//协议对应用户类型
+@property (nonatomic,copy) NSString *user_type;
+@end

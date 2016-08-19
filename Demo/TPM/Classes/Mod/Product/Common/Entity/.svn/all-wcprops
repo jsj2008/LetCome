@@ -1,0 +1,221 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity
+END
+UserDeviceEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/UserDeviceEntity.h
+END
+CfgEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/CfgEntity.h
+END
+ProductChartEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductChartEntity.h
+END
+UserDeviceEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/UserDeviceEntity.m
+END
+CfgEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/CfgEntity.m
+END
+ProductChartEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductChartEntity.m
+END
+PopupMsgEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/PopupMsgEntity.h
+END
+ProductBargainFixEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductBargainFixEntity.h
+END
+ProductKChartEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductKChartEntity.h
+END
+ProductBargainPayEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductBargainPayEntity.h
+END
+PopupMsgEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/PopupMsgEntity.m
+END
+ProductTipsEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductTipsEntity.h
+END
+ProductBargainFixEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductBargainFixEntity.m
+END
+ProductKChartEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductKChartEntity.m
+END
+ProductBargainPayEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductBargainPayEntity.m
+END
+ProductVolChartEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductVolChartEntity.h
+END
+ProductTipsEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductTipsEntity.m
+END
+ProductBargainDeclaredEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductBargainDeclaredEntity.h
+END
+ProductVolChartEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductVolChartEntity.m
+END
+ProductInfoEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductInfoEntity.h
+END
+ProductBargainDeclaredEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductBargainDeclaredEntity.m
+END
+ProductPanKouEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductPanKouEntity.h
+END
+ProductExchangeRateEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductExchangeRateEntity.h
+END
+ProductBargainListEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductBargainListEntity.h
+END
+ProductInfoEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductInfoEntity.m
+END
+ProductPanKouEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductPanKouEntity.m
+END
+ProductHoldingTimeEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductHoldingTimeEntity.h
+END
+ProductExchangeRateEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductExchangeRateEntity.m
+END
+ProductBargainListEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductBargainListEntity.m
+END
+ProductDissentListEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductDissentListEntity.h
+END
+ProductHqEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductHqEntity.h
+END
+ProductHoldingTimeEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductHoldingTimeEntity.m
+END
+ProductCheckOutFixListEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductCheckOutFixListEntity.h
+END
+ProductDissentListEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductDissentListEntity.m
+END
+ProductHqEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductHqEntity.m
+END
+ProductCheckOutFixListEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/tpz_app/!svn/ver/2910/tpz_iOS/trunk/TPM/TPM/Classes/Mod/Product/Common/Entity/ProductCheckOutFixListEntity.m
+END

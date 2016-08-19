@@ -1,0 +1,13 @@
+//
+//  NickNameEntity.h
+//  QianFangGuJie
+//
+//  Created by  rjt on 15/4/30.
+//  Copyright (c) 2015年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface NickNameEntity : QUEntity
+@property(strong,nonatomic)NSString* result;
+@end

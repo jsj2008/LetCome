@@ -1,0 +1,20 @@
+//
+//  GetOvertimeIntegralEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/3/2.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface GetOvertimeIntegralEntity : QUEntity
+
+@property (nonatomic,copy)NSString *uid;
+@property (nonatomic,copy)NSString *account_type;
+@property (nonatomic,copy)NSString *amount;
+@property (nonatomic,copy)NSString *expire_time;
+/*展示文字*/
+@property (nonatomic,copy)NSString *text;
+
+@end

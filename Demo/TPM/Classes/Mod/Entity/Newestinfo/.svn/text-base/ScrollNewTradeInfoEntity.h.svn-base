@@ -1,0 +1,47 @@
+//
+//  ScrollNewTradeInfoEntity.h
+//  STO
+//
+//  Created by chenyi on 16/6/27.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface ScrollNewTradeInfoEntity : QUEntity
+@property(nonatomic,strong)NSArray *records;
+@end
+
+
+@interface ScrollNewTradeInfoRecordsEntity : QUEntity
+
+/*点买人昵称*/
+@property(nonatomic,copy)NSString *nickname;
+/*投资人ID*/
+@property(nonatomic,copy)NSString *invester_id;
+/*投资人名*/
+@property(nonatomic,copy)NSString *invester_nick;
+/*策略人头像地址*/
+@property(nonatomic,copy)NSString *pic;
+/*投资人头像地址*/
+@property(nonatomic,copy)NSString *invester_pic;
+/*点买方向 1：多 2：空 0：无多空*/
+@property(nonatomic,copy)NSString *operation_direction;
+/*产品名称*/
+@property(nonatomic,copy)NSString *stock_name;
+/*申购数量(手数，如需展示股数请乘以100)*/
+@property(nonatomic,copy)NSString *stock_amount;
+/*1:代表买入操作 2：代表卖出操作*/
+@property(nonatomic,copy)NSString *state;
+/*盈利目标*/
+@property(nonatomic,copy)NSString *stop_profit_point;
+/*止盈价*/
+@property(nonatomic,copy)NSString *stop_win_price;
+/*盈利*/
+@property(nonatomic,copy)NSString *profit;
+/*合作时间*/
+@property(nonatomic,copy)NSString *start_time;
+/*卖出时间*/
+@property(nonatomic,copy)NSString *sell_time;
+
+@end

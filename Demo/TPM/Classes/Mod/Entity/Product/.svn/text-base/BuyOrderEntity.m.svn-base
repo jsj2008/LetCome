@@ -1,0 +1,13 @@
+//
+//  BuyOrderEntity.m
+//  TPZ
+//
+//  Created by chenyi on 16/2/26.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "BuyOrderEntity.h"
+
+@implementation BuyOrderEntity
+
+@end

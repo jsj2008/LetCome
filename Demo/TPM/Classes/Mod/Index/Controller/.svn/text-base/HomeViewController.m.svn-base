@@ -1,0 +1,61 @@
+//
+//  HomeViewController.m
+//  A50
+//
+//  Created by  rjt on 15/10/11.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "HomeViewController.h"
+#import "HomeBll.h"
+#import "MineViewController.h"
+#import "NickNameViewController.h"
+#import "GestureUtil.h"
+#import "GestureVC.h"
+
+
+@interface HomeViewController ()<MyViewControllerDelegate>
+@property (nonatomic,strong) HomeBll *homeBll;
+@end
+
+@implementation HomeViewController
+
+- (void)viewDidLoad {
+    self.title = @"大厅";
+
+    [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;//UITableView去掉顶部留空
+
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    // 显示导航条
+    [[self navigationController] setNavigationBarHidden:YES animated:NO];
+
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)initQuickUI{
+    self.homeBll = [HomeBll bllWithController:self tableView:self.pTableView];
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+@end

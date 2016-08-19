@@ -1,0 +1,14 @@
+//
+//  AboutPageViewController.h
+//  QianFangGuJie
+//
+//  Created by 李荣 on 15/3/30.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+
+#import "MyViewController.h"
+
+@interface AboutPageViewController : AppViewController
+@property (weak, nonatomic) IBOutlet UIImageView *imgIcon;
+
+@end

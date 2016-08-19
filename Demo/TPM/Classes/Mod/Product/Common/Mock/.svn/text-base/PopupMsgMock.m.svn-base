@@ -1,0 +1,28 @@
+//
+//  PopupMsgMock.m
+//  A50
+//
+//  Created by  rjt on 15/12/30.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "PopupMsgMock.h"
+#import "PopupMsgEntity.h"
+
+@implementation PopupMsgParam
+
+@end
+
+@implementation PopupMsgMock
+- (NSString *)getOperatorType
+{
+    return @"/message/getpopupmsg";
+}
+
+
+- (Class)getEntityClass
+{
+    return [PopupMsgEntity class];
+}
+
+@end

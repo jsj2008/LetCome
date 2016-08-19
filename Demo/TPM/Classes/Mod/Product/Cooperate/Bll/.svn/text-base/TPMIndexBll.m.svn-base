@@ -1,0 +1,394 @@
+//
+//  TPMIndexBll.m
+//  TPM
+//
+//  Created by tongshangren on 16/7/27.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "TPMIndexBll.h"
+#import "TPMIndexSection.h"
+#import "InfomationManager.h"
+#import "AdEntity.h"
+#import "ScrollNoticeEntity.h"
+#import "MyWebViewController.h"
+#import "TradeCostStatisticsEntity.h"
+#import "ScrollTradeInfoEntity.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "PushManager.h"
+#import "PopupMsgEntity.h"
+#import "AgreementFunction.h"
+#import "STODBManager.h"
+
+#import "TPMIndexTableViewCell.h"
+#import "STOSearchViewController.h"
+#import "TPMDetailViewController.h"
+
+#import <QuartzCore/QuartzCore.h>
+#import "MJRefresh.h"
+#import "PolicyListEntity.h"
+
+
+
+
+@interface TPMIndexBll()<UITableViewDataSource,UITableViewDelegate>
+@property(nonatomic,strong)TPMTableSection *tableSection;
+@property(nonatomic,strong)TPMIndexSection *indexSection;
+@property(nonatomic,strong)NSMutableArray *cellArray;
+@property(nonatomic,strong)NSMutableArray *policyArray;
+@property(nonatomic,assign)int count;
+@property(nonatomic,strong)NSString *stock_total;
+@end
+
+
+
+@implementation TPMIndexBll
+
+-(void)loadBll{
+    [super loadBll];
+    self.cellArray=[[NSMutableArray alloc]initWithCapacity:0];
+    self.policyArray=[[NSMutableArray alloc]initWithCapacity:0];
+}
+
+-(void)controllerWillAppear{
+    [self initTime];
+    DEFINED_WEAK_SELF
+    [[InfomationManager shareInfomationManager] getAd:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if (val) {
+            _self.advs = ((AdEntity*)entity).records;
+            [_self.pAdaptor notifyChanged];
+        }
+    }];
+   // [self refreshTradeInfo];
+    
+}
+
+-(void)controllerDidAppear{
+    [self initTime];
+    
+}
+
+-(void)controllerDidDisappear{
+    [[WHTimerManager shareTimerManager] removeTarget:self notifyName:kHomeHqRefresh];
+}
+
+-(void)initTime{
+    if (![[WHTimerManager shareTimerManager] hasNotifyName:kHomeHqRefresh]) {
+        [[WHTimerManager shareTimerManager] addTarget:self selector:@selector(refreshHq) notifyName:kHomeHqRefresh];
+    }
+}
+
+
+-(void)refreshHq{
+    if ([[WHOnceTask shareOnceTask]expired:kHomeHqKey validTime:kHomeHqVal]) {
+        NSString *code = @"399001;399006";//中小板指、创业版指、沪深300
+        DEFINED_WEAK_SELF
+        [[ProductsManager shareProductsManager ] refreshHQWithCode:code Block:^(ReturnValue *val, QUMock *mock, QUEntity *entity){
+            if (val) {
+                HqEntity *e = (HqEntity*)entity;
+                for (HqRecordsEntity* record in e.records ) {
+                    if([record.stockcode isEqualToString:@"399001"]) {
+                        _self.hqSzEntity =record;
+                    }else if([record.stockcode isEqualToString:@"399006"]) {
+                        _self.hqCyEntity =record;
+                    }
+                }
+                
+                [_self handleHqWithNew:_self.hqSzEntity.New yClose:_self.hqSzEntity.YClose priceLabel:_self.indexSection.lblSzIndex rateLabel:_self.indexSection.lblSzDetail];
+                [_self handleHqWithNew:_self.hqCyEntity.New yClose:_self.hqCyEntity.YClose priceLabel:_self.indexSection.lblCyIndex rateLabel:_self.indexSection.lblCyDetail];
+                
+                
+                //[_self.pAdaptor notifyChanged];
+            }
+            
+            [[ProductsManager shareProductsManager ] refreshSHHQWithBlock:^(ReturnValue *val, QUMock *mock, QUEntity *entity){
+                if (val) {
+                    ProductPanKouEntity *e = (ProductPanKouEntity*)entity;
+                    _self.hqShEntity = e;
+                    [_self handleHqWithNew:_self.hqShEntity.New yClose:_self.hqShEntity.YClose  priceLabel:_self.indexSection.lblShIndex rateLabel:_self.indexSection.lblShDetail];
+                }
+            }];
+        }];
+        
+    }
+    if ([[WHOnceTask shareOnceTask]expired:kScrollAdvKey validTime:kScrollAdvVal]) {
+        [adSection scrollToNext];
+    }
+
+}
+
+-(void)handleHqWithNew:(NSString*)New yClose:yClose  priceLabel:(UILabel*)priceLabel rateLabel:(UILabel*)rateLabel{
+    if (New) {
+        UIColor *color = [AppUtil colorWithOpen:[yClose floatValue] andNew:[New floatValue]];
+        priceLabel.textColor = color;
+        rateLabel.textColor = color;
+        priceLabel.text = [AppUtil price:New];
+        float minus = [New floatValue] - [yClose floatValue];
+        NSString *minusPrice = [AppUtil price:[NSString stringWithFormat:@"%f",minus]];
+        NSString *rate = [NSString stringWithFormat:@"%.2f%%",([New floatValue] - [yClose floatValue])/[yClose floatValue]*100];
+        if (minus>0) {
+            rateLabel.text = [NSString stringWithFormat:@"+%@ +%@",minusPrice,rate];
+        }else{
+            rateLabel.text = [NSString stringWithFormat:@"%@ %@",minusPrice,rate];
+        }
+    }
+}
+
+
+
+
+
+-(void)initQuickUI:(QUTableView *)tableView{
+    if (iPhone6 || iPhone6Plus) {
+        tableView.scrollEnabled = NO;
+    }
+    self.pAdaptor = [QUFlatAdaptor adaptorWithTableView:tableView nibArray:@[@"TPMIndexSection"] delegate:self backGroundClr:[UIColor colorWithRed:244.0/255.0 green:244.0/255.0 blue:244.0/255.0 alpha:1.0]];
+    
+    QUEntity *entity= [QUEntity entity];
+    entity.tag = 100;
+    [self.pAdaptor.pSources addEntity:entity withSection:[TPMAdSection class]];
+    [self.pAdaptor.pSources addEntity:[QUEntity entity] withSection:[TPMIndexSection class]];
+    
+    [self.pAdaptor.pSources addEntity:[QUEntity entity] withSection:[TPMTableSection class]];
+    
+    self.pAdaptor.pTableView.scrollEnabled = YES;
+    
+    [self.pAdaptor notifyChanged];
+}
+
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor forSection:(QUSection *)section forEntity:(QUEntity *)entity{
+    
+    if ([section isKindOfClass:[TPMAdSection class]]) {
+        TPMAdSection *s = (TPMAdSection *)section;
+        adSection = s;
+        if(_advs){
+            [s loadAdvs:_advs];
+        }
+    }
+    
+    if ([section isKindOfClass:[TPMIndexSection class]]) {
+        TPMIndexSection *s = (TPMIndexSection *)section;
+        self.indexSection=(TPMIndexSection *)section;
+        
+        UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(searchClicked)];
+        [self.indexSection.searchFrame addGestureRecognizer:gesture];
+        
+//        [self handleHq:self.hqShEntity priceLabel:s.lblShIndex rateLabel:s.lblShDetail];
+//        [self handleHq:self.hqSzEntity priceLabel:s.lblSzIndex rateLabel:s.lblSzDetail];
+//        [self handleHq:self.hqCyEntity priceLabel:s.lblCyIndex rateLabel:s.lblCyDetail];
+    }
+
+    
+
+}
+
+
+
+-(void)searchClicked{
+    STOSearchViewController *search = [[STOSearchViewController alloc] initWithNibName:@"STOSearchViewController" bundle:nil];
+    
+    CATransition* transition = [CATransition animation];
+    transition.type = kCATransitionPush;//可更改为其他方式
+    transition.subtype = kCATransitionFromTop;//可更改为其他方式
+    [self.controller.navigationController.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+    search.stock_total=self.stock_total;
+    [self.controller.navigationController.navigationController pushViewController:search animated:NO];
+}
+
+
+-(void)getPolicyList{
+    DEFINED_WEAK_SELF
+
+    [self.cellArray removeAllObjects];
+
+    [self.policyArray removeAllObjects];
+    self.count=0;
+    [[ProductsManager shareProductsManager]getPolicyListByCode:@"0" startID:@"0" limit:@"20" block:^(ReturnValue *val, QUMock *mock, QUEntity *entity) {
+        if ([entity isKindOfClass:[PolicyListEntity class]]) {
+            PolicyListEntity *e=(PolicyListEntity *)entity;
+            _self.indexSection.lblHoldPlace.text=[NSString stringWithFormat:@"目前共有%@只个股策略征集中",e.stock_total];
+            _self.stock_total=e.stock_total;
+            if (e.records.count) {
+                
+                for (NSArray *temparray in e.records) {
+                    [_self.policyArray addObject:temparray];
+                    
+                }
+                [_self reloadPolicyData];
+            }
+        }
+    }];
+
+}
+
+
+
+-(void)reloadPolicyData{
+    [self.cellArray removeAllObjects];
+    [self.tableSection.tableView.footer endRefreshing];
+    [self.tableSection.tableView.header endRefreshing];
+    NSArray *array=[self.policyArray objectAtIndex:self.count];
+    
+    for (NSDictionary *dic in array) {
+
+        QUJsonParse *jsonParse = [[QUJsonParse alloc]init];
+        NSData * jsonData = [NSJSONSerialization dataWithJSONObject:dic options:kNilOptions error:nil];
+
+        NSString *jsStr=[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+        PolicyListRecordsEntity* e =[jsonParse objFromString:jsStr withClass:[PolicyListRecordsEntity class]];
+
+        [self.cellArray addObject:e];
+    }
+    
+    [self.tableSection.tableView reloadData];
+}
+
+
+
+-(void)QUAdaptor:(QUAdaptor *)adaptor willDidLoadSection:(QUSection *)section willDidLoadEntity:(QUEntity *)entity{
+    if ([section isKindOfClass:[TPMTableSection class]]) {
+        self.tableSection=(TPMTableSection *)section;
+
+        
+        self.tableSection.tableView.delegate=self;
+        self.tableSection.tableView.dataSource=self;
+        [self getPolicyList];
+        
+        
+        
+        DEFINED_WEAK_SELF
+        MJRefreshNormalHeader *headerView = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [_self loadLastData];
+        }];
+        MJRefreshBackNormalFooter *footerView = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+            [_self loadNextData];
+        }];
+        
+        NSString * MJRefreshFooterPullToRefresh = @"上拉即可翻页";
+        NSString * MJRefreshFooterReleaseToRefresh = @"释放即可翻页";
+        NSString * MJRefreshFooterRefreshing = @"加载中";
+        
+        NSString * MJRefreshHeaderPullToRefresh = @"下拉即可刷新";
+        NSString * MJRefreshHeaderReleaseToRefresh = @"释放即可刷新";
+        NSString * MJRefreshHeaderRefreshing = @"加载中";
+        [headerView setTitle:MJRefreshHeaderPullToRefresh forState:MJRefreshStateIdle];
+        [headerView setTitle:MJRefreshHeaderReleaseToRefresh forState:MJRefreshStatePulling];
+        [headerView setTitle:MJRefreshHeaderRefreshing forState:MJRefreshStateRefreshing];
+        headerView.lastUpdatedTimeLabel.hidden = YES;
+        
+        [footerView setTitle:MJRefreshFooterPullToRefresh forState:MJRefreshStateIdle];
+        [footerView setTitle:MJRefreshFooterReleaseToRefresh forState:MJRefreshStatePulling];
+        [footerView setTitle:MJRefreshFooterRefreshing forState:MJRefreshStateRefreshing];
+        
+        self.tableSection.tableView.mj_header=headerView;
+        self.tableSection.tableView.mj_footer=footerView;
+
+
+    }
+}
+
+
+
+
+
+
+-(void)loadLastData{
+    self.count--;
+    if (self.count<0) {
+        [self getPolicyList];
+    }else{
+        [self reloadPolicyData];
+    }
+}
+
+-(void)loadNextData{
+    self.count++;
+    if (self.count>=self.policyArray.count) {
+        [self getPolicyList];
+    }
+    else{
+        [self reloadPolicyData];
+    }
+    
+    
+}
+
+
+-(void)go2detail:(PolicyListRecordsEntity *)entity{
+    TPMDetailViewController *detailVC=[[TPMDetailViewController alloc]initWithNibName:@"TPMDetailViewController" bundle:nil];
+    detailVC.policyEntity=entity;
+    [self.controller.navigationController.navigationController pushViewController:detailVC animated:YES];
+}
+
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return[self.cellArray count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView registerNib:[UINib nibWithNibName:@"TPMIndexTableViewCell" bundle:nil] forCellReuseIdentifier:@"TPMIndexTableViewCell"];
+    TPMIndexTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"TPMIndexTableViewCell"];
+
+    PolicyListRecordsEntity *e=[self.cellArray objectAtIndex:indexPath.row];
+    cell.lblUserID.text=e.investor_code;
+    cell.lblFund.text=[NSString stringWithFormat:@"%d万",[e.fund intValue]/10000];
+    cell.lblStockName.text=e.stock_name;
+    cell.lblTimeLeft.text=e.end_time_str;
+
+    switch ([e.fund_state intValue]) {
+        case 0:
+            cell.lblState.layer.borderColor=[[UIColor colorWithRed:190.0/255.0 green:190.0/255.0 blue:190.0/255.0 alpha:1.0]CGColor];
+            cell.lblState.text=@"售罄";
+            break;
+        case 1:
+            cell.lblState.layer.borderColor=[[UIColor colorWithRed:255.0/255.0 green:120.0/255.0 blue:20.0/255.0 alpha:1.0]CGColor];
+            cell.lblState.text=@"少量";
+            break;
+        case 2:
+            cell.lblState.layer.borderColor=[[UIColor colorWithRed:80.0/255.0 green:140.0/255.0 blue:240.0/255.0 alpha:1.0]CGColor];
+            cell.lblState.text=@"充足";
+            break;
+        default:
+            break;
+    }
+
+    switch ([e.state intValue]) {
+        case 0:
+            cell.lblStrategy.textColor=Color_Bg_757575;
+
+            cell.lblStrategy.backgroundColor=[UIColor colorWithRed:224.0/255.0 green:224.0/255.0 blue:224.0/255.0 alpha:1.0];
+            break;
+        case 1:
+            cell.lblStrategy.textColor=[UIColor whiteColor];
+            cell.lblStrategy.backgroundColor=[UIColor colorWithRed:80.0/255.0 green:140.0/255.0 blue:240.0/255.0 alpha:1.0];
+            break;
+        default:
+            break;
+    }
+
+    return cell;
+}
+
+
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    PolicyListRecordsEntity *e=(PolicyListRecordsEntity *)[self.cellArray objectAtIndex:indexPath.row];
+    if ([e.state intValue]==1) {
+        [self go2detail:e];
+    }
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 110;
+}
+
+
+
+@end

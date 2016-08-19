@@ -1,0 +1,14 @@
+//
+//  TPMIndexViewController.h
+//  TPM
+//
+//  Created by tongshangren on 16/7/27.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "AppViewController.h"
+
+@interface TPMIndexViewController : AppViewController
+@property (weak, nonatomic) IBOutlet QUTableView *indexTableView;
+
+@end

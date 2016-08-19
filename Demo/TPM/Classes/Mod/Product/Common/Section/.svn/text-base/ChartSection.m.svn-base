@@ -1,0 +1,54 @@
+//
+//  ChartSection.m
+//  STO
+//
+//  Created by  rjt on 16/3/22.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "ChartSection.h"
+
+@implementation ChartSection
+-(void)sectionDidLoad{
+    self.clipsToBounds = YES;
+    self.detailView.clipsToBounds = YES;
+    self.graphicController = [[STOCandleViewController alloc] initWithNibName:@"STOCandleViewController" bundle:nil];
+    self.graphicController.manager = self.manager;
+    self.graphicController.view.frame = self.detailView.bounds;
+    [self.detailView addSubview:self.graphicController.view];
+    //    self.graphicController.needAnimation = NO;
+    [self fillParent];
+}
+
+-(void)setManager:(STOManager *)manager{
+    _manager = manager;
+    _graphicController.manager = manager;
+}
+
+-(void)layoutSublayersOfLayer:(CALayer *)layer{
+    [super layoutSublayersOfLayer:layer];
+    self.graphicController.view.frame = self.detailView.bounds;
+   
+}
+
+-(void)refreshPankou:(ProductPanKouEntity *)e{
+    [self.graphicController refreshPankou:e];
+}
+
+-(void) reload{
+    [self.graphicController.view removeFromSuperview];
+    DEFINED_WEAK_SELF
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [_self sectionDidLoad];
+    });
+
+}
+
+//-(void)setFrame:(CGRect)frame{
+//    if (iPhone4 || iPhone5) {
+//        frame.size.height = 320;
+//    }
+//    [super setFrame:frame];
+//}
+
+@end

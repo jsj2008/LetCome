@@ -1,0 +1,16 @@
+//
+//  ProductBargainPayEntity.h
+//  QianFangGuJie
+//
+//  Created by 李荣 on 15/1/19.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+//支付结算修正单
+
+#import "QUEntity.h"
+
+@interface ProductBargainPayEntity : QUEntity
+@property(strong,nonatomic)NSString* result;     //结果
+@property(strong,nonatomic)NSString* msg;       //消息
+@property(assign,nonatomic)NSInteger code;      //错误码
+@end

@@ -1,0 +1,21 @@
+//
+//  ProductCheckOutFixListEntity.m
+//  A50
+//
+//  Created by tongshangren on 15/11/9.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "ProductCheckOutFixListEntity.h"
+
+@implementation ProductCheckOutFixListEntity
+
+@end
+
+
+
+@implementation ProductCheckOutFixListRecordsEntity
+
+
+
+@end

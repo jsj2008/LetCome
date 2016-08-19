@@ -1,0 +1,16 @@
+//
+//  SetGestureEntity.h
+//  TPZ
+//
+//  Created by chenyi on 16/3/1.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "QUEntity.h"
+
+@interface SetGestureEntity : QUEntity
+
+/*0:设置成功*/
+@property (nonatomic,copy)NSString *error_code;
+
+@end

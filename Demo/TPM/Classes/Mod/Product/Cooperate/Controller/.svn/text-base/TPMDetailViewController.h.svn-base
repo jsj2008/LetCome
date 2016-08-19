@@ -1,0 +1,18 @@
+//
+//  TPMDetailViewController.h
+//  TPM
+//
+//  Created by tongshangren on 16/7/29.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "AppViewController.h"
+#import "PolicyListEntity.h"
+
+@interface TPMDetailViewController : AppViewController
+@property(nonatomic,strong)PolicyListRecordsEntity *policyEntity;
+
+@property (weak, nonatomic) IBOutlet QUTableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *btnJoin;
+
+@end

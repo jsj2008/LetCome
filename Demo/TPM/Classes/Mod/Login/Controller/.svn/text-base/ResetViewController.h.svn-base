@@ -1,0 +1,19 @@
+//
+//  ResetViewController.h
+//  QianFangGuJie
+//
+//  Created by  rjt on 15/4/17.
+//  Copyright (c) 2015年 余龙. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "GestureVC.h"
+@class UserInfoManager;
+@interface ResetViewController : AppViewController
+@property NSString* phoneNum;
+@property(strong,nonatomic)UserInfoManager* userinfomanager;
+@property(weak,nonatomic)id<PasswordViewControllerDelegate> pwdDelegate;
+
+
+
+@end

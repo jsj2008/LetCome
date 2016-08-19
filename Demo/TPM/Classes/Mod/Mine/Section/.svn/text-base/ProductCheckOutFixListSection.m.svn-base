@@ -1,0 +1,28 @@
+//
+//  ProductCheckOutFixListSection.m
+//  A50
+//
+//  Created by tongshangren on 15/11/10.
+//  Copyright © 2015年 JYZD. All rights reserved.
+//
+
+#import "ProductCheckOutFixListSection.h"
+
+@implementation ProductCheckOutFixListSection
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+}
+*/
+
+@end
+
+
+
+@implementation ProductCheckOutFixHeadSection
+
+
+@end

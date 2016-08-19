@@ -1,0 +1,17 @@
+//
+//  TodoOrdersEntity.m
+//  TPZ
+//
+//  Created by chenyi on 16/2/26.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "TodoOrdersEntity.h"
+
+@implementation TodoOrdersEntity
+
+@end
+
+@implementation TodoOrdersRecordsEntity
+
+@end

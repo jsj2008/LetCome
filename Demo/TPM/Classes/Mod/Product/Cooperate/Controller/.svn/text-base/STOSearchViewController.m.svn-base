@@ -1,0 +1,233 @@
+//
+//  STOSearchViewController.m
+//  STO
+//
+//  Created by tongshangren on 16/3/18.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "STOSearchViewController.h"
+#import "STOSearchStockBll.h"
+#import "STOSearchDetailBll.h"
+#import "STOSearchEntity.h"
+@interface STOSearchViewController ()<UITextFieldDelegate> {
+    STOSearchStockBll *_searchListBll;
+    STOSearchDetailBll *_detailBll;
+}
+
+@end
+
+@implementation STOSearchViewController
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.hidden=YES;
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden=NO;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setUpForDismissKeyboard];
+    
+    _searchListBll = [STOSearchStockBll bllWithController:self tableView:self.searchTab];
+    _detailBll=[STOSearchDetailBll bllWithController:self tableView:self.detailTab];
+    
+    [_searchListBll show];
+    [_detailBll hide];
+    
+    [self.search becomeFirstResponder];
+    
+
+    if (iPhone4||iPhone5) {
+        self.search.font=[UIFont systemFontOfSize:12.0];
+    }
+    
+    
+    self.searchFrame.layer.cornerRadius = 2.0f;
+    self.searchFrame.layer.masksToBounds = YES;
+    
+    self.search.delegate = self;
+//    [self.search setValue:[UIColor colorWithRed:77/255.0 green:152/255.0 blue:242/255.0 alpha:1.0] forKeyPath:@"_placeholderLabel.textColor"];
+    
+    [self.search addTarget:self action:@selector(textFieldEditChanged:) forControlEvents:UIControlEventEditingChanged];
+    
+    self.btnClean.hidden=YES;
+    [self.btnClean addTarget:self action:@selector(clickClean) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.btnCancel addTarget:self action:@selector(clickCancel) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
+
+
+
+
+
+-(void)clickCancel{
+    if (self.backToIndex) {
+        self.navigationController.navigationBar.hidden=NO;
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
+    else{
+        //初始化其属性
+        [self navBack];
+    }
+}
+
+
+//返回上页
+-(void)navBack{
+    self.navigationController.navigationBar.hidden=NO;
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
+
+
+-(void)clickClean{
+    self.search.text=@"";
+    [self textFieldEditChanged:self.search];
+}
+
+
+- (void)setUpForDismissKeyboard {
+    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    __weak STOSearchViewController *mySelf = self;
+    UITapGestureRecognizer *singleTapGR =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(tapAnywhereToDismissKeyboard:)];
+    NSOperationQueue *mainQuene = [NSOperationQueue mainQueue];
+    [nc addObserverForName:UIKeyboardWillShowNotification
+                    object:nil
+                     queue:mainQuene
+                usingBlock:^(NSNotification *note){
+                    [ mySelf.view addGestureRecognizer:singleTapGR];
+                }];
+    [nc addObserverForName:UIKeyboardWillHideNotification
+                    object:nil
+                     queue:mainQuene
+                usingBlock:^(NSNotification *note){
+                    [mySelf.view removeGestureRecognizer:singleTapGR];
+                }];
+}
+
+- (void)tapAnywhereToDismissKeyboard:(UIGestureRecognizer *)gestureRecognizer {
+    [self.search endEditing:YES];
+}
+
+
+
+- (void)textFieldEditChanged:(UITextField *)textField
+
+{
+    //    NSString *lang = [[UITextInputMode currentInputMode] primaryLanguage]; // 键盘输入模式
+    
+    //    WPNSLOG(@"#############%@",lang);
+    //    NSLog(@"#############%@",lang);
+    
+    //    if ([lang isEqualToString:@"zh-Hans"]) {
+    //        UITextRange *selectedRange = [textField markedTextRange];
+    //        //获取高亮部分
+    //        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+    //
+    //        if (!position) {
+    //
+    //            [self showSearchContentWithSearchText:textField.text];
+    //
+    //        }
+    //    } else {
+    
+    [self showSearchContentWithSearchText:textField.text];
+    //    }
+    
+}
+
+
+- (void)showSearchContentWithSearchText:(NSString *)searchText {
+    
+
+    _searchListBll.searchText = searchText;
+    
+    if (searchText.length == 0) {
+        self.btnClean.hidden=YES;
+    }
+    
+    [_searchListBll show];
+    [_detailBll hide];
+    
+    
+}
+
+
+-(void)showDetail{
+    [_searchListBll hide];
+    [_detailBll show];
+    [_detailBll getData];
+}
+
+
+
+#pragma mark - textFildDelegate
+//-(void)textFieldDidBeginEditing:(UITextField *)textField{
+//    IndexViewController *index=[AppUtil findIndex];
+//    [index checkAllUnsignedAgreement];
+//}
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    NSString * searchText = [textField.text stringByReplacingCharactersInRange:range withString:string]; //得到输入框的内容
+    
+    //2.空格排除
+    NSRange str =[searchText rangeOfString:@" "];
+    if(str.location!=NSIntegerMax) return NO;
+    
+    
+    return YES;
+}
+
+//-(void)gotoSuperScheme:(STOSearchEntity *)entity{
+//    [self clickClean];
+//    [self showCancelBtn];
+//    STOManager *manager = [STOManager managerWithEntity:entity];
+//    STOSuperSchemeViewController *c = [STOSuperSchemeViewController controllerWithManager:manager];
+//    [self.navigationController.navigationController pushViewController:c animated:YES];
+//}
+
+
+
+
+
+- (void)gotoBuyView {
+    //保存历史搜索记录
+    //[[STODBManager shareSTODBManager]saveSearchHistory: _searchListBll.searchText];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)goBackProductionView{
+    //保存历史搜索记录
+    //[[STODBManager shareSTODBManager]saveSearchHistory: _searchListBll.searchText];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    //    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+- (void)dealloc {
+    WPNSLOG(@"------------股票搜索控制器释放");
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    
+    
+}
+
+
+
+@end

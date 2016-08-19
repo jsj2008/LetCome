@@ -1,0 +1,16 @@
+//
+//  CheckViewController.h
+//  TPM
+//
+//  Created by chenyi on 16/7/27.
+//  Copyright © 2016年 JYZD. All rights reserved.
+//
+
+#import "AppViewController.h"
+#import "CheckListBll.h"
+@interface CheckViewController : AppViewController
+
+@property (weak, nonatomic) IBOutlet QUTableView *checkListTab;
+
+@property(nonatomic,strong)CheckListBll *checkListBll;
+@end
