@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.annotation.Resource;
@@ -28,12 +29,50 @@ import java.util.Date;
 public class ImageController {
     @Resource(name="imageService")
     private ImageService service;
+//    @RequestMapping("/upload")
+//    @ResponseBody
+//    public ReturnEntity addImage(@RequestHeader("let_come_uid") String uid ,@RequestParam("myfiles") CommonsMultipartFile[] files,HttpServletRequest request){
+//
+//        if(files!=null && files.length>0 ) {
+//            CommonsMultipartFile file = files[0];
+//            System.out.println("fileName---------->" + file.getOriginalFilename());
+//
+//            if (!file.isEmpty()) {
+//                try {
+//                    String str = request.getSession().getServletContext().getRealPath("upload/img/product");
+//                    System.out.println(str);
+//                    str = request.getSession().getServletContext().getRealPath("upload/img/product");
+//                    System.out.println(str);
+//                    return service.addImage(Integer.valueOf(uid), file.getOriginalFilename(), file.getBytes());
+//
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                    ReturnEntity ret = new ReturnEntity();
+//                    ret.setResult(ReturnEntity.RETURN_FAILED);
+//                    ret.setError_msg(e.getMessage());
+//                    return ret;
+//                }
+//            }else{
+//                ReturnEntity ret = new ReturnEntity();
+//                ret.setResult(ReturnEntity.RETURN_FAILED);
+//                ret.setError_msg("上传文件为空");
+//                return ret;
+//            }
+//        }else{
+//            ReturnEntity ret = new ReturnEntity();
+//            ret.setResult(ReturnEntity.RETURN_FAILED);
+//            ret.setError_msg("上传文件为空");
+//            return ret;
+//        }
+//
+//    }
+
     @RequestMapping("/upload")
     @ResponseBody
-    public ReturnEntity addImage(@RequestHeader("let_come_uid") String uid ,@RequestParam("myfiles") CommonsMultipartFile[] files,HttpServletRequest request){
+    public ReturnEntity addImage(@RequestHeader("let_come_uid") String uid ,@RequestParam("myfiles") MultipartFile file,HttpServletRequest request){
 
-        if(files!=null && files.length>0 ) {
-            CommonsMultipartFile file = files[0];
+//        if(files!=null && files.length>0 ) {
+//            CommonsMultipartFile file = files[0];
             System.out.println("fileName---------->" + file.getOriginalFilename());
 
             if (!file.isEmpty()) {
@@ -57,12 +96,12 @@ public class ImageController {
                 ret.setError_msg("上传文件为空");
                 return ret;
             }
-        }else{
-            ReturnEntity ret = new ReturnEntity();
-            ret.setResult(ReturnEntity.RETURN_FAILED);
-            ret.setError_msg("上传文件为空");
-            return ret;
-        }
+//        }else{
+//            ReturnEntity ret = new ReturnEntity();
+//            ret.setResult(ReturnEntity.RETURN_FAILED);
+//            ret.setError_msg("上传文件为空");
+//            return ret;
+//        }
 
     }
 

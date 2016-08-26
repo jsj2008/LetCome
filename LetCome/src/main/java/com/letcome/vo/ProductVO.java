@@ -1,8 +1,13 @@
 package com.letcome.vo;
 
+import org.hibernate.annotations.Formula;
+import org.springframework.web.bind.annotation.Mapping;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by rjt on 16/8/18.
@@ -27,10 +32,10 @@ public class ProductVO {
     private Date updated_at;
 
     @Column(name="longitude")
-    private String longitude;//经度
+    private double longitude;//经度
 
     @Column(name="latitude")
-    private String latitude;//纬度
+    private double latitude;//纬度
 
     @Column(name="city")
     private String city;
@@ -44,19 +49,42 @@ public class ProductVO {
     @Column(name="category_id")
     private Integer category_id;
 
+    @Column(name="contact_info")
+    private String contact_info;
+
     @Column(name="uid",nullable = false)
     private Integer uid;
 
-    @Column(name="cid",nullable = true)
-    private Integer cid;
+    @OneToMany(cascade= {CascadeType.ALL},mappedBy="pid")
+    private Set<FavoriteVO> favorites = new HashSet<FavoriteVO>();
 
-    public Integer getCid() {
-        return cid;
+    @OneToMany(cascade= {CascadeType.ALL},mappedBy="productid")
+    private Set<ImageVO> images = new HashSet<ImageVO>();
+
+    public String getContact_info() {
+        return contact_info;
     }
 
-    public void setCid(Integer cid) {
-        this.cid = cid;
+    public void setContact_info(String contact_info) {
+        this.contact_info = contact_info;
     }
+
+    public Set<FavoriteVO> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(Set<FavoriteVO> favorites) {
+        this.favorites = favorites;
+    }
+
+    public Set<ImageVO> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<ImageVO> images) {
+        this.images = images;
+    }
+
 
     public Integer getUid() {
         return uid;
@@ -98,19 +126,19 @@ public class ProductVO {
         this.updated_at = updated_at;
     }
 
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
@@ -145,4 +173,9 @@ public class ProductVO {
     public void setCategory_id(Integer category_id) {
         this.category_id = category_id;
     }
+
+
+    final public static String STATUS_PUBLISH = "0";
+    final public static String STATUS_SELLING = "1";
+    final public static String STATUS_SOLD = "2";
 }

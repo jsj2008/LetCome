@@ -73,14 +73,17 @@ public class ImageService {
 
             ProductVO pvo = new ProductVO();
             pvo.setUid(uid);
+            pvo.setStatus(ProductVO.STATUS_PUBLISH);
             ret = productDao.insertProduct(pvo);
-
-            if (Integer.valueOf(ret.getRetVal().toString())>0){
+            Integer pid = Integer.valueOf(ret.getRetVal().toString());
+            if (pid>0){
                 ImageVO vo = new ImageVO();
                 vo.setImagename(imagename);
                 vo.setImagepath(file.getAbsolutePath());
                 vo.setUid(uid);
+                vo.setProductid(pid);
                 ret = imageDao.insertImage(vo);
+                ret.setRetVal(pid.toString());
             }
 
         } catch (FileNotFoundException e) {

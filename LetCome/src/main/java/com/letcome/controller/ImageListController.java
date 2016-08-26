@@ -5,13 +5,12 @@ package com.letcome.controller;
  */
 
 import com.letcome.entity.ImageEntity;
+import com.letcome.entity.ProductViewEntity;
 import com.letcome.service.ImageService;
+import com.letcome.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +19,8 @@ import java.util.List;
 @Controller
 
 public class ImageListController {
-    @Resource(name="imageService")
-    private ImageService service;
+    @Resource(name="productService")
+    private ProductService service;
     @ResponseBody
     @RequestMapping(value="/imagelist", method = RequestMethod.GET)
     public String list(ModelMap modelMap) {
@@ -51,7 +50,10 @@ public class ImageListController {
 
     @ResponseBody
     @RequestMapping(value="/waterfalls", method = RequestMethod.GET)
-    public List<ImageEntity> waterfalls(@RequestParam("pno") String pno,@RequestParam("limit") String limit,HttpServletRequest request){
+    public ProductViewEntity waterfalls(
+            @RequestHeader("let_come_uid") String uid,
+            @RequestParam(value = "pno",required = false,defaultValue = "0") String pno,
+            @RequestParam(value = "limit",required = false,defaultValue = "25") String limit,HttpServletRequest request){
 //        System.out.println(request.getRequestURI());
 //        System.out.println(request.getRequestURL());
 //        System.out.println(request.getContextPath());
@@ -60,7 +62,7 @@ public class ImageListController {
 //        System.out.println(request.getServerName());
 //        System.out.println(request.getServerPort());
 //        System.out.println(request.getServletContext());
-        return  service.getWaterfalls(Long.valueOf(pno),Long.valueOf(limit),"http://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/image/getimg?id=");
+        return service.getProductsAndImage(Integer.valueOf(uid),Long.valueOf(pno), Long.valueOf(limit), "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/image/getimg?id=");
 
     }
     

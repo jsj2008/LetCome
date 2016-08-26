@@ -1,8 +1,11 @@
 package com.springapp.mvc;
 
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.letcome.entity.CategoryEntity;
+import com.letcome.entity.LoginEntity;
 import com.letcome.entity.ReturnEntity;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +22,12 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -50,35 +59,40 @@ public class AppTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name("hello"));
     }
-    @Test
-    public void testCategories() throws Exception {
-//        ResultActions action= mockMvc.perform(post("/user/register"));
-        MvcResult result = mockMvc.perform(get("/categories")).andReturn();
-        String str = result.getResponse().getContentAsString();
-        ObjectMapper mapper = new ObjectMapper();
-        long start2 = System.currentTimeMillis();
-        CategoryEntity l2 = mapper.readValue(str,CategoryEntity.class);
-        System.out.println("size = "+l2.getRecords().size());
-        if (!l2.getResult().equals(ReturnEntity.RETURN_SUCCESS) || l2.getRecords().size()<=0){
-            throw new Exception("目录查询异常");
-        }
-//        action.andExpect(content());
-    }
+
+
 
     @Test
-    public void testAddProduct() throws Exception {
-//        ResultActions action= mockMvc.perform(post("/user/register"));
-        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/add");
+    public void testUpdateProduct() throws Exception {
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/product/update");
         requestBuilder.header("let_come_uid",9999);
+
+        requestBuilder.param("id", "1");
+        requestBuilder.param("description","好好好好");
+        requestBuilder.param("latitude","5.33444");
+        requestBuilder.param("longitude","35.33444");
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
         String str = result.getResponse().getContentAsString();
         ObjectMapper mapper = new ObjectMapper();
         long start2 = System.currentTimeMillis();
         ReturnEntity l2 = mapper.readValue(str,ReturnEntity.class);
-        if (!l2.getResult().equals(ReturnEntity.RETURN_SUCCESS) || Integer.valueOf(l2.getRetVal().toString()) <=0){
-            throw new Exception("创建产品异常");
+        if (!l2.getResult().equals(ReturnEntity.RETURN_SUCCESS)){
+            throw new Exception("更新产品异常");
         }
-//        action.andExpect(content());
+    }
+
+    @Test
+    public void testWaterfalls() throws Exception {
+        MvcResult result = mockMvc.perform(get("/waterfalls")).andReturn();
+        String str = result.getResponse().getContentAsString();
+        System.out.println(str);
+        ObjectMapper mapper = new ObjectMapper();
+        CategoryEntity l2 = mapper.readValue(str,CategoryEntity.class);
+        System.out.println("size = "+l2.getRecords().size());
+        if (!l2.getResult().equals(ReturnEntity.RETURN_SUCCESS) || l2.getRecords().size()<=0){
+            throw new Exception("瀑布查询异常");
+        }
+
     }
 
 }
