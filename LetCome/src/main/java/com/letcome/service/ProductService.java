@@ -34,11 +34,11 @@ public class ProductService {
     public ReturnEntity addProduct(Integer uid){
         ProductVO vo = new ProductVO();
         vo.setUid(uid);
-        vo.setStatus(ProductVO.STATUS_PUBLISH);
+        vo.setStatus(ProductVO.STATUS_SELLING);
         return  productDao.insertProduct(vo);
     }
 
-    public ReturnEntity updateFavorite(Integer uid,Integer pid){
+    public ReturnEntity addFavorite(Integer uid,Integer pid){
         FavoriteVO vo =  new FavoriteVO();
         vo.setCreated_at(new Date());
         vo.setUid(uid);
@@ -46,8 +46,21 @@ public class ProductService {
         return  productDao.insertFavorite(vo);
     }
 
+    public ProductViewEntity getMyFavorites(Integer uid,String status,long pno,long limit,String downloadPath){
+        long start = (pno-1)*limit;
+        ProductViewEntity entity = new ProductViewEntity();
+        List<ProductViewVO> list= productDao.selectFavorites(uid, status, start, limit);
+        for(int i=0;i<list.size();++i){
+            ProductViewVO v = list.get(i);
+            v.setImagepath(downloadPath+v.getImage_id());
+            v.setThumbpath(downloadPath+v.getImage_id());
+        }
+        entity.setRecords(list);
+        return  entity;
+    }
+
     //更新产品
-    public ReturnEntity updateProduct(ProductVO vo){
+    public ReturnEntity modifyProduct(ProductVO vo){
 
         return  productDao.updateProduct(vo);
     }
@@ -55,13 +68,28 @@ public class ProductService {
     //获取产品和图片
     public ProductViewEntity getProductsAndImage(Integer uid,long pno,long limit,String downloadPath){
         long start = (pno-1)*limit;
-        long end = pno*limit;
+
         ProductViewEntity entity = new ProductViewEntity();
-        List<ProductViewVO> list= productDao.selectProductsAndImage(uid,start,end);
+        List<ProductViewVO> list= productDao.selectProductsAndImage(uid,start,limit);
         for(int i=0;i<list.size();++i){
             ProductViewVO v = list.get(i);
-            v.setImagepath(downloadPath+v.getId());
-            v.setThumbpath(downloadPath+v.getId());
+            v.setImagepath(downloadPath+v.getImage_id());
+            v.setThumbpath(downloadPath+v.getImage_id());
+        }
+        entity.setRecords(list);
+        return  entity;
+    }
+
+    //根据用户id获取产品
+    public ProductViewEntity getProducts(Integer uid,String status,long pno,long limit,String downloadPath){
+        long start = (pno-1)*limit;
+
+        ProductViewEntity entity = new ProductViewEntity();
+        List<ProductViewVO> list= productDao.selectProducts(uid, status, start, limit);
+        for(int i=0;i<list.size();++i){
+            ProductViewVO v = list.get(i);
+            v.setImagepath(downloadPath+v.getImage_id());
+            v.setThumbpath(downloadPath+v.getImage_id());
         }
         entity.setRecords(list);
         return  entity;

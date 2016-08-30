@@ -61,38 +61,4 @@ public class AppTests {
     }
 
 
-
-    @Test
-    public void testUpdateProduct() throws Exception {
-        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/product/update");
-        requestBuilder.header("let_come_uid",9999);
-
-        requestBuilder.param("id", "1");
-        requestBuilder.param("description","好好好好");
-        requestBuilder.param("latitude","5.33444");
-        requestBuilder.param("longitude","35.33444");
-        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-        String str = result.getResponse().getContentAsString();
-        ObjectMapper mapper = new ObjectMapper();
-        long start2 = System.currentTimeMillis();
-        ReturnEntity l2 = mapper.readValue(str,ReturnEntity.class);
-        if (!l2.getResult().equals(ReturnEntity.RETURN_SUCCESS)){
-            throw new Exception("更新产品异常");
-        }
-    }
-
-    @Test
-    public void testWaterfalls() throws Exception {
-        MvcResult result = mockMvc.perform(get("/waterfalls")).andReturn();
-        String str = result.getResponse().getContentAsString();
-        System.out.println(str);
-        ObjectMapper mapper = new ObjectMapper();
-        CategoryEntity l2 = mapper.readValue(str,CategoryEntity.class);
-        System.out.println("size = "+l2.getRecords().size());
-        if (!l2.getResult().equals(ReturnEntity.RETURN_SUCCESS) || l2.getRecords().size()<=0){
-            throw new Exception("瀑布查询异常");
-        }
-
-    }
-
 }

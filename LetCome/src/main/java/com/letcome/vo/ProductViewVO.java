@@ -92,6 +92,8 @@ public class ProductViewVO implements Serializable {
 
     private String is_favorite;
 
+    private String fullname;
+
     public String getThumbpath() {
         return thumbpath;
     }
@@ -226,5 +228,13 @@ public class ProductViewVO implements Serializable {
 
     public void setIs_favorite(String is_favorite) {
         this.is_favorite = is_favorite;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 }

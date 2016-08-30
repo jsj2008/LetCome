@@ -73,7 +73,7 @@ public class ImageService {
 
             ProductVO pvo = new ProductVO();
             pvo.setUid(uid);
-            pvo.setStatus(ProductVO.STATUS_PUBLISH);
+            pvo.setStatus(ProductVO.STATUS_SELLING);
             ret = productDao.insertProduct(pvo);
             Integer pid = Integer.valueOf(ret.getRetVal().toString());
             if (pid>0){
@@ -135,19 +135,19 @@ public class ImageService {
         return e;
     }
 
-    public List<ImageEntity> getWaterfalls(long pno,long limit,String downloadPath){
-        long start = (pno-1)*limit;
-        long end = pno*limit;
-        List<ImageVO> list = imageDao.getImages(start,end);
-        List<ImageEntity> imageEntities = new ArrayList<ImageEntity>();
-        for(int i=0;i<list.size();++i){
-            ImageEntity e = new ImageEntity();
-            ImageVO v = list.get(i);
-            e.setImagename(v.getImagename());
-            e.setImagepath(downloadPath+v.getId());
-            e.setThumbpath(downloadPath+v.getId());
-            imageEntities.add(e);
-        }
-        return imageEntities;
-    }
+//    public List<ImageEntity> getWaterfalls(long pno,long limit,String downloadPath){
+//        long start = (pno-1)*limit;
+//        long end = pno*limit-1;
+//        List<ImageVO> list = imageDao.getImages(start,end);
+//        List<ImageEntity> imageEntities = new ArrayList<ImageEntity>();
+//        for(int i=0;i<list.size();++i){
+//            ImageEntity e = new ImageEntity();
+//            ImageVO v = list.get(i);
+//            e.setImagename(v.getImagename());
+//            e.setImagepath(downloadPath+v.getId());
+//            e.setThumbpath(downloadPath+v.getId());
+//            imageEntities.add(e);
+//        }
+//        return imageEntities;
+//    }
 }

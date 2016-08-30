@@ -51,8 +51,8 @@ public class ImageListController {
     @ResponseBody
     @RequestMapping(value="/waterfalls", method = RequestMethod.GET)
     public ProductViewEntity waterfalls(
-            @RequestHeader("let_come_uid") String uid,
-            @RequestParam(value = "pno",required = false,defaultValue = "0") String pno,
+            @RequestHeader(value = "let_come_uid",required = false,defaultValue = "0") String uid,
+            @RequestParam(value = "pno",required = false,defaultValue = "1") String pno,
             @RequestParam(value = "limit",required = false,defaultValue = "25") String limit,HttpServletRequest request){
 //        System.out.println(request.getRequestURI());
 //        System.out.println(request.getRequestURL());

@@ -18,14 +18,15 @@ import java.util.Objects;
  * Created by rjt on 16/8/19.
  */
 public class ProductDAO extends BaseDAO{
-
-    public List<ProductViewVO > selectProductsAndImage(Integer uid,long start,long end){
+    public List<ProductViewVO > selectProductsAndImage(Integer uid,long start,long limit){
         Session session = sessionFactory.getCurrentSession();
-        String hql = "SELECT p.id,p.description,p.created_at,p.updated_at,p.longitude,p.latitude,p.city,p.status,p.price,p.category_id,p.uid,imagename,imagepath,image_id,contact_info,case when f.id>0 then \"Y\" else \"N\" end as is_favorite from products_v p\n" +
-                "left join favorites f on f.uid = ? and p.id = f.pid";
+        String hql = "SELECT p.id,p.description,p.created_at,p.updated_at,p.longitude,p.latitude,p.city,p.status,p.price,p.category_id,p.uid,p.fullname,imagename,imagepath,image_id,contact_info,case when f.id>0 then \"Y\" else \"N\" end as is_favorite from products_v p " +
+                "left join favorites f on f.uid = ? and p.id = f.pid order by id desc  limit ?,? ";
         Query query = session.createSQLQuery(hql)
-                        .setInteger(0,uid)
-                        .setResultTransformer(Transformers.aliasToBean(ProductViewVO.class));
+                .setInteger(0, uid)
+                .setLong(1, start)
+                .setLong(2, limit)
+                .setResultTransformer(Transformers.aliasToBean(ProductViewVO.class));
 
 
         List l = query.list();
@@ -33,6 +34,58 @@ public class ProductDAO extends BaseDAO{
         System.out.println(l);
         return l;
     }
+
+    public List<ProductViewVO > selectProducts(Integer uid,String status,long start,long limit){
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "SELECT p.id,p.description,p.created_at,p.updated_at,p.longitude,p.latitude,p.city,p.status,p.price,p.category_id,p.uid,p.fullname,imagename,imagepath,image_id,contact_info from products_v p\n" +
+                " where p.uid = ? ";
+        if(status !=null ){
+            hql+= "and p.status = ? ";
+        }
+        hql+= " order by id desc limit ?,?";
+        int index = 0;
+        Query query = session.createSQLQuery(hql)
+                .setInteger(index++, uid);
+        if (status!=null) {
+            query = query.setString(index++, status);
+        }
+        query.setLong(index++,start)
+                .setLong(index++,limit)
+                .setResultTransformer(Transformers.aliasToBean(ProductViewVO.class));
+
+
+        List l = query.list();
+//        Map m = (Map)l.get(0);
+        System.out.println(l);
+        return l;
+    }
+
+    public List<ProductViewVO > selectFavorites(Integer uid,String status,long start,long limit){
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "SELECT p.id,p.description,p.created_at,p.updated_at,p.longitude,p.latitude,p.city,p.status,p.price,p.category_id,p.uid,p.fullname,imagename,imagepath,image_id,contact_info from favorites f" +
+                " left join  products_v p on p.id = f.pid " +
+                " where f.uid = ? ";
+        if(status !=null ){
+            hql+= "and p.status = ? ";
+        }
+        hql+= " order by id desc limit ?,?";
+        int index = 0;
+        Query query = session.createSQLQuery(hql)
+                .setInteger(index++, uid);
+        if (status!=null) {
+            query = query.setString(index++, status);
+        }
+        query.setLong(index++,start)
+                .setLong(index++,limit)
+                .setResultTransformer(Transformers.aliasToBean(ProductViewVO.class));
+
+
+        List l = query.list();
+//        Map m = (Map)l.get(0);
+        System.out.println(l);
+        return l;
+    }
+
 
     public ReturnEntity insertProduct(ProductVO productVO){
         Session session = sessionFactory.getCurrentSession();
@@ -102,8 +155,8 @@ public class ProductDAO extends BaseDAO{
     public Object[] selectDeatilById(Integer uid,Integer id){
         Session session = sessionFactory.getCurrentSession();
 
-        String hql = "from products  as p  left join p.favorites as f where p.id = ? and f.uid = ? and p.id = f.pid";
-        Query query = session.createQuery(hql).setParameter(0,id).setParameter(1,uid);
+        String hql = "from products as p  left join p.favorites as f with f.uid = ? where p.id = ?";
+        Query query = session.createQuery(hql).setParameter(0,uid).setParameter(1, id);
         List<Object> list = query.list();
         Object o = list.get(0);
         Object[] obj =  (Object[])o;

@@ -56,7 +56,7 @@ public class ProductVO {
     private Integer uid;
 
     @OneToMany(cascade= {CascadeType.ALL},mappedBy="pid")
-    private Set<FavoriteVO> favorites = new HashSet<FavoriteVO>();
+    private Set<FavoriteVO> favorites ;
 
     @OneToMany(cascade= {CascadeType.ALL},mappedBy="productid")
     private Set<ImageVO> images = new HashSet<ImageVO>();
@@ -69,13 +69,13 @@ public class ProductVO {
         this.contact_info = contact_info;
     }
 
-    public Set<FavoriteVO> getFavorites() {
-        return favorites;
-    }
-
-    public void setFavorites(Set<FavoriteVO> favorites) {
-        this.favorites = favorites;
-    }
+//    public Set<FavoriteVO> getFavorites() {
+//        return favorites;
+//    }
+//
+//    public void setFavorites(Set<FavoriteVO> favorites) {
+//        this.favorites = favorites;
+//    }
 
     public Set<ImageVO> getImages() {
         return images;

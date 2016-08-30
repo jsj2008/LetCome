@@ -37,9 +37,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -60,16 +58,17 @@ public class ProductsTests {
 
     static String filename = "03_i4s.jpg";
     static String fieldname = "myfiles";
-    static String uid = "9999";
     static Integer pid;
     static String description = "真TMD好";
-    static String longitude = "31.595";
+    static String longitude = "123.530059";
     static String latitude = "66.6666";
     static String city = "上海";
-    static String status = ProductVO.STATUS_PUBLISH;
+    static String status = ProductVO.STATUS_SELLING;
     static String price = "12.55";
     static String contact = "13912345678";
     static Integer category_id;
+    static Integer testUID = 9999;
+    static Integer favoritUID = 9998;
 
     private MockMvc mockMvc;
 
@@ -109,7 +108,7 @@ public class ProductsTests {
 
         MockMultipartHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.fileUpload("/image/upload");
         requestBuilder.file(mockMultipartFile);
-        requestBuilder.header("let_come_uid", "9999");
+        requestBuilder.header("let_come_uid", testUID.toString());
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         String str = result.getResponse().getContentAsString();
@@ -125,7 +124,7 @@ public class ProductsTests {
     public void test_C_UpdateProduct() throws Exception{
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/product/update");
         requestBuilder.header("Content-Type", "application/json");
-        requestBuilder.header("let_come_uid", "9999");
+        requestBuilder.header("let_come_uid", testUID.toString());
         Map<String,String> param = new HashMap<String,String>();
 
         param.put("id",pid.toString() );
@@ -155,7 +154,7 @@ public class ProductsTests {
     public void test_D_UpdateNotionProduct() throws Exception{
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/product/update");
         requestBuilder.header("Content-Type", "application/json");
-        requestBuilder.header("let_come_uid", "9999");
+        requestBuilder.header("let_come_uid", testUID.toString());
         Map<String,String> param = new HashMap<String,String>();
 
         param.put("id",pid.toString() );
@@ -178,7 +177,7 @@ public class ProductsTests {
     public void test_E_AddFavorite() throws Exception{
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/favorite");
 //        requestBuilder.header("Content-Type", "application/json");
-        requestBuilder.header("let_come_uid", "9999");
+        requestBuilder.header("let_come_uid", favoritUID.toString());
         requestBuilder.param("pid", String.valueOf(pid));
 
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -193,8 +192,8 @@ public class ProductsTests {
     @Test
     public void test_F_GetProductDetail() throws Exception{
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/detail");
-        requestBuilder.header("let_come_uid", uid);
-        requestBuilder.param("id", "50");
+        requestBuilder.header("let_come_uid", testUID);
+        requestBuilder.param("id", pid.toString());
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
         String str = result.getResponse().getContentAsString();
         System.out.println("str = " + str);
@@ -219,9 +218,9 @@ public class ProductsTests {
     public void test_G_UpdateProductStatus() throws Exception{
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/product/update");
         requestBuilder.header("Content-Type", "application/json");
-        requestBuilder.header("let_come_uid", "9999");
+        requestBuilder.header("let_come_uid", testUID.toString());
         Map<String,String> param = new HashMap<String,String>();
-        status = ProductVO.STATUS_SELLING;
+        status = ProductVO.STATUS_SOLD;
         param.put("id", pid.toString());
         param.put("status", status);
 
@@ -244,9 +243,46 @@ public class ProductsTests {
     public void test_H_GetWallFalls() throws Exception{
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/waterfalls");
 //        requestBuilder.header("Content-Type", "application/json");
-        requestBuilder.header("let_come_uid", "9999");
-        Map<String,String> param = new HashMap<String,String>();
+//        requestBuilder.header("let_come_uid", testUID.toString());
+        requestBuilder.param("pno","1");
+        requestBuilder.param("limit","5");
 
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        String str = result.getResponse().getContentAsString();
+        System.out.println("str = " + str);
+        ObjectMapper mapper = new ObjectMapper();
+        ProductViewEntity l2 = mapper.readValue(str, ProductViewEntity.class);
+        assertThat(l2.getRecords().size(), greaterThan(0));
+        assertThat(l2.getRecords().size(), lessThanOrEqualTo(5));
+    }
+
+    @Test
+    public void test_I_GetMyProducts() throws Exception{
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/myproducts");
+//        requestBuilder.header("Content-Type", "application/json");
+        requestBuilder.header("let_come_uid", testUID.toString());
+        requestBuilder.param("status", ProductVO.STATUS_PUBLISH);
+        requestBuilder.param("pno","2");
+        requestBuilder.param("limit", "3");
+
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        String str = result.getResponse().getContentAsString();
+        System.out.println("str = " + str);
+        ObjectMapper mapper = new ObjectMapper();
+        ProductViewEntity l2 = mapper.readValue(str, ProductViewEntity.class);
+        assertThat(l2.getRecords().size(), greaterThan(0));
+        assertThat(l2.getRecords().size(), lessThanOrEqualTo(3));
+    }
+
+    @Test
+    public void test_J_GetProducts() throws Exception{
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/products");
+//        requestBuilder.header("Content-Type", "application/json");
+        requestBuilder.header("let_come_uid", testUID.toString());
+//        requestBuilder.param("status",ProductVO.STATUS_PUBLISH);
+        requestBuilder.param("pno","1");
+        requestBuilder.param("limit","20");
+        requestBuilder.param("uid",testUID.toString());
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
         String str = result.getResponse().getContentAsString();
         System.out.println("str = " + str);
@@ -255,7 +291,21 @@ public class ProductsTests {
         assertThat(l2.getRecords().size(), greaterThan(0));
     }
 
-
-
+    @Test
+    public void test_J_GetMyFavorites() throws Exception{
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/myfavorites");
+//        requestBuilder.header("Content-Type", "application/json");
+        requestBuilder.header("let_come_uid", favoritUID.toString());
+//        requestBuilder.param("status",ProductVO.STATUS_PUBLISH);
+        requestBuilder.param("pno","2");
+        requestBuilder.param("limit","2");
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        String str = result.getResponse().getContentAsString();
+        System.out.println("str = " + str);
+        ObjectMapper mapper = new ObjectMapper();
+        ProductViewEntity l2 = mapper.readValue(str, ProductViewEntity.class);
+        assertThat(l2.getRecords().size(), greaterThan(0));
+        assertThat(l2.getRecords().size(), lessThanOrEqualTo(2));
+    }
 
 }
