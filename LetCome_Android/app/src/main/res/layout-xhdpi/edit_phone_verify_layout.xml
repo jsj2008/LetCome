@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/margin_xhdpi_45"
+    android:background="@color/white_color"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/margin_xhdpi_15"
+    android:paddingRight="@dimen/margin_xhdpi_15" >
+
+    <TextView
+        android:layout_width="@dimen/login_edit_textview_margin"
+        android:layout_height="match_parent"
+        android:gravity="left|center_vertical"
+        android:text="@string/phone_verify"
+        android:textAppearance="@style/font_222222_16" />
+
+    <com.gxq.tpm.ui.PhoneVerifyCheckEditText
+        android:id="@+id/et_verify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

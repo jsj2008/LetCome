@@ -1,0 +1,338 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <!-- android:Theme.Light.NoTitleBar.Fullscreen -->
+    <style name="AppBaseTheme" parent="android:Theme.Light.NoTitleBar">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowBackground">@android:color/white</item>
+	    <item name="android:windowNoTitle">true</item>
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    
+    <style name="wait_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+
+    <!-- style name="dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+        <item name="android:windowFullscreen">true</item>
+    </style> -->
+
+    <style name="MyTheme.NoTitleBar.CustomBackground" parent="@android:Theme.Black">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="HomeTheme" parent="@style/AppTheme">
+<!-- 	    <item name="android:windowBackground">@android:color/white</item>
+	    <item name="android:windowNoTitle">true</item> -->
+	</style>
+	
+    <style name="MyTheme.Translucent" parent="android:style/Theme.Translucent">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:colorForeground">#fff</item>
+    </style>
+
+	<style name="DialogStyle" parent="@android:style/Theme.Dialog">
+	    <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+	    <item name="android:windowNoTitle">true</item>
+	    <item name="android:background">@color/transparent</item>
+	    <item name="android:windowFrame">@null</item>
+	    <item name="android:windowBackground">@color/transparent</item>
+	    <item name="android:listPreferredItemPaddingLeft">@dimen/margin_xhdpi_15</item>
+	    <item name="android:listPreferredItemPaddingRight">@dimen/margin_xhdpi_35</item>
+	    <!-- <item name="android:windowAnimationStyle">@null</item> -->
+	</style>
+	<style name="transparent">
+        <item name="android:windowIsTranslucent">true</item>
+	    <item name="android:windowNoTitle">true</item>
+	    <item name="android:background">@color/transparent</item>
+	    <item name="android:windowBackground">@color/transparent</item>
+	</style>
+	<style name="anim_up_style">
+        <item name="android:windowEnterAnimation">@anim/anim_up</item>
+        <item name="android:windowExitAnimation">@anim/anim_exit</item>
+    </style>
+	<!-- 规范 -->
+	<!-- text_222222_18 -->
+	<style name="text_title_style">
+	    <item name="android:textColor">@color/text_color_title</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_18</item>
+	</style>
+	
+	<!-- text_222222_14 -->
+	<style name="text_title_sub_style">
+	    <item name="android:textColor">@color/text_color_title</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+	</style>
+		
+	<!-- text_222222_16 -->
+	<style name="text_main_style">
+	    <item name="android:textColor">@color/text_color_title</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_16</item>
+	</style>
+		
+	<!-- text_757575_14 -->
+	<style name="text_sub_style">
+	    <item name="android:textColor">@color/text_color_main</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+	</style>
+	
+	<!-- text_757575_12 -->
+	<style name="text_tips_main_style">
+	    <item name="android:textColor">@color/text_color_main</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+	</style>
+
+	<!-- text_ababab_10 -->
+	<style name="text_tips_sub_style">
+	    <item name="android:textColor">@color/text_color_sub</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_10</item>
+	</style>
+	<!-- text_ababab_12 -->
+	<style name="text_tips_sub_style_12">
+	    <item name="android:textColor">@color/text_color_sub</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+	</style>	
+	<!--  -->
+	<style name="font_white_12">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+    <style name="font_white_14">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+    </style>
+    <style name="font_white_15">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_15</item>
+    </style>
+    <style name="font_white_16">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_16</item>
+    </style>
+    <style name="font_white_17">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_17</item>
+    </style>
+    <style name="font_white_18">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_18</item>
+    </style>   
+    <style name="font_white_19">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_19</item>
+    </style>
+    <style name="font_white_25">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_25</item>
+    </style>
+    <style name="font_000000_12">
+        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+	<style name="font_000000_20">
+        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_20</item>
+    </style>
+    <style name="font_000000_28">
+        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_28</item>
+    </style>
+    <style name="font_007aff_11">
+        <item name="android:textColor">@color/color_007aff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_11</item>
+    </style>  
+	<style name="font_007aff_15">
+        <item name="android:textColor">@color/color_007aff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_15</item>
+    </style>  
+	<style name="font_848484_10">
+	    <item name="android:textColor">#ff848484</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_10</item>
+	</style>
+	<style name="font_848484_13">
+	    <item name="android:textColor">#ff848484</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_13</item>
+	</style>
+	<style name="font_848484_14">
+	    <item name="android:textColor">#ff848484</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+	</style>
+	<style name="font_848484_15">
+	    <item name="android:textColor">#ff848484</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_15</item>
+	</style>
+	<style name="font_424242_15">
+	    <item name="android:textColor">@color/color_424242</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_15</item>
+	</style>
+	<style name="font_848484_16">
+	    <item name="android:textColor">#ff848484</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_16</item>
+	</style>
+	<style name="font_424242_16">
+	    <item name="android:textColor">@color/color_424242</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_16</item>
+	</style>
+	<style name="font_424242_18">
+	    <item name="android:textColor">@color/color_424242</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_18</item>
+	</style>
+	<style name="font_757575_10">
+        <item name="android:textColor">@color/text_color_main</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_10</item>
+    </style>
+    
+    <style name="font_757575_11">
+        <item name="android:textColor">@color/text_color_main</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_11</item>
+    </style>
+    
+    <style name="font_757575_12">
+        <item name="android:textColor">@color/text_color_main</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+        <style name="font_757575_13">
+        <item name="android:textColor">@color/text_color_main</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_13</item>
+    </style>
+    
+    <style name="font_757575_14">
+        <item name="android:textColor">@color/text_color_main</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+    </style>
+    <style name="font_757575_15">
+        <item name="android:textColor">@color/text_color_main</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_15</item>
+    </style>
+	<style name="font_bcbdc0_10">
+        <item name="android:textColor">@color/color_bcbdc0</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_10</item>
+    </style>
+	<style name="font_808080_9">
+        <item name="android:textColor">@color/color_808080</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_9</item>
+    </style>
+    <style name="font_f49317_14">
+        <item name="android:textColor">@color/color_f49317</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+    </style>
+    <style name="font_f19900_13">
+        <item name="android:textColor">@color/color_f19900</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_13</item>
+    </style>
+   	<style name="font_f19900_14">
+        <item name="android:textColor">@color/color_f19900</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+    </style>
+    
+   	<style name="font_222222_10">
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_10</item>
+    </style>
+   	
+   	<style name="font_222222_12">
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+    
+    <style name="font_222222_13">
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_13</item>
+    </style>
+    
+	<style name="font_222222_14">
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+    </style>
+	<style name="font_222222_15">
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_15</item>
+    </style>
+    <style name="font_222222_16">
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_16</item>
+    </style>
+    <style name="font_222222_25">
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_25</item>
+    </style>  
+	<style name="font_2d86ef_14">
+        <item name="android:textColor">#ff23bdde</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+    </style>
+	<style name="font_575757_18">
+        <item name="android:textColor">@color/color_575757</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_18</item>
+    </style>
+    <style name="font_2d86ef_15">
+        <item name="android:textColor">#ff2d86ef</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_15</item>
+    </style>
+    <style name="font_ababab_10">
+        <item name="android:textColor">@color/text_color_sub</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_10</item>
+    </style>
+    <style name="font_ababab_12">
+        <item name="android:textColor">@color/text_color_sub</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+    <style name="font_ababab_14">
+        <item name="android:textColor">@color/color_ababab</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+    </style>
+    <style name="font_ababab_15">
+        <item name="android:textColor">@color/text_color_sub</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_15</item>
+    </style>
+    <style name="font_cccccc_12">
+        <item name="android:textColor">@color/text_color_info</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+    <style name="font_cccccc_16">
+        <item name="android:textColor">@color/text_color_info</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_16</item>
+    </style>
+    <style name="font_bebebe_12">
+        <item name="android:textColor">@color/color_bebebe</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+    <style name="font_999999_12">
+        <item name="android:textColor">@color/color_999999</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+    <style name="font_ff7814_18">
+        <item name="android:textColor">@color/color_ff7814</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_18</item>
+    </style>
+    <style name="font_ff7814_12">
+        <item name="android:textColor">@color/color_ff7814</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+</resources>

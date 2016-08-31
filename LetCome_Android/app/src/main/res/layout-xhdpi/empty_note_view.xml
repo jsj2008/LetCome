@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@color/product_bg" >
+    
+    <include
+        android:id="@+id/container_head"
+        layout="@layout/list_head"
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:visibility="gone" />
+    
+    <LinearLayout 
+        android:id="@+id/container_content"
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_centerInParent="true"
+        android:orientation="vertical">
+        
+		<ImageView
+	        android:layout_width="@dimen/margin_xhdpi_100"
+	        android:layout_height="@dimen/margin_xhdpi_100"
+	        android:background="@drawable/item_none" />
+	
+	    <TextView
+	        android:id="@+id/tv_none_des"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="@dimen/margin_xhdpi_10"
+	        android:textAppearance="@style/font_ababab_12"
+	        android:layout_gravity="center_horizontal" />
+	
+	    <TextView
+	        android:id="@+id/tv_next_step"
+		    android:layout_width="@dimen/margin_xhdpi_110"
+	        android:layout_height="@dimen/margin_xhdpi_30"
+	        android:layout_marginTop="@dimen/margin_xhdpi_20"
+	        android:background="@drawable/btn_empty_view_border"
+	        android:gravity="center"
+	        android:textColor="@color/white_color"
+	        android:textSize="@dimen/font_size_xhdpi_14"
+	        android:visibility="gone" />
+	        
+    </LinearLayout>
+</RelativeLayout>

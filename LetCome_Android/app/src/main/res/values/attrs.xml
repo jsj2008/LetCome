@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="custom">
+        <attr name="lable" format="string" />
+        <attr name="errNote" format="string" />
+        <attr name="hit" format="string" />
+        <attr name="input_typed" format="string" />
+        <attr name="length" format="integer" />
+        <attr name="nomal_bg" format="reference" />
+        <attr name="select_bg" format="reference" />
+        <attr name="right_btn_bg_txt" format="string"/>
+
+        <attr name="right_image_btn" format="reference" />
+        <attr name="right_btn1">
+            <flag name="none" value="0" />
+            <flag name="have" value="1" />
+        </attr>
+        <attr name="visibility" format="string" />
+
+        <attr name="clear" format="boolean" />
+        <attr name="right_btn" format="reference"/>  <!-- 给button设置 图片 -->
+        <attr name="right_btn_text" format="string"/><!-- 给button设置 字 -->
+
+        <attr name="right_btn_bg" format="reference" /><!-- 给右边设置 图片 -->
+        <attr name="left_btn_bg" format="reference" /><!-- 给左边设置 图片 -->
+
+        <attr name="text_gravity" >
+	        <flag name="top" value="0x30" />
+	        <flag name="bottom" value="0x50" />
+	        <flag name="left" value="0x03" />
+	        <flag name="right" value="0x05" />
+	        <flag name="center_vertical" value="0x10" />
+	        <flag name="fill_vertical" value="0x70" />
+	        <flag name="center_horizontal" value="0x01" />
+	        <flag name="fill_horizontal" value="0x07" />
+	        <flag name="center" value="0x11" />
+	        <flag name="fill" value="0x77" />
+	        <flag name="clip_vertical" value="0x80" />
+	        <flag name="clip_horizontal" value="0x08" />
+	        <flag name="start" value="0x00800003" />
+	        <flag name="end" value="0x00800005" />
+        </attr>
+    </declare-styleable>
+    <!-- title bar start -->
+    <declare-styleable name="title">
+        <attr name="title" format="string" />
+        <attr name="rightNote" format="string" />
+        <attr name="title_right_btn_bg" format="reference" />
+        <attr name="title_right_left_btn_bg" format="reference" />
+        <attr name="title_left_btn_bg" format="reference" />
+        <attr name="title_back" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="titletop">
+        <attr name="title_text" format="string" />
+        <attr name="left_bg" format="reference" />
+        <attr name="right_bg" format="reference" />
+        <attr name="left_text" format="string" />
+        <attr name="right_text" format="string" />
+    </declare-styleable>
+
+    <!-- title bar end -->
+	<!-- wheel start -->
+<!-- Reference to an array resource that will populate a list/adapter. -->
+    <attr name="entries" format="reference" />
+        <!-- Specifies how to place the content of an object, both
+         on the x- and y-axis, within the object itself. -->
+    <attr name="gravity">
+        <!-- Push object to the top of its container, not changing its size. -->
+        <flag name="top" value="0x30" />
+        <!-- Push object to the bottom of its container, not changing its size. -->
+        <flag name="bottom" value="0x50" />
+        <!-- Push object to the left of its container, not changing its size. -->
+        <flag name="left" value="0x03" />
+        <!-- Push object to the right of its container, not changing its size. -->
+        <flag name="right" value="0x05" />
+        <!-- Place object in the vertical center of its container, not changing its size. -->
+        <flag name="center_vertical" value="0x10" />
+        <!-- Grow the vertical size of the object if needed so it completely fills its container. -->
+        <flag name="fill_vertical" value="0x70" />
+        <!-- Place object in the horizontal center of its container, not changing its size. -->
+        <flag name="center_horizontal" value="0x01" />
+        <!-- Grow the horizontal size of the object if needed so it completely fills its container. -->
+        <flag name="fill_horizontal" value="0x07" />
+        <!-- Place the object in the center of its container in both the vertical and horizontal axis, not changing its size. -->
+        <flag name="center" value="0x11" />
+        <!-- Grow the horizontal and vertical size of the object if needed so it completely fills its container. -->
+        <flag name="fill" value="0x77" />
+        <!-- Additional option that can be set to have the top and/or bottom edges of
+             the child clipped to its container's bounds.
+             The clip will be based on the vertical gravity: a top gravity will clip the bottom
+             edge, a bottom gravity will clip the top edge, and neither will clip both edges. -->
+        <flag name="clip_vertical" value="0x80" />
+        <!-- Additional option that can be set to have the left and/or right edges of
+             the child clipped to its container's bounds.
+             The clip will be based on the horizontal gravity: a left gravity will clip the right
+             edge, a right gravity will clip the left edge, and neither will clip both edges. -->
+        <flag name="clip_horizontal" value="0x08" />
+    </attr>
+
+    <!-- Default Gallery style. -->
+    <attr name="galleryStyle" format="reference" />
+
+    <declare-styleable name="Gallery">
+        <attr name="gravity" />
+        <!-- Sets how long a transition animation should run (in milliseconds)
+             when layout has changed.  Only relevant if animation is turned on. -->
+        <attr name="animationDuration" format="integer" min="0" />
+        <attr name="spacing" format="dimension" />
+        <!-- Sets the alpha on the items that are not selected. -->
+        <attr name="unselectedAlpha" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="AbsSpinner">
+        <attr name="entries"/>
+    </declare-styleable>
+    <!-- wheel end -->
+    
+    <declare-styleable name="CRadioGroup">
+        <attr name="checkedButton" format="integer" />
+		<!--<attr name="orientation" >-->
+		    <!--<flag name="horizontal" value="0x00"/>-->
+		    <!--<flag name="vertical" value="0x01"/>-->
+		<!--</attr>		-->
+    </declare-styleable>
+    
+    <attr name="cRadioButtonStyle" format="reference"/>
+    
+    <declare-styleable name="RoundProgressBar">
+        <attr name="roundColor" format="color"/>
+        <attr name="roundProgressColor" format="color"/>
+        <attr name="roundWidth" format="dimension"/>
+        <attr name="titleTextColor" format="color"/>
+        <attr name="titleTextSize" format="dimension"/>
+        <attr name="limitTextColor" format="color"/>
+        <attr name="limitTextSize" format="dimension"/>
+    </declare-styleable>
+    
+    <declare-styleable name="MaskedImage">
+        <attr name="strokeColor" format="color"/>
+        <attr name="strokeWidth" format="dimension"/>
+    </declare-styleable>
+    
+    <attr name="itemTitleTextSize" format="dimension|reference" />
+	<attr name="itemTitleTextColor" format="color|reference" />
+    <attr name="itemPaddingLeft" format="dimension|reference" />
+    <attr name="itemPaddingRight" format="dimension|reference" />
+    
+    <declare-styleable name="CItemBar">
+	    <attr name="itemTitleImage" format="reference"/>
+	    
+	    <attr name="itemTitleText" format="string|reference" />
+	    <attr name="itemTitleTextSize" />
+	    <attr name="itemTitleTextColor" />
+	    
+	    <attr name="itemContentText" format="string|reference" />
+	    <attr name="itemContentTextSize" format="dimension|reference" />
+	    <attr name="itemContentTextColor" format="color|reference" />
+	    
+	    <attr name="itemContentSubText" format="string|reference" />
+	    <attr name="itemContentSubTextSize" format="dimension|reference" />
+	    <attr name="itemContentSubTextColor" format="color|reference" />
+	    
+	    <!-- attr name="itemContentTitleText" format="string|reference" />
+	    <attr name="itemContentTitleTextSize" format="dimension|reference" />
+	    <attr name="itemContentTitleTextColor" format="color|reference" /> -->
+	    
+	    <!-- attr name="itemCenterTitle" format="string|reference" /> -->
+	    
+	    <attr name="itemShowDetail" format="boolean|reference" />
+	</declare-styleable>
+	
+    <declare-styleable name="CTabImageTextGroup">
+	    <attr name="item" format="reference" />
+	    <attr name="itemContent" format="reference" />
+	</declare-styleable>
+	
+    <declare-styleable name="CCheckBox">
+        <attr name="cb_textSize" format="dimension|reference" />
+        <attr name="cb_textColor" format="color|reference" />
+        <attr name="cb_leftText" format="string|reference" />
+        <attr name="cb_rightText" format="string|reference" />
+        
+        <attr name="checked" format="boolean|reference" />
+        <attr name="checkedBackground" format="reference" />
+        <attr name="uncheckedBackground" format="reference" />
+        <attr name="disableBackground" format="reference" />
+    </declare-styleable>
+    
+    <attr name="borderRadius" format="dimension" />
+    <attr name="type">
+        <enum name="circle" value="0" />
+        <enum name="round" value="1" />
+    </attr>
+
+    <declare-styleable name="RoundImageView">
+        <attr name="borderRadius" />
+        <attr name="type" />
+    </declare-styleable>
+    
+    <declare-styleable name="CSelectViewContainer">
+        <attr name="horizontal_spacing" format="dimension|reference"/>
+        <attr name="vertical_spacing" format="dimension|reference" />
+        <attr name="item_height" format="dimension|reference" />
+        <attr name="num_column" format="integer" />
+        <attr name="select" format="integer" />
+    </declare-styleable>
+    
+    <declare-styleable name="CSliderView">
+        <attr name="item_num" format="integer" />
+        <attr name="src" format="reference" />
+        <attr name="selected" format="integer" />
+    </declare-styleable>
+	
+    <declare-styleable name="CEmptyNoteView">
+        <attr name="src_text" format="string|reference" />
+        <attr name="btn_text" format="string|reference" />
+    </declare-styleable>
+    
+	<declare-styleable name="CheckEditText">
+	    <attr name="android:textSize" />
+        <attr name="android:textColor" />
+        <attr name="android:textColorHint" />
+        <attr name="android:background" />
+        <attr name="android:hint" />
+        <attr name="android:maxLength" />
+        <attr name="minLength" format="integer" />
+        <attr name="phoneFormat" format="enum" >
+            <enum name="CDD" value="1" />
+            <enum name="CCE" value="2" />
+            <enum name="DDC" value="3" />
+        </attr>
+    </declare-styleable>
+</resources>

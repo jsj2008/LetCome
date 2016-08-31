@@ -1,0 +1,110 @@
+# To enable ProGuard in your project, edit project.properties
+# to define the proguard.config property as described in that file.
+#
+# Add project specific ProGuard rules here.
+# By default, the flags in this file are appended to flags specified
+# in ${sdk.dir}/tools/proguard/proguard-android.txt
+# You can edit the include path and order by changing the ProGuard
+# include property in project.properties.
+#
+# For more details, see
+#   http://developer.android.com/guide/developing/tools/proguard.html
+
+# Add any project specific keep options here:
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#	-libraryjars ${android-jar}
+
+# -key 							保护指定的类文件和类的成员
+# -keepclassmembers				指定类成员将被保留，如果它们的类被保留
+# -keepclasseswithmembers		保护指定的类和类的成员，但条件是所有指定的类和类成员是要存在。
+# -keepnames					保护指定的类和类的成员的名称
+# -keepclassmembernames			指定要保存名字的类成员
+# -keepclasseswithmembernames 	指定要保存的类和类成员，在所有指定的类成员都存在的情况下
+# [@annotationtype] [[!]public|final|abstract|@ ...] [!]interface|class|enum classname
+# [extends|implements [@annotationtype] classname]
+# [{
+#    [@annotationtype] [[!]public|private|protected|static|volatile|transient ...] <fields> |
+#                                                                      (fieldtype fieldname);
+#    [@annotationtype] [[!]public|private|protected|static|synchronized|native|abstract|strictfp ...]
+#		<methods> | <init>(argumenttype,...) | classname(argumenttype,...) | (returntype methodname(argumenttype,...));
+#    [@annotationtype] [[!]public|private|protected|static ... ] *;
+# }]
+
+
+-dontpreverify				#混淆时是否做预校验
+-optimizationpasses 5		#指定代码的压缩级别 
+-dontoptimize				#不优化输入的类文件
+-dontusemixedcaseclassnames	#混淆时不会产生形形色色的类名
+-repackageclasses			#把执行后的类重新放在某一个目录下，后跟一个目录名
+-allowaccessmodification	#优化时允许访问并修改有修饰符的类和类的成员
+
+-verbose					#混淆时是否记录日志
+-dontskipnonpubliclibraryclasses 		#指定不去忽略非公共的库类
+-dontskipnonpubliclibraryclassmembers	#指定不去忽略包可见的库类的成员
+
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*	# 混淆时所采用的算法
+
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgentHelper
+-keep public class * extends android.preference.Preference
+-keep public class com.android.vending.licensing.ILicensingService
+
+-libraryjars libs/android-support-v4.jar
+-keep class android.support.v4.** { *; }  
+-keep interface android.support.v4.app.** { *; }
+
+-libraryjars libs/android-support-v7-gridlayout.jar
+-keep class android.support.v7.** { *; }  
+-keep interface android.support.v7.app.** { *; }
+ 
+-libraryjars libs/gson-2.2.4.jar
+-keepattributes Signature   
+-keepattributes *Annotation*    
+-keep class sun.misc.Unsafe { *; }  
+-keep class com.google.gson.examples.android.model.** { *; } 
+
+-libraryjars libs/umeng-analytics-v5.4.1.jar
+-keep class com.umeng.** { *; }              #友盟统计jar包下的所有类及类里面的所有内容不要混淆
+-dontwarn android.util.**
+-dontwarn android.net.http.**
+
+
+-libraryjars libs/pushservice-5.0.0.66.jar
+-dontwarn com.baidu.**
+-keep class com.baidu.** {*; }
+
+#某些构造方法不能去混淆
+-keep class * extends android.view.View {
+    public <init>(android.content.Context);
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);  
+}
+
+-keep class com.gxq.tpm.mode.BaseRes {
+	<fields> ;
+}
+
+-keepclassmembernames class * extends com.gxq.tpm.mode.BaseRes {
+	<fields> ;
+}
+
+-keepclassmembernames class * implements java.io.Serializable {
+	<fields> ;
+}
+
+-keep public class com.gxq.tpm.activity.WebActivity$JsInterface {
+	public void onFinish(java.lang.String, java.lang.String, java.lang.String);
+}
+
+-keep class * extends android.webkit.WebChromeClient {
+	public void openFileChooser(android.webkit.ValueCallback, java.lang.String);
+	public void openFileChooser(android.webkit.ValueCallback, java.lang.String, java.lang.String);
+	public void openFileChooser(android.webkit.ValueCallback);
+}

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_color"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg"
+        android:scaleType="fitCenter" >
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_xhdpi_15"
+            android:background="@drawable/lock_login_back" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <com.gxq.tpm.ui.CircularImage
+                android:id="@+id/iv_head"
+                android:layout_width="@dimen/margin_xhdpi_90"
+                android:layout_height="@dimen/margin_xhdpi_90"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                style="@style/text_sub_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_xhdpi_15"
+                android:textColor="@color/white_color" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/rl_lock_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_xhdpi_208"
+        android:orientation="vertical" >
+
+        <include layout="@layout/horizontal_space_separate" />
+
+        <include
+            layout="@layout/edit_pwd_layout" />
+
+        <include
+            android:id="@+id/view_verify"
+            layout="@layout/item_bar_line_separate" />
+
+        <LinearLayout
+            android:id="@+id/rl_verify"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_xhdpi_44"
+            android:orientation="horizontal" >
+
+                <include 
+                    layout="@layout/edit_image_verify_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+                <ImageView
+                    android:id="@+id/iv_verify"
+                    android:layout_width="@dimen/margin_xhdpi_130"
+                    android:layout_height="@dimen/margin_xhdpi_44"
+                    android:background="@drawable/login_security"
+                    android:scaleType="fitCenter" />
+        </LinearLayout>
+
+        <include layout="@layout/horizontal_line_separate" />
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_xhdpi_44"
+            android:layout_marginLeft="@dimen/margin_xhdpi_10"
+	        android:layout_marginRight="@dimen/margin_xhdpi_10"
+	        android:layout_marginBottom="@dimen/margin_xhdpi_10"
+	        android:layout_marginTop="@dimen/margin_xhdpi_20"
+            android:background="@drawable/btn_next_step_selector"
+            android:gravity="center"
+            android:text="@string/login_next_phone"
+            android:textColor="@color/text_next_step_selector"
+            android:textSize="@dimen/font_size_xhdpi_18" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_xhdpi_22"
+        android:layout_marginLeft="@dimen/margin_xhdpi_15"
+        android:layout_marginRight="@dimen/margin_xhdpi_15" >
+
+        <TextView
+            android:id="@+id/btn_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/lock_switch_account"
+            android:textColor="@color/text_color_link"
+            android:textSize="@dimen/font_size_xhdpi_12" />
+
+        <TextView
+            android:id="@+id/tv_forget_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/login_forget_pwd"
+            android:textColor="@color/text_color_link"
+            android:textSize="@dimen/font_size_xhdpi_12" />
+    </RelativeLayout>
+
+</LinearLayout>

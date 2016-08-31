@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--LetGO start -->
+    <string name="app_name">letgo</string>
+
+
+    <!--LetGO end -->
+    <!-- common -->
+    <string name="tab_cooperation_text">合作</string>
+    <string name="tab_strategy_text">策略</string>
+    <string name="tab_account_text">账单</string>
+    <string name="tab_mine_text">我的</string>
+    
+    <string name="tab_cooperation_title">投资人TM策略征集</string>
+    <string name="tab_strategy_title">出策略</string>
+    
+    <string name="stock_amount_unit">股</string>
+   
+    <string name="number_default_value">--</string>
+    <string name="empty_string"></string>
+    
+    <string name="default_value">--</string>
+    <string name="default_value_1">--.--</string>
+    
+    <string name="product_empty_list">暂无策略合作</string>
+    <string name="product_empty_list_btn">参与TM策略</string>
+    
+    <string name="btn_cancel">取消</string>
+    <string name="btn_confirm">确认</string>
+    <string name="btn_next_step">下一步</string>
+    <string name="btn_open">打开</string>
+    <string name="btn_look_again">再看看</string>
+    <string name="btn_goto_check">去查看</string>
+    <string name="btn_continue">继续</string>
+    
+    <string name="money_symbol">￥</string>
+    <string name="money_unit">元</string>
+    <string name="ten_thousand">%1$s万</string>
+    <string name="ten_thousand_money">万元</string>
+    <string name="strategy_time">次</string>
+    
+    <string name="layer_loading_text">请等待</string>
+    <!-- end of common -->
+    
+    <!-- 异常提醒 -->
+    <string name="net_unusual">网络异常</string>
+    <string name="server_unusual">服务器异常</string>
+    
+    <!-- 更新 -->
+    <string name="force_update_title">版本升级</string>
+    <string name="force_update_content">新版本更新了重要内容，须更新后才可正常使用。点击确认立即前往更新。</string>
+    <string name="update_title">发现新版本</string>
+    <string name="update_content">点击立即去更新即刻体验策略梦工厂。</string>
+    <string name="update_later">稍后再说</string>
+    <string name="update_now">立即去更新</string>
+    <string name="update_loading">下载中</string>
+    
+    <!-- 合约 -->
+    <string name="agreement_changed_title">签署协议</string>
+	<string name="agreement_unconfirm_text">我已阅读并签署</string>
+    <string name="agreement_confirm_text">已签署</string>
+    
+    <!-- 完善个人资料/昵称 -->
+    <string name="complete_user_info_title">设置手机号登录</string>
+    <string name="complete_user_info_name">昵称</string>
+    <string name="complete_user_info_password">密码</string>
+    <string name="complete_user_info_save">保存</string>
+    <string name="complete_user_info_title_phone">设置手机号登录</string>
+    <string name="complete_user_info_success">恭喜，您成功升级为策略人</string>
+    <string name="complete_user_info_exit">你确定要放弃设置手机号登录\n并退出登录吗？</string>
+    
+    <string name="set_nick_name_title">设置昵称</string>
+    <string name="reset_nick_name_title">重设昵称</string>
+    <string name="nick_name_hint">请输入2~6位汉字</string>
+    <string name="nick_name_check_error_tips">昵称应是2~6位汉字!</string>
+    <string name="nickname_descript_reset">非常抱歉，您所设置的昵称经审核含有敏感词，请您重新设置</string>
+    
+    <!-- 认证 -->
+    <string name="auth_notice">认证通知</string>
+    <string name="auth_cancel">下次再说</string>
+    <string name="auth_confirm">立刻认证</string>
+    <string name="risk_notice">风险提醒</string>
+    <string name="risk_notice_know">知道了</string>
+    <string name="risk_inform">风险告知</string>
+    <string name="risk_no_inform">不再提醒</string>
+    
+    <!-- 登录/忘记密码/修改手机号/修改密码 -->
+    <string name="login_close">关闭</string>
+    <string name="phone_number">手机号</string>
+    <string name="phone_number_hint">请输入手机号</string>
+    <string name="phone_pwd">密码</string>
+    <string name="phone_pwd_hint">请输入密码</string>
+    <string name="phone_pwd_login_hint">请输入手机登录密码</string>
+    <string name="phone_confirm_pwd">确认密码</string>
+    <string name="phone_confirm_pwd_hint">输入确认密码</string>
+    <string name="phone_verify">验证码</string>
+    <string name="phone_verify_hint">请输入验证码</string>
+    <string name="phone_number_verify_hint">请输入6位数字验证码</string>
+    <string name="phone_modify_pwd">修改密码</string>
+    
+    <string name="phone_get_verify_image_fail">获取验证码失败</string>
+    <string name="phone_get_number_verify">获取验证码</string>
+    
+    <string name="phone_number_check_error_tips">请输入有效的11位手机号码</string>
+   	<string name="phone_pwd_check_error_tips">请输入6&#8211;18位数字、字母，字母区分大小写</string>
+   	<string name="phone_image_vervify_check_error_tips">请输入4位验证码</string>
+   	<string name="phone_vervify_check_error_tips">请输入6位验证码</string>
+   	<string name="phone_verify_countdown">(%1$ss)后重新获取</string>
+   	<string name="phone_number_verify_check_error_tips">验证码错误</string>
+   	<string name="phone_modify_success_tips">修改成功</string>
+   	
+    <string name="login_next_lgb">拉勾宝授权登录</string>
+    <string name="login_register_lgb">注册拉勾宝账号</string>
+    <string name="login_type_phone">使用手机号登录</string>
+    <string name="login_type_lgb">使用拉勾宝授权登录</string>
+	<string name="login_forget_pwd">忘记密码?</string>    
+    <string name="login_next_phone">登录</string>
+
+    <string name="lock_switch_account">更换账号</string>
+    
+    <string name="login_forget_pwd_title">重置密码</string>
+    <string name="login_reset_pwd_title">重置密码</string>
+    <string name="forget_pwd_hinit">输入密码</string>
+    <string name="forget_reset_fail">新密码设置失败</string>
+    <string name="forget_reset_passwrod_error">两次输入的密码不一致</string>
+    
+    <!-- end of 登录 -->
+    
+    <string name="search_text_hint">请输入要搜索的股票/代码/简拼</string>
+    <string name="clear_all_search_records">清空所有搜索记录</string>
+	<string name="no_stock_search_records">暂时搜不到您输入的股票代码</string>    
+    
+	<string name="stock_open">今开</string>
+	<string name="stock_yclose">昨收</string>
+	<string name="stock_high">最高</string>
+	<string name="stock_low">最低</string>
+	
+    <!-- 发布策略  -->
+    <string name="tab_minute">分时</string>
+    <string name="tab_m5">M5</string>
+    <string name="tab_m15">M15</string>
+    <string name="tab_m30">M30</string>
+    <string name="tab_m60">M60</string>
+    <string name="tab_d1">D1</string>
+    <string name="sell1">卖1</string>
+    <string name="sell2">卖2</string>
+    <string name="sell3">卖3</string>
+    <string name="sell4">卖4</string>
+    <string name="sell5">卖5</string>
+    <string name="buy1">买1</string>
+    <string name="buy2">买2</string>
+    <string name="buy3">买3</string>
+    <string name="buy4">买4</string>
+    <string name="buy5">买5</string>
+    <string name="remove">删除</string>
+    
+    <string name="cooperation_strategy_search_hint">目前共有%1$s只个股策略征集中</string>
+    
+    <string name="cooperation_strategy_policy_item_investor">投资人</string>
+    <string name="cooperation_strategy_policy_item_fund">投资单元</string>
+    <string name="cooperation_strategy_policy_item_collect"> 策略征集</string>
+    <string name="cooperation_strategy_policy_item_fund_state_0">售罄</string>
+    <string name="cooperation_strategy_policy_item_fund_state_1">少量</string>
+    <string name="cooperation_strategy_policy_item_fund_state_2">充足</string>
+    <string name="cooperation_strategy_policy_item_end_time">倒计时%1$s日</string>
+    <string name="cooperation_strategy_policy_item_next_step">TM策略</string>
+   
+    <string name="cooperation_strategy_claim_title">TM策略要求</string>
+    <string name="cooperation_strategy_claim_investor">投资人</string>
+    <string name="cooperation_strategy_claim_fund">投资单元 %1$s万</string>
+    <string name="cooperation_strategy_claim_time">持股时长</string>
+    <string name="cooperation_strategy_claim_hold_time">持股期限</string>
+    <string name="cooperation_strategy_claim_buy">建仓策略</string>
+    <string name="cooperation_strategy_claim_buy_time">委买时间</string>
+    <string name="cooperation_strategy_claim_buy_way">委买方式</string>
+    <string name="cooperation_strategy_claim_buy_times">委买次数</string>
+    <string name="cooperation_strategy_claim_apply_sell">通知平仓</string>
+    <string name="cooperation_strategy_claim_apply_sell_date">通知日</string>
+    <string name="cooperation_strategy_claim_apply_sell_time">通知时间</string>
+    <string name="cooperation_strategy_claim_sell">平仓策略</string>
+    <string name="cooperation_strategy_claim_sell_time">委卖时间</string>
+    <string name="cooperation_strategy_claim_sell_way">委卖方式</string>
+    <string name="cooperation_strategy_claim_sell_times">委卖次数</string>
+    <string name="cooperation_strategy_claim_next_step">参与</string>
+    
+    <string name="cooperation_strategy_equity_title">策略人权益</string>
+    <string name="cooperation_strategy_equity_stop_profit_point_success">通知平仓日收盘浮盈达%1$s及以上</string>
+    <string name="cooperation_strategy_equity_stop_profit_point_fail">通知平仓当日收盘浮盈未达%1$s</string>
+    <string name="cooperation_strategy_equity_cost">成本补偿</string>
+    <string name="cooperation_strategy_equity_profit">享有盈利</string>
+    <string name="cooperation_strategy_equity_loss">赔付亏损</string>
+    <string name="cooperation_strategy_equity_next_step">下一步</string>
+    
+    <string name="cooperation_strategy_confirm_title">策略人费用</string>
+    <string name="cooperation_strategy_confirm_freeze_title">本投资单元投资人要求提供以下履约保证</string>
+    <string name="cooperation_strategy_confirm_freeze">冻结</string>
+    <string name="cooperation_strategy_confirm_freeze_loss">亏损赔付履约金</string>
+    <string name="cooperation_strategy_confirm_freeze_loss_tips">重要提示</string>
+    <string name="cooperation_strategy_confirm_freeze_fund">成本补偿履约金</string>
+    <string name="cooperation_strategy_confirm_freeze_fund_tips">重要提示</string>
+    <string name="cooperation_strategy_confirm_pay_title">本投资单元由GXQ®提供信息服务</string>
+    <string name="cooperation_strategy_confirm_pay">支付</string>
+    <string name="cooperation_strategy_confirm_pay_tips">信息服务费</string>
+    <string name="cooperation_strategy_confirm_article_name">《%1$s》</string>
+    <string name="cooperation_strategy_confirm_next_step">去付款</string>
+    
+    <string name="cooperation_confirm_give_up">放弃</string>
+    <string name="cooperation_confirm_continue">继续</string>
+    
+    <string name="cooperation_lgb_pop_freeze_title">冻结和支付</string>
+    <string name="cooperation_lgb_pop_account">拉勾宝账户</string>
+    <string name="cooperation_lgb_pop_freeze_loss">亏损赔付履约金</string>
+    <string name="cooperation_lgb_pop_freeze_fund">成本补偿履约金</string>
+    <string name="cooperation_lgb_pop_freeze">冻结</string>
+    <string name="cooperation_lgb_pop_infomation_charge">信息服务费</string>
+    <string name="cooperation_lgb_pop_pay">支付</string>
+   
+    
+    <string name="cooperation_lgb_not_enough">您的拉勾宝余额不足，请充值</string>
+    <string name="cooperation_lgb_not_enough_give_up">您的拉勾宝余额不足，请充值</string>
+    <string name="cooperation_lgb_not_enough_recharge">您的拉勾宝余额不足，请充值</string>
+    
+    <string name="cooperation_strategy_feedback_success_title">合作成功！</string>
+    <string name="cooperation_strategy_feedback_fail_title">合作失败！</string>
+    <string name="cooperation_strategy_feedback_timeout_title">网络异常</string>
+    <string name="cooperation_feedback_go_to_see_implement">去查看</string>
+    <string name="cooperation_feedback_result_confirm">确认</string>
+    <string name="cooperation_strategy_feedback_success">你与投资人%1$s的策略合作成功</string>
+    <string name="cooperation_strategy_feedback_fail">很遗憾，因投资人响应超时，\n你的策略合作未成功</string>
+    <string name="cooperation_strategy_feedback_timeout">请点击确认去查看是否合作成功</string>
+	    
+    <string name="percent_unit">%</string>
+    
+    <string name="cooperation_article_title">我已阅读并同意</string>
+    
+    <string name="keyboard_one">1</string>
+    <string name="keyboard_two">2</string>
+    <string name="keyboard_three">3</string>
+    <string name="keyboard_four">4</string>
+    <string name="keyboard_five">5</string>
+    <string name="keyboard_six">6</string>
+    <string name="keyboard_seven">7</string>
+    <string name="keyboard_eight">8</string>
+    <string name="keyboard_nine">9</string>
+    <string name="keyboard_zero">0</string>
+    <string name="keyboard_hundred">00</string>
+    <string name="keyboard_thousand">000</string>
+    <string name="keyboard_confirm">确认</string>
+    <string name="keyboard_full_fund">全额</string>
+
+    <string name="product_home_hq_szzs">上证指数</string>
+    <string name="product_home_hq_szcz">深证成指</string>
+    <string name="product_home_hq_cyb">创业板指</string>
+    
+    <string name="product_home_show_msg_ok">确认</string>
+    <string name="product_home_login_toast">请先登录</string>
+    
+    <!-- 策略 -->
+    <string name="strategy_buying">待建仓</string>
+    <string name="strategy_noticing">待通知</string>
+    <string name="strategy_selling">待平仓</string>
+    
+    <string name="strategy_pno">协议编号: %1$s</string>
+    <string name="strategy_investor">投资人</string>
+    <string name="strategy_invest_unit">投资单元</string>
+    <string name="strategy_to_buy_fund">待买金额</string>
+    <string name="strategy_bought_fund">已买金额</string>
+    <string name="strategy_use_ratio">使用率</string>
+    <string name="strategy_bought_amount">已买股数</string>
+    <string name="strategy_buy_price">买入价</string>
+    <string name="strategy_cur_price">现价</string>
+    <string name="strategy_rise_and_fall">涨跌</string>
+    <string name="strategy_create_strategy">+建仓策略 (%1$d/%2$d)</string>
+    
+    <string name="strategy_total_amount">总股数</string>
+    <string name="strategy_profit">浮盈亏</string>
+    <string name="strategy_profit_ratio">浮盈亏率</string>
+    <string name="strategy_notice_to_sell">通知平仓</string>
+    <string name="strategy_trade_day">今日为第%1$s个交易日</string>
+    <string name="strategy_loss_ratio">亏损赔付履约比例</string>
+    
+    <string name="strategy_to_sell_amount">待卖股数</string>
+    <string name="strategy_selled_amount">已卖股数</string>
+    <string name="strategy_sell_price">卖出价</string>
+    <string name="strategy_close_strategy">平仓策略 (%1$d/%2$d)</string>
+    
+    <string name="strategy_buying_title">建仓策略</string>
+    <string name="strategy_buying_today">今日</string>
+    <string name="strategy_today_times1">第</string>
+    <string name="strategy_today_times2">次</string>
+    <string name="strategy_today_limit">限%1$d次</string>
+    <string name="strategy_buying_to_investor">向投资人发出</string>
+    <string name="strategy_input_fund">本次投入金额：</string>
+    <string name="strategy_input_fund_hint">请输入金额</string>
+    <string name="strategy_total_fund">全额</string>
+    <string name="strategy_about_amount">预计买入</string>
+    <string name="strategy_confirm_buying">确认发送</string>
+    
+    <string name="strategy_buying_order_content">根据现在实盘的价格,您设置的投入金额目前可买入%1$d股，是否继续?</string>
+    <string name="strategy_buying_success">建仓成功！</string>
+    <string name="strategy_buying_success_content">您已完成了全部的建仓策略，祝您投资顺利！</string>
+    <string name="strategy_buying_fail">建仓失败！</string>
+    <string name="strategy_buying_fail_content">很遗憾，因投资人响应超时，\n您的策略未建仓成功！</string>
+    <string name="strategy_buying_time_out">网络异常</string>
+    <string name="strategy_buying_time_out_content">请点击确认去查看策略是否发送成功</string>
+    <string name="strategy_buying_not_enough_amount">您投入的金额不足够买入100股</string>
+
+    <string name="strategy_notice_title">限时通知平仓</string>
+    <string name="strategy_notice_today_days1">第</string>
+    <string name="strategy_notice_today_days2">日</string>
+    <string name="strategy_notice_leave_day">剩余%1$d日</string>
+    <string name="strategy_notice_profit">收益浮盈</string>
+    <string name="strategy_notice_notice_time">通知平仓时间为每日 %1$s-%2$s</string>
+    <string name="strategy_notice_not_notice_time">未到通知平仓时间</string>
+    <string name="strategy_notice_important_tip">重要提示：</string>
+    <string name="strategy_notice_important_tip1">1.当策略人提供的策略在收盘浮盈未达到%1$s及以上时，策略人将支付成本补偿</string>
+    <string name="strategy_notice_important_tip2">成本补偿 = %1$s</string>
+    <string name="strategy_notice_important_tip3">2.T+%1$d日%2$s&#8211;%3$s未通知平仓，投资人将于T+%4$d日开盘以市价平仓</string>
+    <string name="strategy_notice_confirm">通知确认</string>
+    
+    <string name="strategy_notice_suceess">投资人接收了您的平仓通知</string>
+    <string name="strategy_notice_fail">投资人未响应您的平仓通知</string>
+    <string name="strategy_notice_time_out">网络异常</string>
+    <string name="strategy_notice_time_out_content">请点击确认去查看策略是否发送成功</string>
+    
+    <string name="strategy_selling_title">平仓策略</string>
+    <string name="strategy_to_sell_amout">待卖股数（股）</string>
+    <string name="strategy_to_buy_start_price">买入价  %1$s元</string>
+    <string name="strategy_selling_total_amount">全部</string>
+    <string name="strategy_input_sell_amount">本次平仓股数：</string>
+    <string name="strategy_input_sell_amount_hint">请输入股数</string>
+    <string name="strategy_selling_must_hundred_multiple">卖出股票必须为100的整数倍</string>
+   	<string name="strategy_selling_input_number_greater_than">输入数字超过最大可卖股票数</string>
+    <string name="strategy_selling_last_time">最后一次平仓必须全部卖出</string>
+    <string name="strategy_selling_time_out">网络异常</string>
+    <string name="strategy_selling_time_out_content">请点击确认去查看 策略是否平仓成功</string>
+    
+    <string name="strategy_sell_success_title">平仓成功!</string>
+    <string name="strategy_sell_success_content">恭喜！您已经完成了全部的平仓策略</string>
+    <string name="strategy_sell_fail_title">平仓失败!</string>
+    
+    <!-- 收付款  -->
+    <string name="settlement_list_pno">协议编号:</string>
+    <string name="settlement_list_investor">投资人</string>
+    <string name="settlement_list_invest_profit">投资人交易盈亏(元)</string>
+    <string name="settlement_list_invest_fund">投资单元&#160;%1$s万</string>
+    <string name="settlement_list_buy_price">买入价</string>
+    <string name="settlement_list_sell_price">卖出价</string>
+    <string name="settlement_list_amount">股数</string>
+    <string name="settlement_list_tactics_cooperate_profit">策略人合作权益(元)</string>
+    <string name="settlement_list_break_cost">成本补偿</string>
+    <string name="settlement_list_share_profit">分享盈利</string>
+    <string name="settlement_list_stop_profit_point">赔付亏损</string>
+    <string name="settlement_list_dissent_enable">异议申请</string>
+    <string name="settlement_list_dissent_underway">异议处理中</string>
+    <string name="settlement_dissent_processing">预计2个工作日内处理完成</string>
+    <string name="settlement_commit_pay">是否确认付款</string>
+    <string name="settlement_result_pay_success">付款成功</string>
+    <string name="settlement_result_pay_failure">付款失败</string>
+    <string name="settlement_already_pay">已付款</string>
+    <string name="settlement_limate_pay">限时付款</string>
+    
+    <!-- 收付款详情 -->
+    <string name="settlement_detail_title">详细</string>
+    <string name="settlement_detail_buy_execute_result">建仓策略执行结果</string>
+    <string name="settlement_detail_buy_date">开仓日期</string>
+    <string name="settlement_detail_buy_fund">买入成交金额</string>
+    <string name="settlement_detail_buy_price">买入价</string>
+    <string name="settlement_detail_buy_amount">买入股数</string>
+    <string name="settlement_detail_notify_sell_date">通知平仓日收盘浮盈</string>
+    <string name="settlement_detail_notify_sell_date_deadline">到期通知平仓日收盘浮盈</string>
+    <string name="settlement_detail_apply_sell_date">通知日期</string>
+    <string name="settlement_detail_apply_sell_days">所在日</string>
+    <string name="settlement_detail_y_colose_price">收盘价</string>
+    <string name="settlement_detail_y_sell_profit_rate">收盘浮盈</string>
+    <string name="settlement_detail_sell_execute_result">平仓策略执行结果</string>
+    <string name="settlement_detail_sell_execute_result_deadline">到期平仓策略执行结果</string>
+    <string name="settlement_detail_sell_date">平仓日期</string>
+    <string name="settlement_detail_sell_fund">卖出成交金额</string>
+    <string name="settlement_detail_sell_price">卖出价</string>
+    <string name="settlement_detail_sell_amount">卖出股数</string>
+    <string name="settlement_detail_strategy_time">策略次数</string>
+    <string name="settlement_detail_sell_days">第%1$s交易日</string>
+    
+    <!-- 交易流水 -->
+  	<string name="transaction_stream_title_sell">平仓策略明细</string>
+  	<string name="transaction_stream_title_buy">建仓策略明细</string>
+  	<string name="transaction_stream_item_buy_price">买入价</string>
+  	<string name="transaction_stream_item_buy_amount">买入股数</string>
+  	<string name="transaction_stream_item_deal_fund">成交金额</string>
+  	<string name="transaction_stream_item_sell_price">卖出价</string>
+  	<string name="transaction_stream_item_sell_amount">卖出股数</string>
+  	<string name="transaction_stream_item_stock_bonus">每股红利</string>
+  	<string name="transaction_stream_item_stock_bonus_amount">红利股数</string>
+  	<string name="transaction_stream_item_stock_bonus_fund">红利金额</string>
+  	
+  	<!-- 我模块 -->
+  	<string name="user_uid">ID%1$s</string>
+  	<string name="user_auth">我的认证</string>
+  	<string name="user_dissentrecord_compensate">异议/补偿</string>
+  	<string name="user_lgb_account">拉勾宝</string>
+  	<string name="user_weixin">微信公众号</string>
+  	<string name="user_service">我的客服</string>
+  	<string name="user_setting">设置</string>
+  	
+  	<string name="user_weixin_public_number">策略梦工厂</string>
+  	<string name="user_weixin_dialog_content">已复制策略梦工厂微信公众号\n打开微信添加</string>
+  	<string name="user_weixin_dialog_error_tips">请先安装微信</string>
+  	
+    <!-- end of 我的策略 -->
+  	
+  	<!-- 异议/补偿 -->
+  	<string name="user_dissent_record">我的异议</string>
+  	<string name="user_compensate">我的补偿</string>
+  	
+  	<!-- 异议 -->
+  	<string name="dissent_create_time">异议时间</string>
+  	<string name="dissent_point">异议点</string>
+  	<string name="dissent_result">处理状态</string>
+  	<string name="empty_dissent_list">暂无异议记录</string>
+  	<string name="dissent_state_wait">等待受理</string>
+  	<string name="dissent_state_process">受理中</string>
+  	<string name="dissent_state_finsh_y">受理完成</string>
+	<string name="dissent_state_has_correct">有修正</string>
+	<string name="dissent_state_no_correct">无修正</string>
+  	<string name="dissent_pid">协议编号</string>
+  	<string name="dissent_need_correct">是否修正</string>
+  	<string name="dissent_point_desc">异议点描述:</string>
+    <string name="dissent_point_comment">异议回复:</string>
+  	<string name="user_dissent_record_detail">异议内容</string>
+	<string name="dissent_state_correct_y">是</string>
+	<string name="dissent_state_correct_n">否</string>  	
+  	
+	<!-- 补偿 -->
+  	<string name="compensate_time">补偿时间</string>
+  	<string name="compensate_money">金额</string>
+  	<string name="compensate_type">类别</string>
+	<string name="compensate_state">状态</string>
+	<string name="empty_compensate_list">暂无补偿记录</string>
+	<string name="compensate_paid">支付</string>
+	<string name="user_compensate_detail">补偿明细</string>
+	<string name="compensate_pno">协议编号</string>
+  	<string name="compensate_publish_time">发布时间</string>
+  	<string name="compensate_way">补偿类别</string>
+  	<string name="compensate_pay">应付金额</string>
+  	<string name="compensate_receive">应收金额</string>
+  	<string name="compensate_status">状态</string>
+  	<string name="compensate_button">支付</string>
+    <string name="compensate_pay_y">支付成功！</string>
+    <!-- end of 异议/补偿 -->
+    
+    <!-- 拉勾宝账号 -->
+  	<string name="user_lgb_account_title">拉勾宝账户</string>
+  	<string name="user_lgb_account_msg">拉勾宝账户:</string>
+  	<string name="user_prod_available">可用</string>
+  	<string name="user_prod_freeze">冻结</string>
+  	<string name="user_prod_recharge">充值</string>
+  	<string name="user_prod_withdrawals">提现</string>
+  	<string name="user_prod_accountflow">账户流水</string>
+  	
+  	<string name="user_prod_withdrawals_title">提现</string>
+	<string name="user_prod_recharge_title">充值</string>
+  	<string name="user_prod_accountflow_title">账户流水</string>
+  	<string name="user_prod_tips">拉勾宝账户数据由 拉勾宝 提供支持</string>
+  	<!-- end of 拉勾宝账号 -->
+  	
+  	<!-- 私信 -->
+    <string name="user_letter">私信</string>
+  	<string name="letter_announcement">公告</string>
+  	<string name="letter_system_info">系统</string>
+  	<string name="letter_notice">提醒</string>
+  	<string name="title_letter_detail">消息详情</string>
+  	<!-- end of 私信 -->
+  	
+  	<!-- 我的客服 -->
+  	<string name="user_private_customer_service">我的客服</string>
+  	<string name="user_customer_service_online">在线客服</string>
+  	<string name="user_customer_service_feedback">意见反馈</string>
+  	<string name="user_common_question">常见问题</string>
+    <string name="user_new_comer_guide">新手引导</string>
+  	<!-- end of 我的客服 -->
+  	
+  	<!-- 设置 -->
+  	<string name="user_phone_login">手机号登录</string>
+  	<string name="user_gesture_pwd">手势密码</string>
+    <string name="user_about">关于</string>
+    <string name="user_quit">安全退出</string>
+    
+    <!-- 手机登录 -->
+    <string name="user_phone_login_setting">手机登录设置</string>
+    
+    <string name="user_phone_number_title">修改手机</string>
+    <string name="user_old_phone_number_tips">点击“获取验证码”完成原手机号码短信验证</string>
+    <string name="user_phone_number_old">原手机号</string>
+    <string name="user_new_phone_number_tips">请输入新手机号码，点击“获取验证码”完成短信验证</string>
+	<string name="user_phone_number_new">新手机号</string>
+    
+    <string name="user_modify_pwd_original_pwd">原密码</string>
+    <string name="user_modify_pwd_new_pwd">新密码</string>
+    <string name="user_modify_pwd_new_pwd_hint">6&#8211;18位数字、英文、字母</string>
+    <string name="user_modify_pwd_confirm_pwd">确认密码</string>
+    <string name="user_modify_pwd_confirm_pwd_hint">再次输入新密码</string>
+   
+    <string name="user_modify_pwd_not_equal">两次密码输入不一致</string>
+    <string name="user_modify_pwd_error">您的密码错误</string>
+    
+    <string name="user_modify_pwd_reset">请重新设置您的登录密码</string>
+    
+    <!-- 手势密码 -->
+    <string name="lock_set_gesture">设置手势密码</string>
+    <string name="lock_check_gesture">验证手势密码</string>
+    <string name="lock_forget_gesture">忘记手势密码?</string>
+    <string name="lock_modify_gesture">修改手势密码</string>
+    <string name="lock_gesture_draw">绘制解锁图案\n</string>
+    <string name="lock_gesture_draw_limit">（至少连接4个点）</string>
+    <string name="lock_gesture_draw_agian">再次绘制解锁图案</string>
+    <string name="lock_gesture_draw_warning">最少连接4个点，请重新绘制</string>
+    <string name="lock_gesture_wrong_warning">密码错误，还可以再输入%1$d次</string>
+    <string name="lock_gesture_not_same_warning">与上一次绘制不一致，请重新绘制</string>
+    <string name="lock_gesture_5wrong_warning">您已连续5次输错手势，请重新登录</string>
+    <string name="lock_gesture_check">输入原手势密码</string>
+    <string name="lock_change_account">更换账号</string>
+   	<string name="lock_gesture">手势密码</string>
+   	<string name="lock_dialog_edit_hint">输入登录密码</string>
+   	
+    <!-- 关于 -->
+    <string name="user_platform_agreement">平台服务协议</string>
+    <string name="user_investor_agreement">投资人合作协议</string>
+    <string name="user_privacy_clause">隐私条款</string>
+    
+  	<string name="user_strategy_agreement_content">策略合作协议内容</string>
+  	<!-- end of 设置 -->
+  	
+  	<!-- WebActivity -->
+  	<string name="take_photo">拍照</string>
+   	<string name="take_picture">从相册选择</string>
+  	
+  	<!-- end of WebActivity -->
+  	
+  	<!-- 控件 -->
+  	<!-- listview -->
+    <string name="loosen_refresh">松开刷新</string>
+    <string name="refreshing">正在刷新&#8230;</string>
+    <string name="drop_down_refresh">下拉刷新</string>
+    <string name="loosen_more">松开加载更多</string>
+    <string name="drop_up_more">上拉加载更多</string>
+    
+    <!-- chart -->
+    <string name="chart_loading">数据加载中&#8230;</string>
+  	<!-- end of 控件 -->
+  	
+  	
+  	<string name="user_dissent_commit_title">异议申请</string>
+
+	<string name="dissent_new_value">请输入数值</string>
+	<string name="dissent_input_title">你的理由(限150字)</string> 
+	<string name="dissent_input_hint">请描述遇到的问题，以便我们及时为您解决</string> 
+	<string name="dissent_deal">已结算</string>
+	<string name="dissent_undeal">未结算</string>
+  	<string name="dissent_trade_pno">协议编号</string>
+  	
+  	<string name="dissent_type_choose">请选择</string>
+  	<string name="dissent_commit">提 交</string>
+  	<string name="btn_finish">完成</string>
+  	
+  	<string name="dissent_type_service_pay">信息服务费</string>
+  	<string name="dissent_type_buying_price">买入价</string>
+  	<string name="dissent_type_selling_price">卖出价</string>
+  	<string name="dissent_type_cooperation_feedback_pay">合作权益</string>
+  	<string name="dissent_type_settlement">结算</string>
+    <string name="dissent_type_other">其他</string>
+    	
+    <string name="dissent_none">无</string>
+    <string name="dissent_note_select_point">请选择一个异议点</string>
+    <string name="dissent_note_select_pno">请选择交易单</string>
+    <string name="dissent_note_input_reason">请输入您的理由</string>
+    <string name="dissent_note_reason_not_enough">您的理由不足5个字</string>
+    <string name="dissent_cur_value">当前值：</string>   
+    <string name="dissent_cur_value_tip">请填写您认为的值</string>   
+  	
+    <string name="dialog_title_text">提醒</string>
+    
+ 	<string name="dissent_pay_n">\n支付失败，请重试！</string>
+    <string name="dissent_commit_y">申报成功，工作人员将在24小时内完成处理，请留意异议记录受理状态的更新！</string>
+    
+    <!-- end -->
+   
+</resources>

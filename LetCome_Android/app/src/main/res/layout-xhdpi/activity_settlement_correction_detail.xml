@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.gxq.tpm"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/product_bg">
+    <include  layout="@layout/horizontal_line_separate" />
+	<ScrollView
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="1"
+	    android:background="@color/product_bg">
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+  		    android:orientation="vertical"
+		    android:background="@color/white_color" >
+		    
+			<com.gxq.tpm.ui.CItemBar
+			    android:id="@+id/settlement_correction_pno"
+			    android:layout_width="match_parent"
+		    	android:layout_height="@dimen/margin_xhdpi_45"
+		    	app:itemPaddingLeft="@dimen/margin_xhdpi_15"
+		    	app:itemPaddingRight="@dimen/margin_xhdpi_15"
+		    	app:itemTitleText="@string/compensate_pno"
+		    	app:itemShowDetail="false" />
+			<include 
+			    layout="@layout/item_bar_line_separate" />
+			
+			<com.gxq.tpm.ui.CItemBar
+			    android:id="@+id/settlement_correction_time"
+			    android:layout_width="match_parent"
+		    	android:layout_height="@dimen/margin_xhdpi_45"
+		    	app:itemPaddingLeft="@dimen/margin_xhdpi_15"
+		    	app:itemPaddingRight="@dimen/margin_xhdpi_15"
+		    	app:itemTitleText="@string/compensate_publish_time"
+		    	app:itemShowDetail="false" />
+			
+			<include 
+			    layout="@layout/item_bar_line_separate" />
+			
+			<com.gxq.tpm.ui.CItemBar
+			    android:id="@+id/settlement_compensate_time"
+			    android:layout_width="match_parent"
+		    	android:layout_height="@dimen/margin_xhdpi_45"
+		    	app:itemPaddingLeft="@dimen/margin_xhdpi_15"
+		    	app:itemPaddingRight="@dimen/margin_xhdpi_15"
+		    	app:itemTitleText="@string/compensate_time"
+		    	app:itemShowDetail="false" />
+			<include 
+			    layout="@layout/item_bar_line_separate" />
+			<com.gxq.tpm.ui.CItemBar
+			    android:id="@+id/settlement_correction_way"
+			    android:layout_width="match_parent"
+		    	android:layout_height="@dimen/margin_xhdpi_45"
+		    	app:itemPaddingLeft="@dimen/margin_xhdpi_15"
+		    	app:itemPaddingRight="@dimen/margin_xhdpi_15"
+		    	app:itemTitleText="@string/compensate_way"
+		    	app:itemShowDetail="false" />
+			
+			<include 
+			    layout="@layout/item_bar_line_separate" />
+			
+			<com.gxq.tpm.ui.CItemBar
+			    android:id="@+id/dissent_correction_money"
+			    android:layout_width="match_parent"
+		    	android:layout_height="@dimen/margin_xhdpi_45"
+		    	app:itemPaddingLeft="@dimen/margin_xhdpi_15"
+		    	app:itemPaddingRight="@dimen/margin_xhdpi_15"
+		    	app:itemShowDetail="false" />
+			<include 
+			    layout="@layout/item_bar_line_separate" />
+			
+			<com.gxq.tpm.ui.CItemBar
+			    android:id="@+id/dissent_correction_status"
+			    android:layout_width="match_parent"
+		    	android:layout_height="@dimen/margin_xhdpi_45"
+		    	app:itemPaddingLeft="@dimen/margin_xhdpi_15"
+		    	app:itemPaddingRight="@dimen/margin_xhdpi_15"
+		    	app:itemTitleText="@string/compensate_status"
+		    	app:itemShowDetail="false" />
+			<include 
+			    layout="@layout/horizontal_line_separate" />
+			<TextView 
+			    android:id="@+id/fix_fail_time_str"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:textSize="12sp"
+			    android:textColor="@color/text_color_main"
+			    android:paddingTop="@dimen/margin_xhdpi_15"
+			    android:paddingLeft="@dimen/margin_xhdpi_15"
+			    android:paddingRight="@dimen/margin_xhdpi_15"
+			    android:background="@color/product_bg"/>
+		</LinearLayout>
+	</ScrollView>
+	<include 
+			    layout="@layout/horizontal_line_separate" />
+	<TextView 
+	    android:id="@+id/settlement_correction_button"
+	    android:layout_width="match_parent"
+		android:layout_height="@dimen/normal_button_height"
+        android:gravity="center"
+		android:text="@string/compensate_button"
+		android:textColor="@color/white_color"
+        android:textSize="@dimen/font_size_xhdpi_16"
+        android:background="@drawable/btn_next_step_selector"
+        android:layout_margin="@dimen/margin_xhdpi_10" />
+</LinearLayout>

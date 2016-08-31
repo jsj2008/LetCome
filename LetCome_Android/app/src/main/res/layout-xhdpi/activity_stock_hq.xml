@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout 
+        android:layout_width="match_parent"
+    	android:layout_height="@dimen/margin_xhdpi_44"
+    	android:background="@color/white_color">
+    	<RelativeLayout 
+	        android:id="@+id/rl_left"
+	        android:layout_width="@dimen/margin_xhdpi_40"
+	        android:layout_height="match_parent"
+	        android:layout_alignParentLeft="true"
+	        android:layout_marginLeft="@dimen/margin_xhdpi_5" >
+	        <ImageView
+	            android:id="@+id/iv_left"
+	            android:layout_width="@dimen/margin_xhdpi_20"
+	            android:layout_height="@dimen/margin_xhdpi_20"
+	            android:scaleType="center" 
+	            android:src="@drawable/nav_back"
+	    		android:adjustViewBounds="true"
+	            android:layout_centerInParent="true" />
+	    </RelativeLayout>
+	    <TextView 
+	        android:id="@+id/tv_stock_name"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerHorizontal="true"
+	        android:layout_alignParentTop="true"
+	        android:layout_marginTop="@dimen/margin_xhdpi_4"
+	        android:textColor="@color/text_color_title"
+	        android:textSize="@dimen/font_size_xhdpi_16" />
+    	
+    	<TextView 
+	        android:id="@+id/tv_stock_code"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerHorizontal="true"
+	        android:layout_below="@id/tv_stock_name"
+	        android:textColor="@color/text_color_sub"
+	        android:textSize="@dimen/font_size_xhdpi_10" />
+    	
+    </RelativeLayout>
+    
+    <include
+        layout="@layout/horizontal_line_separate" />
+    
+	<LinearLayout
+	    android:layout_width="match_parent"
+    	android:layout_height="0dp"
+    	android:layout_weight="1"
+    	android:orientation="vertical">
+	    
+	    <com.gxq.tpm.ui.CProductHqHead
+	        android:id="@+id/container_hq_head"
+	        android:layout_width="match_parent"
+    		android:layout_height="@dimen/margin_xhdpi_75" />
+	    
+	    <com.gxq.tpm.ui.CProductHqKLineChart
+	        android:id="@+id/container_hq_chart"
+	        android:layout_width="match_parent"
+    		android:layout_height="match_parent" />
+	    
+	</LinearLayout>
+	
+	<LinearLayout
+	    android:id="@+id/container_bottom"
+	    android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="vertical"
+    	android:visibility="invisible" >
+		<include 
+	    	layout="@layout/horizontal_line_separate"/>
+		
+		<include 
+	    	layout="@layout/btn_netx_step"/>
+		
+	</LinearLayout>
+	
+</LinearLayout>

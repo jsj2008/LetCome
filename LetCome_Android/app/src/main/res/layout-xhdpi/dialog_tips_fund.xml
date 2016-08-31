@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/margin_xhdpi_20"
+    android:layout_marginRight="@dimen/margin_xhdpi_20"
+    android:layout_marginTop="@dimen/margin_xhdpi_30"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1.策略人拉勾宝账户中冻结的，用于在收盘浮盈未达到12%及以上而向投资人发出平仓通知时，对投资人机会成本进行补偿的专项保证金"
+        android:textAppearance="@style/font_757575_12" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_xhdpi_12"
+        android:layout_marginTop="@dimen/margin_xhdpi_8"
+        android:text="成本补偿 = 买入成交金额 ×（1%+0.06%×未到期天数）"
+        android:textAppearance="@style/font_757575_12" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_xhdpi_30"
+        android:text="2.补偿剩余的资金将予以退还"
+        android:textAppearance="@style/font_757575_12" />
+
+</LinearLayout>

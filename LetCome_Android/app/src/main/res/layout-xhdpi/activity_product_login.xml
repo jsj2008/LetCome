@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/product_bg" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_xhdpi_295"
+            android:layout_marginBottom="@dimen/margin_xhdpi_10"
+            android:background="@drawable/user_loadingbg"
+            android:scaleType="fitCenter"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/rl_login_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/white_color" >
+
+                    <include layout="@layout/horizontal_line_separate" />
+
+                    <include layout="@layout/etit_phone_layout" />
+
+                    <include layout="@layout/item_bar_line_separate" />
+
+                    <include layout="@layout/edit_pwd_layout" />
+
+                    <include 
+                        android:id="@+id/view_verify"
+                        layout="@layout/item_bar_line_separate" />
+
+                    <LinearLayout
+                        android:id="@+id/rl_verify"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_xhdpi_45"
+                        android:orientation="horizontal"
+                        android:background="@color/product_bg" >
+
+                        <include layout="@layout/edit_image_verify_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent" />
+
+                        <ImageView
+                            android:id="@+id/iv_verify"
+                            android:layout_width="@dimen/margin_xhdpi_130"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/login_security" />
+                    </LinearLayout>
+                    <include layout="@layout/horizontal_line_separate" />
+                </LinearLayout>
+                <include 
+                    layout="@layout/btn_netx_step"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_xhdpi_10" />
+                <Button 
+				    android:id="@+id/btn_login_register_lgb"
+				    android:layout_width="match_parent"
+				    android:layout_height="@dimen/margin_xhdpi_44"
+				    android:layout_margin="@dimen/margin_xhdpi_10"
+				    android:textColor="@color/tab_cur_selected"
+				    android:textSize="@dimen/font_size_xhdpi_18"
+				    android:gravity="center"
+				    android:background="@drawable/btn_white_selector"
+				    android:text="@string/login_register_lgb" />
+                <TextView
+                    android:id="@+id/tv_forget_pwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/login_forget_pwd"
+                    android:textColor="@color/text_color_link"
+                    android:textSize="@dimen/font_size_xhdpi_12"
+                    android:layout_marginTop="@dimen/margin_xhdpi_20"
+                    android:layout_marginBottom="@dimen/margin_xhdpi_10" />
+            </LinearLayout>
+        </ScrollView>
+        
+        <include layout="@layout/horizontal_line_separate" />
+
+        <TextView
+            android:id="@+id/tv_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_xhdpi_45"
+            android:background="@color/white_color"
+            android:gravity="center"
+            android:textColor="@color/text_color_link"
+            android:textSize="@dimen/font_size_xhdpi_12" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/margin_xhdpi_15"
+        android:layout_marginTop="@dimen/margin_xhdpi_20"
+        android:textAppearance="@style/font_white_12" />
+
+</RelativeLayout>

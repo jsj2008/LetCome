@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/product_bg"
+    android:orientation="vertical" >
+
+<TextView 
+        android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="@dimen/margin_xhdpi_12"
+		android:layout_marginBottom="@dimen/margin_xhdpi_12"
+        android:text="@string/user_modify_pwd_reset"
+        android:textSize="@dimen/font_size_xhdpi_12"
+        android:textColor="@color/text_color_sub"
+        android:paddingLeft="@dimen/margin_xhdpi_15"
+        android:paddingRight="@dimen/margin_xhdpi_15"
+        android:gravity="center_vertical" />
+    <include layout="@layout/horizontal_line_separate" />
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:orientation="vertical" >
+
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_xhdpi_45"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/font_size_xhdpi_15"
+            android:paddingRight="@dimen/font_size_xhdpi_15" >
+
+            <TextView
+                style="@style/text_main_style"
+                android:layout_width="@dimen/margin_xhdpi_90"
+                android:layout_height="match_parent"
+                android:text="@string/user_modify_pwd_new_pwd"
+                android:gravity="left|center_vertical" />
+            <com.gxq.tpm.ui.PwdCheckEditText
+               android:id="@+id/et_new_pwd"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:hint="@string/user_modify_pwd_new_pwd_hint"/>
+           
+        </LinearLayout>
+
+        <include layout="@layout/item_bar_line_separate" />
+
+       <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_xhdpi_45"
+            android:layout_marginBottom="@dimen/margin_xhdpi_10"
+            android:paddingLeft="@dimen/font_size_xhdpi_15"
+            android:paddingRight="@dimen/font_size_xhdpi_15"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/text_main_style"
+                android:layout_width="@dimen/margin_xhdpi_90"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:text="@string/user_modify_pwd_confirm_pwd" />
+            <com.gxq.tpm.ui.PwdCheckEditText
+                android:id="@+id/et_confirm_pwd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/user_modify_pwd_confirm_pwd_hint"/>
+          
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/horizontal_line_separate" />
+
+    <include layout="@layout/btn_netx_step" />
+
+</LinearLayout>

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <include layout="@layout/horizontal_line_separate" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_xhdpi_45"
+                android:background="@color/product_bg"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/margin_xhdpi_15"
+                android:paddingRight="@dimen/margin_xhdpi_15" >
+
+                <TextView
+                    android:id="@+id/tv_investor_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cooperation_strategy_claim_investor"
+                    android:textAppearance="@style/font_999999_12" />
+
+                <TextView
+                    android:id="@+id/tv_investor_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_xhdpi_4"
+                    android:layout_toRightOf="@id/tv_investor_title"
+                    android:drawableLeft="@drawable/item_cert"
+                    android:drawablePadding="@dimen/margin_xhdpi_4"
+                    android:textAppearance="@style/font_999999_12" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:id="@+id/tv_fund"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/font_999999_12" />
+
+                    <View
+                        android:layout_width="@dimen/margin_xhdpi_1"
+                        android:layout_height="@dimen/margin_xhdpi_12"
+                        android:layout_marginLeft="@dimen/margin_xhdpi_8"
+                        android:layout_marginRight="@dimen/margin_xhdpi_8"
+                        android:background="@color/line_seperate_color"
+                        android:layout_gravity="center_vertical" />
+
+                    <TextView
+                        android:id="@+id/tv_stock_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_508cf0"
+                        android:textSize="@dimen/font_size_xhdpi_12" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <include layout="@layout/horizontal_line_separate" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/margin_xhdpi_15" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_xhdpi_14"
+                    android:layout_marginTop="@dimen/margin_xhdpi_14"
+                    android:text="@string/cooperation_strategy_claim_time"
+                    android:textAppearance="@style/font_222222_14" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/margin_xhdpi_14"
+                    android:paddingRight="@dimen/margin_xhdpi_15" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cooperation_strategy_claim_hold_time"
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/font_size_xhdpi_14" />
+
+                    <TextView
+                        android:id="@+id/tv_hold_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textAppearance="@style/font_222222_14" />
+                </RelativeLayout>
+
+                <include layout="@layout/horizontal_line_separate" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_xhdpi_14"
+                    android:layout_marginTop="@dimen/margin_xhdpi_14"
+                    android:text="@string/cooperation_strategy_claim_buy"
+                    android:textAppearance="@style/font_222222_14" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/margin_xhdpi_14"
+                    android:paddingRight="@dimen/margin_xhdpi_15" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cooperation_strategy_claim_buy_time"
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/font_size_xhdpi_14" />
+
+                    <TextView
+                        android:id="@+id/tv_buy_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textAppearance="@style/font_222222_14" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/margin_xhdpi_14"
+                    android:paddingRight="@dimen/margin_xhdpi_15" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cooperation_strategy_claim_buy_way"
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/font_size_xhdpi_14" />
+
+                    <TextView
+                        android:id="@+id/tv_buy_way"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textAppearance="@style/font_222222_14" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/margin_xhdpi_14"
+                    android:paddingRight="@dimen/margin_xhdpi_15" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cooperation_strategy_claim_buy_times"
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/font_size_xhdpi_14" />
+
+                    <TextView
+                        android:id="@+id/tv_buy_times"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textAppearance="@style/font_222222_14" />
+                </RelativeLayout>
+
+                <include layout="@layout/horizontal_line_separate" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_xhdpi_14"
+                    android:layout_marginTop="@dimen/margin_xhdpi_14"
+                    android:text="@string/cooperation_strategy_claim_apply_sell"
+                    android:textAppearance="@style/font_222222_14" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/margin_xhdpi_14"
+                    android:paddingRight="@dimen/margin_xhdpi_15" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cooperation_strategy_claim_apply_sell_date"
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/font_size_xhdpi_14" />
+
+                    <TextView
+                        android:id="@+id/tv_apply_sell_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textAppearance="@style/font_222222_14" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/margin_xhdpi_14"
+                    android:paddingRight="@dimen/margin_xhdpi_15" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cooperation_strategy_claim_apply_sell_time"
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/font_size_xhdpi_14" />
+
+                    <TextView
+                        android:id="@+id/tv_apply_sell_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textAppearance="@style/font_222222_14" />
+                </RelativeLayout>
+
+                <include layout="@layout/horizontal_line_separate" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_xhdpi_14"
+                    android:layout_marginTop="@dimen/margin_xhdpi_14"
+                    android:text="@string/cooperation_strategy_claim_sell"
+                    android:textAppearance="@style/font_222222_14" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/margin_xhdpi_14"
+                    android:paddingRight="@dimen/margin_xhdpi_15" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cooperation_strategy_claim_sell_time"
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/font_size_xhdpi_14" />
+
+                    <TextView
+                        android:id="@+id/tv_sell_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textAppearance="@style/font_222222_14" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/margin_xhdpi_14"
+                    android:paddingRight="@dimen/margin_xhdpi_15" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cooperation_strategy_claim_sell_way"
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/font_size_xhdpi_14" />
+
+                    <TextView
+                        android:id="@+id/tv_sell_way"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textAppearance="@style/font_222222_14" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/margin_xhdpi_14"
+                    android:paddingRight="@dimen/margin_xhdpi_15" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cooperation_strategy_claim_sell_times"
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/font_size_xhdpi_14" />
+
+                    <TextView
+                        android:id="@+id/tv_sell_times"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textAppearance="@style/font_222222_14" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/horizontal_line_separate" />
+
+    <include layout="@layout/btn_netx_step" />
+
+</LinearLayout>

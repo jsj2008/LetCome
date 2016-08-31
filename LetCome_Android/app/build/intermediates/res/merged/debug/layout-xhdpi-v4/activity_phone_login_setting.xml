@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.gxq.tpm"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/product_bg"
+    android:orientation="vertical" >
+    <include 
+        layout="@layout/horizontal_space_separate"/>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white_color">
+        <com.gxq.tpm.ui.CItemBar
+        android:id="@+id/user_phone_number" 
+        android:layout_width="match_parent"
+	    android:layout_height="@dimen/margin_xhdpi_45"
+	    app:itemTitleText="@string/phone_number" />
+     
+    <include 
+        layout="@layout/item_bar_line_separate" />
+    
+    <com.gxq.tpm.ui.CItemBar
+        android:id="@+id/user_modify_pwd" 
+        android:layout_width="match_parent"
+	    android:layout_height="@dimen/margin_xhdpi_45"
+	    app:itemTitleText="@string/phone_modify_pwd"
+	    app:itemShowDetail="true" />
+    
+    <include 
+        layout="@layout/horizontal_line_separate"/>
+    </LinearLayout>
+    
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.gxq.tpm"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <RelativeLayout 
+        android:id="@+id/container_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/product_bg">
+        
+        <include
+            android:id="@+id/strategy_list"
+            layout="@layout/listview" />
+        
+    </RelativeLayout>
+    
+    <com.gxq.tpm.ui.CEmptyNoteView
+        android:id="@+id/list_empty_container"
+        android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    app:src_text="@string/product_empty_list"
+	    app:btn_text="@string/product_empty_list_btn" />
+    
+</RelativeLayout>
+

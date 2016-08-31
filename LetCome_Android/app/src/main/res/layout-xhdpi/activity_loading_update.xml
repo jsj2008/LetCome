@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.gxq.tpm"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayoutid"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    
+    <!-- TextView 
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:textAppearance="@style/font_bcbdc0_10"
+       	android:layout_alignParentBottom="true"
+       	android:layout_centerHorizontal="true"
+       	android:layout_marginBottom="5dp"
+       	android:text="@string/guide_page_tips" /> -->
+    
+    <com.gxq.tpm.ui.CSliderView
+        android:id="@+id/slider_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_xhdpi_32"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+		app:item_num="3"
+		app:src="@drawable/instruction_slider_view_selector" />
+    
+    <!-- ImageView 
+        android:id="@+id/iv_instruction_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/instruction_skip"
+        /> -->
+
+</RelativeLayout>

@@ -1,0 +1,981 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr format="dimension" name="borderRadius"/>
+    <attr format="reference" name="cRadioButtonStyle"/>
+    <attr format="reference" name="entries"/>
+    <attr format="reference" name="galleryStyle"/>
+    <attr name="gravity">
+        <!-- Push object to the top of its container, not changing its size. -->
+        <flag name="top" value="0x30"/>
+        <!-- Push object to the bottom of its container, not changing its size. -->
+        <flag name="bottom" value="0x50"/>
+        <!-- Push object to the left of its container, not changing its size. -->
+        <flag name="left" value="0x03"/>
+        <!-- Push object to the right of its container, not changing its size. -->
+        <flag name="right" value="0x05"/>
+        <!-- Place object in the vertical center of its container, not changing its size. -->
+        <flag name="center_vertical" value="0x10"/>
+        <!-- Grow the vertical size of the object if needed so it completely fills its container. -->
+        <flag name="fill_vertical" value="0x70"/>
+        <!-- Place object in the horizontal center of its container, not changing its size. -->
+        <flag name="center_horizontal" value="0x01"/>
+        <!-- Grow the horizontal size of the object if needed so it completely fills its container. -->
+        <flag name="fill_horizontal" value="0x07"/>
+        <!-- Place the object in the center of its container in both the vertical and horizontal axis, not changing its size. -->
+        <flag name="center" value="0x11"/>
+        <!-- Grow the horizontal and vertical size of the object if needed so it completely fills its container. -->
+        <flag name="fill" value="0x77"/>
+        <!-- Additional option that can be set to have the top and/or bottom edges of
+             the child clipped to its container's bounds.
+             The clip will be based on the vertical gravity: a top gravity will clip the bottom
+             edge, a bottom gravity will clip the top edge, and neither will clip both edges. -->
+        <flag name="clip_vertical" value="0x80"/>
+        <!-- Additional option that can be set to have the left and/or right edges of
+             the child clipped to its container's bounds.
+             The clip will be based on the horizontal gravity: a left gravity will clip the right
+             edge, a right gravity will clip the left edge, and neither will clip both edges. -->
+        <flag name="clip_horizontal" value="0x08"/>
+    </attr>
+    <attr format="dimension|reference" name="itemPaddingLeft"/>
+    <attr format="dimension|reference" name="itemPaddingRight"/>
+    <attr format="color|reference" name="itemTitleTextColor"/>
+    <attr format="dimension|reference" name="itemTitleTextSize"/>
+    <attr name="type">
+        <enum name="circle" value="0"/>
+        <enum name="round" value="1"/>
+    </attr>
+    <bool name="isEncrypt">true</bool>
+    <bool name="isTest">true</bool>
+    <color name="black_color">#ff000000</color>
+    <color name="btn_normal">#ff508cf0</color>
+    <color name="btn_selected">#ff4678dc</color>
+    <color name="chart_loading_color">#ff848484</color>
+    <color name="color_007aff">#ff007aff</color>
+    <color name="color_222222">#ff222222</color>
+    <color name="color_32abf8">#ff32abf8</color>
+    <color name="color_424242">#ff424242</color>
+    <color name="color_4d5e73">#ff4d5e73</color>
+    <color name="color_4ebeff">#ff4ebeff</color>
+    <color name="color_508cf0">#ff508cf0</color>
+    <color name="color_575757">#ff575757</color>
+    <color name="color_646464">#ff646464</color>
+    <color name="color_808080">#ff808080</color>
+    <color name="color_929292">#ff929292</color>
+    <color name="color_9877DF">#ff9877DF</color>
+    <color name="color_999999">#ff999999</color>
+    <color name="color_ababab">#ffababab</color>
+    <color name="color_b3b3b3">#ffb3b3b3</color>
+    <color name="color_bcbdc0">#ffbcbdc0</color>
+    <color name="color_bebebe">#ffbebebe</color>
+    <color name="color_c25aff">#ffc25aff</color>
+    <color name="color_c5c5c5">#ffc5c5c5</color>
+    <color name="color_cccccc">#ffcccccc</color>
+    <color name="color_d9d9d9">#ffd9d9d9</color>
+    <color name="color_d9d9de">#ffd9d9de</color>
+    <color name="color_daedff">#ffdaedff</color>
+    <color name="color_dddddd">#ffdddddd</color>
+    <color name="color_e0e0e0">#ffe0e0e0</color>
+    <color name="color_ebebeb">#ffebebeb</color>
+    <color name="color_efefef">#ffefefef</color>
+    <color name="color_f0f0f0">#fff0f0f0</color>
+    <color name="color_f19900">#fff19900</color>
+    <color name="color_f49317">#fff49317</color>
+    <color name="color_f4f4f4">#fff4f4f4</color>
+    <color name="color_f8f8f8">#fff8f8f8</color>
+    <color name="color_fa4b32">#ffffab32</color>
+    <color name="color_fafafa">#fffafafa</color>
+    <color name="color_ff4b30">#ffff4b30</color>
+    <color name="color_ff7814">#ffff7814</color>
+    <color name="color_ff8c00">#ffff8c00</color>
+    <color name="color_ffaa00">#ffffaa00</color>
+    <color name="color_ffc73b">#ffffC73B</color>
+    <color name="dialog_button_color">#ff007aff</color>
+    <color name="gain_color">#ffff536f</color>
+    <color name="line_seperate_color">#ffdddddd</color>
+    <color name="line_seperate_inside_color">#fff0f0f0</color>
+    <color name="login_head_circle_color">#ffd1d1d1</color>
+    <color name="loss_color">#ff18b676</color>
+    <color name="minute_chart_wave_bg">#ffd1e0f9</color>
+    <color name="product_bg">#fff4f4f4</color>
+    <color name="red_color">#ffff0000</color>
+    <color name="tab_bar_bg">#fff8f8f8</color>
+    <color name="tab_cur_selected">#ff508cf0</color>
+    <color name="text_color_dialog_btn">#ff0a7ffb</color>
+    <color name="text_color_info">#ffcccccc</color>
+    <color name="text_color_link">#ff0a82fa</color>
+    <color name="text_color_main">#ff757575</color>
+    <color name="text_color_sub">#ff999999</color>
+    <color name="text_color_tips">#ffff7814</color>
+    <color name="text_color_title">#ff222222</color>
+    <color name="text_color_unclick">#ffbebebe</color>
+    <color name="title_bar_bg">#ffffffff</color>
+    <color name="title_bar_color">#ff222222</color>
+    <color name="translucent">#77000000</color>
+    <color name="translucent_white_color">#33ffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="white_color">#ffffffff</color>
+    <declare-styleable name="AbsSpinner"><attr name="entries"/></declare-styleable>
+    <declare-styleable name="CCheckBox"><attr format="dimension|reference" name="cb_textSize"/><attr format="color|reference" name="cb_textColor"/><attr format="string|reference" name="cb_leftText"/><attr format="string|reference" name="cb_rightText"/><attr format="boolean|reference" name="checked"/><attr format="reference" name="checkedBackground"/><attr format="reference" name="uncheckedBackground"/><attr format="reference" name="disableBackground"/></declare-styleable>
+    <declare-styleable name="CEmptyNoteView"><attr format="string|reference" name="src_text"/><attr format="string|reference" name="btn_text"/></declare-styleable>
+    <declare-styleable name="CItemBar"><attr format="reference" name="itemTitleImage"/><attr format="string|reference" name="itemTitleText"/><attr name="itemTitleTextSize"/><attr name="itemTitleTextColor"/><attr format="string|reference" name="itemContentText"/><attr format="dimension|reference" name="itemContentTextSize"/><attr format="color|reference" name="itemContentTextColor"/><attr format="string|reference" name="itemContentSubText"/><attr format="dimension|reference" name="itemContentSubTextSize"/><attr format="color|reference" name="itemContentSubTextColor"/><attr format="boolean|reference" name="itemShowDetail"/></declare-styleable>
+    <declare-styleable name="CRadioGroup"><attr format="integer" name="checkedButton"/></declare-styleable>
+    <declare-styleable name="CSelectViewContainer"><attr format="dimension|reference" name="horizontal_spacing"/><attr format="dimension|reference" name="vertical_spacing"/><attr format="dimension|reference" name="item_height"/><attr format="integer" name="num_column"/><attr format="integer" name="select"/></declare-styleable>
+    <declare-styleable name="CSliderView"><attr format="integer" name="item_num"/><attr format="reference" name="src"/><attr format="integer" name="selected"/></declare-styleable>
+    <declare-styleable name="CTabImageTextGroup"><attr format="reference" name="item"/><attr format="reference" name="itemContent"/></declare-styleable>
+    <declare-styleable name="CheckEditText"><attr name="android:textSize"/><attr name="android:textColor"/><attr name="android:textColorHint"/><attr name="android:background"/><attr name="android:hint"/><attr name="android:maxLength"/><attr format="integer" name="minLength"/><attr format="enum" name="phoneFormat"><enum name="CDD" value="1"/><enum name="CCE" value="2"/><enum name="DDC" value="3"/></attr></declare-styleable>
+    <declare-styleable name="Gallery"><attr name="gravity"/><attr format="integer" min="0" name="animationDuration"/><attr format="dimension" name="spacing"/><attr format="float" name="unselectedAlpha"/></declare-styleable>
+    <declare-styleable name="GridLayout"><attr name="orientation"><enum name="horizontal" value="0"/><enum name="vertical" value="1"/></attr><attr format="integer" name="rowCount"/><attr format="integer" name="columnCount"/><attr format="boolean" name="useDefaultMargins"/><attr name="alignmentMode"><enum name="alignBounds" value="0"/><enum name="alignMargins" value="1"/></attr><attr format="boolean" name="rowOrderPreserved"/><attr format="boolean" name="columnOrderPreserved"/></declare-styleable>
+    <declare-styleable name="GridLayout_Layout"><attr name="android:layout_width"/><attr name="android:layout_height"/><attr name="android:layout_margin"/><attr name="android:layout_marginLeft"/><attr name="android:layout_marginTop"/><attr name="android:layout_marginRight"/><attr name="android:layout_marginBottom"/><attr format="integer" name="layout_row"/><attr format="integer" min="1" name="layout_rowSpan"/><attr format="integer" name="layout_column"/><attr format="integer" min="1" name="layout_columnSpan"/><attr name="layout_gravity"><flag name="top" value="0x30"/><flag name="bottom" value="0x50"/><flag name="left" value="0x03"/><flag name="right" value="0x05"/><flag name="center_vertical" value="0x10"/><flag name="fill_vertical" value="0x70"/><flag name="center_horizontal" value="0x01"/><flag name="fill_horizontal" value="0x07"/><flag name="center" value="0x11"/><flag name="fill" value="0x77"/><flag name="clip_vertical" value="0x80"/><flag name="clip_horizontal" value="0x08"/><flag name="start" value="0x00800003"/><flag name="end" value="0x00800005"/></attr></declare-styleable>
+    <declare-styleable name="MaskedImage"><attr format="color" name="strokeColor"/><attr format="dimension" name="strokeWidth"/></declare-styleable>
+    <declare-styleable name="RoundImageView"><attr name="borderRadius"/><attr name="type"/></declare-styleable>
+    <declare-styleable name="RoundProgressBar"><attr format="color" name="roundColor"/><attr format="color" name="roundProgressColor"/><attr format="dimension" name="roundWidth"/><attr format="color" name="titleTextColor"/><attr format="dimension" name="titleTextSize"/><attr format="color" name="limitTextColor"/><attr format="dimension" name="limitTextSize"/></declare-styleable>
+    <declare-styleable name="custom"><attr format="string" name="lable"/><attr format="string" name="errNote"/><attr format="string" name="hit"/><attr format="string" name="input_typed"/><attr format="integer" name="length"/><attr format="reference" name="nomal_bg"/><attr format="reference" name="select_bg"/><attr format="string" name="right_btn_bg_txt"/><attr format="reference" name="right_image_btn"/><attr name="right_btn1"><flag name="none" value="0"/><flag name="have" value="1"/></attr><attr format="string" name="visibility"/><attr format="boolean" name="clear"/><attr format="reference" name="right_btn"/><attr format="string" name="right_btn_text"/><attr format="reference" name="right_btn_bg"/><attr format="reference" name="left_btn_bg"/><attr name="text_gravity"><flag name="top" value="0x30"/><flag name="bottom" value="0x50"/><flag name="left" value="0x03"/><flag name="right" value="0x05"/><flag name="center_vertical" value="0x10"/><flag name="fill_vertical" value="0x70"/><flag name="center_horizontal" value="0x01"/><flag name="fill_horizontal" value="0x07"/><flag name="center" value="0x11"/><flag name="fill" value="0x77"/><flag name="clip_vertical" value="0x80"/><flag name="clip_horizontal" value="0x08"/><flag name="start" value="0x00800003"/><flag name="end" value="0x00800005"/></attr></declare-styleable>
+    <declare-styleable name="title"><attr format="string" name="title"/><attr format="string" name="rightNote"/><attr format="reference" name="title_right_btn_bg"/><attr format="reference" name="title_right_left_btn_bg"/><attr format="reference" name="title_left_btn_bg"/><attr format="boolean" name="title_back"/></declare-styleable>
+    <declare-styleable name="titletop"><attr format="string" name="title_text"/><attr format="reference" name="left_bg"/><attr format="reference" name="right_bg"/><attr format="string" name="left_text"/><attr format="string" name="right_text"/></declare-styleable>
+    <dimen name="default_gap">16dip</dimen>
+    <dimen name="font_size_xhdpi_10">10sp</dimen>
+    <dimen name="font_size_xhdpi_11">11sp</dimen>
+    <dimen name="font_size_xhdpi_12">12sp</dimen>
+    <dimen name="font_size_xhdpi_13">13sp</dimen>
+    <dimen name="font_size_xhdpi_14">14sp</dimen>
+    <dimen name="font_size_xhdpi_15">15sp</dimen>
+    <dimen name="font_size_xhdpi_16">16sp</dimen>
+    <dimen name="font_size_xhdpi_17">17sp</dimen>
+    <dimen name="font_size_xhdpi_18">18sp</dimen>
+    <dimen name="font_size_xhdpi_19">19sp</dimen>
+    <dimen name="font_size_xhdpi_20">20sp</dimen>
+    <dimen name="font_size_xhdpi_25">25sp</dimen>
+    <dimen name="font_size_xhdpi_28">28sp</dimen>
+    <dimen name="font_size_xhdpi_50">50sp</dimen>
+    <dimen name="font_size_xhdpi_7">7sp</dimen>
+    <dimen name="font_size_xhdpi_9">9sp</dimen>
+    <dimen name="horizontal_line_separate_height">0.5dp</dimen>
+    <dimen name="layout_item_height">49dp</dimen>
+    <dimen name="login_edit_textview_margin">65dp</dimen>
+    <dimen name="margin_xhdpi_1">1dp</dimen>
+    <dimen name="margin_xhdpi_10">10dp</dimen>
+    <dimen name="margin_xhdpi_100">100dp</dimen>
+    <dimen name="margin_xhdpi_105">105dp</dimen>
+    <dimen name="margin_xhdpi_110">110dp</dimen>
+    <dimen name="margin_xhdpi_113">113dp</dimen>
+    <dimen name="margin_xhdpi_12">12dp</dimen>
+    <dimen name="margin_xhdpi_120">120dp</dimen>
+    <dimen name="margin_xhdpi_125">125dp</dimen>
+    <dimen name="margin_xhdpi_13">13dp</dimen>
+    <dimen name="margin_xhdpi_130">130dp</dimen>
+    <dimen name="margin_xhdpi_14">14dp</dimen>
+    <dimen name="margin_xhdpi_144">144dp</dimen>
+    <dimen name="margin_xhdpi_15">15dp</dimen>
+    <dimen name="margin_xhdpi_150">150dp</dimen>
+    <dimen name="margin_xhdpi_16">16dp</dimen>
+    <dimen name="margin_xhdpi_160">160dp</dimen>
+    <dimen name="margin_xhdpi_17">17dp</dimen>
+    <dimen name="margin_xhdpi_18">18dp</dimen>
+    <dimen name="margin_xhdpi_2">2dp</dimen>
+    <dimen name="margin_xhdpi_20">20dp</dimen>
+    <dimen name="margin_xhdpi_208">208dp</dimen>
+    <dimen name="margin_xhdpi_21">21dp</dimen>
+    <dimen name="margin_xhdpi_210">210dp</dimen>
+    <dimen name="margin_xhdpi_214">214dp</dimen>
+    <dimen name="margin_xhdpi_216">216dp</dimen>
+    <dimen name="margin_xhdpi_22">22dp</dimen>
+    <dimen name="margin_xhdpi_225">225dp</dimen>
+    <dimen name="margin_xhdpi_245">245dp</dimen>
+    <dimen name="margin_xhdpi_25">25dp</dimen>
+    <dimen name="margin_xhdpi_27">27dp</dimen>
+    <dimen name="margin_xhdpi_270">270dp</dimen>
+    <dimen name="margin_xhdpi_29">29dp</dimen>
+    <dimen name="margin_xhdpi_295">295dp</dimen>
+    <dimen name="margin_xhdpi_30">30dp</dimen>
+    <dimen name="margin_xhdpi_32">32dp</dimen>
+    <dimen name="margin_xhdpi_35">35dp</dimen>
+    <dimen name="margin_xhdpi_36">36dp</dimen>
+    <dimen name="margin_xhdpi_38">38dp</dimen>
+    <dimen name="margin_xhdpi_39">39dp</dimen>
+    <dimen name="margin_xhdpi_4">4dp</dimen>
+    <dimen name="margin_xhdpi_40">40dp</dimen>
+    <dimen name="margin_xhdpi_44">44dp</dimen>
+    <dimen name="margin_xhdpi_45">45dp</dimen>
+    <dimen name="margin_xhdpi_49">49dp</dimen>
+    <dimen name="margin_xhdpi_5">5dp</dimen>
+    <dimen name="margin_xhdpi_50">50dp</dimen>
+    <dimen name="margin_xhdpi_6">6dp</dimen>
+    <dimen name="margin_xhdpi_60">60dp</dimen>
+    <dimen name="margin_xhdpi_64">64dp</dimen>
+    <dimen name="margin_xhdpi_65">65dp</dimen>
+    <dimen name="margin_xhdpi_70">70dp</dimen>
+    <dimen name="margin_xhdpi_75">75dp</dimen>
+    <dimen name="margin_xhdpi_8">8dp</dimen>
+    <dimen name="margin_xhdpi_80">80dp</dimen>
+    <dimen name="margin_xhdpi_85">85dp</dimen>
+    <dimen name="margin_xhdpi_86">86dp</dimen>
+    <dimen name="margin_xhdpi_90">90dp</dimen>
+    <dimen name="margin_xhdpi_95">95dp</dimen>
+    <dimen name="modifypwd_edit_textview_margin">85dp</dimen>
+    <dimen name="normal_button_height">49dp</dimen>
+    <dimen name="vertical_line_separate_width">0.5dp</dimen>
+    <item name="article_item" type="id"/>
+    <item name="default_fragment" type="id"/>
+    <item name="key_1" type="id"/>
+    <item name="key_2" type="id"/>
+    <item name="sign_agreement_fragment" type="id"/>
+    <item name="tab_account" type="id"/>
+    <item name="tab_cooperation" type="id"/>
+    <item name="tab_mine" type="id"/>
+    <item name="tab_strategy" type="id"/>
+    <string name="agreement_changed_title">签署协议</string>
+    <string name="agreement_confirm_text">已签署</string>
+    <string name="agreement_unconfirm_text">我已阅读并签署</string>
+    <string name="api_key">ZRfAjjrG2GKszKGgf93bkHiL</string>
+    <string name="app_name">letgo</string>
+    <string name="auth_cancel">下次再说</string>
+    <string name="auth_confirm">立刻认证</string>
+    <string name="auth_notice">认证通知</string>
+    <string name="btn_cancel">取消</string>
+    <string name="btn_confirm">确认</string>
+    <string name="btn_continue">继续</string>
+    <string name="btn_finish">完成</string>
+    <string name="btn_goto_check">去查看</string>
+    <string name="btn_look_again">再看看</string>
+    <string name="btn_next_step">下一步</string>
+    <string name="btn_open">打开</string>
+    <string name="buy1">买1</string>
+    <string name="buy2">买2</string>
+    <string name="buy3">买3</string>
+    <string name="buy4">买4</string>
+    <string name="buy5">买5</string>
+    <string name="cache_forever_path">/Android/data/com.gxq.tpm/cache_forever/</string>
+    <string name="cache_path">/Android/data/com.gxq.tpm/cache/</string>
+    <string name="chart_loading">数据加载中…</string>
+    <string name="clear_all_search_records">清空所有搜索记录</string>
+    <string name="compensate_button">支付</string>
+    <string name="compensate_money">金额</string>
+    <string name="compensate_paid">支付</string>
+    <string name="compensate_pay">应付金额</string>
+    <string name="compensate_pay_y">支付成功！</string>
+    <string name="compensate_pno">协议编号</string>
+    <string name="compensate_publish_time">发布时间</string>
+    <string name="compensate_receive">应收金额</string>
+    <string name="compensate_state">状态</string>
+    <string name="compensate_status">状态</string>
+    <string name="compensate_time">补偿时间</string>
+    <string name="compensate_type">类别</string>
+    <string name="compensate_way">补偿类别</string>
+    <string name="complete_user_info_exit">你确定要放弃设置手机号登录\n并退出登录吗？</string>
+    <string name="complete_user_info_name">昵称</string>
+    <string name="complete_user_info_password">密码</string>
+    <string name="complete_user_info_save">保存</string>
+    <string name="complete_user_info_success">恭喜，您成功升级为策略人</string>
+    <string name="complete_user_info_title">设置手机号登录</string>
+    <string name="complete_user_info_title_phone">设置手机号登录</string>
+    <string name="cooperation_article_title">我已阅读并同意</string>
+    <string name="cooperation_confirm_continue">继续</string>
+    <string name="cooperation_confirm_give_up">放弃</string>
+    <string name="cooperation_feedback_go_to_see_implement">去查看</string>
+    <string name="cooperation_feedback_result_confirm">确认</string>
+    <string name="cooperation_lgb_not_enough">您的拉勾宝余额不足，请充值</string>
+    <string name="cooperation_lgb_not_enough_give_up">您的拉勾宝余额不足，请充值</string>
+    <string name="cooperation_lgb_not_enough_recharge">您的拉勾宝余额不足，请充值</string>
+    <string name="cooperation_lgb_pop_account">拉勾宝账户</string>
+    <string name="cooperation_lgb_pop_freeze">冻结</string>
+    <string name="cooperation_lgb_pop_freeze_fund">成本补偿履约金</string>
+    <string name="cooperation_lgb_pop_freeze_loss">亏损赔付履约金</string>
+    <string name="cooperation_lgb_pop_freeze_title">冻结和支付</string>
+    <string name="cooperation_lgb_pop_infomation_charge">信息服务费</string>
+    <string name="cooperation_lgb_pop_pay">支付</string>
+    <string name="cooperation_strategy_claim_apply_sell">通知平仓</string>
+    <string name="cooperation_strategy_claim_apply_sell_date">通知日</string>
+    <string name="cooperation_strategy_claim_apply_sell_time">通知时间</string>
+    <string name="cooperation_strategy_claim_buy">建仓策略</string>
+    <string name="cooperation_strategy_claim_buy_time">委买时间</string>
+    <string name="cooperation_strategy_claim_buy_times">委买次数</string>
+    <string name="cooperation_strategy_claim_buy_way">委买方式</string>
+    <string name="cooperation_strategy_claim_fund">投资单元 %1$s万</string>
+    <string name="cooperation_strategy_claim_hold_time">持股期限</string>
+    <string name="cooperation_strategy_claim_investor">投资人</string>
+    <string name="cooperation_strategy_claim_next_step">参与</string>
+    <string name="cooperation_strategy_claim_sell">平仓策略</string>
+    <string name="cooperation_strategy_claim_sell_time">委卖时间</string>
+    <string name="cooperation_strategy_claim_sell_times">委卖次数</string>
+    <string name="cooperation_strategy_claim_sell_way">委卖方式</string>
+    <string name="cooperation_strategy_claim_time">持股时长</string>
+    <string name="cooperation_strategy_claim_title">TM策略要求</string>
+    <string name="cooperation_strategy_confirm_article_name">《%1$s》</string>
+    <string name="cooperation_strategy_confirm_freeze">冻结</string>
+    <string name="cooperation_strategy_confirm_freeze_fund">成本补偿履约金</string>
+    <string name="cooperation_strategy_confirm_freeze_fund_tips">重要提示</string>
+    <string name="cooperation_strategy_confirm_freeze_loss">亏损赔付履约金</string>
+    <string name="cooperation_strategy_confirm_freeze_loss_tips">重要提示</string>
+    <string name="cooperation_strategy_confirm_freeze_title">本投资单元投资人要求提供以下履约保证</string>
+    <string name="cooperation_strategy_confirm_next_step">去付款</string>
+    <string name="cooperation_strategy_confirm_pay">支付</string>
+    <string name="cooperation_strategy_confirm_pay_tips">信息服务费</string>
+    <string name="cooperation_strategy_confirm_pay_title">本投资单元由GXQ®提供信息服务</string>
+    <string name="cooperation_strategy_confirm_title">策略人费用</string>
+    <string name="cooperation_strategy_equity_cost">成本补偿</string>
+    <string name="cooperation_strategy_equity_loss">赔付亏损</string>
+    <string name="cooperation_strategy_equity_next_step">下一步</string>
+    <string name="cooperation_strategy_equity_profit">享有盈利</string>
+    <string name="cooperation_strategy_equity_stop_profit_point_fail">通知平仓当日收盘浮盈未达%1$s</string>
+    <string name="cooperation_strategy_equity_stop_profit_point_success">通知平仓日收盘浮盈达%1$s及以上</string>
+    <string name="cooperation_strategy_equity_title">策略人权益</string>
+    <string name="cooperation_strategy_feedback_fail">很遗憾，因投资人响应超时，\n你的策略合作未成功</string>
+    <string name="cooperation_strategy_feedback_fail_title">合作失败！</string>
+    <string name="cooperation_strategy_feedback_success">你与投资人%1$s的策略合作成功</string>
+    <string name="cooperation_strategy_feedback_success_title">合作成功！</string>
+    <string name="cooperation_strategy_feedback_timeout">请点击确认去查看是否合作成功</string>
+    <string name="cooperation_strategy_feedback_timeout_title">网络异常</string>
+    <string name="cooperation_strategy_policy_item_collect"> 策略征集</string>
+    <string name="cooperation_strategy_policy_item_end_time">倒计时%1$s日</string>
+    <string name="cooperation_strategy_policy_item_fund">投资单元</string>
+    <string name="cooperation_strategy_policy_item_fund_state_0">售罄</string>
+    <string name="cooperation_strategy_policy_item_fund_state_1">少量</string>
+    <string name="cooperation_strategy_policy_item_fund_state_2">充足</string>
+    <string name="cooperation_strategy_policy_item_investor">投资人</string>
+    <string name="cooperation_strategy_policy_item_next_step">TM策略</string>
+    <string name="cooperation_strategy_search_hint">目前共有%1$s只个股策略征集中</string>
+    <string name="default_value">--</string>
+    <string name="default_value_1">--.--</string>
+    <string name="dialog_title_text">提醒</string>
+    <string name="dissent_commit">提 交</string>
+    <string name="dissent_commit_y">申报成功，工作人员将在24小时内完成处理，请留意异议记录受理状态的更新！</string>
+    <string name="dissent_create_time">异议时间</string>
+    <string name="dissent_cur_value">当前值：</string>
+    <string name="dissent_cur_value_tip">请填写您认为的值</string>
+    <string name="dissent_deal">已结算</string>
+    <string name="dissent_input_hint">请描述遇到的问题，以便我们及时为您解决</string>
+    <string name="dissent_input_title">你的理由(限150字)</string>
+    <string name="dissent_need_correct">是否修正</string>
+    <string name="dissent_new_value">请输入数值</string>
+    <string name="dissent_none">无</string>
+    <string name="dissent_note_input_reason">请输入您的理由</string>
+    <string name="dissent_note_reason_not_enough">您的理由不足5个字</string>
+    <string name="dissent_note_select_pno">请选择交易单</string>
+    <string name="dissent_note_select_point">请选择一个异议点</string>
+    <string name="dissent_pay_n">\n支付失败，请重试！</string>
+    <string name="dissent_pid">协议编号</string>
+    <string name="dissent_point">异议点</string>
+    <string name="dissent_point_comment">异议回复:</string>
+    <string name="dissent_point_desc">异议点描述:</string>
+    <string name="dissent_result">处理状态</string>
+    <string name="dissent_state_correct_n">否</string>
+    <string name="dissent_state_correct_y">是</string>
+    <string name="dissent_state_finsh_y">受理完成</string>
+    <string name="dissent_state_has_correct">有修正</string>
+    <string name="dissent_state_no_correct">无修正</string>
+    <string name="dissent_state_process">受理中</string>
+    <string name="dissent_state_wait">等待受理</string>
+    <string name="dissent_trade_pno">协议编号</string>
+    <string name="dissent_type_buying_price">买入价</string>
+    <string name="dissent_type_choose">请选择</string>
+    <string name="dissent_type_cooperation_feedback_pay">合作权益</string>
+    <string name="dissent_type_other">其他</string>
+    <string name="dissent_type_selling_price">卖出价</string>
+    <string name="dissent_type_service_pay">信息服务费</string>
+    <string name="dissent_type_settlement">结算</string>
+    <string name="dissent_undeal">未结算</string>
+    <string name="drop_down_refresh">下拉刷新</string>
+    <string name="drop_up_more">上拉加载更多</string>
+    <string name="empty_compensate_list">暂无补偿记录</string>
+    <string name="empty_dissent_list">暂无异议记录</string>
+    <string name="empty_string"/>
+    <string name="force_update_content">新版本更新了重要内容，须更新后才可正常使用。点击确认立即前往更新。</string>
+    <string name="force_update_title">版本升级</string>
+    <string name="forget_pwd_hinit">输入密码</string>
+    <string name="forget_reset_fail">新密码设置失败</string>
+    <string name="forget_reset_passwrod_error">两次输入的密码不一致</string>
+    <string name="keyboard_confirm">确认</string>
+    <string name="keyboard_eight">8</string>
+    <string name="keyboard_five">5</string>
+    <string name="keyboard_four">4</string>
+    <string name="keyboard_full_fund">全额</string>
+    <string name="keyboard_hundred">00</string>
+    <string name="keyboard_nine">9</string>
+    <string name="keyboard_one">1</string>
+    <string name="keyboard_seven">7</string>
+    <string name="keyboard_six">6</string>
+    <string name="keyboard_thousand">000</string>
+    <string name="keyboard_three">3</string>
+    <string name="keyboard_two">2</string>
+    <string name="keyboard_zero">0</string>
+    <string name="layer_loading_text">请等待</string>
+    <string name="letter_announcement">公告</string>
+    <string name="letter_notice">提醒</string>
+    <string name="letter_system_info">系统</string>
+    <string name="lock_change_account">更换账号</string>
+    <string name="lock_check_gesture">验证手势密码</string>
+    <string name="lock_dialog_edit_hint">输入登录密码</string>
+    <string name="lock_forget_gesture">忘记手势密码?</string>
+    <string name="lock_gesture">手势密码</string>
+    <string name="lock_gesture_5wrong_warning">您已连续5次输错手势，请重新登录</string>
+    <string name="lock_gesture_check">输入原手势密码</string>
+    <string name="lock_gesture_draw">绘制解锁图案\n</string>
+    <string name="lock_gesture_draw_agian">再次绘制解锁图案</string>
+    <string name="lock_gesture_draw_limit">（至少连接4个点）</string>
+    <string name="lock_gesture_draw_warning">最少连接4个点，请重新绘制</string>
+    <string name="lock_gesture_not_same_warning">与上一次绘制不一致，请重新绘制</string>
+    <string name="lock_gesture_wrong_warning">密码错误，还可以再输入%1$d次</string>
+    <string name="lock_modify_gesture">修改手势密码</string>
+    <string name="lock_set_gesture">设置手势密码</string>
+    <string name="lock_switch_account">更换账号</string>
+    <string name="login_close">关闭</string>
+    <string name="login_forget_pwd">忘记密码?</string>
+    <string name="login_forget_pwd_title">重置密码</string>
+    <string name="login_next_lgb">拉勾宝授权登录</string>
+    <string name="login_next_phone">登录</string>
+    <string name="login_register_lgb">注册拉勾宝账号</string>
+    <string name="login_reset_pwd_title">重置密码</string>
+    <string name="login_type_lgb">使用拉勾宝授权登录</string>
+    <string name="login_type_phone">使用手机号登录</string>
+    <string name="loosen_more">松开加载更多</string>
+    <string name="loosen_refresh">松开刷新</string>
+    <string name="money_symbol">￥</string>
+    <string name="money_unit">元</string>
+    <string name="net_unusual">网络异常</string>
+    <string name="nick_name_check_error_tips">昵称应是2~6位汉字!</string>
+    <string name="nick_name_hint">请输入2~6位汉字</string>
+    <string name="nickname_descript_reset">非常抱歉，您所设置的昵称经审核含有敏感词，请您重新设置</string>
+    <string name="no_stock_search_records">暂时搜不到您输入的股票代码</string>
+    <string name="number_default_value">--</string>
+    <string name="percent_unit">%</string>
+    <string name="phone_confirm_pwd">确认密码</string>
+    <string name="phone_confirm_pwd_hint">输入确认密码</string>
+    <string name="phone_get_number_verify">获取验证码</string>
+    <string name="phone_get_verify_image_fail">获取验证码失败</string>
+    <string name="phone_image_vervify_check_error_tips">请输入4位验证码</string>
+    <string name="phone_modify_pwd">修改密码</string>
+    <string name="phone_modify_success_tips">修改成功</string>
+    <string name="phone_number">手机号</string>
+    <string name="phone_number_check_error_tips">请输入有效的11位手机号码</string>
+    <string name="phone_number_hint">请输入手机号</string>
+    <string name="phone_number_verify_check_error_tips">验证码错误</string>
+    <string name="phone_number_verify_hint">请输入6位数字验证码</string>
+    <string name="phone_pwd">密码</string>
+    <string name="phone_pwd_check_error_tips">请输入6–18位数字、字母，字母区分大小写</string>
+    <string name="phone_pwd_hint">请输入密码</string>
+    <string name="phone_pwd_login_hint">请输入手机登录密码</string>
+    <string name="phone_verify">验证码</string>
+    <string name="phone_verify_countdown">(%1$ss)后重新获取</string>
+    <string name="phone_verify_hint">请输入验证码</string>
+    <string name="phone_vervify_check_error_tips">请输入6位验证码</string>
+    <string name="product_empty_list">暂无策略合作</string>
+    <string name="product_empty_list_btn">参与TM策略</string>
+    <string name="product_home_hq_cyb">创业板指</string>
+    <string name="product_home_hq_szcz">深证成指</string>
+    <string name="product_home_hq_szzs">上证指数</string>
+    <string name="product_home_login_toast">请先登录</string>
+    <string name="product_home_show_msg_ok">确认</string>
+    <string name="refreshing">正在刷新…</string>
+    <string name="remove">删除</string>
+    <string name="reset_nick_name_title">重设昵称</string>
+    <string name="risk_inform">风险告知</string>
+    <string name="risk_no_inform">不再提醒</string>
+    <string name="risk_notice">风险提醒</string>
+    <string name="risk_notice_know">知道了</string>
+    <string name="search_text_hint">请输入要搜索的股票/代码/简拼</string>
+    <string name="sell1">卖1</string>
+    <string name="sell2">卖2</string>
+    <string name="sell3">卖3</string>
+    <string name="sell4">卖4</string>
+    <string name="sell5">卖5</string>
+    <string name="server_unusual">服务器异常</string>
+    <string name="service_h5">http://192.168.6.75:8008/</string>
+    <string name="service_hq">http://192.168.6.66:2050/</string>
+    <string name="service_platform">http://192.168.6.75:8005/</string>
+    <string name="set_nick_name_title">设置昵称</string>
+    <string name="settlement_already_pay">已付款</string>
+    <string name="settlement_commit_pay">是否确认付款</string>
+    <string name="settlement_detail_apply_sell_date">通知日期</string>
+    <string name="settlement_detail_apply_sell_days">所在日</string>
+    <string name="settlement_detail_buy_amount">买入股数</string>
+    <string name="settlement_detail_buy_date">开仓日期</string>
+    <string name="settlement_detail_buy_execute_result">建仓策略执行结果</string>
+    <string name="settlement_detail_buy_fund">买入成交金额</string>
+    <string name="settlement_detail_buy_price">买入价</string>
+    <string name="settlement_detail_notify_sell_date">通知平仓日收盘浮盈</string>
+    <string name="settlement_detail_notify_sell_date_deadline">到期通知平仓日收盘浮盈</string>
+    <string name="settlement_detail_sell_amount">卖出股数</string>
+    <string name="settlement_detail_sell_date">平仓日期</string>
+    <string name="settlement_detail_sell_days">第%1$s交易日</string>
+    <string name="settlement_detail_sell_execute_result">平仓策略执行结果</string>
+    <string name="settlement_detail_sell_execute_result_deadline">到期平仓策略执行结果</string>
+    <string name="settlement_detail_sell_fund">卖出成交金额</string>
+    <string name="settlement_detail_sell_price">卖出价</string>
+    <string name="settlement_detail_strategy_time">策略次数</string>
+    <string name="settlement_detail_title">详细</string>
+    <string name="settlement_detail_y_colose_price">收盘价</string>
+    <string name="settlement_detail_y_sell_profit_rate">收盘浮盈</string>
+    <string name="settlement_dissent_processing">预计2个工作日内处理完成</string>
+    <string name="settlement_limate_pay">限时付款</string>
+    <string name="settlement_list_amount">股数</string>
+    <string name="settlement_list_break_cost">成本补偿</string>
+    <string name="settlement_list_buy_price">买入价</string>
+    <string name="settlement_list_dissent_enable">异议申请</string>
+    <string name="settlement_list_dissent_underway">异议处理中</string>
+    <string name="settlement_list_invest_fund">投资单元 %1$s万</string>
+    <string name="settlement_list_invest_profit">投资人交易盈亏(元)</string>
+    <string name="settlement_list_investor">投资人</string>
+    <string name="settlement_list_pno">协议编号:</string>
+    <string name="settlement_list_sell_price">卖出价</string>
+    <string name="settlement_list_share_profit">分享盈利</string>
+    <string name="settlement_list_stop_profit_point">赔付亏损</string>
+    <string name="settlement_list_tactics_cooperate_profit">策略人合作权益(元)</string>
+    <string name="settlement_result_pay_failure">付款失败</string>
+    <string name="settlement_result_pay_success">付款成功</string>
+    <string name="stock_amount_unit">股</string>
+    <string name="stock_high">最高</string>
+    <string name="stock_low">最低</string>
+    <string name="stock_open">今开</string>
+    <string name="stock_yclose">昨收</string>
+    <string name="strategy_about_amount">预计买入</string>
+    <string name="strategy_bought_amount">已买股数</string>
+    <string name="strategy_bought_fund">已买金额</string>
+    <string name="strategy_buy_price">买入价</string>
+    <string name="strategy_buying">待建仓</string>
+    <string name="strategy_buying_fail">建仓失败！</string>
+    <string name="strategy_buying_fail_content">很遗憾，因投资人响应超时，\n您的策略未建仓成功！</string>
+    <string name="strategy_buying_not_enough_amount">您投入的金额不足够买入100股</string>
+    <string name="strategy_buying_order_content">根据现在实盘的价格,您设置的投入金额目前可买入%1$d股，是否继续?</string>
+    <string name="strategy_buying_success">建仓成功！</string>
+    <string name="strategy_buying_success_content">您已完成了全部的建仓策略，祝您投资顺利！</string>
+    <string name="strategy_buying_time_out">网络异常</string>
+    <string name="strategy_buying_time_out_content">请点击确认去查看策略是否发送成功</string>
+    <string name="strategy_buying_title">建仓策略</string>
+    <string name="strategy_buying_to_investor">向投资人发出</string>
+    <string name="strategy_buying_today">今日</string>
+    <string name="strategy_close_strategy">平仓策略 (%1$d/%2$d)</string>
+    <string name="strategy_confirm_buying">确认发送</string>
+    <string name="strategy_create_strategy">+建仓策略 (%1$d/%2$d)</string>
+    <string name="strategy_cur_price">现价</string>
+    <string name="strategy_input_fund">本次投入金额：</string>
+    <string name="strategy_input_fund_hint">请输入金额</string>
+    <string name="strategy_input_sell_amount">本次平仓股数：</string>
+    <string name="strategy_input_sell_amount_hint">请输入股数</string>
+    <string name="strategy_invest_unit">投资单元</string>
+    <string name="strategy_investor">投资人</string>
+    <string name="strategy_loss_ratio">亏损赔付履约比例</string>
+    <string name="strategy_notice_confirm">通知确认</string>
+    <string name="strategy_notice_fail">投资人未响应您的平仓通知</string>
+    <string name="strategy_notice_important_tip">重要提示：</string>
+    <string name="strategy_notice_important_tip1">1.当策略人提供的策略在收盘浮盈未达到%1$s及以上时，策略人将支付成本补偿</string>
+    <string name="strategy_notice_important_tip2">成本补偿 = %1$s</string>
+    <string name="strategy_notice_important_tip3">2.T+%1$d日%2$s–%3$s未通知平仓，投资人将于T+%4$d日开盘以市价平仓</string>
+    <string name="strategy_notice_leave_day">剩余%1$d日</string>
+    <string name="strategy_notice_not_notice_time">未到通知平仓时间</string>
+    <string name="strategy_notice_notice_time">通知平仓时间为每日 %1$s-%2$s</string>
+    <string name="strategy_notice_profit">收益浮盈</string>
+    <string name="strategy_notice_suceess">投资人接收了您的平仓通知</string>
+    <string name="strategy_notice_time_out">网络异常</string>
+    <string name="strategy_notice_time_out_content">请点击确认去查看策略是否发送成功</string>
+    <string name="strategy_notice_title">限时通知平仓</string>
+    <string name="strategy_notice_to_sell">通知平仓</string>
+    <string name="strategy_notice_today_days1">第</string>
+    <string name="strategy_notice_today_days2">日</string>
+    <string name="strategy_noticing">待通知</string>
+    <string name="strategy_pno">协议编号: %1$s</string>
+    <string name="strategy_profit">浮盈亏</string>
+    <string name="strategy_profit_ratio">浮盈亏率</string>
+    <string name="strategy_rise_and_fall">涨跌</string>
+    <string name="strategy_sell_fail_title">平仓失败!</string>
+    <string name="strategy_sell_price">卖出价</string>
+    <string name="strategy_sell_success_content">恭喜！您已经完成了全部的平仓策略</string>
+    <string name="strategy_sell_success_title">平仓成功!</string>
+    <string name="strategy_selled_amount">已卖股数</string>
+    <string name="strategy_selling">待平仓</string>
+    <string name="strategy_selling_input_number_greater_than">输入数字超过最大可卖股票数</string>
+    <string name="strategy_selling_last_time">最后一次平仓必须全部卖出</string>
+    <string name="strategy_selling_must_hundred_multiple">卖出股票必须为100的整数倍</string>
+    <string name="strategy_selling_time_out">网络异常</string>
+    <string name="strategy_selling_time_out_content">请点击确认去查看 策略是否平仓成功</string>
+    <string name="strategy_selling_title">平仓策略</string>
+    <string name="strategy_selling_total_amount">全部</string>
+    <string name="strategy_time">次</string>
+    <string name="strategy_to_buy_fund">待买金额</string>
+    <string name="strategy_to_buy_start_price">买入价  %1$s元</string>
+    <string name="strategy_to_sell_amount">待卖股数</string>
+    <string name="strategy_to_sell_amout">待卖股数（股）</string>
+    <string name="strategy_today_limit">限%1$d次</string>
+    <string name="strategy_today_times1">第</string>
+    <string name="strategy_today_times2">次</string>
+    <string name="strategy_total_amount">总股数</string>
+    <string name="strategy_total_fund">全额</string>
+    <string name="strategy_trade_day">今日为第%1$s个交易日</string>
+    <string name="strategy_use_ratio">使用率</string>
+    <string name="tab_account_text">账单</string>
+    <string name="tab_cooperation_text">合作</string>
+    <string name="tab_cooperation_title">投资人TM策略征集</string>
+    <string name="tab_d1">D1</string>
+    <string name="tab_m15">M15</string>
+    <string name="tab_m30">M30</string>
+    <string name="tab_m5">M5</string>
+    <string name="tab_m60">M60</string>
+    <string name="tab_mine_text">我的</string>
+    <string name="tab_minute">分时</string>
+    <string name="tab_strategy_text">策略</string>
+    <string name="tab_strategy_title">出策略</string>
+    <string name="take_photo">拍照</string>
+    <string name="take_picture">从相册选择</string>
+    <string name="ten_thousand">%1$s万</string>
+    <string name="ten_thousand_money">万元</string>
+    <string name="title_letter_detail">消息详情</string>
+    <string name="transaction_stream_item_buy_amount">买入股数</string>
+    <string name="transaction_stream_item_buy_price">买入价</string>
+    <string name="transaction_stream_item_deal_fund">成交金额</string>
+    <string name="transaction_stream_item_sell_amount">卖出股数</string>
+    <string name="transaction_stream_item_sell_price">卖出价</string>
+    <string name="transaction_stream_item_stock_bonus">每股红利</string>
+    <string name="transaction_stream_item_stock_bonus_amount">红利股数</string>
+    <string name="transaction_stream_item_stock_bonus_fund">红利金额</string>
+    <string name="transaction_stream_title_buy">建仓策略明细</string>
+    <string name="transaction_stream_title_sell">平仓策略明细</string>
+    <string name="update_content">点击立即去更新即刻体验策略梦工厂。</string>
+    <string name="update_later">稍后再说</string>
+    <string name="update_loading">下载中</string>
+    <string name="update_now">立即去更新</string>
+    <string name="update_title">发现新版本</string>
+    <string name="user_about">关于</string>
+    <string name="user_auth">我的认证</string>
+    <string name="user_common_question">常见问题</string>
+    <string name="user_compensate">我的补偿</string>
+    <string name="user_compensate_detail">补偿明细</string>
+    <string name="user_customer_service_feedback">意见反馈</string>
+    <string name="user_customer_service_online">在线客服</string>
+    <string name="user_dissent_commit_title">异议申请</string>
+    <string name="user_dissent_record">我的异议</string>
+    <string name="user_dissent_record_detail">异议内容</string>
+    <string name="user_dissentrecord_compensate">异议/补偿</string>
+    <string name="user_gesture_pwd">手势密码</string>
+    <string name="user_investor_agreement">投资人合作协议</string>
+    <string name="user_letter">私信</string>
+    <string name="user_lgb_account">拉勾宝</string>
+    <string name="user_lgb_account_msg">拉勾宝账户:</string>
+    <string name="user_lgb_account_title">拉勾宝账户</string>
+    <string name="user_modify_pwd_confirm_pwd">确认密码</string>
+    <string name="user_modify_pwd_confirm_pwd_hint">再次输入新密码</string>
+    <string name="user_modify_pwd_error">您的密码错误</string>
+    <string name="user_modify_pwd_new_pwd">新密码</string>
+    <string name="user_modify_pwd_new_pwd_hint">6–18位数字、英文、字母</string>
+    <string name="user_modify_pwd_not_equal">两次密码输入不一致</string>
+    <string name="user_modify_pwd_original_pwd">原密码</string>
+    <string name="user_modify_pwd_reset">请重新设置您的登录密码</string>
+    <string name="user_new_comer_guide">新手引导</string>
+    <string name="user_new_phone_number_tips">请输入新手机号码，点击“获取验证码”完成短信验证</string>
+    <string name="user_old_phone_number_tips">点击“获取验证码”完成原手机号码短信验证</string>
+    <string name="user_phone_login">手机号登录</string>
+    <string name="user_phone_login_setting">手机登录设置</string>
+    <string name="user_phone_number_new">新手机号</string>
+    <string name="user_phone_number_old">原手机号</string>
+    <string name="user_phone_number_title">修改手机</string>
+    <string name="user_platform_agreement">平台服务协议</string>
+    <string name="user_privacy_clause">隐私条款</string>
+    <string name="user_private_customer_service">我的客服</string>
+    <string name="user_prod_accountflow">账户流水</string>
+    <string name="user_prod_accountflow_title">账户流水</string>
+    <string name="user_prod_available">可用</string>
+    <string name="user_prod_freeze">冻结</string>
+    <string name="user_prod_recharge">充值</string>
+    <string name="user_prod_recharge_title">充值</string>
+    <string name="user_prod_tips">拉勾宝账户数据由 拉勾宝 提供支持</string>
+    <string name="user_prod_withdrawals">提现</string>
+    <string name="user_prod_withdrawals_title">提现</string>
+    <string name="user_quit">安全退出</string>
+    <string name="user_service">我的客服</string>
+    <string name="user_setting">设置</string>
+    <string name="user_strategy_agreement_content">策略合作协议内容</string>
+    <string name="user_uid">ID%1$s</string>
+    <string name="user_weixin">微信公众号</string>
+    <string name="user_weixin_dialog_content">已复制策略梦工厂微信公众号\n打开微信添加</string>
+    <string name="user_weixin_dialog_error_tips">请先安装微信</string>
+    <string name="user_weixin_public_number">策略梦工厂</string>
+    <style name="AppBaseTheme" parent="android:Theme.Light.NoTitleBar">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+        -->
+    </style>
+    <style name="AppTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowBackground">@android:color/white</item>
+	    <item name="android:windowNoTitle">true</item>
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    <style name="DialogStyle" parent="@android:style/Theme.Dialog">
+	    <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+	    <item name="android:windowNoTitle">true</item>
+	    <item name="android:background">@color/transparent</item>
+	    <item name="android:windowFrame">@null</item>
+	    <item name="android:windowBackground">@color/transparent</item>
+	    <item name="android:listPreferredItemPaddingLeft">@dimen/margin_xhdpi_15</item>
+	    <item name="android:listPreferredItemPaddingRight">@dimen/margin_xhdpi_35</item>
+	    <!-- <item name="android:windowAnimationStyle">@null</item> -->
+	</style>
+    <style name="HomeTheme" parent="@style/AppTheme">
+<!-- 	    <item name="android:windowBackground">@android:color/white</item>
+	    <item name="android:windowNoTitle">true</item> -->
+	</style>
+    <style name="MyTheme.NoTitleBar.CustomBackground" parent="@android:Theme.Black">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="MyTheme.Translucent" parent="android:style/Theme.Translucent">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:colorForeground">#fff</item>
+    </style>
+    <style name="anim_up_style">
+        <item name="android:windowEnterAnimation">@anim/anim_up</item>
+        <item name="android:windowExitAnimation">@anim/anim_exit</item>
+    </style>
+    <style name="font_000000_12">
+        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+    <style name="font_000000_20">
+        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_20</item>
+    </style>
+    <style name="font_000000_28">
+        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_28</item>
+    </style>
+    <style name="font_007aff_11">
+        <item name="android:textColor">@color/color_007aff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_11</item>
+    </style>
+    <style name="font_007aff_15">
+        <item name="android:textColor">@color/color_007aff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_15</item>
+    </style>
+    <style name="font_222222_10">
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_10</item>
+    </style>
+    <style name="font_222222_12">
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+    <style name="font_222222_13">
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_13</item>
+    </style>
+    <style name="font_222222_14">
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+    </style>
+    <style name="font_222222_15">
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_15</item>
+    </style>
+    <style name="font_222222_16">
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_16</item>
+    </style>
+    <style name="font_222222_25">
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_25</item>
+    </style>
+    <style name="font_2d86ef_14">
+        <item name="android:textColor">#ff23bdde</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+    </style>
+    <style name="font_2d86ef_15">
+        <item name="android:textColor">#ff2d86ef</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_15</item>
+    </style>
+    <style name="font_424242_15">
+	    <item name="android:textColor">@color/color_424242</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_15</item>
+	</style>
+    <style name="font_424242_16">
+	    <item name="android:textColor">@color/color_424242</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_16</item>
+	</style>
+    <style name="font_424242_18">
+	    <item name="android:textColor">@color/color_424242</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_18</item>
+	</style>
+    <style name="font_575757_18">
+        <item name="android:textColor">@color/color_575757</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_18</item>
+    </style>
+    <style name="font_757575_10">
+        <item name="android:textColor">@color/text_color_main</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_10</item>
+    </style>
+    <style name="font_757575_11">
+        <item name="android:textColor">@color/text_color_main</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_11</item>
+    </style>
+    <style name="font_757575_12">
+        <item name="android:textColor">@color/text_color_main</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+    <style name="font_757575_13">
+        <item name="android:textColor">@color/text_color_main</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_13</item>
+    </style>
+    <style name="font_757575_14">
+        <item name="android:textColor">@color/text_color_main</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+    </style>
+    <style name="font_757575_15">
+        <item name="android:textColor">@color/text_color_main</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_15</item>
+    </style>
+    <style name="font_808080_9">
+        <item name="android:textColor">@color/color_808080</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_9</item>
+    </style>
+    <style name="font_848484_10">
+	    <item name="android:textColor">#ff848484</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_10</item>
+	</style>
+    <style name="font_848484_13">
+	    <item name="android:textColor">#ff848484</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_13</item>
+	</style>
+    <style name="font_848484_14">
+	    <item name="android:textColor">#ff848484</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+	</style>
+    <style name="font_848484_15">
+	    <item name="android:textColor">#ff848484</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_15</item>
+	</style>
+    <style name="font_848484_16">
+	    <item name="android:textColor">#ff848484</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_16</item>
+	</style>
+    <style name="font_999999_12">
+        <item name="android:textColor">@color/color_999999</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+    <style name="font_ababab_10">
+        <item name="android:textColor">@color/text_color_sub</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_10</item>
+    </style>
+    <style name="font_ababab_12">
+        <item name="android:textColor">@color/text_color_sub</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+    <style name="font_ababab_14">
+        <item name="android:textColor">@color/color_ababab</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+    </style>
+    <style name="font_ababab_15">
+        <item name="android:textColor">@color/text_color_sub</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_15</item>
+    </style>
+    <style name="font_bcbdc0_10">
+        <item name="android:textColor">@color/color_bcbdc0</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_10</item>
+    </style>
+    <style name="font_bebebe_12">
+        <item name="android:textColor">@color/color_bebebe</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+    <style name="font_cccccc_12">
+        <item name="android:textColor">@color/text_color_info</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+    <style name="font_cccccc_16">
+        <item name="android:textColor">@color/text_color_info</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_16</item>
+    </style>
+    <style name="font_f19900_13">
+        <item name="android:textColor">@color/color_f19900</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_13</item>
+    </style>
+    <style name="font_f19900_14">
+        <item name="android:textColor">@color/color_f19900</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+    </style>
+    <style name="font_f49317_14">
+        <item name="android:textColor">@color/color_f49317</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+    </style>
+    <style name="font_ff7814_12">
+        <item name="android:textColor">@color/color_ff7814</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+    <style name="font_ff7814_18">
+        <item name="android:textColor">@color/color_ff7814</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_18</item>
+    </style>
+    <style name="font_white_12">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+    </style>
+    <style name="font_white_14">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+    </style>
+    <style name="font_white_15">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_15</item>
+    </style>
+    <style name="font_white_16">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_16</item>
+    </style>
+    <style name="font_white_17">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_17</item>
+    </style>
+    <style name="font_white_18">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_18</item>
+    </style>
+    <style name="font_white_19">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_19</item>
+    </style>
+    <style name="font_white_25">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">@dimen/font_size_xhdpi_25</item>
+    </style>
+    <style name="text_main_style">
+	    <item name="android:textColor">@color/text_color_title</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_16</item>
+	</style>
+    <style name="text_sub_style">
+	    <item name="android:textColor">@color/text_color_main</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+	</style>
+    <style name="text_tips_main_style">
+	    <item name="android:textColor">@color/text_color_main</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+	</style>
+    <style name="text_tips_sub_style">
+	    <item name="android:textColor">@color/text_color_sub</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_10</item>
+	</style>
+    <style name="text_tips_sub_style_12">
+	    <item name="android:textColor">@color/text_color_sub</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_12</item>
+	</style>
+    <style name="text_title_style">
+	    <item name="android:textColor">@color/text_color_title</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_18</item>
+	</style>
+    <style name="text_title_sub_style">
+	    <item name="android:textColor">@color/text_color_title</item>
+	    <item name="android:textSize">@dimen/font_size_xhdpi_14</item>
+	</style>
+    <style name="transparent">
+        <item name="android:windowIsTranslucent">true</item>
+	    <item name="android:windowNoTitle">true</item>
+	    <item name="android:background">@color/transparent</item>
+	    <item name="android:windowBackground">@color/transparent</item>
+	</style>
+    <style name="wait_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+</resources>

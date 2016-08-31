@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.gxq.tpm"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/product_bg">
+    <include 
+        android:id="@+id/view_topline"
+        layout="@layout/horizontal_line_separate"/>
+    <LinearLayout
+        android:id="@+id/container_compensate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/view_topline">
+        <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="@dimen/margin_xhdpi_32"
+	        android:orientation="horizontal"
+	        android:gravity="center_vertical"
+	        android:background="@color/product_bg" >
+	        
+	        <TextView 
+	            android:layout_width="0dp"
+	            android:layout_weight="105"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="@dimen/margin_xhdpi_15"
+	            android:text="@string/compensate_time"
+	            android:textAppearance="@style/font_ababab_14"
+	            android:gravity="left" />
+	        
+	        <TextView 
+	            android:layout_width="0dp"
+	            android:layout_weight="110"
+	            android:layout_height="wrap_content"
+	            android:text="@string/compensate_money"
+	            android:textAppearance="@style/font_ababab_14"
+	            android:gravity="left" />
+	        
+	        <TextView 
+	            android:layout_width="0dp"
+	            android:layout_weight="56"
+	            android:layout_height="wrap_content"
+	            android:text="@string/compensate_type"
+	            android:textAppearance="@style/font_ababab_14"
+	            android:gravity="left" />
+	        
+	        <TextView 
+	            android:layout_width="0dp"
+	            android:layout_weight="60"
+	            android:layout_height="wrap_content"
+	            android:layout_marginRight="@dimen/margin_xhdpi_15"
+	            android:text="@string/compensate_state"
+	            android:textAppearance="@style/font_ababab_14"
+	            android:gravity="center_horizontal" />
+	    </LinearLayout>
+	    <include 
+                layout="@layout/horizontal_line_separate"/>
+        <com.gxq.tpm.ui.CListView 
+		    android:id="@+id/settlement_correction_list"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:cacheColorHint="@color/transparent"
+		    android:overScrollMode="never"
+		    android:divider="@color/transparent"
+		    android:listSelector="@color/transparent"
+		    android:scrollbars="none" 
+		    android:headerDividersEnabled="false"
+		    android:footerDividersEnabled="false"/>
+    </LinearLayout>
+    
+    <com.gxq.tpm.ui.CEmptyNoteView 
+        android:id="@+id/list_empty_container"
+        android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    app:src_text="@string/empty_compensate_list"
+	    android:layout_below="@+id/view_topline" />
+    
+</RelativeLayout>

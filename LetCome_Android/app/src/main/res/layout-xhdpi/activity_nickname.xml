@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_xhdpi_20"
+        android:layout_marginRight="@dimen/margin_xhdpi_20"
+        android:background="@drawable/dialog_bg"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_nickname_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_xhdpi_25"
+            android:text="@string/set_nick_name_title"
+            android:textColor="@color/color_222222"
+            android:textSize="@dimen/font_size_xhdpi_18" />
+        
+        <TextView
+            android:id="@+id/tv_error_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/margin_xhdpi_15"
+            android:layout_marginRight="@dimen/margin_xhdpi_15"
+            android:layout_marginTop="@dimen/margin_xhdpi_12"
+            android:textColor="@color/color_ababab"
+            android:textSize="@dimen/font_size_xhdpi_10"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/horizontal_line_separate_height"
+            android:layout_marginTop="@dimen/margin_xhdpi_18"
+            android:background="@color/line_seperate_color" />
+     
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_xhdpi_45"
+            android:paddingLeft="@dimen/margin_xhdpi_15"
+            android:paddingRight="@dimen/margin_xhdpi_15"
+            android:background="@color/white_color" >
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:text="@string/complete_user_info_name"
+                android:textAppearance="@style/font_222222_16" />
+
+            <com.gxq.tpm.ui.NickNameCheckEditText
+                android:id="@+id/et_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/margin_xhdpi_15" />
+        </LinearLayout>
+
+        <include layout="@layout/horizontal_line_separate" />
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_xhdpi_44"
+            android:layout_marginLeft="@dimen/margin_xhdpi_10"
+	        android:layout_marginRight="@dimen/margin_xhdpi_10"
+	        android:layout_marginBottom="@dimen/margin_xhdpi_20"
+	        android:layout_marginTop="@dimen/margin_xhdpi_20"
+            android:background="@drawable/btn_next_step_selector"
+            android:gravity="center"
+            android:text="@string/complete_user_info_save"
+            android:textColor="@color/text_next_step_selector"
+            android:textSize="@dimen/font_size_xhdpi_18" />
+    </LinearLayout>
+
+</LinearLayout>

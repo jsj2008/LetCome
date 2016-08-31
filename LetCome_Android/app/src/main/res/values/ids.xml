@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="default_fragment"/>
+    <item type="id" name="tab_cooperation"/>
+    <item type="id" name="tab_strategy"/>
+    <item type="id" name="tab_account"/>
+    <item type="id" name="tab_mine"/>
+    
+    <item type="id" name="sign_agreement_fragment" />
+    
+    <item type="id" name="key_1"/>
+    <item type="id" name="key_2"/>
+    <item type="id" name="article_item"/>
+</resources>

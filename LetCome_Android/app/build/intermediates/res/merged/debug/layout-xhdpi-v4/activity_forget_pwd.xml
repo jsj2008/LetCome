@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/product_bg"
+    android:orientation="vertical" >
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/horizontal_line_separate_height"
+        android:layout_marginTop="@dimen/margin_xhdpi_10"
+        android:background="@color/line_seperate_color" />
+	 <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white_color">
+	    <include
+	        layout="@layout/etit_phone_layout" />
+	
+	    <include
+	        layout="@layout/item_bar_line_separate" />
+	
+	    <RelativeLayout
+	        android:id="@+id/rl_verify"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" >
+	
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="@dimen/margin_xhdpi_45"
+			    android:background="@color/white_color"
+			    android:orientation="horizontal"
+			    android:paddingLeft="@dimen/margin_xhdpi_15" >
+	
+			    <TextView
+			        android:layout_width="@dimen/login_edit_textview_margin"
+			        android:layout_height="match_parent"
+			        android:gravity="left|center_vertical"
+			        android:text="@string/phone_verify"
+			        android:textAppearance="@style/font_222222_14" />
+	
+			    <com.gxq.tpm.ui.PhoneVerifyCheckEditText
+			        android:id="@+id/et_verify"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:hint="@string/phone_verify_hint"/>
+			
+			</LinearLayout>
+	
+	        <TextView
+	            android:id="@+id/tv_verify"
+	            android:layout_width="@dimen/margin_xhdpi_113"
+	            android:layout_height="@dimen/margin_xhdpi_35"
+	            android:layout_alignParentRight="true"
+	            android:layout_centerVertical="true"
+	            android:layout_marginRight="@dimen/margin_xhdpi_15"
+	            android:background="@drawable/btn_white_selector"
+	            android:gravity="center"
+	            android:text="@string/phone_get_number_verify"
+	            android:textColor="@color/text_color_main"
+	            android:textSize="@dimen/font_size_xhdpi_12" />
+	    </RelativeLayout>
+	
+	    <include layout="@layout/horizontal_line_separate" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/bt_commit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_xhdpi_44"
+        android:layout_marginLeft="@dimen/margin_xhdpi_10"
+	    android:layout_marginRight="@dimen/margin_xhdpi_10"
+	    android:layout_marginBottom="@dimen/margin_xhdpi_10"
+	    android:layout_marginTop="@dimen/margin_xhdpi_20"
+        android:background="@drawable/btn_next_step_selector"
+        android:enabled="false"
+        android:gravity="center"
+        android:text="@string/btn_confirm"
+        android:textColor="@color/text_next_step_selector"
+        android:textSize="@dimen/font_size_xhdpi_18" />
+
+</LinearLayout>

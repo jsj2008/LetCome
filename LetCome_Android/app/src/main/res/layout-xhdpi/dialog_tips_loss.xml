@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/margin_xhdpi_20"
+    android:layout_marginRight="@dimen/margin_xhdpi_20"
+    android:layout_marginTop="@dimen/margin_xhdpi_30"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1.策略人拉勾宝账户中冻结的，用于对投资人执行策略产生交易亏损赔付的专项保证金。"
+        android:textAppearance="@style/font_757575_12" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_xhdpi_8"
+        android:layout_marginTop="@dimen/margin_xhdpi_12"
+        android:text="2.强平"
+        android:textAppearance="@style/font_757575_12" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_xhdpi_8"
+        android:text="(1)当亏损赔付履约比例值触发或向下击穿8％时，策略人将自动放弃向投资人发出平仓策略的权利，而授权投资人自行于次日进行平仓，并同意接受结果。"
+        android:textAppearance="@style/font_757575_12" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_xhdpi_8"
+        android:text="(2)亏损赔付履约比例：投资人持仓过程中在每日收盘后，将根据策略人冻结的亏损赔付履约金和投资单元的收盘浮盈，动态评估策略人承担亏损赔付的能力。"
+        android:textAppearance="@style/font_757575_12" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="值＝（亏损赔付履约金＋收盘浮盈）／买入成交金额× 100％。"
+        android:textAppearance="@style/font_757575_12" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_xhdpi_12"
+        android:layout_marginBottom="@dimen/margin_xhdpi_30"
+        android:text="3.策略人以亏损赔付履约金为限承担投资人交易亏损赔付。"
+        android:textAppearance="@style/font_757575_12" />
+
+</LinearLayout>

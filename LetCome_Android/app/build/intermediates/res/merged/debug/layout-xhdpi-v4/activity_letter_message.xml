@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/product_bg"
+    android:orientation="vertical">
+    <include 
+	    layout="@layout/horizontal_line_separate"/>
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_xhdpi_44">
+
+       	<com.gxq.tpm.ui.CTabTitleWithNotice
+        	android:id="@+id/letter_title"
+        	android:layout_width="match_parent"
+        	android:layout_height="@dimen/margin_xhdpi_30"
+        	android:layout_marginLeft="@dimen/margin_xhdpi_15"
+        	android:layout_marginRight="@dimen/margin_xhdpi_15"
+        	android:background="@drawable/tab_title_bg"
+        	android:layout_centerInParent="true" />
+        
+    </RelativeLayout>
+    
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/horizontal_line_separate_height"
+        android:background="@color/line_seperate_color" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/letter_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    
+</LinearLayout>
