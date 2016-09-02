@@ -1,26 +1,54 @@
 [
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/color/text_next_step_selector.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/color/text_next_step_selector.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/color/abc_secondary_text_material_dark.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/color/abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/color/switch_thumb_material_light.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/color/switch_thumb_material_light.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/color/abc_primary_text_material_light.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/color/abc_primary_text_material_light.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/color/switch_thumb_material_dark.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/color/switch_thumb_material_dark.xml"
     },
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/color/tab_bar_item_color.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/color/tab_bar_item_color.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/color/dialog_btn_text_color_selector.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/color/dialog_btn_text_color_selector.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/color/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/color/abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/color/abc_primary_text_disable_only_material_light.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/color/abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/color/abc_primary_text_disable_only_material_dark.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/color/abc_primary_text_disable_only_material_dark.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/color/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/color/abc_background_cache_hint_selector_material_light.xml"
     },
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/color/tab_title_text_color_selector.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/color/tab_title_text_color_selector.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/color/strategy_fund_item_color.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/color/strategy_fund_item_color.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/color/abc_secondary_text_material_light.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/color/abc_secondary_text_material_light.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/color/hq_tab_text_color_selector.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/color/hq_tab_text_color_selector.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/color/abc_search_url_text.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/color/abc_search_url_text.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/color/abc_primary_text_material_dark.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/color/abc_primary_text_material_dark.xml"
     }
 ]

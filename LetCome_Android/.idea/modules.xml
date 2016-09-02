@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LetCome_Android.iml" filepath="$PROJECT_DIR$/LetCome_Android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/modules/PinterestLikeAdapterView/PinterestLikeAdapterView.iml" filepath="$PROJECT_DIR$/app/modules/PinterestLikeAdapterView/PinterestLikeAdapterView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -1,8 +1,8 @@
 package com.gxq.tpm;
 
-import com.letcome.R;
 import com.gxq.tpm.mode.IniPatch;
 import com.gxq.tpm.tools.Util;
+import com.letcome.R;
 
 public class ServiceConfig {
 	private final static String KEY_SERVICE_PLATFORM 	= "service_platform";

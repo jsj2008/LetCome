@@ -16,7 +16,7 @@
             <flag name="none" value="0" />
             <flag name="have" value="1" />
         </attr>
-        <attr name="visibility" format="string" />
+        <!--<attr name="visibility" format="string" />-->
 
         <attr name="clear" format="boolean" />
         <attr name="right_btn" format="reference"/>  <!-- 给button设置 图片 -->
@@ -43,14 +43,14 @@
         </attr>
     </declare-styleable>
     <!-- title bar start -->
-    <declare-styleable name="title">
-        <attr name="title" format="string" />
-        <attr name="rightNote" format="string" />
-        <attr name="title_right_btn_bg" format="reference" />
-        <attr name="title_right_left_btn_bg" format="reference" />
-        <attr name="title_left_btn_bg" format="reference" />
-        <attr name="title_back" format="boolean"/>
-    </declare-styleable>
+    <!--<declare-styleable name="title">-->
+        <!--<attr name="title" format="string" />-->
+        <!--<attr name="rightNote" format="string" />-->
+        <!--<attr name="title_right_btn_bg" format="reference" />-->
+        <!--<attr name="title_right_left_btn_bg" format="reference" />-->
+        <!--<attr name="title_left_btn_bg" format="reference" />-->
+        <!--<attr name="title_back" format="boolean"/>-->
+    <!--</declare-styleable>-->
 
     <declare-styleable name="titletop">
         <attr name="title_text" format="string" />
@@ -131,7 +131,6 @@
         <attr name="roundColor" format="color"/>
         <attr name="roundProgressColor" format="color"/>
         <attr name="roundWidth" format="dimension"/>
-        <attr name="titleTextColor" format="color"/>
         <attr name="titleTextSize" format="dimension"/>
         <attr name="limitTextColor" format="color"/>
         <attr name="limitTextSize" format="dimension"/>

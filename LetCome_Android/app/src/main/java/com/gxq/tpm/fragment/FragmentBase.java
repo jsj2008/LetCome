@@ -60,11 +60,9 @@ public class FragmentBase extends Fragment implements ICallBack, OnDispatcherTim
 		super.onResume();
 		if (isHidden())
 			return;
-		
-		if (!App.instance().isTest()) {
-			MobclickAgent.onPageStart(this.getClass().getName());
+		if (getView()!=null) {
+			getView().setClickable(true);
 		}
-		getView().setClickable(true);
 	}
 	
 	@Override
@@ -114,9 +112,7 @@ public class FragmentBase extends Fragment implements ICallBack, OnDispatcherTim
 				message = getString(R.string.net_unusual);
 				type = netFinishError(info, errorCode, message, tag);
 			} else {
-				if (result.error_code == NetworkResultInfo.SESSION_TIMEOUT.getValue()) {
-					mContext.sessionTimeout(info);
-				} else if (result.error_code == NetworkResultInfo.SUCCESS.getValue()) {
+				if (result.error_code == NetworkResultInfo.SUCCESS.getValue()) {
 //					if (RequestInfo.PROTOCOL_UNSIGNED == info) {
 //						UnsignAgreement unsign = (UnsignAgreement) result;
 //						ArrayList<UnsignAgreement.Agreement> mUnsign = unsign.res_data;
@@ -144,88 +140,7 @@ public class FragmentBase extends Fragment implements ICallBack, OnDispatcherTim
 			
 		}
 		
-//		try {
-//			BaseRes res;
-//			if (object instanceof String) {
-//				String content = (String) object;
-//				if (content != null && content.startsWith("\\ufeff")) {
-//					content = content.substring(1);
-//				}
-//				
-//				Gson gson = new Gson();
-//				res = gson.fromJson(content, BaseRes.class);
-//				errorCode = String.valueOf(res.error_code);
-//				errorMessage = res.error_msg;
-//				message = errorMessage;
-//				
-//				/*if (res.error_code == NetworkResultInfo.WITH_UNSIGNED_AGREEMENT.getValue() ||
-//						res.error_code == NetworkResultInfo.WITH_UNSIGNED_FRAME_AGREEMENT.getValue()){
-//					String prd_type = res.product_type;
-//					String user_type = App.prefs.getUserInfo().user_type + "";
-//					UnsignAgreement.doRequest(prd_type, user_type, this, FragmentBase.class.getName());
-//				} else */if (res.error_code == NetworkResultInfo.SESSION_TIMEOUT
-//				        .getValue()) {
-//					Log.d("FragmentBase", "operationType = " + operationType);
-//					((BaseActivity)getActivity()).sessionTimeout(null, res.error_msg);
-//				} else if (res.error_code == NetworkResultInfo.SUCCESS.getValue()) {
-//					netFinishOk(operationType, (String) object, tag);
-//				} else {
-//					type = error(operationType, res.error_code, res.error_msg, tag);
-//				}
-//			} else if (state == NetworkConstants.STATUS_NETWORK_OK) {
-//				res = (BaseRes) object;
-//				errorCode = String.valueOf(res.error_code);
-//				errorMessage = res.error_msg;
-//				message = errorMessage;
-//				
-//				/*if (res.error_code == NetworkResultInfo.WITH_UNSIGNED_AGREEMENT.getValue() ||
-//						res.error_code == NetworkResultInfo.WITH_UNSIGNED_FRAME_AGREEMENT.getValue()){
-//					String prd_type = res.product_type;
-//					String user_type = App.prefs.getUserInfo().user_type+"";
-//					UnsignAgreement.doRequest(prd_type, user_type, this , FragmentBase.class.getName());
-//				} else */if (res.error_code == NetworkResultInfo.SESSION_TIMEOUT
-//				        .getValue()) {
-//					//((BaseActivity)getActivity()).hideWaitDialog();
-////					hideWaitDialog(operationType);
-//					((BaseActivity)getActivity()).sessionTimeout(null, res.error_msg);
-//				} else {
-//					if (res.error_code == NetworkResultInfo.SUCCESS.getValue()) {
-//						if (null != tag && tag.equals(FragmentBase.class.getName()) && RequestInfo.PROTOCOL_UNSIGNED.getOperationType().equals(operationType)){
-//							UnsignAgreement unsign = (UnsignAgreement) res;
-//							ArrayList<Agreement> mUnsign = unsign.res_data;
-//							if (null != mUnsign && mUnsign.size() > 0) {
-//								Intent intent = new Intent(getActivity(), SignAgreementActivity.class);
-//								intent.putExtra(ProductIntent.EXTRA_UNSIGN_AGREEMENT, mUnsign);
-//								startActivity(intent);
-//							}
-//						}
-//						netFinishOk(operationType, res, tag);
-//					} else {
-//						type = error(operationType, res.error_code, res.error_msg, tag);
-//					}
-//				}
-//			} else if (state == NetworkConstants.STATUS_NETWORK_UNAVAILABLE) {
-//				errorCode = String.valueOf(NetworkConstants.STATUS_NETWORK_UNAVAILABLE);
-//				message = getString(R.string.net_unusual);
-//				type = error(operationType, NetworkConstants.STATUS_NETWORK_UNAVAILABLE, null, tag);
-//			} else {
-//				errorCode = String.valueOf(NetworkConstants.STATUS_SERVICE_UNAVAILABLE);
-//				message = getString(R.string.server_unusual);
-//				type = error(operationType, NetworkConstants.STATUS_SERVICE_UNAVAILABLE, null, tag);
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			Print.i(this.getClass().getName(), e + "");
-//			errorCode = String.valueOf(NetworkConstants.STATUS_SERVICE_UNAVAILABLE);
-//			message = getString(R.string.server_unusual);
-//			type = error(operationType, NetworkConstants.STATUS_SERVICE_UNAVAILABLE, null, tag);
-//		} finally {
-//			//((BaseActivity)getActivity()).hideWaitDialog();
-//			hideWaitDialog(operationType);
-//		}
-//		if (type != -1) {
-//			mContext.saveErrorMessage(type, operationType, errorCode, errorMessage, message);
-//		}
+
 
 	}
 

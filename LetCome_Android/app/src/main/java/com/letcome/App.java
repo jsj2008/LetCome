@@ -1,7 +1,5 @@
 package com.letcome;
 
-import java.util.List;
-
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningTaskInfo;
 import android.app.Application;
@@ -12,34 +10,31 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 
-import com.letcome.R;
-import com.gxq.tpm.db.DBManager;
-import com.gxq.tpm.mode.SearchStock;
-import com.gxq.tpm.prefs.UserPrefs;
-import com.gxq.tpm.tools.Installation;
 import com.gxq.tpm.tools.Util;
-import com.gxq.tpm.tools.crypt.MD5;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
+
+import java.util.List;
 
 public class App extends Application {
-//	public static final int GESTURE_LOCK_TIME       = 5 * 60 * 1000;// 手势超时锁屏时间
-//	public static final int LOCK_TIME      			= 15 * 60 * 1000;// 超时锁屏时间
-//	private final static String CHANNEL				= "UMENG_CHANNEL";
+
+	private final static String CHANNEL				= "UMENG_CHANNEL";
 	
 	private static App mInstance;
-	private static UserPrefs prefs;
-//	private static DBManager dbManager;
 	
 	private DisplayMetrics mDisplayMetrics;
 	
 	private String mVersion;
 	private Bundle mPackageInfo;
 	private String mChannel;
-	
-	private SearchStock mSearchStock;
+
 	
 	public static App instance() {
 		return mInstance;
@@ -49,7 +44,6 @@ public class App extends Application {
 	public void onCreate() {
 		super.onCreate();
 		mInstance = this;
-		prefs = UserPrefs.get(mInstance);
 //		dbManager = DBManager.getInstance(mInstance);
 //		dbManager.init();
 //
@@ -60,10 +54,34 @@ public class App extends Application {
 	}
 	
 	private void initData() {
-		prefs.setOpenUdid(MD5.md5(getDeviceId()+Installation.id(this)));
-		prefs.setFlag("ok");
-		prefs.save();
-		
+		DisplayImageOptions options = new DisplayImageOptions.Builder()
+				// .showImageOnLoading(R.drawable.ic_empty)
+				// 设置图片在下载期间显示的图片
+				// .showImageForEmptyUri(R.drawable.ic_empty)
+				// 设置图片Uri为空或是错误的时候显示的图片
+				// .showImageOnFail(R.drawable.ic_empty)
+				// 设置图片加载/解码过程中错误时候显示的图片
+				.cacheInMemory(true)
+						// 设置下载的图片是否缓存在内存中
+				.cacheOnDisk(true)
+						// 设置下载的图片是否缓存在SD卡中
+				.displayer(new FadeInBitmapDisplayer(100))
+				.considerExifParams(true)
+				.displayer(new FadeInBitmapDisplayer(100))// 图片加载好后渐入的动画时间
+				.displayer(new RoundedBitmapDisplayer(1)).build();
+		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+				this)
+				.threadPoolSize(3)
+				.threadPriority(Thread.NORM_PRIORITY - 2)
+				.memoryCacheSize(4 * 1024 * 1024)
+				.defaultDisplayImageOptions(options)
+				.imageDownloader(
+						new BaseImageDownloader(this, 10 * 1000, 30 * 1000))
+				.writeDebugLogs().build();
+
+		ImageLoader imageLoader = ImageLoader.getInstance(); // Get singleton instance
+		imageLoader.init(config);
+//		imageLoader.init(ImageLoaderConfiguration.createDefault(this));
 	}
 	
 	/**
@@ -94,7 +112,6 @@ public class App extends Application {
 	 * 将sp值转换为px值，保证文字大小不变
 	 *
 	 * @param spValue
-	 * @param fontScale
 	 *            （DisplayMetrics类中属性scaledDensity）
 	 * @return
 	 */
@@ -103,18 +120,6 @@ public class App extends Application {
 		return (int) (spValue * fontScale + 0.5f);
 	}
 
-	/**
-	 *
-	 * @Description : 十分钟内无操作，发送手势锁屏消息
-	 * @return : void
-	 * @Creation Date : 2014-6-25 下午5:21:06
-	 * @Author : HuNan
-	 * @Update Date :
-	 * @Update Author : HuNan
-	 */
-	public static void LockStartTime() {
-		prefs.setCurrentTime(SystemClock.elapsedRealtime());
-	}
 	
 //	/**
 //	 *
@@ -155,7 +160,7 @@ public class App extends Application {
 		if (mPackageInfo == null) {
 			try {
 				ApplicationInfo appInfo = App.instance().getPackageManager()
-				        .getApplicationInfo(com.gxq.tpm.App.instance().getPackageName(),
+				        .getApplicationInfo(App.instance().getPackageName(),
 				                PackageManager.GET_META_DATA);
 				if (appInfo != null) {
 					mPackageInfo = appInfo.metaData;
@@ -167,15 +172,15 @@ public class App extends Application {
 		return mPackageInfo;
 	}
 	
-//	public String getChannel() {
-//		if (mChannel == null) {
-//			mChannel = com.gxq.tpm.App.instance().getAppInfoBundle().getString(CHANNEL);
-//			if (Util.isEmpty(mChannel)) {
-//				mChannel = "" + com.gxq.tpm.App.instance().getAppInfoBundle().getInt(CHANNEL);
-//			}
-//		}
-//		return mChannel;
-//	}
+	public String getChannel() {
+		if (mChannel == null) {
+			mChannel = App.instance().getAppInfoBundle().getString(CHANNEL);
+			if (Util.isEmpty(mChannel)) {
+				mChannel = "" + App.instance().getAppInfoBundle().getInt(CHANNEL);
+			}
+		}
+		return mChannel;
+	}
 	
 	/**
 	 * 版本号
@@ -197,32 +202,5 @@ public class App extends Application {
 	public boolean isTest() {
 		return getResources().getBoolean(R.bool.isTest);
 	}
-	
-//	public static boolean isLogin() {
-//		return prefs.getUid() > 0;
-//	}
-	
-//	public SearchStock getSearchStock() {
-//		if (mSearchStock == null) {
-//			mSearchStock = prefs.getSearchStock();
-//			if (mSearchStock == null) {
-//				mSearchStock = new SearchStock();
-//			}
-//		}
-//		return mSearchStock;
-//	}
-	
-	public void saveSearchStock() {
-		prefs.setSearchStock(mSearchStock);
-		prefs.save();
-	}
-	
-	public static UserPrefs getUserPrefs() {
-		return prefs;
-	}
-	
-//	public static DBManager getDBManager() {
-//		return dbManager;
-//	}
-	
+
 }

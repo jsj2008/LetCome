@@ -1,14 +1,8 @@
 package com.gxq.tpm.tools;
 
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.Notification;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -20,30 +14,21 @@ import android.text.SpannableStringBuilder;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.TextView;
 
 import com.baidu.android.pushservice.CustomPushNotificationBuilder;
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
 import com.letcome.App;
-import com.gxq.tpm.ProductIntent;
 import com.letcome.R;
-import com.gxq.tpm.activity.ProductActivity;
-import com.gxq.tpm.activity.WebActivity;
-import com.gxq.tpm.mode.ProductPreCheck;
-import com.gxq.tpm.mode.UserInfo;
-import com.gxq.tpm.mode.cooperation.PopupMsg;
-import com.gxq.tpm.network.RequestInfo;
-import com.gxq.tpm.ui.ContractsDetailDialog;
-import com.gxq.tpm.ui.ProductDialog;
-import com.gxq.tpm.ui.ProductDialog.ProductDialogListener;
+
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Util {
 
@@ -411,10 +396,7 @@ public class Util {
 		else
 			return false;
 	}
-	
-	public static boolean checkUserInfo(UserInfo userInfo) {
-		return userInfo != null && !isEmpty(userInfo.bind_mobile);
-	}
+
 
 	public static boolean equals(CharSequence a, CharSequence b) {
 		if (a == b)
@@ -530,16 +512,6 @@ public class Util {
 		}
 		
 	}
-	
-	public static void gotoAuth(Context context) {
-		Intent intent = new Intent(context, WebActivity.class);
-		intent.putExtra(ProductIntent.EXTRA_TITLE, context.getString(R.string.user_auth));
-		intent.putExtra(ProductIntent.EXTRA_URL, RequestInfo.AUTH_LEVEL.getUrl());
-		intent.putExtra(ProductIntent.EXTRA_NEED_SESSION, true);
-		
-		context.startActivity(intent);
-	}
-
 	public static boolean needUpdate(String version, String currentVersion) {
 		String[] oldVersions = currentVersion.split("\\.");
 		String[] newVersions = version.split("\\.");
@@ -557,65 +529,6 @@ public class Util {
 	}
 	
 
-	public static ProductDialog showMsgDialg(PopupMsg msg, Context context) {
-		LayoutInflater inflater = LayoutInflater.from(context);
-		View view = inflater.inflate(R.layout.home_popup_msg, null);
-		TextView mTvTitle = (TextView) view.findViewById(R.id.tv_title);
-		mTvTitle.setText(msg.message_title);
-		WebView webView = (WebView) view.findViewById(R.id.webView);
-		Util.initWebView(webView);
-		webView.setHorizontalScrollBarEnabled(false);//水平不显示
-		webView.setVerticalScrollBarEnabled(false); //垂直不显示
-		webView.loadDataWithBaseURL("", msg.message, "text/html", "UTF-8",null);
-		
-		ProductDialog mDialog = new ProductDialog.Builder(context)
-			.setContentView(view)
-			.setPositiveButton(R.string.product_home_show_msg_ok, null).create();
-		mDialog.show();
-		return mDialog;
-	}
-	
-	public static Dialog showMsgWindow(PopupMsg msg, Context context) {
-		ContractsDetailDialog dialog = new ContractsDetailDialog(context);
-		dialog.show();
-		dialog.setContent(msg.message_title, msg.message);
-		return dialog;
-	}
-	
-	public static void showAuthDialog(Context context, ProductPreCheck preCheck,
-			ProductDialogListener cancelListener, ProductDialogListener confirmListener) {
-		new ProductDialog.Builder(context)
-			.setContent(R.string.auth_notice, R.drawable.layer_remind, preCheck.msg)
-			.setPositiveButton(R.string.auth_cancel, cancelListener)
-			.setNegativeButton(R.string.auth_confirm, confirmListener)
-			.create().show();
-	}
-	
-	public static void showRiskNoticeDialog(Context context, ProductPreCheck preCheck,
-			ProductDialogListener cancelListener, ProductDialogListener confirmListener) {
-		new ProductDialog.Builder(context)
-			.setContent(R.string.risk_notice, R.drawable.layer_remind, preCheck.msg)
-			.setOnCloseListener(cancelListener)
-			.setPositiveButton(R.string.risk_notice_know, confirmListener)
-			.create().show();
-	}
 
-	public static void showAuthInfromDialog(Context context, ProductPreCheck preCheck,
-			ProductDialogListener riskNoInformListener, ProductDialogListener confirmListener) {
-		new ProductDialog.Builder(context)
-			.setContent(R.string.risk_inform, R.drawable.layer_remind, preCheck.msg)
-			.setPositiveButton(R.string.risk_no_inform, riskNoInformListener)
-			.setNegativeButton(R.string.btn_confirm, confirmListener)
-			.create().show();
-	}	
-	
-	public static void gotoStrategy(Context context, int id) {
-		Intent intent = new Intent(context, ProductActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		intent.putExtra(ProductIntent.EXTRA_WHICH_FRAGMENT, R.id.tab_strategy);
-		intent.putExtra(ProductIntent.EXTRA_REFRESH, id);
-		
-		context.startActivity(intent);
-	}
 	
 }

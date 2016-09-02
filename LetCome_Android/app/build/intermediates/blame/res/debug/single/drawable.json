@@ -4,147 +4,143 @@
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/progressbar_point_progress.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/btn_rect_loss.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/btn_rect_loss.xml"
-    },
-    {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/progressbar_point_bg.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/progressbar_point_bg.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/btn_63_selector.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/btn_63_selector.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_light.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_list_selector_holo_light.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/btn_rect_diable.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/btn_rect_diable.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_seekbar_thumb_material.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_seekbar_thumb_material.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/dialog_bg.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/dialog_bg.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_edit_text_material.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_light.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_dialog_material_background_light.xml"
     },
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/progressbar_point_last.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/progressbar_point_last.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/btn_rect_efefef.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/btn_rect_efefef.xml"
-    },
-    {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/tab_title_text_bg_selector.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/tab_title_text_bg_selector.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/tabbar_mine.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/tabbar_mine.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_btn_default_mtrl_shape.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_btn_default_mtrl_shape.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/c_checkbox.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/c_checkbox.xml"
-    },
-    {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/keyboard_confirm_bg_selector.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/keyboard_confirm_bg_selector.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_btn_radio_material.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_btn_radio_material.xml"
     },
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/item_bar_bg_selctor.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/item_bar_bg_selctor.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/progressbar_to_buy_fund.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/progressbar_to_buy_fund.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_tab_indicator_material.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_tab_indicator_material.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/btn_white_selector.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/btn_white_selector.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/tabbar_profile.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/tabbar_profile.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/search_box_bg.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/search_box_bg.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/tabbar_chat.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/tabbar_chat.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/btn_rect_508cf0.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/btn_rect_508cf0.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_textfield_search_material.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_textfield_search_material.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/btn_rect_gain.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/btn_rect_gain.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_spinner_textfield_background_material.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_spinner_textfield_background_material.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/hq_tab_bg_selector.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/hq_tab_bg_selector.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_switch_thumb_material.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_switch_thumb_material.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/btn_rect_b3b3b3.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/btn_rect_b3b3b3.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_btn_borderless_material.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_btn_borderless_material.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_dark.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_btn_colored_material.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_full_material.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_ratingbar_full_material.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_cab_background_top_material.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_cab_background_top_material.xml"
     },
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/btn_empty_view_border.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/btn_empty_view_border.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/btn_next_step_selector.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/btn_next_step_selector.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_cab_background_internal_bg.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_cab_background_internal_bg.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/instruction_slider_view_selector.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/instruction_slider_view_selector.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_dark.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_list_selector_holo_dark.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/item_choose_stock.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/item_choose_stock.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_dark.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_list_selector_background_transition_holo_dark.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/view_rect_508cf0.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/view_rect_508cf0.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_dark.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_dialog_material_background_dark.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_text_cursor_material.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_text_cursor_material.xml"
     },
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/layer_loading_bg.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/layer_loading_bg.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/tabbar_strategy.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/tabbar_strategy.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/tabbar_categories.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/tabbar_categories.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/tabbar_cooperation.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/tabbar_cooperation.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/tabbar_sell.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/tabbar_sell.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/progressbar_download_bg.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/progressbar_download_bg.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_light.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_list_selector_background_transition_holo_light.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/keyboard_button_bg_selector.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/keyboard_button_bg_selector.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_light.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_item_background_holo_light.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/progressbar_strategy_bg.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/progressbar_strategy_bg.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_seekbar_track_material.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_seekbar_track_material.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/tabbar_account.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/tabbar_account.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/abc_btn_check_material.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_btn_check_material.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/view_rect_e0e0e0.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/view_rect_e0e0e0.xml"
-    },
-    {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/btn_rect_tab_cur_selected.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/btn_rect_tab_cur_selected.xml"
-    },
-    {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/shape_rectangle_bg.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/shape_rectangle_bg.xml"
-    },
-    {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/pw_picture_bg.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/pw_picture_bg.xml"
-    },
-    {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/tab_title_bg.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/tab_title_bg.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/tabbar_me.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/tabbar_me.xml"
     }
 ]

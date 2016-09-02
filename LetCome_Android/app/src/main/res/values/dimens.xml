@@ -26,6 +26,7 @@
     <dimen name="font_size_xhdpi_25">25sp</dimen>
     <dimen name="font_size_xhdpi_28">28sp</dimen>
     <dimen name="font_size_xhdpi_50">50sp</dimen>
+    <dimen name="margin_xhdpi_0">0dp</dimen>
     <dimen name="margin_xhdpi_1">1dp</dimen>
     <dimen name="margin_xhdpi_2">2dp</dimen>
     <dimen name="margin_xhdpi_4">4dp</dimen>

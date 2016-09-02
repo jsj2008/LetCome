@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item type="id" name="default_fragment"/>
-    <item type="id" name="tab_cooperation"/>
-    <item type="id" name="tab_strategy"/>
-    <item type="id" name="tab_account"/>
-    <item type="id" name="tab_mine"/>
-    
+    <item type="id" name="tab_me"/>
+    <item type="id" name="tab_categories"/>
+    <item type="id" name="tab_sell"/>
+    <item type="id" name="tab_chat"/>
+    <item type="id" name="tab_profile"/>
+
     <item type="id" name="sign_agreement_fragment" />
     
     <item type="id" name="key_1"/>

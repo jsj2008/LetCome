@@ -2,29 +2,29 @@
 <resources>
     <!-- 规范 -->
     <color name="product_bg">#fff4f4f4</color>
-    
+
 	<color name="title_bar_bg">#ffffffff</color>
 	<color name="title_bar_color">#ff222222</color>
-	<color name="tab_bar_bg">#fff8f8f8</color>  
+	<color name="tab_bar_bg">#fff8f8f8</color>
     <color name="line_seperate_color">#ffdddddd</color>
     <color name="line_seperate_inside_color">#fff0f0f0</color>
-	
+
     <color name="tab_cur_selected">#ff508cf0</color>
-    
+
     <color name="text_color_title">#ff222222</color>
     <color name="text_color_main">#ff757575</color>
     <color name="text_color_sub">#ff999999</color>
     <color name="text_color_unclick">#ffbebebe</color>
     <color name="text_color_info">#ffcccccc</color>
-    
+
     <color name="gain_color">#ffff536f</color>
     <color name="loss_color">#ff18b676</color>
-    
+
     <color name="text_color_tips">#ffff7814</color>
     <color name="text_color_link">#ff0a82fa</color>
-    
+
     <color name="text_color_dialog_btn">#ff0a7ffb</color>
-    
+
     <!-- 常用  -->
     <color name="white_color">#ffffffff</color>
     <color name="translucent_white_color">#33ffffff</color>
@@ -32,18 +32,18 @@
     <color name="red_color">#ffff0000</color>
     <color name="transparent">#00000000</color>
     <color name="translucent">#77000000</color>
-    
+
     <color name="btn_normal">#ff508cf0</color>
     <color name="btn_selected">#ff4678dc</color>
-    
+
    	<color name="chart_loading_color">#ff848484</color>
-   	
+
    	<color name="minute_chart_wave_bg">#ffd1e0f9</color>
-   	
+
    	<color name="dialog_button_color">#ff007aff</color>
-   	
+
    	<color name="login_head_circle_color">#ffd1d1d1</color>
-   	
+
    	<color name="color_007aff">#ff007aff</color>
 	<color name="color_222222">#ff222222</color>
    	<color name="color_32abf8">#ff32abf8</color>

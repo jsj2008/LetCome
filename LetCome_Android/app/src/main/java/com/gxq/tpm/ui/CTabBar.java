@@ -1,14 +1,14 @@
 package com.gxq.tpm.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.letcome.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CTabBar extends LinearLayout implements View.OnClickListener {
 	
@@ -42,9 +42,27 @@ public class CTabBar extends LinearLayout implements View.OnClickListener {
 			}
 		}
 	}
+
+	public CTabBarItem newTabBarItem(int id,int drawableResId) {
+		CTabIconBarItem tabBarItem = new CTabIconBarItem(getContext());
+		tabBarItem.setId(id);
+		tabBarItem.setImageResource(drawableResId);
+		tabBarItem.setOnClickListener(this);
+
+		LayoutParams lp = new LayoutParams(0, LayoutParams.MATCH_PARENT);
+		lp.weight = 1;
+		mViewContainer.addView(tabBarItem, lp);
+
+		mViewList.add(tabBarItem);
+
+		setVisibility(View.VISIBLE);
+		reloadHighlight();
+
+		return tabBarItem;
+	}
 	
 	public CTabBarItem newTabBarItem(int id, int textResId, int drawableResId) {
-		CTabBarItem tabBarItem = new CTabBarItem(getContext());
+		CTabFullBarItem tabBarItem = new CTabFullBarItem(getContext());
 		tabBarItem.setId(id);
 		tabBarItem.setImageResource(drawableResId);
 		tabBarItem.setText(textResId);

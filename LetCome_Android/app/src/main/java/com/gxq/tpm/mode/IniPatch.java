@@ -1,11 +1,11 @@
 package com.gxq.tpm.mode;
 
-import java.io.Serializable;
-import java.util.Map;
 
 import com.gxq.tpm.network.NetworkProxy;
 import com.gxq.tpm.network.RequestInfo;
-import com.gxq.tpm.network.NetworkProxy.ICallBack;
+
+import java.io.Serializable;
+import java.util.Map;
 
 public class IniPatch extends BaseRes {
 
@@ -22,7 +22,7 @@ public class IniPatch extends BaseRes {
 		public String ini_version;
 	}
 
-	public static void doRequest(ICallBack netBack, Params params) {
+	public static void doRequest(NetworkProxy.ICallBack netBack, Params params) {
 		NetworkProxy proxy = new NetworkProxy(netBack);
 
 		proxy.getRequest(RequestInfo.UPDATE_INIPATH, params, IniPatch.class, RETURN_TYPE, false);

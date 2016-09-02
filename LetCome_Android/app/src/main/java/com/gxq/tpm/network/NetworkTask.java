@@ -3,9 +3,7 @@ package com.gxq.tpm.network;
 import android.os.Handler;
 import android.os.Message;
 
-import com.letcome.App;
 import com.gxq.tpm.mode.BaseRes;
-import com.gxq.tpm.prefs.UserPrefs;
 import com.gxq.tpm.tools.Print;
 
 public abstract class NetworkTask {
@@ -42,15 +40,15 @@ public abstract class NetworkTask {
 				mThreadPool.remove(info, mRepeatable);
 
 				if (msg.obj != null && msg.obj instanceof BaseRes) {
-					UserPrefs prefs = App.getUserPrefs();
+//					UserPrefs prefs = App.getUserPrefs();
 					String session = null;
 					try {
 						session = ((BaseRes) msg.obj).session_id;
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					if (null != session)
-						prefs.setSession(session);
+//					if (null != session)
+//						prefs.setSession(session);
 				}
 
 				if (callback != null)

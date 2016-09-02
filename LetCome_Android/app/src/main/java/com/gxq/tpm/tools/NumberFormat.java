@@ -1,8 +1,8 @@
 package com.gxq.tpm.tools;
 
-import java.text.DecimalFormat;
-
 import com.letcome.R;
+
+import java.text.DecimalFormat;
 
 public class NumberFormat {
 	/**
@@ -101,22 +101,7 @@ public class NumberFormat {
 	public static String bigDecimalFormat(double data) {
 		return decimalFormat("###,##0.00", data);
 	}
-	
-	/**
-	 * @param amount //点买数量
-	 * @return amount + 股
-	 */
-	public static String stockAmountToString(int amount) {
-		String amountText = decimalFormat("0", amount);
-		return amountText + Util.transformString(R.string.stock_amount_unit);
-	}
-	/**
-	 * @param amount //点买数量
-	 * @return amount + 股
-	 */
-	public static String stockAmountToString(String value) {
-		return value + Util.transformString(R.string.stock_amount_unit);
-	}
+
 	
 	/**
 	 * @param value
@@ -158,14 +143,7 @@ public class NumberFormat {
 		return decimalFormat(value) + Util.transformString(R.string.money_unit);
 	}
 	
-	/**
-	 * 数量为0，返回默认值"--"
-	 */
-	public static String amountDefaultValue(int value) {
-		String amountStr = value == 0 ? Util.transformString(R.string.default_value)
-				: NumberFormat.stockAmountToString(value);
-		return amountStr;
-	}
+
 	/**
 	 * 价格为0，返回默认值"--"
 	 */
@@ -175,14 +153,6 @@ public class NumberFormat {
 		return priceStr;
 	}
 
-	/**
-	 * 策略次数
-	 */
-	public static String getStrategyTimes(int value) {
-		return Util.transformString(R.string.settlement_detail_strategy_time)
-				+value+
-			   Util.transformString(R.string.strategy_time);
-	}
 	/**
 	 * 时间为0，返回默认值"--"
 	 */

@@ -1,7 +1,19 @@
 [
     {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/listview_reverse.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/anim/listview_reverse.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/abc_popup_exit.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/anim/abc_popup_exit.xml"
     },
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/cycle_4.xml",
@@ -16,20 +28,48 @@
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/anim/anim_disappear.xml"
     },
     {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/anim/abc_fade_out.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/abc_popup_enter.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/anim/abc_popup_enter.xml"
+    },
+    {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/listview_rotate.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/anim/listview_rotate.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/abc_fade_in.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/abc_slide_in_top.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/anim/abc_slide_in_top.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/anim/abc_slide_in_bottom.xml"
     },
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/shake.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/anim/shake.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/anim_down.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/anim/anim_down.xml"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/anim/abc_slide_out_top.xml"
     },
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/anim_exit.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/anim/anim_exit.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/anim_down.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/anim/anim_down.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/anim/abc_slide_out_bottom.xml"
     },
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/anim/wait_rotate.xml",

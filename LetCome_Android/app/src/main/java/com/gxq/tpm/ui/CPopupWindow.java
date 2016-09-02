@@ -1,7 +1,5 @@
 package com.gxq.tpm.ui;
 
-import com.letcome.R;
-
 import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
@@ -10,6 +8,8 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 import android.widget.PopupWindow.OnDismissListener;
+
+import com.letcome.R;
 
 public class CPopupWindow {
 	private Activity mContext;

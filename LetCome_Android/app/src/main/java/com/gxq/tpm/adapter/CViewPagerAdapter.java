@@ -1,13 +1,13 @@
 package com.gxq.tpm.adapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.gxq.tpm.fragment.ViewPagerFragment;
-
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.gxq.tpm.fragment.ViewPagerFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CViewPagerAdapter extends PagerAdapter {
 	private List<ViewPagerFragment> mFragments;

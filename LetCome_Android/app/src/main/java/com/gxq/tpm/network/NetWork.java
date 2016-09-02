@@ -1,15 +1,13 @@
 package com.gxq.tpm.network;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import android.os.Build;
+
+import com.google.gson.Gson;
+import com.gxq.tpm.mode.BaseParse;
+import com.gxq.tpm.mode.BaseRes;
+import com.gxq.tpm.mode.BaseRes.ByteArrayRes;
+import com.gxq.tpm.tools.Print;
+import com.letcome.App;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -27,17 +25,16 @@ import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.os.Build;
-
-import com.google.gson.Gson;
-import com.letcome.App;
-import com.gxq.tpm.mode.BaseParse;
-import com.gxq.tpm.mode.BaseRes;
-import com.gxq.tpm.mode.BaseRes.ByteArrayRes;
-import com.gxq.tpm.prefs.UserPrefs;
-import com.gxq.tpm.tools.Print;
-import com.gxq.tpm.tools.crypt.HmacSHA1;
-import com.gxq.tpm.tools.crypt.MD5;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class NetWork {
 	private final static String TAG 				= "SNetWork";
@@ -265,25 +262,25 @@ public class NetWork {
 	}
 
 	private void addHttpHead(HttpRequestBase httpRequest, String json, final boolean needCetify, Map<String, String> paramsMap) {
-		UserPrefs pref = App.getUserPrefs();
+//		UserPrefs pref = App.getUserPrefs();
 		httpRequest.setHeader(UA, UA_PROJECT_NAME + " v_" + App.instance().getVersionName()
 				+ " (Android " + Build.VERSION.RELEASE + ")") ;
 		httpRequest.addHeader(HEAD_UA, UA_PROJECT_NAME + " v_" + App.instance().getVersionName()
 				+ " (Android " + Build.VERSION.RELEASE + ")") ;
-		httpRequest.addHeader(HEAD_SID, pref.getSession());
-		httpRequest.addHeader(HEAD_UID, "" + pref.getUid());
-		httpRequest.addHeader(HEAD_UDID, pref.getOpenUdid());
+//		httpRequest.addHeader(HEAD_SID, pref.getSession());
+//		httpRequest.addHeader(HEAD_UID, "" + pref.getUid());
+//		httpRequest.addHeader(HEAD_UDID, pref.getOpenUdid());
 		
 		String channel = App.instance().getChannel();
 		httpRequest.addHeader(HEAD_REFER, channel);
 
-		long Rid = pref.getRid();
-		if (Rid == Long.MAX_VALUE)
-			Rid = 1L;
-		else
-			Rid++;
-		pref.setRid(Rid);
-		httpRequest.addHeader(HEAD_RID, "" + Rid);
+//		long Rid = pref.getRid();
+//		if (Rid == Long.MAX_VALUE)
+//			Rid = 1L;
+//		else
+//			Rid++;
+//		pref.setRid(Rid);
+//		httpRequest.addHeader(HEAD_RID, "" + Rid);
 		String rTime = "" + System.currentTimeMillis()/1000;
 		httpRequest.addHeader(HEAD_RTIME, rTime);
 
@@ -291,30 +288,30 @@ public class NetWork {
 		
 		String md5 = "";
 		String signature = "";
-		if (needCetify) {
-			md5 = MD5.md5(json);
-
-			String strToSign;
-			String CanonicalURI = mInfo.getOperationType();
-			String HTTPRequestMethod = "POST";
-			String CanonicalHeaders = HEAD_SID + HEAD_SEP + pref.getSession() + HEAD_LINE_SEP +
-//			        "x-qfgj-uid" + ":" + pref.getUid() + "\n" +
-			        HEAD_UDID + HEAD_SEP + pref.getOpenUdid() + HEAD_LINE_SEP +
-			        HEAD_RID + HEAD_SEP + Rid + HEAD_LINE_SEP +
-			        HEAD_RTIME + HEAD_SEP + rTime + HEAD_LINE_SEP +
-			        HEAD_CONTENT + HEAD_SEP + md5 + HEAD_LINE_SEP;
-			strToSign = CanonicalURI + HEAD_LINE_SEP + HTTPRequestMethod + HEAD_LINE_SEP + HEAD_LINE_SEP + CanonicalHeaders;
-			Print.i(TAG, "CanonicalHeaders=" + CanonicalHeaders);
-
-			signature = HmacSHA1.signature("12345ba035678685a46adee051dca85be88eakey", strToSign);
-			Print.i(TAG, "signature="+signature);
-		}
-		pref.save();
+//		if (needCetify) {
+//			md5 = MD5.md5(json);
+//
+//			String strToSign;
+//			String CanonicalURI = mInfo.getOperationType();
+//			String HTTPRequestMethod = "POST";
+//			String CanonicalHeaders = HEAD_SID + HEAD_SEP + pref.getSession() + HEAD_LINE_SEP +
+////			        "x-qfgj-uid" + ":" + pref.getUid() + "\n" +
+//			        HEAD_UDID + HEAD_SEP + pref.getOpenUdid() + HEAD_LINE_SEP +
+//			        HEAD_RID + HEAD_SEP + Rid + HEAD_LINE_SEP +
+//			        HEAD_RTIME + HEAD_SEP + rTime + HEAD_LINE_SEP +
+//			        HEAD_CONTENT + HEAD_SEP + md5 + HEAD_LINE_SEP;
+//			strToSign = CanonicalURI + HEAD_LINE_SEP + HTTPRequestMethod + HEAD_LINE_SEP + HEAD_LINE_SEP + CanonicalHeaders;
+//			Print.i(TAG, "CanonicalHeaders=" + CanonicalHeaders);
+//
+//			signature = HmacSHA1.signature("12345ba035678685a46adee051dca85be88eakey", strToSign);
+//			Print.i(TAG, "signature="+signature);
+//		}
+//		pref.save();
 
 		httpRequest.addHeader(HEAD_CONTENT, md5);
 		httpRequest.addHeader(HEAD_SIGNATURE, signature.trim());
 
-		Print.i(TAG, "uid="+pref.getUid());
+//		Print.i(TAG, "uid="+pref.getUid());
 	}
 	
 	private void addHttpHead(HttpRequestBase httpRequest, Map<String, String> paramsMap, String rTime) {
@@ -334,9 +331,9 @@ public class NetWork {
 			}
 
 		}
-		paramStr += "_"+ App.getUserPrefs().getKEY() + "_" + rTime;
-		Print.d(TAG, HEAD_SIGN + ":" + paramStr);
-		httpRequest.addHeader(HEAD_SIGN, MD5.md5(paramStr));
+//		paramStr += "_"+ App.getUserPrefs().getKEY() + "_" + rTime;
+//		Print.d(TAG, HEAD_SIGN + ":" + paramStr);
+//		httpRequest.addHeader(HEAD_SIGN, MD5.md5(paramStr));
 	}
 
 	private String getBaseReturn(RequestInfo info, HttpResponse resp) throws Exception {
