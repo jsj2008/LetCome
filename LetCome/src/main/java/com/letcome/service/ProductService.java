@@ -10,6 +10,7 @@ import com.letcome.vo.ImageVO;
 import com.letcome.vo.ProductVO;
 import com.letcome.vo.ProductViewVO;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -66,11 +67,30 @@ public class ProductService {
     }
 
     //获取产品和图片
-    public ProductViewEntity getProductsAndImage(Integer uid,long pno,long limit,String downloadPath){
+    public ProductViewEntity getProductsAndImage(Integer uid,
+                                                 double longitude,//经度
+                                                 double latitude,//纬度
+                                                 long distance,//距离,单位米
+                                                 Integer cid,//目录id
+                                                 String productname,//产品名称，模糊查询
+                                                 String pricerank,//价格排序，asc/desc
+                                                 long starttime,//开始时间，1970年7月1日的秒数
+                                                 long endtime,//结束时间，1970年7月1日的秒数
+                                                 long pno,long limit,String downloadPath){
         long start = (pno-1)*limit;
 
         ProductViewEntity entity = new ProductViewEntity();
-        List<ProductViewVO> list= productDao.selectProductsAndImage(uid,start,limit);
+        List<ProductViewVO> list=
+                productDao.selectProductsAndImage(uid,
+                    longitude,
+                    latitude,
+                    distance,
+                    cid,
+                    productname,
+                    pricerank,
+                    starttime,
+                    endtime,
+                    start,limit);
         for(int i=0;i<list.size();++i){
             ProductViewVO v = list.get(i);
             v.setImagepath(downloadPath+v.getImage_id());
@@ -98,7 +118,7 @@ public class ProductService {
     public ProductEntity getProductDetail(Integer uid,Integer id,String downloadPath){
         Object[] list = productDao.selectDeatilById(uid, id);
         ProductVO vo  = (ProductVO)list[0];
-//
+
         ProductEntity e = new ProductEntity();
         e.setId(vo.getId());
         e.setUid(vo.getUid());

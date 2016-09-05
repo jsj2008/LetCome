@@ -52,17 +52,28 @@ public class ImageListController {
     @RequestMapping(value="/waterfalls", method = RequestMethod.GET)
     public ProductViewEntity waterfalls(
             @RequestHeader(value = "let_come_uid",required = false,defaultValue = "0") String uid,
+            @RequestParam(value = "longitude",required = false,defaultValue = "0") double longitude,//经度
+            @RequestParam(value = "latitude",required = false,defaultValue = "0") double latitude,//纬度
+
+            @RequestParam(value = "distance",required = false,defaultValue = "0") long distance,//距离,单位米
+            @RequestParam(value = "cid",required = false,defaultValue = "0")  Integer cid,//目录id
+            @RequestParam(value = "productname",required = false,defaultValue = "") String productname,//产品名称，模糊查询
+            @RequestParam(value = "pricerank",required = false,defaultValue = "") String pricerank,//价格排序，asc/desc
+            @RequestParam(value = "starttime",required = false,defaultValue = "0") long starttime,//开始时间，1970年1月1日的秒数
+            @RequestParam(value = "endtime",required = false,defaultValue = "0") long endtime,//结束时间，1970年1月1日的秒数
             @RequestParam(value = "pno",required = false,defaultValue = "1") String pno,
             @RequestParam(value = "limit",required = false,defaultValue = "25") String limit,HttpServletRequest request){
-//        System.out.println(request.getRequestURI());
-//        System.out.println(request.getRequestURL());
-//        System.out.println(request.getContextPath());
-//        System.out.println(request.getRealPath("/"));
-//        System.out.println(request.getServletPath());
-//        System.out.println(request.getServerName());
-//        System.out.println(request.getServerPort());
-//        System.out.println(request.getServletContext());
-        return service.getProductsAndImage(Integer.valueOf(uid),Long.valueOf(pno), Long.valueOf(limit), "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/image/getimg?id=");
+
+        return service.getProductsAndImage(Integer.valueOf(uid),
+                longitude,
+                latitude,
+                distance,
+                cid,
+                productname,
+                pricerank,
+                starttime,
+                endtime,
+                Long.valueOf(pno), Long.valueOf(limit), "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/image/getimg?id=");
 
     }
     

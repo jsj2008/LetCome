@@ -18,15 +18,81 @@ import java.util.Objects;
  * Created by rjt on 16/8/19.
  */
 public class ProductDAO extends BaseDAO{
-    public List<ProductViewVO > selectProductsAndImage(Integer uid,long start,long limit){
+    public List<ProductViewVO > selectProductsAndImage(Integer uid,
+                                                       double longitude,//经度
+                                                       double latitude,//纬度
+                                                       long distance,//距离,单位米
+                                                       Integer cid,//目录id
+                                                       String productname,//产品名称，模糊查询
+                                                       String pricerank,//价格排序，asc/desc
+                                                       long starttime,//开始时间，1970年1月1日的秒数
+                                                       long endtime,//结束时间，1970年1月1日的秒数
+                                                       long start,long limit){
+
+
+
+
+
         Session session = sessionFactory.getCurrentSession();
-        String hql = "SELECT p.id,p.description,p.created_at,p.updated_at,p.longitude,p.latitude,p.city,p.status,p.price,p.category_id,p.uid,p.fullname,imagename,imagepath,image_id,contact_info,case when f.id>0 then \"Y\" else \"N\" end as is_favorite from products_v p " +
-                "left join favorites f on f.uid = ? and p.id = f.pid order by id desc  limit ?,? ";
-        Query query = session.createSQLQuery(hql)
-                .setInteger(0, uid)
-                .setLong(1, start)
-                .setLong(2, limit)
-                .setResultTransformer(Transformers.aliasToBean(ProductViewVO.class));
+        StringBuffer hql = new StringBuffer("SELECT p.id,p.description,p.created_at,p.updated_at,p.longitude,p.latitude,p.city,p.status,p.price,p.category_id,p.uid,p.fullname,imagename,imagepath,image_id,contact_info,case when f.id>0 then \"Y\" else \"N\" end as is_favorite from products_v p " +
+                "left join favorites f on f.uid = ? and p.id = f.pid where 1=1");
+
+        if (longitude!=0 && latitude!=0 && distance>0){
+            hql.append(" and FUN_JW_DIST(p.longitude,p.latitude,?,?)<=?");
+
+        }
+
+        if (productname!=null && !productname.equals("")){
+            hql.append(" and p.description like ? ");
+        }
+
+        if (cid>0){
+            hql.append(" and p.category_id = ? ");
+        }
+
+        if(starttime>0){
+            hql.append(" and UNIX_TIMESTAMP(p.created_at) >= ? ");
+        }
+        if(endtime>0){
+            hql.append(" and UNIX_TIMESTAMP(p.created_at) <= ? ");
+        }
+        hql.append(" order by ");
+        if (pricerank !=null && !pricerank.equals("")) {
+            hql.append(" price "+pricerank+",");
+        }
+        hql.append(" id desc");
+        hql.append(" limit ?,?");
+
+        int index = 0;
+        Query query = session.createSQLQuery(hql.toString());
+        query.setInteger(index++, uid);
+        if (longitude!=0 && latitude != 0 && distance>0){
+            query.setDouble(index++, longitude);
+            query.setDouble(index++, latitude);
+            query.setLong(index++, distance);
+        }
+
+        if (productname != null && !productname.equals("")){
+            query.setString(index++, "%" + productname + "%");
+        }
+
+        if (cid>0){
+            query.setInteger(index++, cid);
+        }
+
+        if(starttime>0){
+            query.setLong(index++, starttime);
+        }
+        if(endtime>0){
+            query.setLong(index++,endtime);
+        }
+        hql.append("order by ");
+        if (pricerank !=null && !pricerank.equals("")) {
+            hql.append(" price "+pricerank+",");
+        }
+        query.setLong(index++, start);
+        query.setLong(index++, limit);
+        query.setResultTransformer(Transformers.aliasToBean(ProductViewVO.class));
 
 
         List l = query.list();

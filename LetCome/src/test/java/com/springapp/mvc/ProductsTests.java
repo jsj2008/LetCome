@@ -244,6 +244,14 @@ public class ProductsTests {
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/waterfalls");
 //        requestBuilder.header("Content-Type", "application/json");
 //        requestBuilder.header("let_come_uid", testUID.toString());
+        requestBuilder.param("longitude","121.530079");
+        requestBuilder.param("latitude","31.216000");
+        requestBuilder.param("distance","100000");
+        requestBuilder.param("cid","2");
+        requestBuilder.param("pricerank","desc");
+        requestBuilder.param("productname","让人");
+        requestBuilder.param("starttime","1");
+        requestBuilder.param("starttime","2");
         requestBuilder.param("pno","1");
         requestBuilder.param("limit","5");
 
