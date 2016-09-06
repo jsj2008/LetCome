@@ -1,6 +1,8 @@
 package com.letcome.vo;
 
 import javax.persistence.*;
+import java.util.Date;
+
 /**
  * Created by rjt on 16/8/10.
  */
@@ -25,6 +27,61 @@ public class UserVO {
 
     @Column(name="fullname",length=16,nullable = false)
     private String fullname;
+
+    @Transient
+    private Integer mid;
+
+    @Transient
+    private Integer fromid;
+
+    @Transient
+    private Integer toid;
+
+    @Transient
+    private String content;
+
+    @Transient
+    private Date created_at;
+
+    public Integer getMid() {
+        return mid;
+    }
+
+    public void setMid(Integer mid) {
+        this.mid = mid;
+    }
+
+    public Integer getFromid() {
+        return fromid;
+    }
+
+    public void setFromid(Integer fromid) {
+        this.fromid = fromid;
+    }
+
+    public Integer getToid() {
+        return toid;
+    }
+
+    public void setToid(Integer toid) {
+        this.toid = toid;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
+    }
 
     public Integer getId() {
         return id;

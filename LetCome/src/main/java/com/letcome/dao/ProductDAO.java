@@ -22,7 +22,7 @@ public class ProductDAO extends BaseDAO{
                                                        double longitude,//经度
                                                        double latitude,//纬度
                                                        long distance,//距离,单位米
-                                                       Integer cid,//目录id
+                                                       String cid,//目录id,多目录用逗号分隔
                                                        String productname,//产品名称，模糊查询
                                                        String pricerank,//价格排序，asc/desc
                                                        long starttime,//开始时间，1970年1月1日的秒数
@@ -46,8 +46,8 @@ public class ProductDAO extends BaseDAO{
             hql.append(" and p.description like ? ");
         }
 
-        if (cid>0){
-            hql.append(" and p.category_id = ? ");
+        if (cid!=null && !cid.equals("")){
+            hql.append(" and p.category_id in ("+cid+") ");
         }
 
         if(starttime>0){
@@ -74,10 +74,6 @@ public class ProductDAO extends BaseDAO{
 
         if (productname != null && !productname.equals("")){
             query.setString(index++, "%" + productname + "%");
-        }
-
-        if (cid>0){
-            query.setInteger(index++, cid);
         }
 
         if(starttime>0){

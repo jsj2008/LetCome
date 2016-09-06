@@ -247,11 +247,11 @@ public class ProductsTests {
         requestBuilder.param("longitude","121.530079");
         requestBuilder.param("latitude","31.216000");
         requestBuilder.param("distance","100000");
-        requestBuilder.param("cid","2");
-        requestBuilder.param("pricerank","desc");
-        requestBuilder.param("productname","让人");
+        requestBuilder.param("cid","1,2");
+//        requestBuilder.param("pricerank","desc");
+//        requestBuilder.param("productname","让人");
         requestBuilder.param("starttime","1");
-        requestBuilder.param("starttime","2");
+//        requestBuilder.param("endtime","2");
         requestBuilder.param("pno","1");
         requestBuilder.param("limit","5");
 

@@ -42,7 +42,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)//按照字母升序顺序执行测试方法
 public class MessageTests {
 
-    private String uid = "9999";
+    private String uid = "10022";
     private String toid = "9998";
     private String c1 = "asdfasdf撒旦法的说法第三方123123123";
     private String c2 = "fghfghfghttyt顺丰速递发123123123";

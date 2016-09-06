@@ -8,6 +8,7 @@ import com.letcome.entity.ImageEntity;
 import com.letcome.entity.ProductViewEntity;
 import com.letcome.service.ImageService;
 import com.letcome.service.ProductService;
+import org.springframework.core.type.filter.AbstractClassTestingTypeFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -56,13 +57,13 @@ public class ImageListController {
             @RequestParam(value = "latitude",required = false,defaultValue = "0") double latitude,//纬度
 
             @RequestParam(value = "distance",required = false,defaultValue = "0") long distance,//距离,单位米
-            @RequestParam(value = "cid",required = false,defaultValue = "0")  Integer cid,//目录id
+            @RequestParam(value = "cid",required = false,defaultValue = "") String cid,//目录id,多id用逗号分隔
             @RequestParam(value = "productname",required = false,defaultValue = "") String productname,//产品名称，模糊查询
             @RequestParam(value = "pricerank",required = false,defaultValue = "") String pricerank,//价格排序，asc/desc
             @RequestParam(value = "starttime",required = false,defaultValue = "0") long starttime,//开始时间，1970年1月1日的秒数
             @RequestParam(value = "endtime",required = false,defaultValue = "0") long endtime,//结束时间，1970年1月1日的秒数
             @RequestParam(value = "pno",required = false,defaultValue = "1") String pno,
-            @RequestParam(value = "limit",required = false,defaultValue = "25") String limit,HttpServletRequest request){
+            @RequestParam(value = "limit",required = false,defaultValue = "25") String limit, HttpServletRequest request){
 
         return service.getProductsAndImage(Integer.valueOf(uid),
                 longitude,

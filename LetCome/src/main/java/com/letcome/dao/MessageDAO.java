@@ -39,9 +39,17 @@ public class MessageDAO  extends BaseDAO{
 
     public List<UserVO> selectUserByUID(Integer uid){
         Session session = sessionFactory.getCurrentSession();
-        String hql = "select u.id,u.email,u.fullname from users u " +
-                "where u.id in (select fromid from messages m where m.toid = :uid group by fromid ) or u.id in (select toid from messages m where m.fromid = :uid group by toid )";
-
+        String hql = "SELECT u.id,u.email,u.fullname,t.mid,t.fromid,t.toid,t.content,t.created_at from users u " +
+                " INNER JOIN " +
+                " ( " +
+                " select max(id) mid,fromid,toid,content,created_at,(fromid*toid +fromid+toid) as hashid from " +
+                " messages m " +
+                " WHERE fromid = :uid or toid = :uid " +
+                " GROUP BY hashid " +
+                " ORDER BY id desc " +
+                " ) t " +
+                " on t.fromid = u.id or t.toid = u.id " +
+                " where u.id != :uid " ;
         Query query = session.createSQLQuery(hql)
                 .setParameter("uid",uid)
                 .setResultTransformer(Transformers.aliasToBean(UserVO.class));
