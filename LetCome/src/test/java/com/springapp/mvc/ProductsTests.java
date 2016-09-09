@@ -66,7 +66,7 @@ public class ProductsTests {
     static String status = ProductVO.STATUS_SELLING;
     static String price = "12.55";
     static String contact = "13912345678";
-    static Integer category_id;
+    static Integer category_id = 1;
     static Integer testUID = 9999;
     static Integer favoritUID = 9998;
 

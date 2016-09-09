@@ -10,10 +10,14 @@ import com.letcome.util.EncryptUtils;
 import com.letcome.vo.ImageVO;
 import com.letcome.vo.ProductVO;
 import com.letcome.vo.UserVO;
+import net.coobird.thumbnailator.Thumbnailator;
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,10 +60,14 @@ public class ImageService {
 //        vo.setImage(bytes);
 ////        imageDao.insertImage(vo);
 //        File f = new File();
-
+        long time = (new Date()).getTime();
         File file = new File("/upload/img/"+imagename);
         while (file.exists()){
-            file = new File("/upload/img/"+(new Date()).getTime()+imagename);
+            file = new File("/upload/img/"+time+imagename);
+        }
+        File fileThumb = new File("/upload/img/"+ImageVO.IMAGE_TYPE_THUMB+"_"+imagename);
+        while (file.exists()){
+            fileThumb = new File("/upload/img/"+ImageVO.IMAGE_TYPE_THUMB+"_"+time+imagename);
         }
         OutputStream fop = null;
         ReturnEntity ret = new ReturnEntity();
@@ -68,6 +76,13 @@ public class ImageService {
             file.createNewFile();
             fop = new FileOutputStream(file);
             fop.write(bytes);
+            fop.flush();
+            fop.close();
+
+            BufferedImage sourceImg =ImageIO.read(new FileInputStream(file));
+
+            fop = new FileOutputStream(fileThumb);
+            Thumbnails.of(file).scale(0.1).toOutputStream(fop);
             fop.flush();
             fop.close();
 
@@ -80,6 +95,12 @@ public class ImageService {
                 ImageVO vo = new ImageVO();
                 vo.setImagename(imagename);
                 vo.setImagepath(file.getAbsolutePath());
+                vo.setThumbpath(fileThumb.getAbsolutePath());
+                //相反？
+                vo.setThumbwidth(sourceImg.getHeight()/10);
+                vo.setThumbheight( sourceImg.getWidth()/10);
+                vo.setImagewidth(sourceImg.getHeight());
+                vo.setImageheight(sourceImg.getWidth());
                 vo.setUid(uid);
                 vo.setProductid(pid);
                 ret = imageDao.insertImage(vo);
@@ -107,14 +128,19 @@ public class ImageService {
         return ret;
     }
 
-    public ImageEntity getImage(Integer id){
+    public ImageEntity getImage(Integer id,String type){
         ImageVO vo  = new ImageVO();
         vo.setId(id);
         vo = imageDao.getImage(vo);
         ImageEntity e = new ImageEntity();
         e.setId(vo.getId());
         e.setUid(vo.getUid());
-        File file = new File(vo.getImagepath());
+        File file = null;
+        if (type !=null && type.equals(ImageVO.IMAGE_TYPE_THUMB)) {
+            file = new File(vo.getThumbpath());
+        }else{
+            file = new File(vo.getImagepath());
+        }
 
         if (file.exists()){
             try {

@@ -54,7 +54,7 @@ public class ProductService {
         for(int i=0;i<list.size();++i){
             ProductViewVO v = list.get(i);
             v.setImagepath(downloadPath+v.getImage_id());
-            v.setThumbpath(downloadPath+v.getImage_id());
+            v.setThumbpath(downloadPath+v.getImage_id()+"&type="+ImageVO.IMAGE_TYPE_THUMB);
         }
         entity.setRecords(list);
         return  entity;
@@ -94,7 +94,7 @@ public class ProductService {
         for(int i=0;i<list.size();++i){
             ProductViewVO v = list.get(i);
             v.setImagepath(downloadPath+v.getImage_id());
-            v.setThumbpath(downloadPath+v.getImage_id());
+            v.setThumbpath(downloadPath+v.getImage_id()+"&type="+ImageVO.IMAGE_TYPE_THUMB);
         }
         entity.setRecords(list);
         return  entity;
@@ -109,7 +109,7 @@ public class ProductService {
         for(int i=0;i<list.size();++i){
             ProductViewVO v = list.get(i);
             v.setImagepath(downloadPath+v.getImage_id());
-            v.setThumbpath(downloadPath+v.getImage_id());
+            v.setThumbpath(downloadPath+v.getImage_id()+"&type="+ImageVO.IMAGE_TYPE_THUMB);
         }
         entity.setRecords(list);
         return  entity;
@@ -138,13 +138,16 @@ public class ProductService {
             ImageEntity entity = new ImageEntity();
             entity.setId(image.getId());
             entity.setUid(image.getUid());
+            entity.setImageheight(image.getImageheight());
+            entity.setImagewidth(image.getImagewidth());
+            entity.setThumbheight(image.getThumbheight());
+            entity.setThumbwidth(image.getThumbwidth());
             entity.setImagename(image.getImagename());
             entity.setImagepath(downloadPath + image.getId());
-            entity.setThumbpath(downloadPath + image.getId());
+            entity.setThumbpath(downloadPath + image.getId() + "&type=" + ImageVO.IMAGE_TYPE_THUMB);
             l.add(entity);
         }
         e.setImages(l);
         return e;
     }
-
 }

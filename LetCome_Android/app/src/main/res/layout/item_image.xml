@@ -2,11 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#000000">
+    android:background="#FFFFFF"
+    android:padding = "@dimen/margin_xhdpi_2">
     <ImageView
         android:id="@+id/imageView"
-        android:background="#00FFFF"
+        android:background="#FFFFFF"
         android:scaleType="fitXY"
-        android:layout_width="@dimen/margin_xhdpi_38"
-        android:layout_height="@dimen/margin_xhdpi_38" />
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+     />
 </LinearLayout>

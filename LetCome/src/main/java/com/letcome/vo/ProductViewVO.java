@@ -58,10 +58,10 @@ public class ProductViewVO implements Serializable {
     private Date updated_at;
 
 //    @Column(name="longitude")
-    private double longitude;//经度
+    private String longitude;//经度
 
 //    @Column(name="latitude")
-    private double latitude;//纬度
+    private String latitude;//纬度
 
 //    @Column(name="city")
     private String city;
@@ -86,6 +86,15 @@ public class ProductViewVO implements Serializable {
     private String imagepath;
 
     private String thumbpath;
+
+    private Integer imageheight;
+
+    private Integer imagewidth;
+
+    private Integer thumbheight;
+
+    private Integer thumbwidth;
+
 
 //    @Column( name = "image_id",nullable = false)
     private Integer image_id;
@@ -134,20 +143,26 @@ public class ProductViewVO implements Serializable {
         this.updated_at = updated_at;
     }
 
-    public double getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
+//    public void setLongitude(String longitude) {
+//        this.longitude = longitude;
+//    }
     public void setLongitude(double longitude) {
-        this.longitude = longitude;
+        this.longitude = String.valueOf(longitude);
     }
 
-    public double getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
+//    public void setLatitude(String latitude) {
+//        this.latitude = latitude;
+//    }
     public void setLatitude(double latitude) {
-        this.latitude = latitude;
+        this.latitude = String.valueOf(latitude);
     }
 
     public String getCity() {
@@ -236,5 +251,37 @@ public class ProductViewVO implements Serializable {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public Integer getImageheight() {
+        return imageheight;
+    }
+
+    public void setImageheight(Integer imageheight) {
+        this.imageheight = imageheight;
+    }
+
+    public Integer getImagewidth() {
+        return imagewidth;
+    }
+
+    public void setImagewidth(Integer imagewidth) {
+        this.imagewidth = imagewidth;
+    }
+
+    public Integer getThumbheight() {
+        return thumbheight;
+    }
+
+    public void setThumbheight(Integer thumbheight) {
+        this.thumbheight = thumbheight;
+    }
+
+    public Integer getThumbwidth() {
+        return thumbwidth;
+    }
+
+    public void setThumbwidth(Integer thumbwidth) {
+        this.thumbwidth = thumbwidth;
     }
 }

@@ -18,7 +18,6 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 
 import java.util.List;
@@ -66,9 +65,9 @@ public class App extends Application {
 				.cacheOnDisk(true)
 						// 设置下载的图片是否缓存在SD卡中
 				.displayer(new FadeInBitmapDisplayer(100))
-				.considerExifParams(true)
-				.displayer(new FadeInBitmapDisplayer(100))// 图片加载好后渐入的动画时间
-				.displayer(new RoundedBitmapDisplayer(1)).build();
+				.considerExifParams(true).build();
+//				.displayer(new FadeInBitmapDisplayer(100))// 图片加载好后渐入的动画时间
+//				.displayer(new RoundedBitmapDisplayer(1)).build();
 		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
 				this)
 				.threadPoolSize(3)
@@ -173,12 +172,12 @@ public class App extends Application {
 	}
 	
 	public String getChannel() {
-		if (mChannel == null) {
-			mChannel = App.instance().getAppInfoBundle().getString(CHANNEL);
-			if (Util.isEmpty(mChannel)) {
-				mChannel = "" + App.instance().getAppInfoBundle().getInt(CHANNEL);
-			}
-		}
+//		if (mChannel == null) {
+//			mChannel = App.instance().getAppInfoBundle().getString(CHANNEL);
+//			if (Util.isEmpty(mChannel)) {
+//				mChannel = "" + App.instance().getAppInfoBundle().getInt(CHANNEL);
+//			}
+//		}
 		return mChannel;
 	}
 	

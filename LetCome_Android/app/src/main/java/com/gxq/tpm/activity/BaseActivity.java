@@ -67,7 +67,7 @@ public class BaseActivity extends FragmentActivity implements ICallBack {
 				message = getString(R.string.net_unusual);
 				type = netFinishError(info, errorCode, message, tag);
 			} else {
-				if (result.error_code == NetworkResultInfo.SUCCESS.getValue()) {
+				if (result.error_code == NetworkResultInfo.SUCCESS.getValue() || result.result != BaseRes.RESULT_FAIL ) {
 					netFinishOk(info, result, tag);
 				} else {
 					message = result.error_msg;

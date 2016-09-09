@@ -303,6 +303,8 @@
     <dimen name="abc_text_size_subtitle_material_toolbar">16dp</dimen>
     <dimen name="abc_text_size_title_material">20sp</dimen>
     <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="default_gap">8dip</dimen>
     <item format="float" name="disabled_alpha_material_dark" type="dimen">0.30</item>
     <item format="float" name="disabled_alpha_material_light" type="dimen">0.26</item>
@@ -466,9 +468,9 @@
     <string name="ptr_release_to_refresh">Release to refresh</string>
     <string name="refreshing">正在刷新…</string>
     <string name="server_unusual">服务器异常</string>
-    <string name="service_h5">http://192.168.6.75:8008/</string>
+    <string name="service_h5">http://115.159.194.244:8080/</string>
     <string name="service_hq">http://192.168.6.66:2050/</string>
-    <string name="service_platform">http://192.168.6.75:8005/</string>
+    <string name="service_platform">http://115.159.194.244:8080/LetCome</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="strategy_time">次</string>
     <string name="tab_categories_text">Categories</string>

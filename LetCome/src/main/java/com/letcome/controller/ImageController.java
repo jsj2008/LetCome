@@ -77,12 +77,7 @@ public class ImageController {
 
             if (!file.isEmpty()) {
                 try {
-                    String str = request.getSession().getServletContext().getRealPath("upload/img/product");
-                    System.out.println(str);
-                    str = request.getSession().getServletContext().getRealPath("upload/img/product");
-                    System.out.println(str);
                     return service.addImage(Integer.valueOf(uid), file.getOriginalFilename(), file.getBytes());
-
                 } catch (Exception e) {
                     e.printStackTrace();
                     ReturnEntity ret = new ReturnEntity();
@@ -152,10 +147,11 @@ public class ImageController {
 
     @RequestMapping(value = "getimg")
     public void getImage(@RequestParam("id") String id,
+                         @RequestParam(value = "type",required = false,defaultValue = ImageVO.IMAGE_TYPE_FULL) String type,
                         HttpServletRequest request,
                         HttpServletResponse response) throws Exception {
 
-        ImageEntity e = service.getImage(Integer.valueOf(id));
+        ImageEntity e = service.getImage(Integer.valueOf(id),type);
 
         response.setContentType("image/png");
 

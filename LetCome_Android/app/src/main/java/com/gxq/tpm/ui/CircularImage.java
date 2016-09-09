@@ -1,9 +1,5 @@
 package com.gxq.tpm.ui;
 
-import com.letcome.R;
-import com.gxq.tpm.tools.Print;
-import com.gxq.tpm.tools.Util;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -17,6 +13,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+
+import com.gxq.tpm.tools.Print;
+import com.gxq.tpm.tools.Util;
+import com.letcome.R;
 
 public class CircularImage extends ImageView {
     private Paint mStrokePaint;
@@ -63,7 +63,7 @@ public class CircularImage extends ImageView {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);  
   
         mWidth = Math.min(getMeasuredWidth(), getMeasuredHeight());  
-        mRadius = mWidth / 2;  
+        mRadius = mWidth / 2;
         setMeasuredDimension(mWidth, mWidth);
     }
 

@@ -16,9 +16,9 @@ public class ProductEntity extends ReturnEntity {
 
     private Date updated_at;
 
-    private double longitude;//经度
+    private String longitude;//经度
 
-    private double latitude;//纬度
+    private String latitude;//纬度
 
     private String city;
 
@@ -84,20 +84,20 @@ public class ProductEntity extends ReturnEntity {
         this.updated_at = updated_at;
     }
 
-    public double getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
     public void setLongitude(double longitude) {
-        this.longitude = longitude;
+        this.longitude = String.valueOf(longitude);
     }
 
-    public double getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
     public void setLatitude(double latitude) {
-        this.latitude = latitude;
+        this.latitude = String.valueOf(latitude);
     }
 
     public String getCity() {

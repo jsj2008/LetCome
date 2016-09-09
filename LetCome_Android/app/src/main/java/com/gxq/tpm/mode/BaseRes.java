@@ -8,7 +8,8 @@ public class BaseRes implements Serializable{
 	
 	public final static int RETURN_TYPE		= 0;
 	public final static String RESULT_OK	= "Y";
-	
+	public final static String RESULT_FAIL	= "N";
+	public String result;
 	public int error_code;
 	public String error_msg;
 	public String http_x_qfgj_contentmd5;
@@ -16,7 +17,30 @@ public class BaseRes implements Serializable{
 	public String session_id;
 	public long request_id;
 	public long response_time;
-	
+
+	public String getError_msg() {
+		return error_msg;
+	}
+
+	public void setError_msg(String error_msg) {
+		this.error_msg = error_msg;
+	}
+
+	public int getError_code() {
+		return error_code;
+	}
+
+	public void setError_code(int error_code) {
+		this.error_code = error_code;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
 
 	public static class ByteArrayRes extends BaseRes {
 

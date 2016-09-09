@@ -10,6 +10,10 @@ import javax.persistence.*;
 
 @Entity(name="images")
 public class ImageVO {
+
+    public static final String IMAGE_TYPE_THUMB = "thumb";
+    public static final String IMAGE_TYPE_FULL = "full";
+
     public ImageVO(){
         super();
     }
@@ -24,9 +28,24 @@ public class ImageVO {
     @Column(name="imagename",nullable = false)
     private String imagename;
 
+
+    @Column(name="imageheight",nullable = false)
+    private Integer imageheight;
+    @Column(name="imagewidth",nullable = false)
+    private Integer imagewidth;
+
+    @Column(name="thumbheight",nullable = false)
+    private Integer thumbheight;
+    @Column(name="thumbwidth",nullable = false)
+    private Integer thumbwidth;
+
     @Column( name = "imagepath",nullable = false)
 //    @Column(name="image",columnDefinition="LONGBLOB",nullable = false)
     private String imagepath;
+
+    @Column( name = "thumbpath",nullable = false)
+//    @Column(name="image",columnDefinition="LONGBLOB",nullable = false)
+    private String thumbpath;
 
     @Column(name="productid",nullable = true)
     private Integer productid;
@@ -69,5 +88,45 @@ public class ImageVO {
 
     public void setImagepath(String imagepath) {
         this.imagepath = imagepath;
+    }
+
+    public String getThumbpath() {
+        return thumbpath;
+    }
+
+    public void setThumbpath(String thumbpath) {
+        this.thumbpath = thumbpath;
+    }
+
+    public Integer getImageheight() {
+        return imageheight;
+    }
+
+    public void setImageheight(Integer imageheight) {
+        this.imageheight = imageheight;
+    }
+
+    public Integer getImagewidth() {
+        return imagewidth;
+    }
+
+    public void setImagewidth(Integer imagewidth) {
+        this.imagewidth = imagewidth;
+    }
+
+    public Integer getThumbheight() {
+        return thumbheight;
+    }
+
+    public void setThumbheight(Integer thumbheight) {
+        this.thumbheight = thumbheight;
+    }
+
+    public Integer getThumbwidth() {
+        return thumbwidth;
+    }
+
+    public void setThumbwidth(Integer thumbwidth) {
+        this.thumbwidth = thumbwidth;
     }
 }

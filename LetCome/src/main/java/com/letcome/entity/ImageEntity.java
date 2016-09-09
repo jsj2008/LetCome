@@ -15,6 +15,14 @@ public class ImageEntity {
 
     private String thumbpath;
 
+    private Integer imageheight;
+
+    private Integer imagewidth;
+
+    private Integer thumbheight;
+
+    private Integer thumbwidth;
+
     private byte[] image;
 
     public Integer getId() {
@@ -63,5 +71,37 @@ public class ImageEntity {
 
     public void setThumbpath(String thumbpath) {
         this.thumbpath = thumbpath;
+    }
+
+    public Integer getImageheight() {
+        return imageheight;
+    }
+
+    public void setImageheight(Integer imageheight) {
+        this.imageheight = imageheight;
+    }
+
+    public Integer getImagewidth() {
+        return imagewidth;
+    }
+
+    public void setImagewidth(Integer imagewidth) {
+        this.imagewidth = imagewidth;
+    }
+
+    public Integer getThumbheight() {
+        return thumbheight;
+    }
+
+    public void setThumbheight(Integer thumbheight) {
+        this.thumbheight = thumbheight;
+    }
+
+    public Integer getThumbwidth() {
+        return thumbwidth;
+    }
+
+    public void setThumbwidth(Integer thumbwidth) {
+        this.thumbwidth = thumbwidth;
     }
 }
