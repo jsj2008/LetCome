@@ -33,6 +33,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.letcome.activity.ProductsActivity" />
+        <activity android:name="com.letcome.activity.LoginActivity" />
     </application>
 
 </manifest>

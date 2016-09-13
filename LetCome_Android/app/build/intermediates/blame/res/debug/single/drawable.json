@@ -52,6 +52,10 @@
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/tabbar_profile.xml"
     },
     {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/view_radius_40dp.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/view_radius_40dp.xml"
+    },
+    {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/tabbar_chat.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/tabbar_chat.xml"
     },
@@ -142,5 +146,9 @@
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/tabbar_me.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/tabbar_me.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/btn_radius.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/btn_radius.xml"
     }
 ]

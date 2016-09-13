@@ -150,6 +150,7 @@
     <color name="material_grey_850">#ff303030</color>
     <color name="material_grey_900">#ff212121</color>
     <color name="minute_chart_wave_bg">#ffd1e0f9</color>
+    <color name="nav_red">#ff3f55</color>
     <color name="primary_dark_material_dark">@android:color/black</color>
     <color name="primary_dark_material_light">@color/material_grey_600</color>
     <color name="primary_material_dark">@color/material_grey_900</color>
@@ -450,12 +451,14 @@
     <string name="app_name">letgo</string>
     <string name="cache_forever_path">/Android/data/com.gxq.tpm/cache_forever/</string>
     <string name="cache_path">/Android/data/com.gxq.tpm/cache/</string>
+    <string name="chat_btn">Chat with the seller</string>
     <string name="default_value">--</string>
     <string name="default_value_1">--.--</string>
     <string name="drop_down_refresh">下拉刷新</string>
     <string name="drop_up_more">上拉加载更多</string>
     <string name="empty_string"/>
     <string name="layer_loading_text">请等待</string>
+    <string name="log_in">登 录</string>
     <string name="loosen_more">松开加载更多</string>
     <string name="loosen_refresh">松开刷新</string>
     <string name="money_symbol">￥</string>
@@ -471,6 +474,7 @@
     <string name="service_h5">http://115.159.194.244:8080/</string>
     <string name="service_hq">http://192.168.6.66:2050/</string>
     <string name="service_platform">http://115.159.194.244:8080/LetCome</string>
+    <string name="sign_up">注 册</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="strategy_time">次</string>
     <string name="tab_categories_text">Categories</string>
@@ -1440,6 +1444,18 @@
 	    <item name="android:listPreferredItemPaddingRight">@dimen/margin_xhdpi_35</item>
 	    <!-- <item name="android:windowAnimationStyle">@null</item> -->
 	</style>
+    <style name="Dialog_FS">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <!--是否浮现在activity之上-->
+        <!--<item name="android:windowIsFloating">true</item>-->
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
     <style name="HomeTheme" parent="@style/AppTheme">
 <!-- 	    <item name="android:windowBackground">@android:color/white</item>
 	    <item name="android:windowNoTitle">true</item> -->

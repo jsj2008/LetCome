@@ -129,7 +129,11 @@ public class MainActivity extends SuperActivity {
 
 	@Override
 	public void onTabClick(final int id) {
-		super.onTabClick(id);
+		if (id == R.id.tab_profile){
+			gotoLogin();
+		}else{
+			super.onTabClick(id);
+		}
 	}
 
 	@Override
@@ -161,8 +165,15 @@ public class MainActivity extends SuperActivity {
 				getTitleBar().hideTitleBar();
 				getTabBar().selectTabItem(R.id.tab_profile);
 				requestGetTime();
+				gotoLogin();
 				break;
 		}
+
+	}
+
+	void gotoLogin(){
+		Intent intent = new Intent(this, LoginActivity.class);
+		startActivity(intent);
 
 	}
 

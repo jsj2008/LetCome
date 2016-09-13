@@ -53,8 +53,17 @@ public class WaterFallsRes extends BaseRes {
         String image_id;
         String contact_info;
         String is_favorite;
+        String fullname;
 
         int hold_color;
+
+        public String getFullname() {
+            return fullname;
+        }
+
+        public void setFullname(String fullname) {
+            this.fullname = fullname;
+        }
 
         public String getThumbheight() {
             return thumbheight;

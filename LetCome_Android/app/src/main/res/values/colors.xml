@@ -83,5 +83,7 @@
    	<color name="color_ffc73b">#ffffC73B</color>
    	<color name="color_ff7814">#ffff7814</color>
    	<color name="color_508cf0">#ff508cf0</color>
+
+	<color name="nav_red">#ff3f55</color>
    	
 </resources>
