@@ -2,4 +2,4 @@
 <View xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/margin_xhdpi_1"
     android:layout_height="match_parent"
-    android:background="@color/tab_cur_selected" />
+    android:background="@color/nav_red" />

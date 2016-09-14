@@ -27,7 +27,7 @@
 
     <!-- 常用  -->
     <color name="white_color">#ffffffff</color>
-    <color name="translucent_white_color">#33ffffff</color>
+	<color name="translucent_white_color">#33ffffff</color>
     <color name="black_color">#ff000000</color>
     <color name="red_color">#ffff0000</color>
     <color name="transparent">#00000000</color>
@@ -85,5 +85,7 @@
    	<color name="color_508cf0">#ff508cf0</color>
 
 	<color name="nav_red">#ff3f55</color>
-   	
+	<color name="button_red_disabled">#ffc5cc</color>
+   	<color name="login_background">#f7f3f3</color>
+
 </resources>

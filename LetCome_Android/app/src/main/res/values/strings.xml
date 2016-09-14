@@ -38,5 +38,8 @@
     <string name="chat_btn">Chat with the seller</string>
     <string name="sign_up">注 册</string>
     <string name="log_in">登 录</string>
+    <string name="email">请输入注册邮箱</string>
+    <string name="password">请输入密码</string>
+
     <!--LetGO end -->
 </resources>

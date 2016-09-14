@@ -5,5 +5,5 @@
     <item android:state_selected="true" android:state_enabled="true"
         android:color="@color/white_color"/>
     <item 
-        android:color="@color/tab_cur_selected"/>
+        android:color="@color/nav_red"/>
 </selector>

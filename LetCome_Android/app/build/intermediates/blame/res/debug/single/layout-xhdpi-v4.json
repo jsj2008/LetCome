@@ -32,6 +32,10 @@
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/layout-xhdpi/list_foot.xml"
     },
     {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/layout-xhdpi-v4/fragment_login.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/layout-xhdpi/fragment_login.xml"
+    },
+    {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/layout-xhdpi-v4/list_head.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/layout-xhdpi/list_head.xml"
     },
@@ -70,6 +74,10 @@
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/layout-xhdpi-v4/custom_item_bar.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/layout-xhdpi/custom_item_bar.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/layout-xhdpi-v4/fragment_signup.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/layout-xhdpi/fragment_signup.xml"
     },
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/layout-xhdpi-v4/loading_layout.xml",

@@ -81,6 +81,7 @@
     <color name="btn_selected">#ff4678dc</color>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
+    <color name="button_red_disabled">#ffc5cc</color>
     <color name="chart_loading_color">#ff848484</color>
     <color name="color_007aff">#ff007aff</color>
     <color name="color_222222">#ff222222</color>
@@ -135,6 +136,7 @@
     <color name="hint_foreground_material_light">@color/bright_foreground_disabled_material_light</color>
     <color name="line_seperate_color">#ffdddddd</color>
     <color name="line_seperate_inside_color">#fff0f0f0</color>
+    <color name="login_background">#f7f3f3</color>
     <color name="login_head_circle_color">#ffd1d1d1</color>
     <color name="loss_color">#ff18b676</color>
     <color name="material_blue_grey_800">#ff37474f</color>
@@ -456,6 +458,7 @@
     <string name="default_value_1">--.--</string>
     <string name="drop_down_refresh">下拉刷新</string>
     <string name="drop_up_more">上拉加载更多</string>
+    <string name="email">请输入注册邮箱</string>
     <string name="empty_string"/>
     <string name="layer_loading_text">请等待</string>
     <string name="log_in">登 录</string>
@@ -464,6 +467,7 @@
     <string name="money_symbol">￥</string>
     <string name="money_unit">元</string>
     <string name="net_unusual">网络异常</string>
+    <string name="password">请输入密码</string>
     <string name="percent_unit">%</string>
     <string name="ptr_last_updated">Updated: %1$s</string>
     <string name="ptr_loading">Loading</string>

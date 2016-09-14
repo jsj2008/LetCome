@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:state_enabled="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white_color"/>
+            <corners android:radius="25dip" />
+        </shape>
+    </item>
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/button_red_disabled"/>
+            <corners android:radius="25dip" />
+        </shape>
+    </item>
+    <item >
+        <shape android:shape="rectangle">
+            <solid android:color="@color/nav_red"/>
+            <corners android:radius="25dip" />
+        </shape>
+    </item>
+
+</selector>

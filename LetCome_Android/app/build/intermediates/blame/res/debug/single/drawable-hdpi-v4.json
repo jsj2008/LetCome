@@ -16,6 +16,18 @@
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable-hdpi/abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/icon_email_active.png",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi-v4/icon_email_active.png"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_error_red_posting.png",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi-v4/ic_error_red_posting.png"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/tab_title_bg.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi/tab_title_bg.xml"
+    },
+    {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_btn_rating_star_on_mtrl_alpha.png",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable-hdpi/abc_btn_rating_star_on_mtrl_alpha.png"
     },
@@ -28,12 +40,16 @@
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi-v4/ic_nav_near_me_s.png"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_cab_background_top_mtrl_alpha.9.png",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable-hdpi/abc_cab_background_top_mtrl_alpha.9.png"
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/icon_password.png",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi-v4/icon_password.png"
     },
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/item_slider1.png",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi/item_slider1.png"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_cab_background_top_mtrl_alpha.9.png",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable-hdpi/abc_cab_background_top_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_ic_go_search_api_mtrl_alpha.png",
@@ -68,6 +84,10 @@
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable-hdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
     },
     {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/button_bg_selector.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi/button_bg_selector.xml"
+    },
+    {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/item_slider2.png",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi/item_slider2.png"
     },
@@ -90,6 +110,10 @@
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_scrubber_track_mtrl_alpha.9.png",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable-hdpi/abc_scrubber_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/icon_password_active.png",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi-v4/icon_password_active.png"
     },
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_nav_categories_s.png",
@@ -128,6 +152,10 @@
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi/nav_back.png"
     },
     {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/tab_title_text_bg_selector.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi/tab_title_text_bg_selector.xml"
+    },
+    {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_nav_sell.png",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi-v4/ic_nav_sell.png"
     },
@@ -138,6 +166,10 @@
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_list_longpressed_holo.9.png",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable-hdpi/abc_list_longpressed_holo.9.png"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/icon_user_active.png",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi-v4/icon_user_active.png"
     },
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_ic_ab_back_mtrl_am_alpha.png",
@@ -204,6 +236,10 @@
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable-hdpi/abc_ab_share_pack_mtrl_alpha.9.png"
     },
     {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/icon_email.png",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi-v4/icon_email.png"
+    },
+    {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_ic_menu_copy_mtrl_am_alpha.png",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable-hdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
     },
@@ -242,6 +278,10 @@
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_nav_chat.png",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi-v4/ic_nav_chat.png"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/icon_user.png",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi-v4/icon_user.png"
     },
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_nav_help.png",
