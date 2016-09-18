@@ -43,7 +43,7 @@ public class LoginFragment extends ViewPagerFragment implements TextWatcher{
         mEmailEt = (EditText)view.findViewById(R.id.email_et);
 
         mEmailEt.addTextChangedListener(this);
-        
+
         mEmailImg = (ImageView)view.findViewById(R.id.email_img);
         mPwdEt = (EditText)view.findViewById(R.id.pwd_et);
         mPwdEt.addTextChangedListener(this);
