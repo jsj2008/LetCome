@@ -49,7 +49,7 @@ public class NetWork {
 	private final static String HEAD_CONTENT		= "x-qfgj-contentmd5";
 	private final static String HEAD_SIGNATURE		= "x-qfgj-signature";
 	private final static String HEAD_SIGN			= "x-qfgj-sign";
-	private final static String HEAD_CONTENT_TYPE	= "contentType";
+	private final static String HEAD_CONTENT_TYPE	= "Content-Type";
 	
 	public final static String PARAM_ACCEPT			= "Accept";
 	public final static String PARAM_VALUE_IMAGE	= "image/*";
@@ -60,7 +60,7 @@ public class NetWork {
 	private final static String UA_PROJECT_NAME		= "tpz";
 	
 	private final static String CHARSET				= "UTF-8";
-	private final static String CONTENT_TYPE_JSON	= "application/json";
+	private final static String CONTENT_TYPE_JSON	= "application/json; charset=UTF-8";
 	
 	public final static int OUT_TIME_DEFAULT 		= 30; // 默认超时时间
 	

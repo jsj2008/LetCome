@@ -40,6 +40,6 @@
     <string name="log_in">登 录</string>
     <string name="email">请输入注册邮箱</string>
     <string name="password">请输入密码</string>
-
+    <string name="sell_product">上传你的宝贝</string>
     <!--LetGO end -->
 </resources>

@@ -1,15 +1,25 @@
 package com.letcome.activity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.Gravity;
+import android.view.View;
 
 import com.gxq.tpm.activity.SuperActivity;
 import com.gxq.tpm.fragment.FragmentBase;
 import com.gxq.tpm.tools.DispatcherTimer;
+import com.gxq.tpm.ui.CPopupWindow;
 import com.letcome.R;
 import com.letcome.fragement.MeFragment;
+import com.letcome.fragement.SellFragment;
 
-public class MainActivity extends SuperActivity {
+public class MainActivity extends SuperActivity implements View.OnClickListener{
 
 	public final static int REQUESR_CODE_SET_NICKNAME 		= 99;
 	public final static int REQUESR_CODE_SET_GESTURE 		= 199;
@@ -18,8 +28,13 @@ public class MainActivity extends SuperActivity {
 	public final static int NEED_NOTICE_MSG					= 1;
 	public final static int NEED_NOTICE_SETTLE				= 2;
 
+	public final static int IMAGE_FROM_GALLERY				= 1;
+	public final static int IMAGE_FROM_CAMERA				= 2;
+
 	private DispatcherTimer mNeedNoticeDispatcher;
 	private boolean mFromLaunch;
+
+	private CPopupWindow mPopupWindow;
 
 	private long mMineClickTime = 0;
 
@@ -114,9 +129,9 @@ public class MainActivity extends SuperActivity {
 			case R.id.tab_me:
 				fragment = new MeFragment(markId);
 				break;
-//			case R.id.tab_strategy:
-//				fragment = new StrategyFragment();
-//				break;
+			case R.id.tab_sell:
+				fragment = new SellFragment();
+				break;
 //			case R.id.tab_account:
 //				fragment = new SettlementFragment(markId);
 //				break;
@@ -131,6 +146,8 @@ public class MainActivity extends SuperActivity {
 	public void onTabClick(final int id) {
 		if (id == R.id.tab_profile){
 			gotoLogin();
+		}else if(id == R.id.tab_sell){
+			gotoCamera(getWindow().getDecorView());
 		}else{
 			super.onTabClick(id);
 		}
@@ -177,6 +194,52 @@ public class MainActivity extends SuperActivity {
 
 	}
 
+	void gotoCamera(View v){
+		mPopupWindow = new CPopupWindow(this);
+		mPopupWindow.setContentView(R.layout.sell_choose);
+		mPopupWindow.showAtLocation(v, Gravity.BOTTOM, 0, 0);
+		mPopupWindow.findViewById(R.id.goto_camera).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// 利用系统自带的相机应用:拍照
+				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				startActivityForResult(intent, IMAGE_FROM_CAMERA);
+				mPopupWindow.dismiss();
+			}
+		});
+		mPopupWindow.findViewById(R.id.goto_gallery).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(Intent.ACTION_PICK,
+						android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+				startActivityForResult(intent, IMAGE_FROM_GALLERY);
+				mPopupWindow.dismiss();
+			}
+		});
+//		mPopupWindow.showAtLocation();
+
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		//获取图片路径
+		if (requestCode == IMAGE_FROM_GALLERY && resultCode == Activity.RESULT_OK && data != null) {
+			Uri selectedImage = data.getData();
+			String[] filePathColumns = {MediaStore.Images.Media.DATA};
+			Cursor c = getContentResolver().query(selectedImage, filePathColumns, null, null, null);
+			c.moveToFirst();
+			int columnIndex = c.getColumnIndex(filePathColumns[0]);
+			String imagePath = c.getString(columnIndex);
+			Bitmap bm = BitmapFactory.decodeFile(imagePath);
+			c.close();
+		}
+	}
 
 
+
+	@Override
+	public void onClick(View v) {
+		gotoCamera(v);
+	}
 }

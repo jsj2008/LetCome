@@ -16,7 +16,7 @@ import com.letcome.activity.LoginActivity;
 /**
  * Created by rjt on 16/9/14.
  */
-public class LoginFragment extends ViewPagerFragment implements TextWatcher{
+public class LoginFragment extends ViewPagerFragment implements TextWatcher,View.OnClickListener{
     LoginActivity parent;
 
     Button mLoginBtn;
@@ -40,6 +40,7 @@ public class LoginFragment extends ViewPagerFragment implements TextWatcher{
         super.onViewCreated(view);
         mLoginBtn = (Button)view.findViewById(R.id.login_btn);
         mLoginBtn.setEnabled(false);
+        mLoginBtn.setOnClickListener(this);
         mEmailEt = (EditText)view.findViewById(R.id.email_et);
 
         mEmailEt.addTextChangedListener(this);
@@ -73,5 +74,10 @@ public class LoginFragment extends ViewPagerFragment implements TextWatcher{
     @Override
     public void afterTextChanged(Editable s) {
         refreshBtnState();
+    }
+
+    @Override
+    public void onClick(View v) {
+        parent.login(mEmailEt.getText().toString(),mPwdEt.getText().toString());
     }
 }

@@ -5,18 +5,21 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
 
-import com.gxq.tpm.activity.BaseActivity;
+import com.gxq.tpm.activity.SuperActivity;
 import com.gxq.tpm.adapter.CViewPagerAdapter;
 import com.gxq.tpm.fragment.ViewPagerFragment;
+import com.gxq.tpm.mode.BaseRes;
+import com.gxq.tpm.network.RequestInfo;
 import com.gxq.tpm.ui.CTabTitleSelector;
 import com.letcome.R;
 import com.letcome.fragement.LoginFragment;
 import com.letcome.fragement.SignupFragment;
+import com.letcome.mode.LoginRes;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends SuperActivity{
 
     private final static int TAB_SIGNUP 	= 0;
     private final static int TAB_LOGIN 	= 1;
@@ -101,5 +104,31 @@ public class LoginActivity extends BaseActivity {
     protected void onRestart() {
         super.onRestart();
         mAdapter.onShow();
+    }
+
+    public void login(String name,String pwd){
+        showWaitDialog(RequestInfo.LOGIN);
+        LoginRes.Params p = new LoginRes.Params();
+        p.setEmail(name);
+        p.setPwd(pwd);
+        LoginRes.doRequest(p, this);
+
+
+    }
+
+    @Override
+    public void netFinishOk(RequestInfo info, BaseRes res, int tag) {
+        if (info==RequestInfo.LOGIN){
+            this.finish();
+        }
+        super.netFinishOk(info, res, tag);
+    }
+
+    @Override
+    public void netFinishError(RequestInfo info, BaseRes result, int tag) {
+//        if(info==RequestInfo.LOGIN){
+//            showToastMsg(result.error_msg);
+//        }
+        super.netFinishError(info, result, tag);
     }
 }

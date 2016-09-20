@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.gxq.tpm.fragment.FragmentBase;
@@ -18,6 +19,7 @@ import com.gxq.tpm.mode.BaseRes;
 import com.gxq.tpm.network.RequestInfo;
 import com.huewu.pla.lib.internal.PLA_AdapterView;
 import com.letcome.R;
+import com.letcome.activity.MainActivity;
 import com.letcome.activity.ProductsActivity;
 import com.letcome.adapter.ImageGridAdapter;
 import com.letcome.mode.WaterFallsRes;
@@ -34,6 +36,8 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
     private ImageGridAdapter adapter;
     private ArrayList<Integer> colorList;
     private Integer mPage = 1;
+    private Button mSelleBtn;
+    private MainActivity parent;
 
     public MeFragment() {
         this(R.id.tab_me);
@@ -49,6 +53,7 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+        parent = (MainActivity)activity;
     }
 
     @Override
@@ -64,8 +69,8 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
 
         this.colorList = new ArrayList<Integer>();
         this.colorList.add(Color.rgb(199,200,182));
-        this.colorList.add(Color.rgb(189,189,189));
-        this.colorList.add(Color.rgb(186,162,153));
+        this.colorList.add(Color.rgb(189, 189, 189));
+        this.colorList.add(Color.rgb(186, 162, 153));
         this.colorList.add(Color.rgb(243,241,236));
         initView(view);
         initAction(view);
@@ -78,6 +83,9 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
         mAdapterView.setMoreListener(this);
         adapter = new ImageGridAdapter(this.mContext);
         mAdapterView.setAdapter(adapter);
+
+        mSelleBtn = (Button) view.findViewById(R.id.sell_product);
+        mSelleBtn.setOnClickListener(parent);
 //        queryMediaImages();
     }
 
@@ -86,14 +94,14 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
         mAdapterView.setOnItemClickListener(new PLA_AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(PLA_AdapterView<?> parent, View view, int position, long id) {
-                ImageView iv = (ImageView)view.findViewById(R.id.imageView);
+                ImageView iv = (ImageView) view.findViewById(R.id.imageView);
 
-                if (iv.getDrawable() instanceof BitmapDrawable){
+                if (iv.getDrawable() instanceof BitmapDrawable) {
                     Intent intent = new Intent(view.getContext(), ProductsActivity.class);
                     intent.putExtra("records", (Serializable) adapter.getRecords());
                     intent.putExtra("id", id);
-                    intent.putExtra("position", position-1);
-                    Bitmap image = ((BitmapDrawable)iv.getDrawable()).getBitmap();
+                    intent.putExtra("position", position - 1);
+                    Bitmap image = ((BitmapDrawable) iv.getDrawable()).getBitmap();
                     intent.putExtra("bitmap", image);
                     startActivity(intent);
                 }
@@ -164,4 +172,5 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
         }
         return super.netFinishError(info, what, msg, tag);
     }
+
 }

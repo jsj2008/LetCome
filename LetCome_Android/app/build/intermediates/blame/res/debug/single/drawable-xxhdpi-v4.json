@@ -168,6 +168,10 @@
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable-xxhdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png"
     },
     {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/ic_sell_white.png",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-xxhdpi-v4/ic_sell_white.png"
+    },
+    {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/ic_favorite_active.png",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-xxhdpi-v4/ic_favorite_active.png"
     },

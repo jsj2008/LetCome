@@ -24,6 +24,10 @@
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/layout-xhdpi/empty_note_view.xml"
     },
     {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/layout-xhdpi-v4/sell_choose.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/layout-xhdpi/sell_choose.xml"
+    },
+    {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/layout-xhdpi-v4/slider_view_item.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/layout-xhdpi/slider_view_item.xml"
     },
@@ -82,5 +86,9 @@
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/layout-xhdpi-v4/loading_layout.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/layout-xhdpi/loading_layout.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/layout-xhdpi-v4/fragment_sell.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/layout-xhdpi/fragment_sell.xml"
     }
 ]

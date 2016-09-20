@@ -104,6 +104,10 @@
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-xhdpi-v4/icon_user.png"
     },
     {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4/ic_sell_white.png",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-xhdpi-v4/ic_sell_white.png"
+    },
+    {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4/ic_nav_categories.png",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-xhdpi-v4/ic_nav_categories.png"
     },

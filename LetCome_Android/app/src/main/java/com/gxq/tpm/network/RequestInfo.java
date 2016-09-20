@@ -11,8 +11,8 @@ enum Certify {YES, NO}
 public enum RequestInfo {
 	// 用户 -- 登录相关接口
 	WATER_FALLS_REFRESH("/waterfalls", Link.PLATFORM, Type.GET, Certify.NO, "刷新瀑布流"),
-	WATER_FALLS_MORE("/waterfalls", Link.PLATFORM, Type.GET, Certify.NO, "翻页瀑布流");
-
+	WATER_FALLS_MORE("/waterfalls", Link.PLATFORM, Type.GET, Certify.NO, "翻页瀑布流"),
+	LOGIN("/user/login", Link.PLATFORM, Type.POST, Certify.NO, "登录");
 	
 	
 	private String mOperationType;

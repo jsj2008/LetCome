@@ -184,6 +184,10 @@
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/LetCome_Android/PinterestLikeAdapterView/unspecified/res/drawable-hdpi-v4/updating.png"
     },
     {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_sell_white.png",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi-v4/ic_sell_white.png"
+    },
+    {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/item_new.png",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable-hdpi/item_new.png"
     },
