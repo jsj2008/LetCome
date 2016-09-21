@@ -11,10 +11,12 @@ import com.gxq.tpm.fragment.ViewPagerFragment;
 import com.gxq.tpm.mode.BaseRes;
 import com.gxq.tpm.network.RequestInfo;
 import com.gxq.tpm.ui.CTabTitleSelector;
+import com.letcome.App;
 import com.letcome.R;
 import com.letcome.fragement.LoginFragment;
 import com.letcome.fragement.SignupFragment;
 import com.letcome.mode.LoginRes;
+import com.letcome.prefs.UserPrefs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,6 +121,13 @@ public class LoginActivity extends SuperActivity{
     @Override
     public void netFinishOk(RequestInfo info, BaseRes res, int tag) {
         if (info==RequestInfo.LOGIN){
+            LoginRes l = (LoginRes) res;
+            UserPrefs prefs = App.getUserPrefs();
+            prefs.setUserInfo(l);
+            prefs.setUid(l.getUid());
+            prefs.setSession(l.getSessionid());
+            prefs.save();
+
             this.finish();
         }
         super.netFinishOk(info, res, tag);

@@ -13,7 +13,10 @@ import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 
+import com.gxq.tpm.tools.Installation;
 import com.gxq.tpm.tools.Util;
+import com.gxq.tpm.tools.crypt.MD5;
+import com.letcome.prefs.UserPrefs;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -27,6 +30,7 @@ public class App extends Application {
 	private final static String CHANNEL				= "UMENG_CHANNEL";
 	
 	private static App mInstance;
+	private static UserPrefs prefs;
 	
 	private DisplayMetrics mDisplayMetrics;
 	
@@ -43,6 +47,7 @@ public class App extends Application {
 	public void onCreate() {
 		super.onCreate();
 		mInstance = this;
+		prefs = UserPrefs.get(mInstance);
 //		dbManager = DBManager.getInstance(mInstance);
 //		dbManager.init();
 //
@@ -53,6 +58,11 @@ public class App extends Application {
 	}
 	
 	private void initData() {
+
+		prefs.setOpenUdid(MD5.md5(getDeviceId() + Installation.id(this)));
+		prefs.setFlag("ok");
+		prefs.save();
+
 		DisplayImageOptions options = new DisplayImageOptions.Builder()
 				// .showImageOnLoading(R.drawable.ic_empty)
 				// 设置图片在下载期间显示的图片
@@ -200,6 +210,10 @@ public class App extends Application {
 	
 	public boolean isTest() {
 		return getResources().getBoolean(R.bool.isTest);
+	}
+
+	public static UserPrefs getUserPrefs() {
+		return prefs;
 	}
 
 }

@@ -68,12 +68,12 @@
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/layout-xhdpi/horizontal_inside_line_separate.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/layout-xhdpi-v4/tab_title_vertical_sep.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/layout-xhdpi/tab_title_vertical_sep.xml"
-    },
-    {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/layout-xhdpi-v4/tab_bar_item.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/layout-xhdpi/tab_bar_item.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/layout-xhdpi-v4/tab_title_vertical_sep.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/layout-xhdpi/tab_title_vertical_sep.xml"
     },
     {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/layout-xhdpi-v4/custom_item_bar.xml",

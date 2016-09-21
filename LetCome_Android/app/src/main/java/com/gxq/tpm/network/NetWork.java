@@ -8,6 +8,7 @@ import com.gxq.tpm.mode.BaseRes;
 import com.gxq.tpm.mode.BaseRes.ByteArrayRes;
 import com.gxq.tpm.tools.Print;
 import com.letcome.App;
+import com.letcome.prefs.UserPrefs;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -16,6 +17,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
@@ -31,6 +34,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -39,16 +43,10 @@ import java.util.Map;
 public class NetWork {
 	private final static String TAG 				= "SNetWork";
 	private final static String UA					= "User-Agent";
-	private final static String HEAD_UA				= "x-qfgj-ua";
-	private final static String HEAD_SID			= "x-qfgj-sid";
-	private final static String HEAD_UID			= "x-qfgj-uid";
-	private final static String HEAD_UDID			= "x-qfgj-did";
-	private final static String HEAD_REFER			= "x-qfgj-refer";
-	private final static String HEAD_RID			= "x-qfgj-rid";
-	private final static String HEAD_RTIME			= "x-qfgj-rtime";
-	private final static String HEAD_CONTENT		= "x-qfgj-contentmd5";
-	private final static String HEAD_SIGNATURE		= "x-qfgj-signature";
-	private final static String HEAD_SIGN			= "x-qfgj-sign";
+	private final static String HEAD_UA				= "let_come_ua";
+	private final static String HEAD_SID			= "let_come_sessionid";
+	private final static String HEAD_UID			= "let_come_uid";
+	private final static String HEAD_UDID			= "let_come_did";
 	private final static String HEAD_CONTENT_TYPE	= "Content-Type";
 	
 	public final static String PARAM_ACCEPT			= "Accept";
@@ -57,7 +55,7 @@ public class NetWork {
 	private final static String HEAD_SEP			= ":";
 	private final static String HEAD_LINE_SEP		= "\n";
 	
-	private final static String UA_PROJECT_NAME		= "tpz";
+	private final static String UA_PROJECT_NAME		= "letgo";
 	
 	private final static String CHARSET				= "UTF-8";
 	private final static String CONTENT_TYPE_JSON	= "application/json; charset=UTF-8";
@@ -109,6 +107,58 @@ public class NetWork {
 
 	/**
 	 *
+	 * @Description : upload请求
+	 */
+	public BaseRes uploadRequest(RequestInfo info, Object params, Class<? extends BaseRes> cls) {
+		try {
+			String url = info.getUrl();
+			byte[] bytes = (byte[])params;
+
+			HttpResponse resp = uploadRequest(info, url, bytes);
+
+			String result = getBaseReturn(info, resp);
+
+			return getBaseRes(result, cls);
+		} catch (Exception e) {
+			Print.e(TAG, e.getMessage());
+		}
+		return null;
+	}
+
+	private HttpResponse uploadRequest(RequestInfo info, String strUrl, byte[] bytes) throws Exception {
+
+
+        //设置通信协议版本
+//        client.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
+
+        //File path= Environment.getExternalStorageDirectory(); //取得SD卡的路径
+
+        //String pathToOurFile = path.getPath()+File.separator+"ak.txt"; //uploadfile
+        //String urlServer = "http://192.168.1.88/test/upload.php";
+        client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(strUrl);
+
+		//		UserPrefs pref = App.getUserPrefs();
+		addHttpHead(httpPost);
+
+
+        MultipartEntity mpEntity = new MultipartEntity(); //文件传输
+        ByteArrayBody body = new ByteArrayBody(bytes,(new Date().getTime())+".jpg");
+
+        mpEntity.addPart("myfiles", body); // <input type="file" name="userfile" />  对应的
+
+
+        httpPost.setEntity(mpEntity);
+        System.out.println("executing request " + httpPost.getRequestLine());
+
+        HttpResponse resp = client.execute(httpPost);
+        Print.w(TAG, "StatusCode=" + resp.getStatusLine().getStatusCode());
+
+        return resp;
+	}
+
+	/**
+	 *
 	 * @Description : post请求
 	 */
 	public BaseRes postRequest(RequestInfo info, Object params, Class<? extends BaseRes> cls) {
@@ -117,11 +167,11 @@ public class NetWork {
 			
 			Map<String, String> paramsMap = getParamMap(params);
 			HttpResponse resp = postRequest(info, url, paramsMap);
-		
-			String result = getBaseReturn(info, resp);
 
-			return getBaseRes(result, cls);
-		} catch (Exception e) {
+            String result = getBaseReturn(info, resp);
+
+            return getBaseRes(result, cls);
+        } catch (Exception e) {
 			Print.e(TAG, e.getMessage());
 		}
 		return null;
@@ -164,7 +214,7 @@ public class NetWork {
 			json = gson.toJson(paramsMap);
 		}
 		
-		addHttpHead(httpPost, json, info.needCertify(), paramsMap);
+		addHttpHead(httpPost);
 
 		if (json != null){// 请求参数处理
 			httpPost.setHeader(HEAD_CONTENT_TYPE, CONTENT_TYPE_JSON);
@@ -253,7 +303,7 @@ public class NetWork {
 		client.setParams(httpParams);
 		
 		HttpGet httpGet = new HttpGet(url);
-		addHttpHead(httpGet, null, false, paramsMap);
+		addHttpHead(httpGet);
 		
 		Print.i(TAG, "url=" + url);
 
@@ -261,57 +311,19 @@ public class NetWork {
 		return resp;
 	}
 
-	private void addHttpHead(HttpRequestBase httpRequest, String json, final boolean needCetify, Map<String, String> paramsMap) {
-//		UserPrefs pref = App.getUserPrefs();
+	private void addHttpHead(HttpRequestBase httpRequest) {
+		UserPrefs pref = App.getUserPrefs();
 		httpRequest.setHeader(UA, UA_PROJECT_NAME + " v_" + App.instance().getVersionName()
 				+ " (Android " + Build.VERSION.RELEASE + ")") ;
 		httpRequest.addHeader(HEAD_UA, UA_PROJECT_NAME + " v_" + App.instance().getVersionName()
 				+ " (Android " + Build.VERSION.RELEASE + ")") ;
-//		httpRequest.addHeader(HEAD_SID, pref.getSession());
-//		httpRequest.addHeader(HEAD_UID, "" + pref.getUid());
-//		httpRequest.addHeader(HEAD_UDID, pref.getOpenUdid());
+		httpRequest.addHeader(HEAD_SID, pref.getSession());
+		httpRequest.addHeader(HEAD_UID, "" + pref.getUid());
+		httpRequest.addHeader(HEAD_UDID, pref.getOpenUdid());
 		
-		String channel = App.instance().getChannel();
-		httpRequest.addHeader(HEAD_REFER, channel);
+//		String channel = App.instance().getChannel();
+//		httpRequest.addHeader(HEAD_REFER, channel);
 
-//		long Rid = pref.getRid();
-//		if (Rid == Long.MAX_VALUE)
-//			Rid = 1L;
-//		else
-//			Rid++;
-//		pref.setRid(Rid);
-//		httpRequest.addHeader(HEAD_RID, "" + Rid);
-		String rTime = "" + System.currentTimeMillis()/1000;
-		httpRequest.addHeader(HEAD_RTIME, rTime);
-
-		addHttpHead(httpRequest, paramsMap, rTime);
-		
-		String md5 = "";
-		String signature = "";
-//		if (needCetify) {
-//			md5 = MD5.md5(json);
-//
-//			String strToSign;
-//			String CanonicalURI = mInfo.getOperationType();
-//			String HTTPRequestMethod = "POST";
-//			String CanonicalHeaders = HEAD_SID + HEAD_SEP + pref.getSession() + HEAD_LINE_SEP +
-////			        "x-qfgj-uid" + ":" + pref.getUid() + "\n" +
-//			        HEAD_UDID + HEAD_SEP + pref.getOpenUdid() + HEAD_LINE_SEP +
-//			        HEAD_RID + HEAD_SEP + Rid + HEAD_LINE_SEP +
-//			        HEAD_RTIME + HEAD_SEP + rTime + HEAD_LINE_SEP +
-//			        HEAD_CONTENT + HEAD_SEP + md5 + HEAD_LINE_SEP;
-//			strToSign = CanonicalURI + HEAD_LINE_SEP + HTTPRequestMethod + HEAD_LINE_SEP + HEAD_LINE_SEP + CanonicalHeaders;
-//			Print.i(TAG, "CanonicalHeaders=" + CanonicalHeaders);
-//
-//			signature = HmacSHA1.signature("12345ba035678685a46adee051dca85be88eakey", strToSign);
-//			Print.i(TAG, "signature="+signature);
-//		}
-//		pref.save();
-
-		httpRequest.addHeader(HEAD_CONTENT, md5);
-		httpRequest.addHeader(HEAD_SIGNATURE, signature.trim());
-
-//		Print.i(TAG, "uid="+pref.getUid());
 	}
 	
 	private void addHttpHead(HttpRequestBase httpRequest, Map<String, String> paramsMap, String rTime) {
@@ -394,11 +406,11 @@ public class NetWork {
 		
 		return parse.parse(result);
 	}
-	
+
 	private Map<String, String> getParamMap(Object params) {
 		if (params == null)
 			return null;
-		
+
 		try {
 			Map<String, String> paramsMap = new HashMap<String, String>();
 			Gson gson = new Gson();

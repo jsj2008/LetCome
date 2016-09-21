@@ -2,7 +2,7 @@ package com.gxq.tpm.network;
 
 import com.gxq.tpm.ServiceConfig;
 
-enum Link {PLATFORM, H5}
+enum Link {PLATFORM, H5,UPLOAD}
 
 enum Type {POST, GET}
 
@@ -12,8 +12,8 @@ public enum RequestInfo {
 	// 用户 -- 登录相关接口
 	WATER_FALLS_REFRESH("/waterfalls", Link.PLATFORM, Type.GET, Certify.NO, "刷新瀑布流"),
 	WATER_FALLS_MORE("/waterfalls", Link.PLATFORM, Type.GET, Certify.NO, "翻页瀑布流"),
-	LOGIN("/user/login", Link.PLATFORM, Type.POST, Certify.NO, "登录");
-	
+	LOGIN("/user/login", Link.PLATFORM, Type.POST, Certify.NO, "登录"),
+	UPLOAD("/image/upload", Link.UPLOAD, Type.POST, Certify.NO, "上传图片");
 	
 	private String mOperationType;
 	private Link mLink;
@@ -39,7 +39,7 @@ public enum RequestInfo {
 	}
 	
 	public String getUrl() {
-		if (mLink == Link.PLATFORM) {
+		if (mLink == Link.PLATFORM || mLink == Link.UPLOAD) {
 			return ServiceConfig.getServicePlatform() + getOperationType();
 		} else if (mLink == Link.H5) {
 			return ServiceConfig.getServiceH5() + mOperationType;
@@ -54,6 +54,9 @@ public enum RequestInfo {
 
 	public boolean isPost() {
 		return mRequestType == Type.POST;
+	}
+	public boolean isUpload() {
+		return mLink == Link.UPLOAD;
 	}
 	
 	public boolean needCertify() {

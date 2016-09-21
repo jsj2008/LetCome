@@ -140,11 +140,11 @@
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_btn_check_material.xml"
     },
     {
-        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/tabbar_me.xml",
-        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/tabbar_me.xml"
-    },
-    {
         "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/btn_radius.xml",
         "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/btn_radius.xml"
+    },
+    {
+        "merged": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/res/merged/debug/drawable/tabbar_me.xml",
+        "source": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/drawable/tabbar_me.xml"
     }
 ]

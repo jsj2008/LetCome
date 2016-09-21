@@ -32,10 +32,14 @@ public class NetworkProxy implements NetworkCallback {
 		NetworkTask networkTask = new NetworkTask(info, this, tag, repeatable) {
 			@Override
 			protected BaseRes callService() throws Exception {
-				if (info.isPost()) {
-					return mNetwork.postRequest(info, params, cls);
-				} else {
-					return mNetwork.getRequest(info, params, cls);
+				if(info.isUpload()){
+					return mNetwork.uploadRequest(info,params,cls);
+				}else {
+					if (info.isPost()) {
+						return mNetwork.postRequest(info, params, cls);
+					} else {
+						return mNetwork.getRequest(info, params, cls);
+					}
 				}
 			}
 		};
@@ -57,7 +61,18 @@ public class NetworkProxy implements NetworkCallback {
 		};
 		networkTask.doInBackground();
 	}
-	
+
+	public void getUploadRequest(final RequestInfo info, final byte[] params,
+						   final Class<? extends BaseRes> cls, int tag, boolean repeatable) {
+
+		NetworkTask networkTask = new NetworkTask(info, this, tag, repeatable) {
+			@Override
+			protected BaseRes callService() throws Exception {
+				return mNetwork.uploadRequest(info, params, cls);
+			}
+		};
+		networkTask.doInBackground();
+	}
 	
 	public void getHQRequest(final RequestInfo info, final Object params,
 			final Class<? extends BaseRes> cls, final int tag, final boolean repeatable) {

@@ -93,7 +93,9 @@
     <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="universal-image-loader-1.9.5" level="project" />
     <orderEntry type="library" exported="" name="pushservice-5.0.0.66" level="project" />
+    <orderEntry type="library" exported="" name="httpclient-android-4.3.5" level="project" />
     <orderEntry type="library" exported="" name="gridlayout-v7-23.1.0" level="project" />
+    <orderEntry type="library" exported="" name="httpmime-4.3.6" level="project" />
     <orderEntry type="module" module-name="PinterestLikeAdapterView" exported="" />
     <orderEntry type="library" exported="" name="org.apache.http.legacy-android-23" level="project" />
   </component>

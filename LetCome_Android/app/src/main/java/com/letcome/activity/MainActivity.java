@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.View;
@@ -15,9 +16,16 @@ import com.gxq.tpm.activity.SuperActivity;
 import com.gxq.tpm.fragment.FragmentBase;
 import com.gxq.tpm.tools.DispatcherTimer;
 import com.gxq.tpm.ui.CPopupWindow;
+import com.letcome.App;
 import com.letcome.R;
 import com.letcome.fragement.MeFragment;
 import com.letcome.fragement.SellFragment;
+import com.letcome.mode.UploadRes;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 public class MainActivity extends SuperActivity implements View.OnClickListener{
 
@@ -37,11 +45,15 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 	private CPopupWindow mPopupWindow;
 
 	private long mMineClickTime = 0;
+    String mFilePath;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+    // 获取SD卡路径
+        mFilePath = Environment.getExternalStorageDirectory().getPath();
+        // 文件名
+        mFilePath = mFilePath + "/" + "camera_tmp.png";
 //		int activityFrom = getIntent().getIntExtra(ProductIntent.EXTRA_ACTIVITY_FROM, 0);
 //		if (activityFrom == ProductIntent.FROM_LAUNCH) {
 //			getIntent().putExtra(ProductIntent.EXTRA_ACTIVITY_FROM, 0);
@@ -195,27 +207,36 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 	}
 
 	void gotoCamera(View v){
-		mPopupWindow = new CPopupWindow(this);
-		mPopupWindow.setContentView(R.layout.sell_choose);
-		mPopupWindow.showAtLocation(v, Gravity.BOTTOM, 0, 0);
-		mPopupWindow.findViewById(R.id.goto_camera).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// 利用系统自带的相机应用:拍照
-				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-				startActivityForResult(intent, IMAGE_FROM_CAMERA);
-				mPopupWindow.dismiss();
-			}
-		});
-		mPopupWindow.findViewById(R.id.goto_gallery).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(Intent.ACTION_PICK,
-						android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-				startActivityForResult(intent, IMAGE_FROM_GALLERY);
-				mPopupWindow.dismiss();
-			}
-		});
+		if(App.getUserPrefs().hasUserLogin()) {
+			mPopupWindow = new CPopupWindow(this);
+			mPopupWindow.setContentView(R.layout.sell_choose);
+			mPopupWindow.showAtLocation(v, Gravity.BOTTOM, 0, 0);
+			mPopupWindow.findViewById(R.id.goto_camera).setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+                    mPopupWindow.dismiss();
+					// 利用系统自带的相机应用:拍照
+					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    // 加载路径
+                    Uri uri = Uri.fromFile(new File(mFilePath));
+                    // 指定存储路径，这样就可以保存原图了
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+					startActivityForResult(intent, IMAGE_FROM_CAMERA);
+					mPopupWindow.dismiss();
+				}
+			});
+			mPopupWindow.findViewById(R.id.goto_gallery).setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent(Intent.ACTION_PICK,
+							android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+					startActivityForResult(intent, IMAGE_FROM_GALLERY);
+					mPopupWindow.dismiss();
+				}
+			});
+		}else{
+			gotoLogin();
+		}
 //		mPopupWindow.showAtLocation();
 
 	}
@@ -223,20 +244,52 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		//获取图片路径
-		if (requestCode == IMAGE_FROM_GALLERY && resultCode == Activity.RESULT_OK && data != null) {
-			Uri selectedImage = data.getData();
-			String[] filePathColumns = {MediaStore.Images.Media.DATA};
-			Cursor c = getContentResolver().query(selectedImage, filePathColumns, null, null, null);
-			c.moveToFirst();
-			int columnIndex = c.getColumnIndex(filePathColumns[0]);
-			String imagePath = c.getString(columnIndex);
-			Bitmap bm = BitmapFactory.decodeFile(imagePath);
-			c.close();
+		try {
+			//获取图片路径
+			if (requestCode == IMAGE_FROM_GALLERY && resultCode == Activity.RESULT_OK && data != null) {
+				Uri selectedImage = data.getData();
+				String[] filePathColumns = {MediaStore.Images.Media.DATA};
+				Cursor c = getContentResolver().query(selectedImage, filePathColumns, null, null, null);
+				c.moveToFirst();
+				int columnIndex = c.getColumnIndex(filePathColumns[0]);
+				String imagePath = c.getString(columnIndex);
+				Bitmap bm = BitmapFactory.decodeFile(imagePath);
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bm.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+                byte[] bytes = baos.toByteArray();
+                uploadImage(bytes);
+                c.close();
+                baos.flush();
+                baos.close();
+			}else if(requestCode == IMAGE_FROM_CAMERA){
+
+                InputStream is = new FileInputStream(mFilePath);
+                // 把流解析成bitmap
+                Bitmap bm = BitmapFactory.decodeStream(is);
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bm.compress(Bitmap.CompressFormat.PNG, 50, baos);
+
+                123123
+                byte[] bytes = baos.toByteArray();
+                uploadImage(bytes);
+                baos.flush();
+                baos.close();
+
+
+
+            }
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
-
+	public void uploadImage(byte[] bytes){
+		UploadRes.Params p = new UploadRes.Params();
+		p.setMyfile(bytes);
+		UploadRes.doRequest(p,this);
+	}
 
 	@Override
 	public void onClick(View v) {

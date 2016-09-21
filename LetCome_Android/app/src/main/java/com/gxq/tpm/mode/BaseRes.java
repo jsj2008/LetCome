@@ -12,11 +12,20 @@ public class BaseRes implements Serializable{
 	public String result;
 	public int error_code;
 	public String error_msg;
+	public String retVal;
 	public String http_x_qfgj_contentmd5;
 	public int http_x_qfgj_dup_login;
 	public String session_id;
 	public long request_id;
 	public long response_time;
+
+	public String getRetVal() {
+		return retVal;
+	}
+
+	public void setRetVal(String retVal) {
+		this.retVal = retVal;
+	}
 
 	public String getError_msg() {
 		return error_msg;
