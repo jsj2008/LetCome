@@ -3,6 +3,7 @@ package com.letcome.controller;
 import com.letcome.entity.ImageEntity;
 import com.letcome.entity.ReturnEntity;
 import com.letcome.service.ImageService;
+import com.letcome.util.SystemUtil;
 import com.letcome.vo.ImageVO;
 import org.hibernate.Hibernate;
 import org.springframework.core.io.InputStreamResource;
@@ -69,7 +70,11 @@ public class ImageController {
 
     @RequestMapping("/upload")
     @ResponseBody
-    public ReturnEntity addImage(@RequestHeader("let_come_uid") String uid ,@RequestParam("myfiles") MultipartFile file,HttpServletRequest request){
+    public ReturnEntity addImage(
+            @RequestHeader(value = "User-Agent" ,required = false,defaultValue = "") String ua ,
+            @RequestHeader("let_come_uid") String uid ,
+            @RequestParam("myfiles") MultipartFile file,
+            HttpServletRequest request){
 
 //        if(files!=null && files.length>0 ) {
 //            CommonsMultipartFile file = files[0];
@@ -77,7 +82,11 @@ public class ImageController {
 
             if (!file.isEmpty()) {
                 try {
-                    return service.addImage(Integer.valueOf(uid), file.getOriginalFilename(), file.getBytes());
+                    int platform = SystemUtil.PLATEFORM_IOS;
+                    if(ua.indexOf("Android")>0){
+                        platform = SystemUtil.PLATEFORM_ANDROID;
+                    }
+                    return service.addImage(Integer.valueOf(uid), file.getOriginalFilename(), file.getBytes(),platform);
                 } catch (Exception e) {
                     e.printStackTrace();
                     ReturnEntity ret = new ReturnEntity();

@@ -4,7 +4,6 @@
     <string name="app_name">letgo</string>
 
 
-
     <string name="layer_loading_text">请等待</string>
 
     <!-- 异常提醒 -->
@@ -33,7 +32,7 @@
 
 
     <string name="tab_chats_text">Chats</string>
-    <string name="tab_categories_text">Categories</string>
+    <string name="tab_categories_text">分类</string>
 
     <string name="chat_btn">Chat with the seller</string>
     <string name="sign_up">注 册</string>
@@ -41,5 +40,15 @@
     <string name="email">请输入注册邮箱</string>
     <string name="password">请输入密码</string>
     <string name="sell_product">上传你的宝贝</string>
+    <string name="post_success">恭喜，产品提交成功</string>
+    <string name="input_price">价格</string>
+    <string name="input_desc">宝贝描述</string>
+    <string name="input_mobile">联系方式</string>
+    <string name="input_category">类别</string>
+    <string name="rmb_sign">¥</string>
+    <string name="done">完 成</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!--LetGO end -->
 </resources>

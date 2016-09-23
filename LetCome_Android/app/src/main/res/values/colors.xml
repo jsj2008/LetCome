@@ -84,6 +84,8 @@
    	<color name="color_ff7814">#ffff7814</color>
    	<color name="color_508cf0">#ff508cf0</color>
 
+	<color name="category_bg">#eeeeee</color>
+	<color name="category_border">#dddddd</color>
 	<color name="nav_red">#ff3f55</color>
 	<color name="button_red_disabled">#ffc5cc</color>
    	<color name="login_background">#f7f3f3</color>

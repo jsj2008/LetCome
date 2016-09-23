@@ -20,7 +20,7 @@ import com.letcome.R;
 /**
  * Created by rjt on 16/9/8.
  */
-public class WaterFallsView extends MultiColumnListView implements PLA_AbsListView.OnScrollListener{
+public class  WaterFallsView extends MultiColumnListView implements PLA_AbsListView.OnScrollListener{
     private final static int RELEASE_TO_REFRESH = 0; // 放手刷新
     private final static int PULL_TO_REFRESH 	= 1; // 下拉刷新
     private final static int REFRESHING			= 2; // 刷新

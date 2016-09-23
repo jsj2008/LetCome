@@ -6,6 +6,7 @@ import android.os.SystemClock;
 import com.google.gson.Gson;
 import com.gxq.tpm.prefs.BasePrefs;
 import com.gxq.tpm.tools.Util;
+import com.letcome.mode.CategoriesRes;
 import com.letcome.mode.LoginRes;
 
 import java.io.Serializable;
@@ -26,6 +27,7 @@ public class UserPrefs extends BasePrefs {
 	private static final String LAST_IGNORED_VERSION 	= "last_ignored_version"; // 忽略版本
 	private static final String LAST_INSTRUCTED_VERSION = "last_instructed_version"; // 欢迎页
 	private static final String CURRENT_TIME 			= "current_time"; //
+	private static final String CATEGORIES 				= "CATEGORIES"; //
 	private static final String STOCK_LIST_VERSION		= "stock_list_version";
 	
 	private static final String INI_PATCH 				= "inipatch";
@@ -55,6 +57,8 @@ public class UserPrefs extends BasePrefs {
 		}
 		return userPrefs;
 	}
+
+
 
 	public void setOpenUdid(String v) {
 		putString(OPEN_UDID, v);
@@ -121,7 +125,7 @@ public class UserPrefs extends BasePrefs {
 	}
 
 	public void setLoginID(String v) {
-		putString(LOGIN_ID,v);
+		putString(LOGIN_ID, v);
 	}
 
 	/**
@@ -168,6 +172,14 @@ public class UserPrefs extends BasePrefs {
 
 	public LoginRes getUserInfo() {
 		return readBaseRes(USER_INFO, LoginRes.class);
+	}
+
+	public void setCategories(CategoriesRes categories) {
+		writeBaseRes(CATEGORIES, categories);
+	}
+
+	public CategoriesRes getCategories() {
+		return readBaseRes(CATEGORIES, CategoriesRes.class);
 	}
 
 	public String getFlag(){

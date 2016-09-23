@@ -37,6 +37,7 @@
         </activity>
         <activity android:name="com.letcome.activity.ProductsActivity" />
         <activity android:name="com.letcome.activity.LoginActivity" />
+        <activity android:name="com.letcome.activity.SellDetailActivity" />
     </application>
 
 </manifest>

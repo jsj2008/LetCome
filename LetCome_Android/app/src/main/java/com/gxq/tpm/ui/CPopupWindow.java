@@ -20,19 +20,24 @@ public class CPopupWindow {
 	private float mAlpha = 0.5f;
 	
 	public CPopupWindow(Activity context) {
+		this(context,new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
+
+	}
+
+	public CPopupWindow(Activity context,LayoutParams params) {
 		this.mContext = context;
 		mPopupWindow = new PopupWindow(context);
-		
-		mPopupWindow.setFocusable(true);  
+
+		mPopupWindow.setFocusable(true);
 		mPopupWindow.setOutsideTouchable(true);
-		
-		mPopupWindow.setWidth(LayoutParams.MATCH_PARENT);
-		mPopupWindow.setHeight(LayoutParams.WRAP_CONTENT);
-		
+
+		mPopupWindow.setWidth(params.width);
+		mPopupWindow.setHeight(params.height);
+
 		ColorDrawable drawable = new ColorDrawable(mContext.getResources().getColor(R.color.transparent));
 		mPopupWindow.setBackgroundDrawable(drawable);
 	}
-	
+
 	public void setContentView(int layoutResId) {
 		LayoutInflater layoutInflater = LayoutInflater.from(mContext);
 		mView = layoutInflater.inflate(layoutResId, null, false);

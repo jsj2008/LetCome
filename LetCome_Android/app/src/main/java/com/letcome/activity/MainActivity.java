@@ -14,18 +14,25 @@ import android.view.View;
 
 import com.gxq.tpm.activity.SuperActivity;
 import com.gxq.tpm.fragment.FragmentBase;
+import com.gxq.tpm.mode.BaseRes;
+import com.gxq.tpm.network.RequestInfo;
 import com.gxq.tpm.tools.DispatcherTimer;
 import com.gxq.tpm.ui.CPopupWindow;
 import com.letcome.App;
 import com.letcome.R;
+import com.letcome.fragement.CategoriesFragment;
 import com.letcome.fragement.MeFragment;
 import com.letcome.fragement.SellFragment;
+import com.letcome.mode.CategoriesRes;
 import com.letcome.mode.UploadRes;
+import com.letcome.prefs.UserPrefs;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MainActivity extends SuperActivity implements View.OnClickListener{
 
@@ -38,7 +45,7 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 
 	public final static int IMAGE_FROM_GALLERY				= 1;
 	public final static int IMAGE_FROM_CAMERA				= 2;
-
+	public final static int UPDATE_DETAIL					= 3;
 	private DispatcherTimer mNeedNoticeDispatcher;
 	private boolean mFromLaunch;
 
@@ -65,8 +72,9 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 
 		changeFragment(R.id.tab_me, getIntent().getExtras());
 
-
+		categoryRequest();
 	}
+
 
 	@Override
 	protected void onNewIntent(Intent intent) {
@@ -144,9 +152,9 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 			case R.id.tab_sell:
 				fragment = new SellFragment();
 				break;
-//			case R.id.tab_account:
-//				fragment = new SettlementFragment(markId);
-//				break;
+			case R.id.tab_categories:
+				fragment = new CategoriesFragment(markId);
+				break;
 //			case R.id.tab_mine:
 //				fragment = new ProductMineFragment(markId);
 //				break;
@@ -207,6 +215,7 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 	}
 
 	void gotoCamera(View v){
+
 		if(App.getUserPrefs().hasUserLogin()) {
 			mPopupWindow = new CPopupWindow(this);
 			mPopupWindow.setContentView(R.layout.sell_choose);
@@ -237,7 +246,6 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 		}else{
 			gotoLogin();
 		}
-//		mPopupWindow.showAtLocation();
 
 	}
 
@@ -269,17 +277,30 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
                 Bitmap bm = BitmapFactory.decodeStream(is);
 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bm.compress(Bitmap.CompressFormat.PNG, 50, baos);
+                bm.compress(Bitmap.CompressFormat.JPEG, 30, baos);
 
-                123123
                 byte[] bytes = baos.toByteArray();
                 uploadImage(bytes);
                 baos.flush();
                 baos.close();
-
-
-
-            }
+            }else if(requestCode == UPDATE_DETAIL){
+				if (resultCode == RESULT_OK){
+					new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+							.setTitleText("恭喜!")
+							.setContentText("你的宝贝信息已经完善!")
+							.setCancelText("  确  定  ")
+							.setCancelClickListener(null)
+							.setConfirmText("继续发布")
+							.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+								@Override
+								public void onClick (SweetAlertDialog sweetAlertDialog){
+									sweetAlertDialog.dismissWithAnimation();
+									MainActivity.this.gotoCamera(getWindow().getDecorView());
+								}
+							})
+							.show();
+				}
+			}
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -288,8 +309,32 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 	public void uploadImage(byte[] bytes){
 		UploadRes.Params p = new UploadRes.Params();
 		p.setMyfile(bytes);
-		UploadRes.doRequest(p,this);
+		UploadRes.doRequest(p, this);
+		showWaitDialog(RequestInfo.UPLOAD);
 	}
+
+	public void categoryRequest(){
+		CategoriesRes.doRequest(new CategoriesRes.Params(),this);
+		showWaitDialog(RequestInfo.CATEGORIES);
+	}
+
+	@Override
+	public void netFinishOk(RequestInfo info, BaseRes res, int tag) {
+		if (info==RequestInfo.UPLOAD){
+			UploadRes l = (UploadRes) res;
+			SellDetailActivity.create(this,UPDATE_DETAIL,res.getRetVal());
+		}
+		if (info==RequestInfo.CATEGORIES){
+			CategoriesRes c = (CategoriesRes)res;
+			UserPrefs prefs = App.getUserPrefs();
+			prefs.setCategories(c);
+			prefs.save();
+		}
+		super.netFinishOk(info, res, tag);
+	}
+
+
+
 
 	@Override
 	public void onClick(View v) {

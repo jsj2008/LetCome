@@ -7,6 +7,7 @@ import com.letcome.entity.ImageEntity;
 import com.letcome.entity.LoginEntity;
 import com.letcome.entity.ReturnEntity;
 import com.letcome.util.EncryptUtils;
+import com.letcome.util.SystemUtil;
 import com.letcome.vo.ImageVO;
 import com.letcome.vo.ProductVO;
 import com.letcome.vo.UserVO;
@@ -53,7 +54,7 @@ public class ImageService {
         this.productDao = productDao;
     }
 
-    public ReturnEntity addImage(Integer uid,String imagename,byte[] bytes){
+    public ReturnEntity addImage(Integer uid,String imagename,byte[] bytes,int plateform){
 //        ImageVO vo  = new ImageVO();
 //        vo.setUid(uid);
 //        vo.setImagename(imagename);
@@ -97,10 +98,19 @@ public class ImageService {
                 vo.setImagepath(file.getAbsolutePath());
                 vo.setThumbpath(fileThumb.getAbsolutePath());
                 //相反？
-                vo.setThumbwidth(sourceImg.getHeight()/10);
-                vo.setThumbheight( sourceImg.getWidth()/10);
-                vo.setImagewidth(sourceImg.getHeight());
-                vo.setImageheight(sourceImg.getWidth());
+                System.out.println("getHeight=" + sourceImg.getHeight() + ";getWidth=" + sourceImg.getWidth());
+                if (plateform == SystemUtil.PLATEFORM_IOS) {
+                    vo.setThumbwidth(sourceImg.getHeight()/10);
+                    vo.setThumbheight( sourceImg.getWidth()/10);
+                    vo.setImagewidth(sourceImg.getHeight());
+                    vo.setImageheight(sourceImg.getWidth());
+                }else{
+                    vo.setThumbwidth(sourceImg.getWidth()/10);
+                    vo.setThumbheight( sourceImg.getHeight()/10);
+                    vo.setImagewidth(sourceImg.getWidth());
+                    vo.setImageheight(sourceImg.getHeight());
+                }
+
                 vo.setUid(uid);
                 vo.setProductid(pid);
                 ret = imageDao.insertImage(vo);
