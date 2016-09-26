@@ -10,6 +10,10 @@ enum Certify {YES, NO}
 
 public enum RequestInfo {
 	// 用户 -- 登录相关接口
+	FAVORITES_REFRESH("/product/myfavorites", Link.PLATFORM, Type.GET, Certify.NO, "刷新我的收藏"),
+	FAVORITES_MORE("/product/myfavorites", Link.PLATFORM, Type.GET, Certify.NO, "翻页我的收藏"),
+	MY_PRODUCTS_REFRESH("/product/myproducts", Link.PLATFORM, Type.GET, Certify.NO, "刷新我的产品"),
+	MY_PRODUCTS_MORE("/product/myproducts", Link.PLATFORM, Type.GET, Certify.NO, "翻页我的产品"),
 	WATER_FALLS_REFRESH("/waterfalls", Link.PLATFORM, Type.GET, Certify.NO, "刷新瀑布流"),
 	WATER_FALLS_MORE("/waterfalls", Link.PLATFORM, Type.GET, Certify.NO, "翻页瀑布流"),
 	LOGIN("/user/login", Link.PLATFORM, Type.POST, Certify.NO, "登录"),

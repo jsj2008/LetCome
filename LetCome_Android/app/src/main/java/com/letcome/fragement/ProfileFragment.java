@@ -19,6 +19,7 @@ import com.letcome.App;
 import com.letcome.R;
 import com.letcome.activity.MainActivity;
 import com.letcome.mode.LoginRes;
+import com.letcome.mode.MyProductsRes;
 import com.letcome.prefs.UserPrefs;
 
 import java.util.ArrayList;
@@ -103,9 +104,9 @@ public class ProfileFragment extends FragmentBase{
 
         mViewPager = (ViewPager) view.findViewById(R.id.id_stickynavlayout_viewpager);
 
-        mSellingFragment = new SellingWaterFallsFragment();
-        mSoldFragment = new ProfileWaterFallsFragment();
-        mFavoriteFragment = new ProfileWaterFallsFragment();
+        mSellingFragment = new MyWaterFallsFragment(MyProductsRes.Params.STATUS_SELLING);
+        mSoldFragment = new MyWaterFallsFragment(MyProductsRes.Params.STATUS_SOLD);
+        mFavoriteFragment = new FavoritesWaterFallsFragment();
 
 
         mFragments = new ArrayList<ProfileWaterFallsFragment>();

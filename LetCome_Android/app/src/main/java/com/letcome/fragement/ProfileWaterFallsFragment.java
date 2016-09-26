@@ -16,8 +16,8 @@ import com.gxq.tpm.mode.BaseRes;
 import com.gxq.tpm.network.RequestInfo;
 import com.huewu.pla.lib.internal.PLA_AdapterView;
 import com.letcome.R;
-import com.letcome.activity.ProductsActivity;
-import com.letcome.adapter.ImageGridAdapter;
+import com.letcome.activity.MyProductsActivity;
+import com.letcome.adapter.ProductsGridAdapter;
 import com.letcome.ui.WaterFallsView;
 
 import java.io.Serializable;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class ProfileWaterFallsFragment extends FragmentBase implements WaterFallsView.OnRefreshListener, WaterFallsView.OnMoreListener{
     protected WaterFallsView mAdapterView = null;
-    protected ImageGridAdapter adapter;
+    protected ProductsGridAdapter adapter;
 
     protected ArrayList<Integer> colorList;
 
@@ -62,7 +62,7 @@ public class ProfileWaterFallsFragment extends FragmentBase implements WaterFall
         mAdapterView = (WaterFallsView) view.findViewById(R.id.list);
         mAdapterView.setOnRefreshListener(this);
         mAdapterView.setMoreListener(this);
-        adapter = new ImageGridAdapter(this.mContext);
+        adapter = new ProductsGridAdapter(this.mContext);
         mAdapterView.setAdapter(adapter);
     }
 
@@ -74,7 +74,7 @@ public class ProfileWaterFallsFragment extends FragmentBase implements WaterFall
                 ImageView iv = (ImageView) view.findViewById(R.id.imageView);
 
                 if (iv.getDrawable() instanceof BitmapDrawable) {
-                    Intent intent = new Intent(view.getContext(), ProductsActivity.class);
+                    Intent intent = new Intent(view.getContext(), MyProductsActivity.class);
                     intent.putExtra("records", (Serializable) adapter.getRecords());
                     intent.putExtra("id", id);
                     intent.putExtra("position", position - 1);

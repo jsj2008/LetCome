@@ -4153,14 +4153,7 @@
                     "endOffset": 54290
                 },
                 "from": {
-                    "file": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/values/dimens.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 59,
-                        "endColumn": 57,
-                        "endOffset": 112
-                    }
+                    "file": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/values/dimens.xml"
                 }
             },
             {
@@ -5240,7 +5233,14 @@
                     "endOffset": 59192
                 },
                 "from": {
-                    "file": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/values/config.xml"
+                    "file": "/Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/res/values/config.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 149,
+                        "endColumn": 80,
+                        "endOffset": 225
+                    }
                 }
             },
             {
