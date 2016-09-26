@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/nav_red">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="matrix"
+            android:src="@drawable/ic_placeholder_pattern_transparent"/>
+        <RelativeLayout
+            android:id="@+id/logo"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/logo_circle_border"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/name_first"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:textColor="#FFFFFF"
+                android:text="K"
+                />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_toRightOf="@id/logo"
+            android:orientation="vertical"
+            android:layout_width="100dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/profile_name"
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                android:textSize="11sp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/white_color"
+                android:gravity="bottom"
+                android:text="rjc"/>
+            <TextView
+                android:id="@+id/profile_city"
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                android:textSize="11sp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/white_color"
+                android:gravity="top"
+                android:text="上海市"/>
+        </LinearLayout>
+        <Button
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_settings"/>
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_below="@id/top_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.gxq.tpm.ui.SimpleViewPagerIndicator
+            android:id="@+id/id_stickynavlayout_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white_color" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/horizontal_line_separate_height"
+            android:background="@color/line_seperate_color" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/id_stickynavlayout_viewpager"
+            android:background="@color/red_color"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </android.support.v4.view.ViewPager>
+
+    </LinearLayout>
+
+</RelativeLayout>

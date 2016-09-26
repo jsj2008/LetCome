@@ -22,6 +22,7 @@ import com.letcome.App;
 import com.letcome.R;
 import com.letcome.fragement.CategoriesFragment;
 import com.letcome.fragement.MeFragment;
+import com.letcome.fragement.ProfileFragment;
 import com.letcome.fragement.SellFragment;
 import com.letcome.mode.CategoriesRes;
 import com.letcome.mode.UploadRes;
@@ -116,27 +117,6 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 	}
 
 	@Override
-	public void onAlarmClock(int operationType) {
-		super.onAlarmClock(operationType);
-		requestMsgNotice();
-	}
-
-	private void requestMsgNotice() {
-//		if (mUserPrefs.hasUserLogin()) {
-//			NeedNotice.Params params = new NeedNotice.Params();
-//			params.type = NeedNotice.MSG;
-//			params.from_time = mUserPrefs.getProductMsgTime();
-//			NeedNotice.doRequest(params, this, NEED_NOTICE_MSG);
-//		}
-	}
-
-	private void requestGetTime() {
-//		if (mUserPrefs.hasUserLogin()) {
-//			GetTime.doRequest(this);
-//		}
-	}
-
-	@Override
 	protected void onPause() {
 		super.onPause();
 		mNeedNoticeDispatcher.timerTaskControl(false);
@@ -155,16 +135,16 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 			case R.id.tab_categories:
 				fragment = new CategoriesFragment(markId);
 				break;
-//			case R.id.tab_mine:
-//				fragment = new ProductMineFragment(markId);
-//				break;
+			case R.id.tab_profile:
+				fragment = new ProfileFragment(markId);
+				break;
 		}
 		return fragment;
 	}
 
 	@Override
 	public void onTabClick(final int id) {
-		if (id == R.id.tab_profile){
+		if (id == R.id.tab_profile && !App.getUserPrefs().hasUserLogin()){
 			gotoLogin();
 		}else if(id == R.id.tab_sell){
 			gotoCamera(getWindow().getDecorView());
@@ -201,8 +181,6 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 			case R.id.tab_profile:
 				getTitleBar().hideTitleBar();
 				getTabBar().selectTabItem(R.id.tab_profile);
-				requestGetTime();
-				gotoLogin();
 				break;
 		}
 

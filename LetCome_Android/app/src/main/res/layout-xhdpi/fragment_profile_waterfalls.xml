@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:textSize="100sp"
+        android:text="123123123213"/>
+    <com.letcome.ui.WaterFallsView
+        xmlns:pla="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/list"
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        pla:plaColumnNumber="3"
+        pla:plaLandscapeColumnNumber="3"
+        pla:plaContentBackground = "#FFFFFF"
+        >
+    </com.letcome.ui.WaterFallsView>
+</RelativeLayout>

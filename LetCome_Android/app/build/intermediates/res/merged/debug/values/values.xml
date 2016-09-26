@@ -122,6 +122,7 @@
     <color name="color_f8f8f8">#fff8f8f8</color>
     <color name="color_fa4b32">#ffffab32</color>
     <color name="color_fafafa">#fffafafa</color>
+    <color name="color_fc919d">#fffc919d</color>
     <color name="color_ff4b30">#ffff4b30</color>
     <color name="color_ff7814">#ffff7814</color>
     <color name="color_ff8c00">#ffff8c00</color>
@@ -432,6 +433,7 @@
     <dimen name="notification_subtext_size">12dp</dimen>
     <dimen name="progress_circle_radius">34dp</dimen>
     <dimen name="vertical_line_separate_width">0.5dp</dimen>
+    <dimen name="view_pager_indicator_height">1dp</dimen>
     <drawable name="notification_template_icon_bg">#3333B5E5</drawable>
     <item name="action_bar_activity_content" type="id"/>
     <item name="action_bar_spinner" type="id"/>
@@ -508,6 +510,9 @@
     <string name="password">请输入密码</string>
     <string name="percent_unit">%</string>
     <string name="post_success">恭喜，产品提交成功</string>
+    <string name="profile_favorite">收藏</string>
+    <string name="profile_selling">正售</string>
+    <string name="profile_sold">已买</string>
     <string name="ptr_last_updated">Updated: %1$s</string>
     <string name="ptr_loading">Loading</string>
     <string name="ptr_pull_to_refresh">Pull to refresh</string>

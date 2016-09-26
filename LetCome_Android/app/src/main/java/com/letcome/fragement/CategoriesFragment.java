@@ -84,7 +84,7 @@ public class CategoriesFragment extends FragmentBase{
                 FragmentManager manager = getFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
 
-                transaction.add(R.id.my_framelayout, my_fragment);
+//                transaction.add(R.id.my_framelayout, my_fragment);
 
             }
         });
