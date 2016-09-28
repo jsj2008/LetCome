@@ -11,6 +11,7 @@ import com.clj.memoryspinner.MemorySpinner;
 import com.gxq.tpm.activity.SuperActivity;
 import com.gxq.tpm.mode.BaseRes;
 import com.gxq.tpm.network.RequestInfo;
+import com.gxq.tpm.tools.BaiduLocationUtils;
 import com.letcome.App;
 import com.letcome.R;
 import com.letcome.mode.CategoriesRes;
@@ -100,6 +101,9 @@ public class SellDetailActivity extends SuperActivity implements View.OnClickLis
         p.setContact_info(mobile);
 
         p.setCategory_id(findCategoryByName(mMmemorySpinner.getSelectedItem().toString()));
+        p.setLatitude(String.valueOf(BaiduLocationUtils.mLocation.getLatitude()));
+        p.setLongitude(String.valueOf(BaiduLocationUtils.mLocation.getLongitude()));
+        p.setCity(BaiduLocationUtils.mLocation.getCity());
 
         UpdateProductRes.doRequest(p, this);
 

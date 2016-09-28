@@ -2,6 +2,7 @@ package com.letcome.fragement;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -9,15 +10,17 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.gxq.tpm.fragment.FragmentBase;
-import com.gxq.tpm.tools.LocationUtils;
+import com.gxq.tpm.tools.BaiduLocationUtils;
 import com.gxq.tpm.tools.Util;
 import com.gxq.tpm.ui.SimpleViewPagerIndicator;
 import com.letcome.App;
 import com.letcome.R;
 import com.letcome.activity.MainActivity;
+import com.letcome.activity.SettingActivity;
 import com.letcome.mode.LoginRes;
 import com.letcome.mode.MyProductsRes;
 import com.letcome.prefs.UserPrefs;
@@ -27,6 +30,7 @@ import java.util.List;
 
 public class ProfileFragment extends FragmentBase{
     TextView mNameFirst,mName,mCity;
+    Button mSettingBtn;
 
     SimpleViewPagerIndicator mIndicator;
     private String[] mTitles = new String[] {
@@ -94,18 +98,27 @@ public class ProfileFragment extends FragmentBase{
         mCity = (TextView)view.findViewById(R.id.profile_city);
         mName = (TextView)view.findViewById(R.id.profile_name);
         mNameFirst = (TextView)view.findViewById(R.id.name_first);
+        mSettingBtn = (Button)view.findViewById(R.id.setting_btn);
+
+        mSettingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), SettingActivity.class);
+                startActivity(intent);
+            }
+        });
 
         mName.setText(res.getFullname());
         mNameFirst.setText(res.getFullname().substring(0, 1).toUpperCase());
-        mCity.setText(LocationUtils.cityName);
+        mCity.setText(BaiduLocationUtils.mLocation.getCity());
 
         mIndicator = (SimpleViewPagerIndicator) view.findViewById(R.id.id_stickynavlayout_indicator);
         mIndicator.setTitles(mTitles);
 
         mViewPager = (ViewPager) view.findViewById(R.id.id_stickynavlayout_viewpager);
 
-        mSellingFragment = new MyWaterFallsFragment(MyProductsRes.Params.STATUS_SELLING);
-        mSoldFragment = new MyWaterFallsFragment(MyProductsRes.Params.STATUS_SOLD);
+        mSellingFragment = new MyWaterFallsFragment(MyProductsRes.STATUS_SELLING);
+        mSoldFragment = new MyWaterFallsFragment(MyProductsRes.STATUS_SOLD);
         mFavoriteFragment = new FavoritesWaterFallsFragment();
 
 

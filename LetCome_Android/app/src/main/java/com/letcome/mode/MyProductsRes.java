@@ -13,9 +13,7 @@ public class MyProductsRes extends ProductsRes {
 
     public static class Params implements Serializable {
 
-        public static final String STATUS_PUBLISH = "0";
-        public static final String STATUS_SELLING = "1";
-        public static final String STATUS_SOLD = "2";
+
 
         private static final long serialVersionUID = -7118811436882564397L;
 

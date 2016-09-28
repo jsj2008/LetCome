@@ -17,11 +17,13 @@ import android.widget.ImageView;
 import com.gxq.tpm.fragment.FragmentBase;
 import com.gxq.tpm.mode.BaseRes;
 import com.gxq.tpm.network.RequestInfo;
+import com.gxq.tpm.tools.Print;
 import com.huewu.pla.lib.internal.PLA_AdapterView;
 import com.letcome.R;
 import com.letcome.activity.MainActivity;
 import com.letcome.activity.ProductsActivity;
 import com.letcome.adapter.ImageGridAdapter;
+import com.letcome.mode.ProductsRes;
 import com.letcome.mode.WaterFallsRes;
 import com.letcome.ui.WaterFallsView;
 
@@ -32,7 +34,8 @@ import java.util.ArrayList;
  * Created by rjt on 16/9/2.
  */
 public class MeFragment extends FragmentBase implements WaterFallsView.OnRefreshListener, WaterFallsView.OnMoreListener {
-    private WaterFallsView mAdapterView = null;
+    public final static int PRODUCT_DETAIL					= 4;
+    private WaterFallsView mAdapterView;
     private ImageGridAdapter adapter;
     private ArrayList<Integer> colorList;
     private Integer mPage = 1;
@@ -68,10 +71,10 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
         super.onViewCreated(view, savedInstanceState);
 
         this.colorList = new ArrayList<Integer>();
-        this.colorList.add(Color.rgb(199,200,182));
+        this.colorList.add(Color.rgb(199, 200, 182));
         this.colorList.add(Color.rgb(189, 189, 189));
         this.colorList.add(Color.rgb(186, 162, 153));
-        this.colorList.add(Color.rgb(243,241,236));
+        this.colorList.add(Color.rgb(243, 241, 236));
         initView(view);
         initAction(view);
     }
@@ -103,7 +106,10 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
                     intent.putExtra("position", position - 1);
                     Bitmap image = ((BitmapDrawable) iv.getDrawable()).getBitmap();
                     intent.putExtra("bitmap", image);
-                    startActivity(intent);
+                    startActivityForResult(intent, PRODUCT_DETAIL);
+//                    Intent intent = new Intent(view.getContext(), LocationDemo.class);
+//                    startActivity(intent);
+
                 }
 
             }
@@ -173,4 +179,20 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
         return super.netFinishError(info, what, msg, tag);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PRODUCT_DETAIL && resultCode == Activity.RESULT_OK && data != null){
+            String id = data.getStringExtra("id");
+            String isFavorite = data.getStringExtra("is_favorite");
+            for (ProductsRes.Record record:adapter.getRecords()) {
+                if (record.getId().equals(id)){
+                    record.setIs_favorite(isFavorite);
+                    break;
+                }
+            }
+
+            Print.i("ProductsActivity", resultCode + ";" + data);
+        }
+    }
 }

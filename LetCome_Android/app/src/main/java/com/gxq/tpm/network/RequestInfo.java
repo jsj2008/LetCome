@@ -19,7 +19,9 @@ public enum RequestInfo {
 	LOGIN("/user/login", Link.PLATFORM, Type.POST, Certify.NO, "登录"),
 	UPLOAD("/image/upload", Link.UPLOAD, Type.POST, Certify.NO, "上传图片"),
 	UPDATEPRODUCT("/product/update", Link.PLATFORM, Type.POST, Certify.NO, "更新产品"),
-	CATEGORIES("/categories", Link.PLATFORM, Type.GET, Certify.NO, "获取产品目录");
+	CATEGORIES("/categories", Link.PLATFORM, Type.GET, Certify.NO, "获取产品目录"),
+	DOFAVORITE("/product/favorite", Link.PLATFORM, Type.GET, Certify.NO, "点赞"),
+	UNFAVORITE("/product/unfavorite", Link.PLATFORM, Type.GET, Certify.NO, "取消收藏");
 	private String mOperationType;
 	private Link mLink;
 	private Type mRequestType;

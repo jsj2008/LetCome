@@ -6,18 +6,16 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.letcome.App;
-import com.letcome.R;
 import com.gxq.tpm.activity.SuperActivity;
 import com.gxq.tpm.mode.BaseRes;
+import com.gxq.tpm.network.NetworkProxy.ICallBack;
 import com.gxq.tpm.network.NetworkResultInfo;
 import com.gxq.tpm.network.RequestInfo;
-import com.gxq.tpm.network.NetworkProxy.ICallBack;
 import com.gxq.tpm.tools.DispatcherTimer;
-import com.gxq.tpm.tools.Print;
 import com.gxq.tpm.tools.DispatcherTimer.OnDispatcherTimerListener;
+import com.gxq.tpm.tools.Print;
 import com.gxq.tpm.ui.CTitleBar;
-import com.umeng.analytics.MobclickAgent;
+import com.letcome.R;
 
 public class FragmentBase extends Fragment implements ICallBack, OnDispatcherTimerListener {
 	private int mMarkId;
@@ -68,9 +66,6 @@ public class FragmentBase extends Fragment implements ICallBack, OnDispatcherTim
 	@Override
 	public void onPause() {
 	    super.onPause();
-	    if (!App.instance().isTest()) {
-	    	MobclickAgent.onPageEnd(this.getClass().getName());
-	    }
 	}
 	
 //	public void setSwitchListener(OnSwitchListener l) {

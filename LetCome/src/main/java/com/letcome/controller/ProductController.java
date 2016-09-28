@@ -70,6 +70,14 @@ public class ProductController {
         return service.addFavorite(Integer.valueOf(uid), Integer.valueOf(pid));
     }
 
+    @RequestMapping(value = "/unfavorite",method = RequestMethod.GET)
+    @ResponseBody
+    public ReturnEntity removeFavorite(@RequestHeader("let_come_uid") String  uid,
+                                    @RequestParam("pid") String pid) {
+
+        return service.removeFavorite(Integer.valueOf(uid), Integer.valueOf(pid));
+    }
+
     @RequestMapping(value = "/myfavorites",method = RequestMethod.GET)
     @ResponseBody
     public ReturnEntity findMyFavorite(@RequestHeader("let_come_uid") String  uid,

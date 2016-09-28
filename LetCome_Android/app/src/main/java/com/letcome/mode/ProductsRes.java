@@ -9,9 +9,11 @@ import java.util.ArrayList;
  * Created by rjt on 16/9/26.
  */
 public class ProductsRes extends BaseRes{
-    /**
-     *
-     */
+
+    public static final String STATUS_PUBLISH = "0";
+    public static final String STATUS_SELLING = "1";
+    public static final String STATUS_SOLD = "2";
+
     private static final long serialVersionUID = 2021297357168322275L;
     ArrayList<Record> records;
 

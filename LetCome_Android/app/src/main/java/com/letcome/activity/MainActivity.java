@@ -47,6 +47,7 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 	public final static int IMAGE_FROM_GALLERY				= 1;
 	public final static int IMAGE_FROM_CAMERA				= 2;
 	public final static int UPDATE_DETAIL					= 3;
+
 	private DispatcherTimer mNeedNoticeDispatcher;
 	private boolean mFromLaunch;
 
@@ -242,20 +243,20 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 				Bitmap bm = BitmapFactory.decodeFile(imagePath);
 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bm.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+                bm.compress(Bitmap.CompressFormat.JPEG, 30, baos);
                 byte[] bytes = baos.toByteArray();
                 uploadImage(bytes);
                 c.close();
                 baos.flush();
                 baos.close();
-			}else if(requestCode == IMAGE_FROM_CAMERA){
+			}else if(requestCode == IMAGE_FROM_CAMERA && resultCode == Activity.RESULT_OK){
 
                 InputStream is = new FileInputStream(mFilePath);
                 // 把流解析成bitmap
                 Bitmap bm = BitmapFactory.decodeStream(is);
 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bm.compress(Bitmap.CompressFormat.JPEG, 30, baos);
+                bm.compress(Bitmap.CompressFormat.JPEG, 20, baos);
 
                 byte[] bytes = baos.toByteArray();
                 uploadImage(bytes);
@@ -310,7 +311,6 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 		}
 		super.netFinishOk(info, res, tag);
 	}
-
 
 
 

@@ -126,7 +126,7 @@ public class ProductDAO extends BaseDAO{
         Session session = sessionFactory.getCurrentSession();
         String hql = "SELECT p.id,p.description,p.created_at,p.updated_at,p.longitude,p.latitude,p.city,p.status,p.price,p.category_id,p.uid,p.fullname,imagename,imagepath,image_id,imageheight,imagewidth,thumbheight,thumbwidth,thumbpath,contact_info from favorites f" +
                 " left join  products_v p on p.id = f.pid " +
-                " where f.uid = ? ";
+                " where f.uid = ? and p.id>0 ";
         if(status !=null ){
             hql+= "and p.status = ? ";
         }
@@ -159,6 +159,7 @@ public class ProductDAO extends BaseDAO{
         return ret;
     }
 
+
     public ReturnEntity insertFavorite(FavoriteVO favoriteVO){
         Session session = sessionFactory.getCurrentSession();
         favoriteVO.setCreated_at(new Date());
@@ -167,6 +168,22 @@ public class ProductDAO extends BaseDAO{
         ret.setRetVal(favoriteVO.getId());
         return ret;
     }
+
+    public ReturnEntity deleteFavorite(FavoriteVO favoriteVO){
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "DELETE  from favorites where pid = ? and  uid = ?";
+        int index = 0;
+        Query query = session.createSQLQuery(hql)
+                .setInteger(index++, favoriteVO.getPid())
+                .setInteger(index++, favoriteVO.getUid());
+
+        query.executeUpdate();
+
+        ReturnEntity ret = new ReturnEntity();
+        return ret;
+    }
+
+
 
     public ReturnEntity updateProduct(ProductVO productVO){
         ReturnEntity ret = new ReturnEntity();

@@ -13,8 +13,9 @@ import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 
+import com.baidu.mapapi.SDKInitializer;
+import com.gxq.tpm.tools.BaiduLocationUtils;
 import com.gxq.tpm.tools.Installation;
-import com.gxq.tpm.tools.LocationUtils;
 import com.gxq.tpm.tools.Util;
 import com.gxq.tpm.tools.crypt.MD5;
 import com.letcome.prefs.UserPrefs;
@@ -93,7 +94,10 @@ public class App extends Application {
 		imageLoader.init(config);
 //		imageLoader.init(ImageLoaderConfiguration.createDefault(this));
 
-		LocationUtils.getCNBylocation(this);
+//		LocationUtils.getCNBylocation(this);
+
+		SDKInitializer.initialize(getApplicationContext());
+		BaiduLocationUtils.createtLocationAndCity(this);
 	}
 	
 	/**

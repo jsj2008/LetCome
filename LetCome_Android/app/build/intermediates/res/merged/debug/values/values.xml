@@ -89,6 +89,7 @@
     <color name="category_border">#dddddd</color>
     <color name="chart_loading_color">#ff848484</color>
     <color name="color_007aff">#ff007aff</color>
+    <color name="color_009aab">#ff009aab</color>
     <color name="color_222222">#ff222222</color>
     <color name="color_32abf8">#ff32abf8</color>
     <color name="color_424242">#ff424242</color>
@@ -524,6 +525,7 @@
     <string name="service_h5">http://115.159.194.244:8080/</string>
     <string name="service_hq">http://192.168.6.66:2050/</string>
     <string name="service_platform">http://115.159.194.244:8080/LetCome</string>
+    <string name="setting_title">设置</string>
     <string name="sign_up">注 册</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="strategy_time">次</string>

@@ -24,6 +24,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ProfileWaterFallsFragment extends FragmentBase implements WaterFallsView.OnRefreshListener, WaterFallsView.OnMoreListener{
+    public final static int PRODUCT_DETAIL = 1;
     protected WaterFallsView mAdapterView = null;
     protected ProductsGridAdapter adapter;
 
@@ -80,11 +81,19 @@ public class ProfileWaterFallsFragment extends FragmentBase implements WaterFall
                     intent.putExtra("position", position - 1);
                     Bitmap image = ((BitmapDrawable) iv.getDrawable()).getBitmap();
                     intent.putExtra("bitmap", image);
-                    startActivity(intent);
+                    startActivityForResult(intent,PRODUCT_DETAIL);
                 }
 
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PRODUCT_DETAIL){
+            onRefresh();
+        }
     }
 
     @Override

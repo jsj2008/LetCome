@@ -47,6 +47,14 @@ public class ProductService {
         return  productDao.insertFavorite(vo);
     }
 
+    public ReturnEntity removeFavorite(Integer uid,Integer pid){
+        FavoriteVO vo =  new FavoriteVO();
+        vo.setCreated_at(new Date());
+        vo.setUid(uid);
+        vo.setPid(pid);
+        return  productDao.deleteFavorite(vo);
+    }
+
     public ProductViewEntity getMyFavorites(Integer uid,String status,long pno,long limit,String downloadPath){
         long start = (pno-1)*limit;
         ProductViewEntity entity = new ProductViewEntity();

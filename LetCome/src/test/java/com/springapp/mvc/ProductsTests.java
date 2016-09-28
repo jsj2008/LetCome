@@ -189,6 +189,8 @@ public class ProductsTests {
         assertThat(Integer.valueOf(l2.getRetVal().toString()), greaterThan(0));
     }
 
+
+
     @Test
     public void test_F_GetProductDetail() throws Exception{
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/detail");
@@ -245,15 +247,15 @@ public class ProductsTests {
 //        requestBuilder.header("Content-Type", "application/json");
 //        requestBuilder.header("let_come_uid", testUID.toString());
         requestBuilder.param("longitude","121.530079");
-        requestBuilder.param("latitude","31.216000");
-        requestBuilder.param("distance","100000");
+        requestBuilder.param("latitude", "31.216000");
+        requestBuilder.param("distance", "100000");
         requestBuilder.param("cid","1,2");
 //        requestBuilder.param("pricerank","desc");
 //        requestBuilder.param("productname","让人");
-        requestBuilder.param("starttime","1");
+        requestBuilder.param("starttime", "1");
 //        requestBuilder.param("endtime","2");
-        requestBuilder.param("pno","1");
-        requestBuilder.param("limit","5");
+        requestBuilder.param("pno", "1");
+        requestBuilder.param("limit", "5");
 
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
         String str = result.getResponse().getContentAsString();
@@ -314,6 +316,21 @@ public class ProductsTests {
         ProductViewEntity l2 = mapper.readValue(str, ProductViewEntity.class);
         assertThat(l2.getRecords().size(), greaterThan(0));
         assertThat(l2.getRecords().size(), lessThanOrEqualTo(2));
+    }
+
+    @Test
+    public void test_L_UnFavorite() throws Exception{
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/unfavorite");
+//        requestBuilder.header("Content-Type", "application/json");
+        requestBuilder.header("let_come_uid", favoritUID.toString());
+        requestBuilder.param("pid", String.valueOf(pid));
+
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        String str = result.getResponse().getContentAsString();
+        System.out.println("str = " + str);
+        ObjectMapper mapper = new ObjectMapper();
+        ReturnEntity l2 = mapper.readValue(str, ReturnEntity.class);
+        Assert.assertEquals(l2.getResult(), ReturnEntity.RETURN_SUCCESS);
     }
 
 }
