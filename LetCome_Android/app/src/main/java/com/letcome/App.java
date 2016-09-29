@@ -19,12 +19,13 @@ import com.gxq.tpm.tools.Installation;
 import com.gxq.tpm.tools.Util;
 import com.gxq.tpm.tools.crypt.MD5;
 import com.letcome.prefs.UserPrefs;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
-import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.utils.StorageUtils;
 
+import java.io.File;
 import java.util.List;
 
 public class App extends Application {
@@ -64,37 +65,17 @@ public class App extends Application {
 		prefs.setOpenUdid(MD5.md5(getDeviceId() + Installation.id(this)));
 		prefs.setFlag("ok");
 		prefs.save();
+        File cachecheDir = StorageUtils.getOwnCacheDirectory(getApplicationContext(), "imageloader/Cache");
+        ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(getApplicationContext());
+        config.threadPriority(Thread.NORM_PRIORITY - 2);
+        config.denyCacheImageMultipleSizesInMemory();
+        config.diskCacheFileNameGenerator(new Md5FileNameGenerator());
+        config.diskCacheSize(50 * 1024 * 1024); // 50 MiB
+        config.tasksProcessingOrder(QueueProcessingType.LIFO);
+        config.writeDebugLogs(); // Remove for release app
 
-		DisplayImageOptions options = new DisplayImageOptions.Builder()
-				// .showImageOnLoading(R.drawable.ic_empty)
-				// 设置图片在下载期间显示的图片
-				// .showImageForEmptyUri(R.drawable.ic_empty)
-				// 设置图片Uri为空或是错误的时候显示的图片
-				// .showImageOnFail(R.drawable.ic_empty)
-				// 设置图片加载/解码过程中错误时候显示的图片
-				.cacheInMemory(true)
-						// 设置下载的图片是否缓存在内存中
-				.cacheOnDisk(true)
-						// 设置下载的图片是否缓存在SD卡中
-				.displayer(new FadeInBitmapDisplayer(100))
-				.considerExifParams(true).build();
-//				.displayer(new FadeInBitmapDisplayer(100))// 图片加载好后渐入的动画时间
-//				.displayer(new RoundedBitmapDisplayer(1)).build();
-		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
-				this)
-				.threadPoolSize(3)
-				.threadPriority(Thread.NORM_PRIORITY - 2)
-				.memoryCacheSize(4 * 1024 * 1024)
-				.defaultDisplayImageOptions(options)
-				.imageDownloader(
-						new BaseImageDownloader(this, 10 * 1000, 30 * 1000))
-				.writeDebugLogs().build();
-
-		ImageLoader imageLoader = ImageLoader.getInstance(); // Get singleton instance
-		imageLoader.init(config);
-//		imageLoader.init(ImageLoaderConfiguration.createDefault(this));
-
-//		LocationUtils.getCNBylocation(this);
+        // Initialize ImageLoader with configuration.
+        ImageLoader.getInstance().init(config.build());
 
 		SDKInitializer.initialize(getApplicationContext());
 		BaiduLocationUtils.createtLocationAndCity(this);
@@ -222,5 +203,6 @@ public class App extends Application {
 	public static UserPrefs getUserPrefs() {
 		return prefs;
 	}
+
 
 }

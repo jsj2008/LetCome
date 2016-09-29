@@ -47,7 +47,7 @@ public class ProfileFragment extends FragmentBase{
     private FragmentPagerAdapter mAdapter;
 
     public ProfileFragment() {
-        this(R.id.tab_me);
+        this(R.id.tab_profile);
     }
 
     @SuppressLint("ValidFragment")

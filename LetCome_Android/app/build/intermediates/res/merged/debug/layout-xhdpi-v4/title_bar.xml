@@ -20,14 +20,27 @@
     		android:adjustViewBounds="true"
             android:layout_centerInParent="true" />
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/titleBar_titleLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
 
-    <TextView 
-        android:id="@+id/titleBar_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textColor="@color/title_bar_color"
-        android:textSize="@dimen/font_size_xhdpi_18" />
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp">
+        <RelativeLayout
+            android:id="@+id/titleBar_titleview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/titleBar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/title_bar_color"
+            android:textSize="@dimen/font_size_xhdpi_18" />
+
+    </RelativeLayout>
+
     
     <RelativeLayout 
         android:id="@+id/rl_titleBar_right"

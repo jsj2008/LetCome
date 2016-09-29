@@ -38,17 +38,18 @@ public class CItemBar extends RelativeLayout implements View.OnClickListener {
 		
 		String titleText = a.getString(R.styleable.CItemBar_itemTitleText);
 		int itemTitleTextSize = a.getDimensionPixelSize(R.styleable.CItemBar_itemTitleTextSize, -1);
-		int itemTitleTextColor = a.getColor(R.styleable.CItemBar_itemTitleTextColor, 
+		int itemTitleTextColor = a.getColor(R.styleable.CItemBar_itemTitleTextColor,
 				resource.getColor(R.color.text_color_title));
 
 		String contentText = a.getString(R.styleable.CItemBar_itemContentText);
 		int itemContentTextSize = a.getDimensionPixelSize(R.styleable.CItemBar_itemContentTextSize, -1);
-		int itemContentTextColor = a.getColor(R.styleable.CItemBar_itemContentTextColor, 
+		int itemContentTextColor = a.getColor(R.styleable.CItemBar_itemContentTextColor,
 				resource.getColor(R.color.text_color_main));
 		
 		String contentSubText = a.getString(R.styleable.CItemBar_itemContentSubText);
 		
 		boolean show = a.getBoolean(R.styleable.CItemBar_itemShowDetail, false);
+		boolean imgshow = a.getBoolean(R.styleable.CItemBar_itemShowRightImg,true);
 		
 		a.recycle();
 		
@@ -75,7 +76,7 @@ public class CItemBar extends RelativeLayout implements View.OnClickListener {
 			mRightView = (ImageView) findViewById(R.id.iv_content);
 			
 			setOnClickListener(this);
-			setShowDetail(show);
+			setShowDetail(show,imgshow);
 		}
 	}
 	
@@ -193,9 +194,9 @@ public class CItemBar extends RelativeLayout implements View.OnClickListener {
 			mContentSubView.setTextColor(color);
 	}
 	
-	public void setShowDetail(boolean show) {
+	public void setShowDetail(boolean show,boolean imgshow) {
 		setEnabled(show);
-		mRightView.setVisibility(show ? View.VISIBLE : View.GONE);
+		mRightView.setVisibility(show&&imgshow ? View.VISIBLE : View.GONE);
 	}
 	
 	public static interface OnItemBarClickListener {

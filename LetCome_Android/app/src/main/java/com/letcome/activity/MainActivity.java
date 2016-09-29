@@ -101,8 +101,9 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 		getTabBar().newTabBarItem(R.id.tab_me, R.drawable.tabbar_me);
 		getTabBar().newTabBarItem(R.id.tab_categories, R.drawable.tabbar_categories);
 		getTabBar().newTabBarItem(R.id.tab_sell, R.drawable.tabbar_sell);
-		getTabBar().newTabBarItem(R.id.tab_chat, R.drawable.tabbar_chat);
+//		getTabBar().newTabBarItem(R.id.tab_chat, R.drawable.tabbar_chat);
 		getTabBar().newTabBarItem(R.id.tab_profile, R.drawable.tabbar_profile);
+
 	}
 
 	@Override
@@ -130,6 +131,9 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 			case R.id.tab_me:
 				fragment = new MeFragment(markId);
 				break;
+            case R.id.tab_products:
+                fragment = new MeFragment(markId);
+                break;
 			case R.id.tab_sell:
 				fragment = new SellFragment();
 				break;
@@ -137,8 +141,8 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 				fragment = new CategoriesFragment(markId);
 				break;
 			case R.id.tab_profile:
-				fragment = new ProfileFragment(markId);
-				break;
+                fragment = new ProfileFragment(markId);
+                break;
 		}
 		return fragment;
 	}
@@ -161,7 +165,14 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 		switch (id) {
 			case R.id.tab_me:
 //				getTitleBar().hideTitleBar();
+
 				getTitleBar().setTitle(R.string.app_name);
+//                RelativeLayout v = (RelativeLayout)getLayoutInflater().inflate(R.layout.tab_title_choose,null);
+//                v.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//                RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) v.getLayoutParams();
+//                lp.setMargins(10, 20, 10, 20);
+//                v.setBackgroundResource(R.drawable.view_radius_5dp_white);
+//                getTitleBar().setTitleView(v);
 				getTabBar().selectTabItem(R.id.tab_me);
 
 				break;
@@ -170,6 +181,7 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 				getTitleBar().setTitle(R.string.tab_categories_text);
 				getTabBar().selectTabItem(R.id.tab_categories);
 				break;
+
 			case R.id.tab_sell:
 //				getTitleBar().setTitle(R.string.tab_account_text);
 				getTabBar().selectTabItem(R.id.tab_sell);
@@ -317,5 +329,10 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 	@Override
 	public void onClick(View v) {
 		gotoCamera(v);
+	}
+
+	@Override
+	public void onLeftClick(View v) {
+		super.onLeftClick(v);
 	}
 }

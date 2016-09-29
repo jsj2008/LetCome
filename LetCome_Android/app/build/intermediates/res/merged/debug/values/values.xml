@@ -227,7 +227,7 @@
     <declare-styleable name="ButtonBarLayout"><attr format="boolean" name="allowStacking"/></declare-styleable>
     <declare-styleable name="CCheckBox"><attr format="dimension|reference" name="cb_textSize"/><attr format="color|reference" name="cb_textColor"/><attr format="string|reference" name="cb_leftText"/><attr format="string|reference" name="cb_rightText"/><attr format="boolean|reference" name="checked"/><attr format="reference" name="checkedBackground"/><attr format="reference" name="uncheckedBackground"/><attr format="reference" name="disableBackground"/></declare-styleable>
     <declare-styleable name="CEmptyNoteView"><attr format="string|reference" name="src_text"/><attr format="string|reference" name="btn_text"/></declare-styleable>
-    <declare-styleable name="CItemBar"><attr format="reference" name="itemTitleImage"/><attr format="string|reference" name="itemTitleText"/><attr name="itemTitleTextSize"/><attr name="itemTitleTextColor"/><attr format="string|reference" name="itemContentText"/><attr format="dimension|reference" name="itemContentTextSize"/><attr format="color|reference" name="itemContentTextColor"/><attr format="string|reference" name="itemContentSubText"/><attr format="dimension|reference" name="itemContentSubTextSize"/><attr format="color|reference" name="itemContentSubTextColor"/><attr format="boolean|reference" name="itemShowDetail"/></declare-styleable>
+    <declare-styleable name="CItemBar"><attr format="reference" name="itemTitleImage"/><attr format="string|reference" name="itemTitleText"/><attr name="itemTitleTextSize"/><attr name="itemTitleTextColor"/><attr format="string|reference" name="itemContentText"/><attr format="dimension|reference" name="itemContentTextSize"/><attr format="color|reference" name="itemContentTextColor"/><attr format="string|reference" name="itemContentSubText"/><attr format="dimension|reference" name="itemContentSubTextSize"/><attr format="color|reference" name="itemContentSubTextColor"/><attr format="boolean|reference" name="itemShowRightImg"/><attr format="boolean|reference" name="itemShowDetail"/></declare-styleable>
     <declare-styleable name="CRadioGroup"><attr format="integer" name="checkedButton"/></declare-styleable>
     <declare-styleable name="CSelectViewContainer"><attr format="dimension|reference" name="horizontal_spacing"/><attr format="dimension|reference" name="vertical_spacing"/><attr format="dimension|reference" name="item_height"/><attr format="integer" name="num_column"/><attr format="integer" name="select"/></declare-styleable>
     <declare-styleable name="CSliderView"><attr format="integer" name="item_num"/><attr format="reference" name="src"/><attr format="integer" name="selected"/></declare-styleable>
@@ -453,6 +453,7 @@
     <item name="tab_categories" type="id"/>
     <item name="tab_chat" type="id"/>
     <item name="tab_me" type="id"/>
+    <item name="tab_products" type="id"/>
     <item name="tab_profile" type="id"/>
     <item name="tab_sell" type="id"/>
     <item name="up" type="id"/>
@@ -503,6 +504,7 @@
     <string name="input_price">价格</string>
     <string name="layer_loading_text">请等待</string>
     <string name="log_in">登 录</string>
+    <string name="logout">注销</string>
     <string name="loosen_more">松开加载更多</string>
     <string name="loosen_refresh">松开刷新</string>
     <string name="money_symbol">￥</string>

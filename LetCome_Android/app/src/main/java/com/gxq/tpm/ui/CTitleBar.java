@@ -6,6 +6,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ public class CTitleBar extends RelativeLayout implements View.OnClickListener {
 	private View mContainer, mLeftController, mRightController;
 	private ImageView mIvLeft;
 	private TextView mTvRightText, mTvTitle;
+	private RelativeLayout mTitleView;
 	
 	private OnTitleBarClickListener mListener;
 	
@@ -38,7 +40,9 @@ public class CTitleBar extends RelativeLayout implements View.OnClickListener {
 		mLeftController = findViewById(R.id.rl_titleBar_left);
 		mIvLeft = (ImageView) findViewById(R.id.iv_titleBar_left);
 		mLeftController.setOnClickListener(this);
-		
+
+		mTitleView = (RelativeLayout)findViewById(R.id.titleBar_titleview);
+
 		mRightController = findViewById(R.id.rl_titleBar_right);
 		mTvRightText = (TextView) findViewById(R.id.tv_titleBar_right);
 		mRightController.setOnClickListener(this);
@@ -46,6 +50,15 @@ public class CTitleBar extends RelativeLayout implements View.OnClickListener {
 		mTvTitle = (TextView) findViewById(R.id.titleBar_title);
 		
 		setVisibility(View.GONE);
+	}
+
+	public void setTitleView(View view){
+		hideLeft();
+		hideRight();
+		showTitleBar();
+		mTitleView.addView(view);
+		mTitleView.setVisibility(VISIBLE);
+		mTvTitle.setVisibility(GONE);
 	}
 	
 	public void setTitle(CharSequence title) {
@@ -82,12 +95,12 @@ public class CTitleBar extends RelativeLayout implements View.OnClickListener {
 	private void showTitleBar() {
 		setVisibility(View.VISIBLE);
 	}
-	
-	private void hideLeft() {
+
+	public void hideLeft() {
 		mLeftController.setVisibility(View.GONE);
 	}
-	
-	private void hideRight() {
+
+	public void hideRight() {
 		mRightController.setVisibility(View.GONE);
 	}
 

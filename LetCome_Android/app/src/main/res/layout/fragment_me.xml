@@ -1,17 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/category_bg">
+    <LinearLayout
+        android:id="@+id/category_filter"
+        android:layout_width="53dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/view_radius_3dp"
+        android:visibility="gone">
+        <ImageView
+            android:id="@+id/category_filter_img"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sports_leisure_and_games" />
+        <TextView
+            android:id="@+id/category_filter_close"
+            android:layout_width="18dp"
+            android:layout_height="match_parent"
+            android:text="X"
+            android:textColor="@color/color_808080"
+            android:gravity="center" />
+    </LinearLayout>
     <com.letcome.ui.WaterFallsView
+        android:layout_below="@id/category_filter"
         xmlns:pla="http://schemas.android.com/apk/res-auto"
         android:id="@+id/list"
-        android:background="#FFFFFF"
+        android:background="@color/category_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         pla:plaColumnNumber="3"
         pla:plaLandscapeColumnNumber="3"
-        pla:plaContentBackground = "#FFFFFF"
-        >
+        pla:plaContentBackground = "@color/category_bg">
     </com.letcome.ui.WaterFallsView>
     <RelativeLayout
         android:layout_alignParentBottom="true"

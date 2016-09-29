@@ -6,7 +6,7 @@
     <item type="id" name="tab_sell"/>
     <item type="id" name="tab_chat"/>
     <item type="id" name="tab_profile"/>
-
+    <item type="id" name="tab_products"/>
     <item type="id" name="sign_agreement_fragment" />
     
     <item type="id" name="key_1"/>

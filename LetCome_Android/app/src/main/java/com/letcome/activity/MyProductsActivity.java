@@ -16,7 +16,6 @@ import com.gxq.tpm.network.RequestInfo;
 import com.letcome.R;
 import com.letcome.mode.ProductsRes;
 import com.letcome.mode.UpdateProductRes;
-import com.letcome.ui.ProductDetailDlg;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
@@ -109,9 +108,8 @@ public class MyProductsActivity extends SuperActivity {
         mProductLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProductDetailDlg dlg = new ProductDetailDlg(MyProductsActivity.this,record);
-                dlg.show();
-            }
+                MapActivity.create(MyProductsActivity.this, record);
+          }
         });
 
         String imageUri = record.getImagepath();

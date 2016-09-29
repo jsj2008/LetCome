@@ -160,6 +160,7 @@
 	    <attr name="itemContentSubText" format="string|reference" />
 	    <attr name="itemContentSubTextSize" format="dimension|reference" />
 	    <attr name="itemContentSubTextColor" format="color|reference" />
+        <attr name="itemShowRightImg" format="boolean|reference" />
 	    
 	    <!-- attr name="itemContentTitleText" format="string|reference" />
 	    <attr name="itemContentTitleTextSize" format="dimension|reference" />

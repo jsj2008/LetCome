@@ -116,8 +116,12 @@ public class ProductsGridAdapter extends BaseAdapter{
 //            bitmapMap.put(record.getHold_color(),drawable);
 //        }
 //        drawab
-        DisplayImageOptions options = new DisplayImageOptions.Builder().showImageOnLoading(new ColorDrawable(record.getHold_color())).build();
-
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(new ColorDrawable(record.getHold_color()))
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .considerExifParams(true)
+                .build();
         String imageUri = record.getThumbpath();
 //        DisplayImageOptions options = new DisplayImageOptions.Builder().
         imageLoader.displayImage(imageUri, imageView,options);

@@ -2,7 +2,6 @@ package com.letcome.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,9 +19,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by rjt on 16/9/2.
@@ -31,7 +28,6 @@ public class ImageGridAdapter extends BaseAdapter{
     private List<WaterFallsRes.Record> records;
     private LayoutInflater mLayoutInflater;
     private int mWidth;
-    private Map<Integer,Drawable> bitmapMap;
     public ImageGridAdapter(Context context) {
 
 //        mLoader = new ImageLoader(context);
@@ -49,9 +45,6 @@ public class ImageGridAdapter extends BaseAdapter{
 //        mWidth = (wm.getDefaultDisplay().getWidth())/3;//屏幕宽度
 //        mLoader.setRequiredSize(width / 3); //3表示列数
         mLayoutInflater = LayoutInflater.from(context);
-
-        bitmapMap = new HashMap<Integer,Drawable>();
-
 
     }
     public int getCount() {
@@ -115,7 +108,15 @@ public class ImageGridAdapter extends BaseAdapter{
 //            bitmapMap.put(record.getHold_color(),drawable);
 //        }
 //        drawab
-        DisplayImageOptions options = new DisplayImageOptions.Builder().showImageOnLoading(new ColorDrawable(record.getHold_color())).build();
+
+
+
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(new ColorDrawable(record.getHold_color()))
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .considerExifParams(true)
+                .build();
 
         String imageUri = record.getThumbpath();
 //        DisplayImageOptions options = new DisplayImageOptions.Builder().

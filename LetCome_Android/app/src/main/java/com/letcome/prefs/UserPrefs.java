@@ -85,7 +85,16 @@ public class UserPrefs extends BasePrefs {
 	public String getUid() {
 		return getString(UID, "");
 	}
-	
+
+	public void logout(){
+		setSession(null);
+		setUid(null);
+		setLoginID(null);
+		setUserInfo(null);
+		setIsNeedVerify(false);
+		save();
+	}
+
 //	public void setLogin(boolean login) {
 //		mLogin = login;
 //	}

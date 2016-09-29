@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.gxq.tpm.fragment.FragmentBase;
 import com.huewu.pla.lib.MultiColumnListView;
@@ -19,17 +18,14 @@ import com.letcome.R;
 import com.letcome.activity.MainActivity;
 import com.letcome.adapter.CategoryAdapter;
 
-import java.util.ArrayList;
-
 public class CategoriesFragment extends FragmentBase{
     private MultiColumnListView mAdapterView = null;
     private CategoryAdapter adapter;
-    private ArrayList<Integer> colorList;
     private Button mSelleBtn;
-    private MainActivity parent;
+    private MainActivity mParent;
 
     public CategoriesFragment() {
-        this(R.id.tab_me);
+        this(R.id.tab_categories);
     }
 
     @SuppressLint("ValidFragment")
@@ -42,7 +38,7 @@ public class CategoriesFragment extends FragmentBase{
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        parent = (MainActivity)activity;
+        mParent = (MainActivity)activity;
     }
 
     @Override
@@ -63,15 +59,15 @@ public class CategoriesFragment extends FragmentBase{
     private void initView(View view) {
         //mAdapterView = (PLA_AdapterView<Adapter>) findViewById(R.id.list);
         mAdapterView = (MultiColumnListView) view.findViewById(R.id.list);
-        View v = new View(parent);
+        View v = new View(mParent);
         v.setLayoutParams(new com.huewu.pla.lib.internal.PLA_AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300));
-        v.setBackgroundColor(ContextCompat.getColor(parent, R.color.category_bg));
+        v.setBackgroundColor(ContextCompat.getColor(mParent, R.color.category_bg));
         mAdapterView.addFooterView(v);
         adapter = new CategoryAdapter(this.mContext);
         mAdapterView.setAdapter(adapter);
 
         mSelleBtn = (Button) view.findViewById(R.id.sell_product);
-        mSelleBtn.setOnClickListener(parent);
+        mSelleBtn.setOnClickListener(mParent);
 //        queryMediaImages();
     }
 
@@ -79,15 +75,19 @@ public class CategoriesFragment extends FragmentBase{
         mAdapterView.setOnItemClickListener(new PLA_AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(PLA_AdapterView<?> parent, View view, int position, long id) {
-                ImageView iv = (ImageView) view.findViewById(R.id.imageView);
-
-                FragmentManager manager = getFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-
-//                transaction.add(R.id.my_framelayout, my_fragment);
-
+                CategoriesFragment.this.showProductsFragment(position);
             }
+
         });
     }
 
+    public void showProductsFragment(int position){
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        MeFragment contentFragment = new MeFragment(R.id.tab_products);
+        Bundle bundle = new Bundle();
+        bundle.putLong("cid", adapter.getItemId(position));
+        bundle.putInt("cimg", adapter.getItemImg(position));
+        mParent.changeFragment(R.id.tab_products,bundle);
+    }
 }

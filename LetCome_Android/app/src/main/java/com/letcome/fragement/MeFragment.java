@@ -13,11 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.gxq.tpm.fragment.FragmentBase;
 import com.gxq.tpm.mode.BaseRes;
 import com.gxq.tpm.network.RequestInfo;
 import com.gxq.tpm.tools.Print;
+import com.gxq.tpm.ui.CTitleBar;
 import com.huewu.pla.lib.internal.PLA_AdapterView;
 import com.letcome.R;
 import com.letcome.activity.MainActivity;
@@ -40,7 +43,15 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
     private ArrayList<Integer> colorList;
     private Integer mPage = 1;
     private Button mSelleBtn;
-    private MainActivity parent;
+
+    public MainActivity mParent;
+
+    private LinearLayout mCategoryFilter;
+    private TextView mCategoryFilterClose;
+    private ImageView mCategoryFilterImg;
+
+    private long cid ;
+    private int cimg;
 
     public MeFragment() {
         this(R.id.tab_me);
@@ -56,7 +67,7 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        parent = (MainActivity)activity;
+        mParent = (MainActivity)activity;
     }
 
     @Override
@@ -76,7 +87,9 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
         this.colorList.add(Color.rgb(186, 162, 153));
         this.colorList.add(Color.rgb(243, 241, 236));
         initView(view);
+        initArguments();
         initAction(view);
+
     }
 
     private void initView(View view) {
@@ -88,8 +101,41 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
         mAdapterView.setAdapter(adapter);
 
         mSelleBtn = (Button) view.findViewById(R.id.sell_product);
-        mSelleBtn.setOnClickListener(parent);
+        mSelleBtn.setOnClickListener(mParent);
+
+        mCategoryFilter = (LinearLayout)view.findViewById(R.id.category_filter);
+        mCategoryFilterClose = (TextView)view.findViewById(R.id.category_filter_close);
+        mCategoryFilterImg = (ImageView)view.findViewById(R.id.category_filter_img);
+
+
 //        queryMediaImages();
+    }
+
+    void initArguments(){
+        Bundle args = getArguments();
+        if(args!=null) {
+            cid =args.getLong("cid");
+            cimg = args.getInt("cimg");
+        }
+        if (cid>0){
+            mCategoryFilter.setVisibility(View.VISIBLE);
+            mCategoryFilterImg.setImageResource(cimg);
+            getTitleBar().setLeftImage(R.drawable.ic_prev_dialog_active);
+            getTitleBar().setOnTitleBarClickListener(new CTitleBar.OnTitleBarClickListener() {
+                @Override
+                public void onLeftClick(View view) {
+                    getTitleBar().hideLeft();
+                    MeFragment.this.mParent.changeFragment(R.id.tab_categories, null);
+                }
+
+                @Override
+                public void onRightClick(View view) {
+
+                }
+            });
+        }else{
+            mCategoryFilter.setVisibility(View.GONE);
+        }
     }
 
     private void initAction(View view) {
@@ -107,11 +153,18 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
                     Bitmap image = ((BitmapDrawable) iv.getDrawable()).getBitmap();
                     intent.putExtra("bitmap", image);
                     startActivityForResult(intent, PRODUCT_DETAIL);
-//                    Intent intent = new Intent(view.getContext(), LocationDemo.class);
-//                    startActivity(intent);
 
                 }
 
+            }
+        });
+
+        mCategoryFilterClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCategoryFilter.setVisibility(View.GONE);
+                cid = 0;
+                onRefresh();
             }
         });
     }
@@ -136,6 +189,9 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
         params.setLongitude("0");
         params.setLatitude("0");
         params.setDistance("0");
+        if(cid>0){
+            params.setCid(String.valueOf(cid));
+        }
         mPage = 1;
         params.setPno(String.valueOf(mPage));
         WaterFallsRes.doRefreshRequest(params, this);
@@ -193,6 +249,15 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
             }
 
             Print.i("ProductsActivity", resultCode + ";" + data);
+        }
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {// 在最前端界面显示
+            initArguments();
+            onRefresh();
         }
     }
 }

@@ -1,13 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/product_bg"
+    android:orientation="vertical"
     tools:context="com.letcome.activity.SettingActivity">
-<ListView
-    android:id="@+id/list_view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</ListView>
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:orientation="vertical">
+
+        <include layout="@layout/horizontal_space_separate"/>
+
+        <com.gxq.tpm.ui.CItemBar
+            android:id="@+id/user_logout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_xhdpi_45"
+            app:itemTitleText="@string/logout"
+            app:itemTitleImage="@drawable/ic_profile_logout"
+            app:itemShowDetail="true"
+            app:itemShowRightImg="false"/>
+
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/horizontal_line_separate_height"-->
+            <!--android:layout_marginLeft="@dimen/margin_xhdpi_15"-->
+            <!--android:background="@color/line_seperate_inside_color" >-->
+        <!--</View>-->
+
+        <include
+            layout="@layout/horizontal_line_separate" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

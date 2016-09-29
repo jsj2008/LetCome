@@ -21,10 +21,10 @@ import java.util.List;
  * Created by rjt on 16/9/2.
  */
 public class CategoryAdapter extends BaseAdapter{
-    private List<CategoriesRes.Record> records;
+    public List<CategoriesRes.Record> records;
     private LayoutInflater mLayoutInflater;
     private int mWidth;
-    private List<Integer> imageList;
+    public List<Integer> imageList;
 
     public CategoryAdapter(Context context) {
         records = App.getUserPrefs().getCategories().getRecords();
@@ -52,6 +52,9 @@ public class CategoryAdapter extends BaseAdapter{
     }
     public long getItemId(int arg0) {
         return Long.valueOf(records.get(arg0).getId());
+    }
+    public int getItemImg(int arg0) {
+        return imageList.get(arg0);
     }
 
 
