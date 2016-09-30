@@ -1,7 +1,6 @@
 package com.gxq.tpm;
 
-import com.letcome.R;
-import com.gxq.tpm.tools.Util;
+import com.letcome.BuildConfig;
 
 public class GlobalConstant {
 	public static final String PRODUCT_ALL			= "all";
@@ -14,7 +13,7 @@ public class GlobalConstant {
 	
 	public static final int TOAST_OFFSET_Y = 60;//浮层提示偏移量
 	
-	public static final boolean isEncrypt=Util.transformBoolean(R.bool.isEncrypt);//密码加密开关
+	public static final boolean isEncrypt=BuildConfig.IS_ENCRYPT;//密码加密开关
 	
 	public static final int SCHEME_REFRESH_TIME = 845; // 方案刷新时间  
 	

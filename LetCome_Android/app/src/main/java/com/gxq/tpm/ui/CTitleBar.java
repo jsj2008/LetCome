@@ -1,14 +1,13 @@
 package com.gxq.tpm.ui;
 
-import com.letcome.R;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.letcome.R;
 
 public class CTitleBar extends RelativeLayout implements View.OnClickListener {
 
@@ -73,7 +72,7 @@ public class CTitleBar extends RelativeLayout implements View.OnClickListener {
 	
 	public void setTitle2(CharSequence title) {
 		setTitle(title);
-		mContainer.setBackgroundResource(getResources().getColor(R.color.tab_cur_selected));
+		mContainer.setBackgroundResource(R.color.tab_cur_selected);
 	}
 
 	public void setTitle(int resId) {

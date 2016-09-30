@@ -27,10 +27,7 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_APN_SETTINGS" />
 
-    <service
-        android:name="com.baidu.location.f"
-        android:enabled="true"
-        android:process=":remote" />
+
 
     <!-- <application -->
     <!-- android:name=".App" -->
@@ -66,6 +63,11 @@
         <activity android:name=".activity.LocationDemo" />
         <activity android:name=".activity.MapActivity" />
         <activity android:name=".activity.SettingActivity"></activity>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
     </application>
 
 </manifest>

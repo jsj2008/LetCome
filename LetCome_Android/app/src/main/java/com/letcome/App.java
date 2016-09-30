@@ -197,7 +197,7 @@ public class App extends Application {
 	}
 	
 	public boolean isTest() {
-		return getResources().getBoolean(R.bool.isTest);
+		return BuildConfig.IS_TEST;
 	}
 
 	public static UserPrefs getUserPrefs() {

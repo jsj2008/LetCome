@@ -1,6 +1,6 @@
 package com.gxq.tpm.network;
 
-import com.gxq.tpm.ServiceConfig;
+import com.letcome.BuildConfig;
 
 enum Link {PLATFORM, H5,UPLOAD}
 
@@ -47,9 +47,9 @@ public enum RequestInfo {
 	
 	public String getUrl() {
 		if (mLink == Link.PLATFORM || mLink == Link.UPLOAD) {
-			return ServiceConfig.getServicePlatform() + getOperationType();
+			return BuildConfig.SERVICE_PLATFORM + getOperationType();
 		} else if (mLink == Link.H5) {
-			return ServiceConfig.getServiceH5() + mOperationType;
+			return BuildConfig.SERVICE_H5 + mOperationType;
 		} else {
 			return mOperationType;
 		}

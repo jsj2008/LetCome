@@ -1,11 +1,23 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'letcome'
+            keyPassword 'android'
+            storeFile file('/Users/rjt/AndroidStudioProjects/letcome.jks')
+            storePassword 'android'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
-
+    lintOptions {//lint检查，有任何的错误或者警告提示，都会终止构建。false是关闭lint
+        //在打包Release版本的时候进行检测,可以打开，这样报错还会显示出来
+        checkReleaseBuilds false
+        //abortOnError一定要设为false，这样即使有报错也不会停止打包了
+        abortOnError false
+    }
     useLibrary 'org.apache.http.legacy'
-
     defaultConfig {
         applicationId "com.letcome"
         minSdkVersion 16
@@ -17,6 +29,17 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+            buildConfigField("String","SERVICE_PLATFORM", "\"http://115.159.194.244:8080/LetCome\"")
+            buildConfigField("String","SERVICE_H5", "\"http://115.159.194.244:8080/LetCome\"")
+            buildConfigField("boolean","IS_ENCRYPT", "false")
+            buildConfigField("boolean","IS_TEST", "true")
+        }
+        debug {
+            buildConfigField("String","SERVICE_PLATFORM", "\"http://115.159.194.244:8080/LetCome\"")
+            buildConfigField("String","SERVICE_H5", "\"http://115.159.194.244:8080/LetCome\"")
+            buildConfigField("boolean","IS_ENCRYPT", "false")
+            buildConfigField("boolean","IS_TEST", "true")
         }
     }
     packagingOptions {
@@ -28,13 +51,11 @@ android {
         // exclude 'META-INF/ASL2.0'
         // exclude 'META-INF/notice.txt'
     }
-
     sourceSets {
         main {
             jniLibs.srcDir 'libs'
         }
     }
-
 }
 
 dependencies {
@@ -46,7 +67,6 @@ dependencies {
         exclude module: 'httpclient'
     }
     //    compile 'com.android.support:support-v4:23.4.0'
-
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.android.support:support-annotations:23.4.0'
     compile 'com.android.support:gridlayout-v7:23.4.0'

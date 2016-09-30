@@ -255,7 +255,7 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 				Bitmap bm = BitmapFactory.decodeFile(imagePath);
 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bm.compress(Bitmap.CompressFormat.JPEG, 30, baos);
+                bm.compress(Bitmap.CompressFormat.JPEG, 10, baos);
                 byte[] bytes = baos.toByteArray();
                 uploadImage(bytes);
                 c.close();
@@ -268,7 +268,7 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
                 Bitmap bm = BitmapFactory.decodeStream(is);
 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bm.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+                bm.compress(Bitmap.CompressFormat.JPEG, 10, baos);
 
                 byte[] bytes = baos.toByteArray();
                 uploadImage(bytes);

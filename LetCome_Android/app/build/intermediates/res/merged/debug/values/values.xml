@@ -58,8 +58,6 @@
     <bool name="abc_config_allowActionMenuItemTextWithIcon">false</bool>
     <bool name="abc_config_closeDialogWhenTouchOutside">true</bool>
     <bool name="abc_config_showMenuShortcutsWhenKeyboardPresent">false</bool>
-    <bool name="isEncrypt">true</bool>
-    <bool name="isTest">true</bool>
     <color name="abc_input_method_navigation_guard">@android:color/black</color>
     <color name="abc_search_url_text_normal">#7fa87f</color>
     <color name="abc_search_url_text_pressed">@android:color/black</color>
@@ -482,10 +480,7 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
-    <string name="api_key">ZRfAjjrG2GKszKGgf93bkHiL</string>
     <string name="app_name">letgo</string>
-    <string name="cache_forever_path">/Android/data/com.gxq.tpm/cache_forever/</string>
-    <string name="cache_path">/Android/data/com.gxq.tpm/cache/</string>
     <string name="chat_btn">Chat with the seller</string>
     <string name="default_value">--</string>
     <string name="default_value_1">--.--</string>
@@ -524,9 +519,6 @@
     <string name="rmb_sign">¥</string>
     <string name="sell_product">上传你的宝贝</string>
     <string name="server_unusual">服务器异常</string>
-    <string name="service_h5">http://115.159.194.244:8080/</string>
-    <string name="service_hq">http://192.168.6.66:2050/</string>
-    <string name="service_platform">http://115.159.194.244:8080/LetCome</string>
     <string name="setting_title">设置</string>
     <string name="sign_up">注 册</string>
     <string name="status_bar_notification_info_overflow">999+</string>

@@ -1,5 +1,6 @@
 package com.gxq.tpm.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -30,7 +31,8 @@ public class FragmentBase extends Fragment implements ICallBack, OnDispatcherTim
 	public FragmentBase(){
 		super();
 	}
-	
+
+	@SuppressLint("ValidFragment")
 	public FragmentBase(int markId) {
 		super();
 		mMarkId = markId;
