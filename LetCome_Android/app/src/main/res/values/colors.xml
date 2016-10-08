@@ -3,7 +3,7 @@
     <!-- 规范 -->
     <color name="product_bg">#fff4f4f4</color>
 
-	<color name="title_bar_bg">#ffffffff</color>
+	<color name="title_bar_bg">#fff7f7f7</color>
 	<color name="title_bar_color">#ff222222</color>
 	<color name="tab_bar_bg">#fff8f8f8</color>
     <color name="line_seperate_color">#ffdddddd</color>
@@ -63,6 +63,7 @@
    	<color name="color_bebebe">#ffbebebe</color>
    	<color name="color_c25aff">#ffc25aff</color>
    	<color name="color_c5c5c5">#ffc5c5c5</color>
+	<color name="color_c6c6c6">#ffc6c6c6</color>
    	<color name="color_cccccc">#ffcccccc</color>
    	<color name="color_d9d9d9">#ffd9d9d9</color>
    	<color name="color_d9d9de">#ffd9d9de</color>

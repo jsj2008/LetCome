@@ -106,6 +106,7 @@
     <color name="color_bebebe">#ffbebebe</color>
     <color name="color_c25aff">#ffc25aff</color>
     <color name="color_c5c5c5">#ffc5c5c5</color>
+    <color name="color_c6c6c6">#ffc6c6c6</color>
     <color name="color_cccccc">#ffcccccc</color>
     <color name="color_d9d9d9">#ffd9d9d9</color>
     <color name="color_d9d9de">#ffd9d9de</color>
@@ -202,7 +203,7 @@
     <color name="text_color_tips">#ffff7814</color>
     <color name="text_color_title">#ff222222</color>
     <color name="text_color_unclick">#ffbebebe</color>
-    <color name="title_bar_bg">#ffffffff</color>
+    <color name="title_bar_bg">#fff7f7f7</color>
     <color name="title_bar_color">#ff222222</color>
     <color name="trans_success_stroke_color">#33A5DC86</color>
     <color name="translucent">#77000000</color>
@@ -527,6 +528,7 @@
     <string name="tab_chats_text">Chats</string>
     <string name="ten_thousand">%1$s万</string>
     <string name="ten_thousand_money">万元</string>
+    <string name="title_search_hint">请输入搜索内容</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>

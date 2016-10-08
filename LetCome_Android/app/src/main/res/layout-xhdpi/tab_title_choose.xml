@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/search_bar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
-    android:background="@drawable/view_radius_5dp_white"
-    >
-    <TextView
+    android:background="@drawable/view_radius_5dp_white">
+    <ImageView
+        android:id="@+id/search_img"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/places_ic_search"/>
+    <EditText
+        android:layout_toRightOf="@id/search_img"
+        android:id="@+id/search_input"
+        android:hint="@string/title_search_hint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="123123123"/>
+        android:layout_margin="5dp"
+        android:textSize="14sp"
+        android:enabled="false"
+        android:background="@null" />
 </RelativeLayout>
