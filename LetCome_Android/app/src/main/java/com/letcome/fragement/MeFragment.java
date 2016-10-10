@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.gxq.tpm.activity.SuperActivity;
 import com.gxq.tpm.fragment.FragmentBase;
 import com.gxq.tpm.mode.BaseRes;
 import com.gxq.tpm.network.RequestInfo;
@@ -23,7 +24,6 @@ import com.gxq.tpm.tools.Print;
 import com.gxq.tpm.ui.CTitleBar;
 import com.huewu.pla.lib.internal.PLA_AdapterView;
 import com.letcome.R;
-import com.letcome.activity.MainActivity;
 import com.letcome.activity.ProductsActivity;
 import com.letcome.adapter.ImageGridAdapter;
 import com.letcome.mode.ProductsRes;
@@ -44,11 +44,13 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
     private Integer mPage = 1;
     private Button mSelleBtn;
 
-    public MainActivity mParent;
+    public SuperActivity mParent;
 
     private LinearLayout mCategoryFilter;
     private TextView mCategoryFilterClose;
     private ImageView mCategoryFilterImg;
+
+    WaterFallsRes.Params mParams;
 
     private long cid ;
     private int cimg;
@@ -62,12 +64,18 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
         super(markId);
     }
 
+    @SuppressLint("ValidFragment")
+    public MeFragment(WaterFallsRes.Params params) {
+        this();
+        mParams = params;
+    }
+
 
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mParent = (MainActivity)activity;
+        mParent = (SuperActivity)activity;
     }
 
     @Override
@@ -101,7 +109,9 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
         mAdapterView.setAdapter(adapter);
 
         mSelleBtn = (Button) view.findViewById(R.id.sell_product);
-        mSelleBtn.setOnClickListener(mParent);
+        if (mParent instanceof View.OnClickListener) {
+            mSelleBtn.setOnClickListener((View.OnClickListener)mParent);
+        }
 
         mCategoryFilter = (LinearLayout)view.findViewById(R.id.category_filter);
         mCategoryFilterClose = (TextView)view.findViewById(R.id.category_filter_close);
@@ -173,10 +183,13 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
     @Override
     public void onMore() {
         Log.i("MeFragment", "onMore");
-        WaterFallsRes.Params params = new WaterFallsRes.Params();
-        params.setLongitude("0");
-        params.setLatitude("0");
-        params.setDistance("0");
+        WaterFallsRes.Params params = mParams;
+        if(params == null){
+            params = new WaterFallsRes.Params();
+            params.setLongitude("0");
+            params.setLatitude("0");
+            params.setDistance("0");
+        }
         params.setPno(String.valueOf(++mPage));
         WaterFallsRes.doMoreRequest(params, this);
     }
@@ -185,10 +198,14 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
     public void onRefresh() {
         this.showWaitDialog(RequestInfo.WATER_FALLS_REFRESH);
         Log.i("MeFragment", "onRefresh");
-        WaterFallsRes.Params params = new WaterFallsRes.Params();
-        params.setLongitude("0");
-        params.setLatitude("0");
-        params.setDistance("0");
+        WaterFallsRes.Params params = mParams;
+        if(params == null){
+            params = new WaterFallsRes.Params();
+            params.setLongitude("0");
+            params.setLatitude("0");
+            params.setDistance("0");
+        }
+
         if(cid>0){
             params.setCid(String.valueOf(cid));
         }

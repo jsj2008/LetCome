@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
@@ -199,8 +200,13 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) v.getLayoutParams();
         lp.setMargins(0, 20, 0, 20);
         v.setBackgroundResource(R.drawable.view_radius_3dp_white);
-        EditText searchET = (EditText)v.findViewById(R.id.search_input);
-        v.setOnClickListener(new View.OnClickListener() {
+
+		EditText editText = (EditText)v.findViewById(R.id.search_input);
+		editText.setText("");
+		editText.setEnabled(false);
+        editText.setFocusable(false);
+		Button searchbtn = (Button)v.findViewById(R.id.search_btn);
+		searchbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,SearchActivity.class);
@@ -351,7 +357,7 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 
     @Override
     public void onRightClick(View v) {
-
+		FilterActivity.create(this,null);
     }
 
 }

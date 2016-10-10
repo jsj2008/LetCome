@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:2:1-74:12
+ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:2:1-77:12
 	package
 		ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:4:5-26
 		INJECTED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml
@@ -72,7 +72,7 @@ ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifes
 	android:name
 		ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:28:22-74
 application
-ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:36:5-72:19
+ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:36:5-75:19
 MERGED from [LetCome_Android:PinterestLikeAdapterView:unspecified] /Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/LetCome_Android/PinterestLikeAdapterView/unspecified/AndroidManifest.xml:9:5-47
 MERGED from [com.android.support:gridlayout-v7:23.4.0] /Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/gridlayout-v7/23.4.0/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.4.0] /Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/AndroidManifest.xml:22:5-20
@@ -100,6 +100,7 @@ MERGED from [com.android.support:support-v4:23.4.0] /Users/rjt/GitHub/LetCome/Le
 MERGED from [com.android.support:support-vector-drawable:23.4.0] /Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/AndroidManifest.xml:7:5-20
 MERGED from [com.android.support:support-v4:23.4.0] /Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.4.0] /Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/AndroidManifest.xml:22:5-20
+MERGED from [com.github.channguyen:rsv:1.0.1] /Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.github.channguyen/rsv/1.0.1/AndroidManifest.xml:11:5-13:44
 	android:label
 		ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:40:9-41
 	android:supportsRtl
@@ -174,11 +175,19 @@ ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifes
 	android:name
 		ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:66:13-48
 activity#com.letcome.activity.SearchActivity
-ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:70:9-71:80
+ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:70:9-72:71
 	android:windowSoftInputMode
-		ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:71:13-68
+		ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:72:13-68
 	android:name
-		ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:70:19-58
+		ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:71:13-52
+activity#com.letcome.activity.ResultActivity
+ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:73:9-61
+	android:name
+		ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:73:19-58
+activity#com.letcome.activity.FilterActivity
+ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:74:9-70
+	android:name
+		ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:74:19-58
 uses-sdk
 INJECTED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [LetCome_Android:PinterestLikeAdapterView:unspecified] /Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/LetCome_Android/PinterestLikeAdapterView/unspecified/AndroidManifest.xml:5:5-7:41
@@ -209,6 +218,7 @@ MERGED from [com.android.support:support-v4:23.4.0] /Users/rjt/GitHub/LetCome/Le
 MERGED from [com.android.support:support-vector-drawable:23.4.0] /Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/AndroidManifest.xml:5:5-43
 MERGED from [com.android.support:support-v4:23.4.0] /Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v4:23.4.0] /Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/AndroidManifest.xml:20:5-43
+MERGED from [com.github.channguyen:rsv:1.0.1] /Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.github.channguyen/rsv/1.0.1/AndroidManifest.xml:7:5-9:41
 	tools:overrideLibrary
 		ADDED from [com.android.support:appcompat-v7:23.4.0] /Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/AndroidManifest.xml:23:9-75
 	android:targetSdkVersion

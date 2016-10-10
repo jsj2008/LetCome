@@ -33,8 +33,21 @@
 
     <string name="tab_chats_text">Chats</string>
     <string name="tab_categories_text">分类</string>
+    <string name="filter_distance_text">距离</string>
+    <string name="filter_sort_text">排序</string>
+    <string name="filter_price_text">价格</string>
+    <string name="filter_time_text">发布时间</string>
+    <string name="sort_price_asc">价格：从低到高</string>
+    <string name="sort_price_desc">价格：从高到低</string>
+
+    <string name="time_24h">过去24小时</string>
+    <string name="time_7d">过去7天</string>
+    <string name="time_30d">过去30天</string>
+    <string name="time_all">所有产品</string>
+
     <string name="logout">注销</string>
     <string name="setting_title">设置</string>
+    <string name="filter_title">筛选</string>
     <string name="chat_btn">Chat with the seller</string>
     <string name="sign_up">注 册</string>
     <string name="log_in">登 录</string>
@@ -48,7 +61,7 @@
     <string name="input_category">类别</string>
     <string name="rmb_sign">¥</string>
     <string name="done">完 成</string>
-
+    <string name="save_filter">保存筛选</string>
     <string name="profile_selling">正售</string>
     <string name="profile_sold">已卖</string>
     <string name="profile_favorite">收藏</string>

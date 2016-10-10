@@ -22,7 +22,7 @@ public class SuperActivity extends BaseActivity implements
 	CTitleBar.OnTitleBarClickListener, CTabBar.OnTabBarClickListener, OnDispatcherTimerListener {
 	protected static final int DEFAULT_ID = R.id.default_fragment;
 	
-	private FragmentManager mFragmentManager;
+	protected FragmentManager mFragmentManager;
 	private ViewGroup mContentLayer;
 	private ViewGroup mDialogLayer;
 //	private ViewGroup mSpinnerLayer;

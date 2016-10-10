@@ -33,6 +33,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.net.URI;
 import java.net.URL;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -251,9 +252,10 @@ public class ProductsTests {
         requestBuilder.param("distance", "100000");
         requestBuilder.param("cid","1,2");
 //        requestBuilder.param("pricerank","desc");
-//        requestBuilder.param("productname","让人");
-        requestBuilder.param("starttime", "1");
-//        requestBuilder.param("endtime","2");
+//        requestBuilder.param("productname","让人");1475043822000
+//        http://115.159.194.244:8080/LetCome/waterf1476081046514&pno=1&pricerank=desc&starttime=1477784013810
+        requestBuilder.param("starttime", "1473493866");
+        requestBuilder.param("endtime","1476085866");
         requestBuilder.param("pno", "1");
         requestBuilder.param("limit", "5");
 
@@ -264,6 +266,14 @@ public class ProductsTests {
         ProductViewEntity l2 = mapper.readValue(str, ProductViewEntity.class);
         assertThat(l2.getRecords().size(), greaterThan(0));
         assertThat(l2.getRecords().size(), lessThanOrEqualTo(5));
+
+//        Date  date =  new Date();
+//        date.setTime(1477786299265l);
+//        System.out.println(date);
+//        date.setTime(1473493866831);
+//        System.out.println(date);
+//        date.setTime(1475043822000l);
+//        System.out.println(date);
     }
 
     @Test

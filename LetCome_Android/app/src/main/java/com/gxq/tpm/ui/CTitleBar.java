@@ -93,8 +93,8 @@ public class CTitleBar extends RelativeLayout implements View.OnClickListener {
 		mTvTitle.setTextColor(getResources().getColor(R.color.white_color));
 		mContainer.setBackgroundResource(R.color.tab_cur_selected);
 	}
-	
-	private void showTitleBar() {
+
+	public void showTitleBar() {
 		setVisibility(View.VISIBLE);
 	}
 

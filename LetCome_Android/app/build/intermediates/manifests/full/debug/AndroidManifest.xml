@@ -74,6 +74,8 @@
         <activity
             android:name="com.letcome.activity.SearchActivity"
             android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity android:name="com.letcome.activity.ResultActivity" />
+        <activity android:name="com.letcome.activity.FilterActivity" />
     </application>
 
 </manifest>

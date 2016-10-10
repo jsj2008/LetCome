@@ -251,6 +251,7 @@
     <declare-styleable name="PopupWindowBackgroundState"><attr format="boolean" name="state_above_anchor"/></declare-styleable>
     <declare-styleable name="ProgressWheel"><attr format="boolean" name="progressIndeterminate"/><attr format="color" name="barColor"/><attr format="color" name="rimColor"/><attr format="dimension" name="rimWidth"/><attr format="float" name="spinSpeed"/><attr format="integer" name="barSpinCycleTime"/><attr format="dimension" name="circleRadius"/><attr format="boolean" name="fillRadius"/><attr format="dimension" name="barWidth"/></declare-styleable>
     <declare-styleable name="PullToRefreshView"><attr format="dimension" name="ptrHeight"/><attr format="dimension" name="ptrSpinnerMarginRight"/><attr format="dimension" name="ptrArrowMarginRight"/><attr format="dimension" name="ptrTextSize"/><attr format="dimension" name="ptrLastUpdateTextSize"/></declare-styleable>
+    <declare-styleable name="RangeSliderView"><attr format="integer" name="rangeCount"/><attr format="color" name="filledColor"/><attr format="color" name="emptyColor"/><attr format="float" name="barHeightPercent"/><attr format="float" name="slotRadiusPercent"/><attr format="float" name="sliderRadiusPercent"/></declare-styleable>
     <declare-styleable name="Rotate3dAnimation"><attr format="enum" name="rollType"><enum name="x" value="0"/><enum name="y" value="1"/><enum name="z" value="2"/></attr><attr format="float" name="fromDeg"/><attr format="float" name="toDeg"/><attr format="fraction" name="pivotX"/><attr format="fraction" name="pivotY"/></declare-styleable>
     <declare-styleable name="RoundImageView"><attr name="borderRadius"/><attr name="type"/></declare-styleable>
     <declare-styleable name="RoundProgressBar"><attr format="color" name="roundColor"/><attr format="color" name="roundProgressColor"/><attr format="dimension" name="roundWidth"/><attr format="dimension" name="titleTextSize"/><attr format="color" name="limitTextColor"/><attr format="dimension" name="limitTextSize"/></declare-styleable>
@@ -493,6 +494,11 @@
     <string name="drop_up_more">上拉加载更多</string>
     <string name="email">请输入注册邮箱</string>
     <string name="empty_string"/>
+    <string name="filter_distance_text">距离</string>
+    <string name="filter_price_text">价格</string>
+    <string name="filter_sort_text">排序</string>
+    <string name="filter_time_text">发布时间</string>
+    <string name="filter_title">筛选</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="input_category">类别</string>
     <string name="input_desc">宝贝描述</string>
@@ -518,16 +524,23 @@
     <string name="ptr_release_to_refresh">Release to refresh</string>
     <string name="refreshing">正在刷新…</string>
     <string name="rmb_sign">¥</string>
+    <string name="save_filter">保存筛选</string>
     <string name="sell_product">上传你的宝贝</string>
     <string name="server_unusual">服务器异常</string>
     <string name="setting_title">设置</string>
     <string name="sign_up">注 册</string>
+    <string name="sort_price_asc">价格：从低到高</string>
+    <string name="sort_price_desc">价格：从高到低</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="strategy_time">次</string>
     <string name="tab_categories_text">分类</string>
     <string name="tab_chats_text">Chats</string>
     <string name="ten_thousand">%1$s万</string>
     <string name="ten_thousand_money">万元</string>
+    <string name="time_24h">过去24小时</string>
+    <string name="time_30d">过去30天</string>
+    <string name="time_7d">过去7天</string>
+    <string name="time_all">所有产品</string>
     <string name="title_search_hint">请输入搜索内容</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
