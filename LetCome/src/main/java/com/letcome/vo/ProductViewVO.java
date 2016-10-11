@@ -103,6 +103,8 @@ public class ProductViewVO implements Serializable {
 
     private String fullname;
 
+    private String qq;
+
     public String getThumbpath() {
         return thumbpath;
     }
@@ -284,4 +286,13 @@ public class ProductViewVO implements Serializable {
     public void setThumbwidth(Integer thumbwidth) {
         this.thumbwidth = thumbwidth;
     }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
 }

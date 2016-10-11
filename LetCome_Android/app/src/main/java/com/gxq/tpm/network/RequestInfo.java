@@ -17,6 +17,7 @@ public enum RequestInfo {
 	WATER_FALLS_REFRESH("/waterfalls", Link.PLATFORM, Type.GET, Certify.NO, "刷新瀑布流"),
 	WATER_FALLS_MORE("/waterfalls", Link.PLATFORM, Type.GET, Certify.NO, "翻页瀑布流"),
 	LOGIN("/user/login", Link.PLATFORM, Type.POST, Certify.NO, "登录"),
+	SIGNUP("/user/register", Link.PLATFORM, Type.POST, Certify.NO, "注册"),
 	UPLOAD("/image/upload", Link.UPLOAD, Type.POST, Certify.NO, "上传图片"),
 	UPDATEPRODUCT("/product/update", Link.PLATFORM, Type.POST, Certify.NO, "更新产品"),
 	CATEGORIES("/categories", Link.PLATFORM, Type.GET, Certify.NO, "获取产品目录"),

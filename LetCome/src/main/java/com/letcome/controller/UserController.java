@@ -44,7 +44,7 @@ public class UserController {
     @RequestMapping(value="/register",method = RequestMethod.POST)
     public LoginEntity register(@RequestBody UserVO user){
 
-        LoginEntity retEntity = service.addUser(user.getEmail(), user.getPwd(), user.getFullname());
+        LoginEntity retEntity = service.addUser(user.getEmail(), user.getPwd(), user.getFullname(),user.getQq());
         return retEntity;
     }
 

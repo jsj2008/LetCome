@@ -2,6 +2,7 @@ package com.letcome.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -97,6 +98,15 @@ public class ProductsActivity extends SuperActivity {
             mUnFavoriteBtn.setVisibility(View.GONE);
             mFavoriteBtn.setVisibility(View.VISIBLE);
         }
+
+        mChatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url="mqqwpa://im/chat?chat_type=wpa&uin="+record.getQq();
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                //指定的QQ号只需要修改uin后的值即可。
+            }
+        });
 
         mFavoriteBtn.setOnClickListener(new View.OnClickListener() {
             @Override

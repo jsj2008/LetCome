@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.gxq.tpm.activity.SuperActivity;
@@ -46,9 +47,11 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
 
     public SuperActivity mParent;
 
+    private RelativeLayout mSellBtnArea;
     private LinearLayout mCategoryFilter;
     private TextView mCategoryFilterClose;
     private ImageView mCategoryFilterImg;
+    private boolean mCameraShow;
 
     WaterFallsRes.Params mParams;
 
@@ -66,10 +69,16 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
 
     @SuppressLint("ValidFragment")
     public MeFragment(WaterFallsRes.Params params) {
-        this();
-        mParams = params;
+        this(params,true);
     }
 
+
+    @SuppressLint("ValidFragment")
+    public MeFragment(WaterFallsRes.Params params,boolean cameraShow) {
+        this();
+        mParams = params;
+        mCameraShow = cameraShow;
+    }
 
 
     @Override
@@ -109,13 +118,21 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
         mAdapterView.setAdapter(adapter);
 
         mSelleBtn = (Button) view.findViewById(R.id.sell_product);
-        if (mParent instanceof View.OnClickListener) {
-            mSelleBtn.setOnClickListener((View.OnClickListener)mParent);
+        mSellBtnArea = (RelativeLayout)view.findViewById(R.id.sell_btn_area);
+        if(mCameraShow){
+            if (mParent instanceof View.OnClickListener) {
+                mSelleBtn.setOnClickListener((View.OnClickListener)mParent);
+            }
+            mSellBtnArea.setVisibility(View.VISIBLE);
+        }else{
+            mSellBtnArea.setVisibility(View.GONE);
         }
+
 
         mCategoryFilter = (LinearLayout)view.findViewById(R.id.category_filter);
         mCategoryFilterClose = (TextView)view.findViewById(R.id.category_filter_close);
         mCategoryFilterImg = (ImageView)view.findViewById(R.id.category_filter_img);
+
 
 
 //        queryMediaImages();

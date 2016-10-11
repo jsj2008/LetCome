@@ -53,8 +53,17 @@ public class ProductsRes extends BaseRes{
         String contact_info;
         String is_favorite;
         String fullname;
+        String qq;
 
         int hold_color;
+
+        public String getQq() {
+            return qq;
+        }
+
+        public void setQq(String qq) {
+            this.qq = qq;
+        }
 
         public String getFullname() {
             return fullname;

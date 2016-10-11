@@ -1,12 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
-
-    <item
-        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.github.channguyen/rsv/1.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="d469860a6431289f4be06e5e23a774f57e115966">
-        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/com.github.channguyen-rsv-1.0.1_274615781e26c5f4db30b1e7cbe1cab328dc14f8.jar" />
-    </item>
-
-</items>
+<items version="2" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--LetGO start -->
-    <string name="app_name">letgo</string>
+    <string name="app_name">毫买卖</string>
 
 
     <string name="layer_loading_text">请等待</string>
@@ -48,11 +48,13 @@
     <string name="logout">注销</string>
     <string name="setting_title">设置</string>
     <string name="filter_title">筛选</string>
-    <string name="chat_btn">Chat with the seller</string>
+    <string name="chat_btn">使用QQ与卖家联系</string>
     <string name="sign_up">注 册</string>
     <string name="log_in">登 录</string>
     <string name="email">请输入注册邮箱</string>
     <string name="password">请输入密码</string>
+    <string name="fullname">请输入全名</string>
+    <string name="qq">请输入QQ,以便于其他用户联系您</string>
     <string name="sell_product">上传你的宝贝</string>
     <string name="post_success">恭喜，产品提交成功</string>
     <string name="input_price">价格</string>

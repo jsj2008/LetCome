@@ -482,8 +482,8 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
-    <string name="app_name">letgo</string>
-    <string name="chat_btn">Chat with the seller</string>
+    <string name="app_name">毫买卖</string>
+    <string name="chat_btn">使用QQ与卖家联系</string>
     <string name="default_value">--</string>
     <string name="default_value_1">--.--</string>
     <string name="dialog_cancel">Cancel</string>
@@ -499,6 +499,7 @@
     <string name="filter_sort_text">排序</string>
     <string name="filter_time_text">发布时间</string>
     <string name="filter_title">筛选</string>
+    <string name="fullname">请输入全名</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="input_category">类别</string>
     <string name="input_desc">宝贝描述</string>
@@ -522,6 +523,7 @@
     <string name="ptr_loading">Loading</string>
     <string name="ptr_pull_to_refresh">Pull to refresh</string>
     <string name="ptr_release_to_refresh">Release to refresh</string>
+    <string name="qq">请输入QQ,以便于其他用户联系您</string>
     <string name="refreshing">正在刷新…</string>
     <string name="rmb_sign">¥</string>
     <string name="save_filter">保存筛选</string>

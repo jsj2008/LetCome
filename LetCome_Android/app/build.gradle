@@ -17,6 +17,10 @@ android {
         //abortOnError一定要设为false，这样即使有报错也不会停止打包了
         abortOnError false
     }
+
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.letcome"
@@ -38,8 +42,8 @@ android {
         debug {
             buildConfigField("String","SERVICE_PLATFORM", "\"http://115.159.194.244:8080/LetCome\"")
             buildConfigField("String","SERVICE_H5", "\"http://115.159.194.244:8080/LetCome\"")
-//            buildConfigField("String","SERVICE_PLATFORM", "\"http://192.168.5.105:8080\"")
-//            buildConfigField("String","SERVICE_H5", "\"http://192.168.5.105:8080\"")
+//            buildConfigField("String","SERVICE_PLATFORM", "\"http://192.168.4.105:8080\"")
+//            buildConfigField("String","SERVICE_H5", "\"http://192.168.4.105:8080\"")
             buildConfigField("boolean","IS_ENCRYPT", "false")
             buildConfigField("boolean","IS_TEST", "true")
         }

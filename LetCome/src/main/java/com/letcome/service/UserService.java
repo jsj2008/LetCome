@@ -27,11 +27,12 @@ public class UserService {
         this.userDao = userDao;
     }
 
-    public LoginEntity addUser(String email,String pwd,String fullname){
+    public LoginEntity addUser(String email,String pwd,String fullname,String qq){
         UserVO user = new UserVO();
         user.setEmail(email);
         user.setFullname(fullname);
         user.setPwd(pwd);
+        user.setQq(qq);
         ReturnEntity ret = userDao.insertUser(user);
         LoginEntity entity = new LoginEntity();
         entity.setUid(user.getId().toString());

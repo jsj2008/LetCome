@@ -16,6 +16,7 @@ import com.letcome.R;
 import com.letcome.fragement.LoginFragment;
 import com.letcome.fragement.SignupFragment;
 import com.letcome.mode.LoginRes;
+import com.letcome.mode.SignupRes;
 import com.letcome.prefs.UserPrefs;
 
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class LoginActivity extends SuperActivity{
         initAction();
     }
     private void initView() {
-        mSignupFragment = new SignupFragment(this, null);
+        mSignupFragment = new SignupFragment(this);
         mLoginFragment = new LoginFragment(this);
 
         mTabTitle = (CTabTitleSelector) findViewById(R.id.tab_title);
@@ -114,8 +115,16 @@ public class LoginActivity extends SuperActivity{
         p.setEmail(name);
         p.setPwd(pwd);
         LoginRes.doRequest(p, this);
+    }
 
-
+    public void signup(String name,String pwd,String fullname,String qq){
+        showWaitDialog(RequestInfo.SIGNUP);
+        SignupRes.Params p = new SignupRes.Params();
+        p.setEmail(name);
+        p.setPwd(pwd);
+        p.setFullname(fullname);
+        p.setQq(qq);
+        SignupRes.doRequest(p, this);
     }
 
     @Override
@@ -124,6 +133,19 @@ public class LoginActivity extends SuperActivity{
             LoginRes l = (LoginRes) res;
             UserPrefs prefs = App.getUserPrefs();
             prefs.setUserInfo(l);
+            prefs.setUid(l.getUid());
+            prefs.setSession(l.getSessionid());
+            prefs.save();
+
+            this.finish();
+        }else if (info==RequestInfo.SIGNUP){
+            SignupRes l = (SignupRes) res;
+            UserPrefs prefs = App.getUserPrefs();
+            LoginRes lr = new LoginRes();
+            lr.setUid(l.getUid());
+            lr.setFullname(l.getFullname());
+            lr.setQq(l.getQq());
+            prefs.setUserInfo(lr);
             prefs.setUid(l.getUid());
             prefs.setSession(l.getSessionid());
             prefs.save();

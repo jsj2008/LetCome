@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/filer"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white_color">
+        <ImageView
+            android:id="@+id/filter_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/sports_leisure_and_games"/>
+        <TextView
+            android:layout_toRightOf="@id/filter_icon"
+            android:id="@+id/filter_text"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/black_color"
+            android:text="@string/sort_price_asc"/>
+        <ImageView
+            android:id="@+id/filter_img"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_check"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:id="@+id/filter_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+    </RelativeLayout>
+    <include
+        layout="@layout/horizontal_line_separate" />
+</LinearLayout>

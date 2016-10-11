@@ -24,27 +24,27 @@ public final class R {
 		public static final int useDefaultMargins = 0x7f0100dd;
 	}
 	public static final class dimen {
-		public static final int default_gap = 0x7f080048;
+		public static final int default_gap = 0x7f070048;
 	}
 	public static final class id {
-		public static final int alignBounds = 0x7f0c003d;
-		public static final int alignMargins = 0x7f0c003e;
-		public static final int bottom = 0x7f0c0015;
-		public static final int center = 0x7f0c0016;
-		public static final int center_horizontal = 0x7f0c0017;
-		public static final int center_vertical = 0x7f0c0018;
-		public static final int clip_horizontal = 0x7f0c0019;
-		public static final int clip_vertical = 0x7f0c001a;
-		public static final int end = 0x7f0c003f;
-		public static final int fill = 0x7f0c001b;
-		public static final int fill_horizontal = 0x7f0c001c;
-		public static final int fill_vertical = 0x7f0c001d;
-		public static final int horizontal = 0x7f0c003b;
-		public static final int left = 0x7f0c001e;
-		public static final int right = 0x7f0c001f;
-		public static final int start = 0x7f0c0040;
-		public static final int top = 0x7f0c0020;
-		public static final int vertical = 0x7f0c003c;
+		public static final int alignBounds = 0x7f0b003d;
+		public static final int alignMargins = 0x7f0b003e;
+		public static final int bottom = 0x7f0b0015;
+		public static final int center = 0x7f0b0016;
+		public static final int center_horizontal = 0x7f0b0017;
+		public static final int center_vertical = 0x7f0b0018;
+		public static final int clip_horizontal = 0x7f0b0019;
+		public static final int clip_vertical = 0x7f0b001a;
+		public static final int end = 0x7f0b003f;
+		public static final int fill = 0x7f0b001b;
+		public static final int fill_horizontal = 0x7f0b001c;
+		public static final int fill_vertical = 0x7f0b001d;
+		public static final int horizontal = 0x7f0b003b;
+		public static final int left = 0x7f0b001e;
+		public static final int right = 0x7f0b001f;
+		public static final int start = 0x7f0b0040;
+		public static final int top = 0x7f0b0020;
+		public static final int vertical = 0x7f0b003c;
 	}
 	public static final class styleable {
 		public static final int[] GridLayout = { 0x7f0100da, 0x7f0100db, 0x7f0100dc, 0x7f0100dd, 0x7f0100de, 0x7f0100df, 0x7f0100e0 };

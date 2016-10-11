@@ -34,7 +34,7 @@ public class ResultActivity extends SuperActivity {
         setContentView(R.layout.activity_result);
 
 
-        Fragment toFragment = new MeFragment(mParams);
+        Fragment toFragment = new MeFragment(mParams,false);
 
         FragmentTransaction ft = mFragmentManager.beginTransaction();
 

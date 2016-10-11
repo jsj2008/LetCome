@@ -108,7 +108,7 @@ MERGED from [com.github.channguyen:rsv:1.0.1] /Users/rjt/GitHub/LetCome/LetCome_
 	android:allowBackup
 		ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:38:9-35
 	android:icon
-		ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:39:9-43
+		ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:39:9-46
 		REJECTED from [com.pnikosis:materialish-progress:1.0] /Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.pnikosis/materialish-progress/1.0/AndroidManifest.xml:13:9-45
 	android:theme
 		ADDED from /Users/rjt/GitHub/LetCome/LetCome_Android/app/src/main/AndroidManifest.xml:42:9-40

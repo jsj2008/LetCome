@@ -28,6 +28,10 @@ public class UserVO {
     @Column(name="fullname",length=16,nullable = false)
     private String fullname;
 
+    @Column(name="qq",length=16,nullable = false)
+    private String qq;
+
+
     @Transient
     private Integer mid;
 
@@ -115,5 +119,12 @@ public class UserVO {
         this.fullname = fullname;
     }
 
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
 
 }

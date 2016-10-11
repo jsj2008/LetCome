@@ -20,6 +20,15 @@ public class LoginRes extends BaseRes {
     String uid;
     String sessionid;
     String fullname;
+    String qq;
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
 
     public String getUid() {
         return uid;
