@@ -24,6 +24,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.StorageUtils;
+import com.tencent.tauth.Tencent;
 
 import java.io.File;
 import java.util.List;
@@ -31,6 +32,7 @@ import java.util.List;
 public class App extends Application {
 
 	private final static String CHANNEL				= "UMENG_CHANNEL";
+	private final static String APP_ID				= "1105700540";
 	
 	private static App mInstance;
 	private static UserPrefs prefs;
@@ -41,6 +43,7 @@ public class App extends Application {
 	private Bundle mPackageInfo;
 	private String mChannel;
 
+	Tencent tencent;
 	
 	public static App instance() {
 		return mInstance;
@@ -79,6 +82,11 @@ public class App extends Application {
 
 		SDKInitializer.initialize(getApplicationContext());
 		BaiduLocationUtils.createtLocationAndCity(this);
+
+		// Tencent类是SDK的主要实现类，开发者可通过Tencent类访问腾讯开放的OpenAPI。
+		// 其中APP_ID是分配给第三方应用的appid，类型为String。
+		tencent = Tencent.createInstance(APP_ID, this.getApplicationContext());
+		// 1.4版本:此处需新增参数，传入应用程序的全局context，可通过activity的getApplicationContext方法获取
 	}
 	
 	/**
@@ -117,7 +125,13 @@ public class App extends Application {
 		return (int) (spValue * fontScale + 0.5f);
 	}
 
-	
+	public Tencent getTencent() {
+		return tencent;
+	}
+
+	public void setTencent(Tencent tencent) {
+		this.tencent = tencent;
+	}
 //	/**
 //	 *
 //	 * @Description : 停止锁屏消息计时

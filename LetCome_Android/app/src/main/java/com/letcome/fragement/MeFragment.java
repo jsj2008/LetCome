@@ -173,13 +173,26 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
                 ImageView iv = (ImageView) view.findViewById(R.id.imageView);
 
                 if (iv.getDrawable() instanceof BitmapDrawable) {
-                    Intent intent = new Intent(view.getContext(), ProductsActivity.class);
-                    intent.putExtra("records", (Serializable) adapter.getRecords());
-                    intent.putExtra("id", id);
-                    intent.putExtra("position", position - 1);
-                    Bitmap image = ((BitmapDrawable) iv.getDrawable()).getBitmap();
-                    intent.putExtra("bitmap", image);
-                    startActivityForResult(intent, PRODUCT_DETAIL);
+                    try {
+                        Intent intent = new Intent(view.getContext(), ProductsActivity.class);
+                        intent.putExtra("records", (Serializable) adapter.getRecords());
+                        intent.putExtra("id", id);
+                        intent.putExtra("position", position - 1);
+                        //                    App.getUserPrefs().setTmpThumb(((BitmapDrawable) iv.getDrawable()).getBitmap());
+                        Bitmap image = ((BitmapDrawable) iv.getDrawable()).getBitmap();
+                        Print.i("MeFragment", "" + image.getByteCount());
+                        if(image.getByteCount()<400000){
+                            intent.putExtra("bitmap", image);
+                        }
+
+                        startActivityForResult(intent, PRODUCT_DETAIL);
+                    }catch (Exception e){
+                        Intent intent = new Intent(view.getContext(), ProductsActivity.class);
+                        intent.putExtra("records", (Serializable) adapter.getRecords());
+                        intent.putExtra("id", id);
+                        intent.putExtra("position", position - 1);
+                        startActivityForResult(intent, PRODUCT_DETAIL);
+                    }
 
                 }
 

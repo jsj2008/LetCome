@@ -51,6 +51,8 @@
     <string name="chat_btn">使用QQ与卖家联系</string>
     <string name="sign_up">注 册</string>
     <string name="log_in">登 录</string>
+    <string name="qq_log_in">使用QQ帐号登录</string>
+
     <string name="email">请输入注册邮箱</string>
     <string name="password">请输入密码</string>
     <string name="fullname">请输入全名</string>

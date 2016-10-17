@@ -28,11 +28,6 @@ public class UserPrefs extends BasePrefs {
 	private static final String LAST_INSTRUCTED_VERSION = "last_instructed_version"; // 欢迎页
 	private static final String CURRENT_TIME 			= "current_time"; //
 	private static final String CATEGORIES 				= "CATEGORIES"; //
-	private static final String STOCK_LIST_VERSION		= "stock_list_version";
-	
-	private static final String INI_PATCH 				= "inipatch";
-	
-	private static final String SEARCH_STOCK			= "search_stock"; // 搜索股票
 
 	private static final String AUTH_INFORM				= "auth_inform"; // 认证告知
 	
@@ -75,6 +70,7 @@ public class UserPrefs extends BasePrefs {
 	public String getSession() {
 		return getString(SESSION, "");
 	}
+
 	
 	public void setUid(String v) {
 		putString(UID, v);

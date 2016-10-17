@@ -1,13 +1,23 @@
 package com.letcome.service;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.letcome.dao.UsersDAO;
 import com.letcome.entity.LoginEntity;
 import com.letcome.entity.ReturnEntity;
 import com.letcome.util.EncryptUtils;
 import com.letcome.vo.UserVO;
+import net.sf.json.JSONObject;
+import org.jsoup.Jsoup;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Created by rjt on 16/8/10.
@@ -27,12 +37,13 @@ public class UserService {
         this.userDao = userDao;
     }
 
-    public LoginEntity addUser(String email,String pwd,String fullname,String qq){
+    public LoginEntity addUser(String email,String pwd,String fullname,String qq,String openid){
         UserVO user = new UserVO();
         user.setEmail(email);
         user.setFullname(fullname);
         user.setPwd(pwd);
         user.setQq(qq);
+        user.setOpenid(openid);
         ReturnEntity ret = userDao.insertUser(user);
         LoginEntity entity = new LoginEntity();
         entity.setUid(user.getId().toString());
@@ -65,6 +76,37 @@ public class UserService {
         return retEntity;
     }
 
+    public LoginEntity sso(String openid,String accesstoken){
+        LoginEntity entity = new LoginEntity();
+        try{
+            String body = Jsoup.connect("https://graph.qq.com/user/get_user_info")
+                            .data("oauth_consumer_key", "1105700540")
+                            .data("access_token",accesstoken)
+                            .data("openid",openid)
+                            .data("form","json").ignoreContentType(true).execute().body();
+            System.out.println("body:" + body);
+            JSONObject json = JSONObject.fromObject(body);
+
+            UserVO ret = userDao.getUserByOpenId(openid);
+            if (ret!=null && json.getString("ret").equals("0")){
+                entity.setUid(ret.getId().toString());
+                entity.setFullname(ret.getFullname());
+                entity.setSessionid(encodeSessionid(ret.getId().toString()));
+            }else{
+                entity = addUser(json.getString("nickname"),accesstoken,json.getString("nickname"),null,openid);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+                entity.setResult(ReturnEntity.RETURN_FAILED);
+                entity.setError_code("110006");
+                entity.setError_msg("用户名或密码错误");
+
+        }
+        return entity;
+
+    }
+
     static public String encodeSessionid(String uid){
         Date date = new Date();
         String ret = "";
@@ -90,6 +132,7 @@ public class UserService {
         return ret;
 
     }
+
 
     public static void main(String[] args) {
         String sessionid = UserService.encodeSessionid("666");

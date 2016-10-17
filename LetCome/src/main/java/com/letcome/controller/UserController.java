@@ -44,7 +44,7 @@ public class UserController {
     @RequestMapping(value="/register",method = RequestMethod.POST)
     public LoginEntity register(@RequestBody UserVO user){
 
-        LoginEntity retEntity = service.addUser(user.getEmail(), user.getPwd(), user.getFullname(),user.getQq());
+        LoginEntity retEntity = service.addUser(user.getEmail(), user.getPwd(), user.getFullname(),user.getQq(),null);
         return retEntity;
     }
 
@@ -52,7 +52,14 @@ public class UserController {
     @ResponseBody
     public LoginEntity saveUser(@RequestBody UserVO user) {
         System.out.println(user);
-        LoginEntity retEntity = service.login(user.getEmail(),user.getPwd());
+        LoginEntity retEntity = service.login(user.getEmail(), user.getPwd());
+        return retEntity;
+    }
+
+    @RequestMapping(value = "/sso", method = RequestMethod.GET)
+    @ResponseBody
+    public LoginEntity sso(@RequestParam("openid") String  openid,@RequestParam("accesstoken") String accesstoken) {
+        LoginEntity retEntity = service.sso(openid,accesstoken);
         return retEntity;
     }
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.gxq.tpm.fragment.ViewPagerFragment;
 import com.letcome.R;
@@ -16,12 +17,13 @@ import com.letcome.activity.LoginActivity;
 /**
  * Created by rjt on 16/9/14.
  */
-public class LoginFragment extends ViewPagerFragment implements TextWatcher,View.OnClickListener{
+public class LoginFragment extends ViewPagerFragment implements TextWatcher,View.OnClickListener {
     LoginActivity parent;
 
     Button mLoginBtn;
     ImageView mEmailImg,mPwdImg;
     EditText mEmailEt,mPwdEt;
+    RelativeLayout mQqBtnArea;
 
 
     public LoginFragment(LoginActivity activity) {
@@ -49,6 +51,13 @@ public class LoginFragment extends ViewPagerFragment implements TextWatcher,View
         mPwdEt = (EditText)view.findViewById(R.id.pwd_et);
         mPwdEt.addTextChangedListener(this);
         mPwdImg = (ImageView)view.findViewById(R.id.pwd_img);
+        mQqBtnArea = (RelativeLayout)view.findViewById(R.id.qq_btn_area);
+        mQqBtnArea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parent.qqLogin();
+            }
+        });
 
 
     }
@@ -78,6 +87,7 @@ public class LoginFragment extends ViewPagerFragment implements TextWatcher,View
 
     @Override
     public void onClick(View v) {
-        parent.login(mEmailEt.getText().toString(),mPwdEt.getText().toString());
+        parent.login(mEmailEt.getText().toString(), mPwdEt.getText().toString());
     }
+
 }

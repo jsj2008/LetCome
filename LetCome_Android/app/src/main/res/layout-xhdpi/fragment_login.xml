@@ -62,4 +62,65 @@
         android:text="@string/log_in"
         android:textSize="18sp"
         android:background="@drawable/button_bg_selector"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/third_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/text_color_main"
+            android:text="使用第三方登录"
+            android:layout_centerInParent="true"/>
+        <View
+            android:layout_width="80dp"
+            android:layout_height="1px"
+            android:layout_marginRight="15dp"
+            android:background="@color/color_2c2c2c"
+            android:layout_toLeftOf="@id/third_tv"
+            android:layout_centerVertical="true"
+            />
+        <View
+            android:layout_width="80dp"
+            android:layout_height=".5dp"
+            android:layout_marginLeft="1px"
+            android:background="@color/color_2c2c2c"
+            android:layout_toRightOf="@id/third_tv"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/qq_btn_area"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/qq_radius_50dp">
+        <RelativeLayout
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/qq_circle_bg">
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/qq_color"
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white_color"
+            android:textSize="18sp"
+            android:layout_centerInParent="true"
+            android:text="@string/qq_log_in"/>
+    </RelativeLayout>
+
+
 </LinearLayout>

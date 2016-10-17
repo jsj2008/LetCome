@@ -1,8 +1,11 @@
 package com.springapp.mvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.letcome.entity.LoginEntity;
+import com.letcome.entity.ProductViewEntity;
 import com.letcome.entity.ReturnEntity;
+import com.letcome.vo.ProductVO;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -22,9 +25,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
@@ -121,6 +122,24 @@ public class RegisterAndLoginTests {
         assertThat(Long.valueOf(l2.getUid()), greaterThan(0l));
         assertThat(l2.getFullname(),equalTo(fullname));
         assertThat(l2.getSessionid(), notNullValue());
+
+    }
+
+    @Test
+    public void test_B_SSO() throws Exception {
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/user/sso");
+//        requestBuilder.header("Content-Type", "application/json");
+        requestBuilder.param("accesstoken", "CEEC44622FD689E77EB7693C43A3633D");
+        requestBuilder.param("openid", "DB6F86EEF4CCF1B79A36ED9DEE8B9089");
+
+
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        String str = result.getResponse().getContentAsString();
+        System.out.println("str = " + str);
+//        ObjectMapper mapper = new ObjectMapper();
+//        ProductViewEntity l2 = mapper.readValue(str, ProductViewEntity.class);
+//        assertThat(l2.getRecords().size(), greaterThan(0));
+//        assertThat(l2.getRecords().size(), lessThanOrEqualTo(3));
 
     }
 

@@ -3,10 +3,12 @@ package com.gxq.tpm.prefs;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.gxq.tpm.tools.SharedPreferencesUtils;
+
 public class BasePrefs {
 	
 	public static final String EMPTY_STRING = "";
-	
+    private SharedPreferencesUtils objPrefsUtil;
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
     protected Context mContext;
@@ -14,6 +16,7 @@ public class BasePrefs {
     protected BasePrefs(Context context, String prefsName) {
         prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
         mContext = context;
+        objPrefsUtil = new SharedPreferencesUtils(context,prefsName);
     }
     
     protected boolean getBoolean(String key, boolean defValue) {
@@ -59,6 +62,14 @@ public class BasePrefs {
     protected void putString(String key, String v) {
         ensureEditorAvailability();
         editor.putString(key, v);
+    }
+
+    protected void putObject(String key,Object obj){
+        objPrefsUtil.setObject(key, obj);
+    }
+
+    protected <T> T getObject(String key, Class<T> clazz){
+        return objPrefsUtil.getObject(key,clazz);
     }
 
     public void save() {

@@ -28,9 +28,14 @@ public class UserVO {
     @Column(name="fullname",length=16,nullable = false)
     private String fullname;
 
-    @Column(name="qq",length=16,nullable = false)
+    @Column(name="qq",length=16)
     private String qq;
 
+    @Column(name="openid")
+    private String openid;
+
+    @Transient
+    private Integer access_token;
 
     @Transient
     private Integer mid;
@@ -127,4 +132,19 @@ public class UserVO {
         this.qq = qq;
     }
 
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
+    }
+
+    public Integer getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(Integer access_token) {
+        this.access_token = access_token;
+    }
 }

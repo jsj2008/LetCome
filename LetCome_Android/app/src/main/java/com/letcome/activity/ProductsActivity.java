@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.gxq.tpm.activity.SuperActivity;
 import com.gxq.tpm.mode.BaseRes;
 import com.gxq.tpm.network.RequestInfo;
+import com.gxq.tpm.tools.Print;
 import com.letcome.R;
 import com.letcome.mode.DoFavoriteRes;
 import com.letcome.mode.ProductsRes;
@@ -67,6 +68,7 @@ public class ProductsActivity extends SuperActivity {
 
         final ProductsRes.Record record = mRecords.get(mPosition);
         mImageView.setImageBitmap(mBitmap);
+        Print.i("ProductsActivity", record.getLatitude() + ";" + record.getLongitude());
 
         ImageLoader imageLoader = ImageLoader.getInstance(); // Get singleton instance
 

@@ -26,6 +26,19 @@ public class UsersDAO  extends BaseDAO{
         }
     }
 
+    public UserVO getUserByOpenId(String openid){
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "from users where openid = ?";
+        Query query = session.createQuery(hql);
+        query.setString(0,openid);
+        List<UserVO> list = query.list();
+        if (list!=null && list.size()>0){
+            return list.get(0);
+        }else{
+            return null;
+        }
+    }
+
 
     public ReturnEntity insertUser(UserVO user){
 //        try {

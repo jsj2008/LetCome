@@ -1,5 +1,6 @@
 package com.letcome.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -10,6 +11,7 @@ import com.gxq.tpm.adapter.CViewPagerAdapter;
 import com.gxq.tpm.fragment.ViewPagerFragment;
 import com.gxq.tpm.mode.BaseRes;
 import com.gxq.tpm.network.RequestInfo;
+import com.gxq.tpm.tools.Print;
 import com.gxq.tpm.ui.CTabTitleSelector;
 import com.letcome.App;
 import com.letcome.R;
@@ -17,12 +19,18 @@ import com.letcome.fragement.LoginFragment;
 import com.letcome.fragement.SignupFragment;
 import com.letcome.mode.LoginRes;
 import com.letcome.mode.SignupRes;
+import com.letcome.mode.SsoRes;
 import com.letcome.prefs.UserPrefs;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginActivity extends SuperActivity{
+public class LoginActivity extends SuperActivity implements IUiListener {
 
     private final static int TAB_SIGNUP 	= 0;
     private final static int TAB_LOGIN 	= 1;
@@ -151,6 +159,19 @@ public class LoginActivity extends SuperActivity{
             prefs.save();
 
             this.finish();
+        } else if (info==RequestInfo.SSO){
+            SsoRes l = (SsoRes) res;
+            UserPrefs prefs = App.getUserPrefs();
+            LoginRes lr = new LoginRes();
+            lr.setUid(l.getUid());
+            lr.setFullname(l.getFullname());
+            lr.setQq(l.getQq());
+            prefs.setUserInfo(lr);
+            prefs.setUid(l.getUid());
+            prefs.setSession(l.getSessionid());
+            prefs.save();
+
+            this.finish();
         }
         super.netFinishOk(info, res, tag);
     }
@@ -162,4 +183,51 @@ public class LoginActivity extends SuperActivity{
 //        }
         super.netFinishError(info, result, tag);
     }
+
+    public void qqLogin(){
+        Tencent mTencent = App.instance().getTencent();
+        if (!mTencent.isSessionValid())
+        {
+            mTencent.login(this, "get_simple_userinfo",this);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Tencent.onActivityResultData(requestCode, resultCode, data, this);
+    }
+
+    @Override
+    public void onComplete(Object response) {
+//        mBaseMessageText.setText("onComplete:");
+//        mMessageText.setText(response.toString());
+//        doComplete(response);
+        Print.i("LoginActivity", "onComplete:" + response);
+        showWaitDialog(RequestInfo.SSO);
+        try {
+            if (response instanceof JSONObject) {
+                JSONObject obj = (JSONObject) response;
+                SsoRes.Params p = new SsoRes.Params();
+                p.setOpenid(obj.getString("openid"));
+                p.setAccesstoken(obj.getString("access_token"));
+                SsoRes.doRequest(p,this);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onError(UiError e) {
+        Print.e("LoginActivity", "onError:" + e);
+//        showResult("onError:", "code:" + e.errorCode + ", msg:"
+//                + e.errorMessage + ", detail:" + e.errorDetail);
+    }
+    @Override
+    public void onCancel() {
+        Print.e("LoginActivity", "onCancel");
+//        showResult("onCancel", "");
+    }
+
+
 }
