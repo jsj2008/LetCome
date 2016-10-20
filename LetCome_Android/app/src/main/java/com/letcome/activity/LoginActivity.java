@@ -143,6 +143,7 @@ public class LoginActivity extends SuperActivity implements IUiListener {
             prefs.setUserInfo(l);
             prefs.setUid(l.getUid());
             prefs.setSession(l.getSessionid());
+            prefs.setQq(l.getQq());
             prefs.save();
 
             this.finish();
@@ -155,6 +156,7 @@ public class LoginActivity extends SuperActivity implements IUiListener {
             lr.setQq(l.getQq());
             prefs.setUserInfo(lr);
             prefs.setUid(l.getUid());
+            prefs.setQq(l.getQq());
             prefs.setSession(l.getSessionid());
             prefs.save();
 
@@ -168,6 +170,7 @@ public class LoginActivity extends SuperActivity implements IUiListener {
             lr.setQq(l.getQq());
             prefs.setUserInfo(lr);
             prefs.setUid(l.getUid());
+            prefs.setQq(l.getQq());
             prefs.setSession(l.getSessionid());
             prefs.save();
 

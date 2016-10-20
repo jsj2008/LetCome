@@ -44,6 +44,7 @@ public class RegisterAndLoginTests {
     static String email ;
     static String fullname ;
     static String pwd;
+    static String qq;
 
     private MockMvc mockMvc;
 
@@ -63,6 +64,7 @@ public class RegisterAndLoginTests {
         email = "test" + date.getTime() + "@test.com";
         pwd = "12345678";
         fullname = "牛B";
+        qq = "17645998";
     }
     //登录测试
     @Test
@@ -141,6 +143,29 @@ public class RegisterAndLoginTests {
 //        assertThat(l2.getRecords().size(), greaterThan(0));
 //        assertThat(l2.getRecords().size(), lessThanOrEqualTo(3));
 
+    }
+
+    @Test
+    public void test_C_Modify_QQ() throws Exception {
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/user/modifyqq");
+        requestBuilder.header("Content-Type", "application/json");
+        requestBuilder.header("let_come_uid", "9999");
+        Map<String,String> param = new HashMap<String,String>();
+
+        param.put("id","9999");
+        param.put("qq",qq );
+
+        ObjectMapper pMapper = new ObjectMapper();
+        String pStr = pMapper.writeValueAsString(param);
+        System.out.println(pStr);
+
+        requestBuilder.content(pStr);
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        String str = result.getResponse().getContentAsString();
+
+        ObjectMapper mapper = new ObjectMapper();
+        ReturnEntity l2 = mapper.readValue(str, ReturnEntity.class);
+        Assert.assertEquals(l2.getResult(), ReturnEntity.RETURN_SUCCESS);
     }
 
 }

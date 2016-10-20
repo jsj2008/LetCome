@@ -48,6 +48,14 @@ public class UserController {
         return retEntity;
     }
 
+    @ResponseBody
+    @RequestMapping(value="/modifyqq",method = RequestMethod.POST)
+    public ReturnEntity register(@RequestHeader("let_come_uid") String  uid,
+                                 @RequestBody UserVO user){
+        ReturnEntity retEntity = service.modifyQQ(Integer.valueOf(uid),user.getQq());
+        return retEntity;
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public LoginEntity saveUser(@RequestBody UserVO user) {
@@ -70,5 +78,7 @@ public class UserController {
         ReturnEntity retEntity = service.removeUser(uid);
         return retEntity;
     }
+
+
 
 }

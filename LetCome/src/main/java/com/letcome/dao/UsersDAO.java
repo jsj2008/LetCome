@@ -1,7 +1,9 @@
 package com.letcome.dao;
+import java.util.Date;
 import java.util.List;
 
 import com.letcome.entity.ReturnEntity;
+import com.letcome.vo.ProductVO;
 import com.letcome.vo.UserVO;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -30,7 +32,7 @@ public class UsersDAO  extends BaseDAO{
         Session session = sessionFactory.getCurrentSession();
         String hql = "from users where openid = ?";
         Query query = session.createQuery(hql);
-        query.setString(0,openid);
+        query.setString(0, openid);
         List<UserVO> list = query.list();
         if (list!=null && list.size()>0){
             return list.get(0);
@@ -67,5 +69,25 @@ public class UsersDAO  extends BaseDAO{
 //            entity.setError_msg(e.getMessage());
 //            return entity;
 //        }
+    }
+
+    public ReturnEntity updateQQ(UserVO user){
+        ReturnEntity ret = new ReturnEntity();
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "from users where id = :id";
+        Query query = session.createQuery(hql);
+        query.setProperties(user);
+        List l = query.list();
+        if (l!=null && l.size()>0){
+            UserVO vo = (UserVO)l.get(0);
+            vo.setQq(user.getQq());
+            session.update(vo);
+        }else {
+            ret.setResult(ReturnEntity.RETURN_FAILED);
+            ret.setError_msg("没有找到符合条件的产品");
+        }
+
+        return ret;
+
     }
 }

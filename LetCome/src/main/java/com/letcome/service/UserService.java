@@ -49,7 +49,16 @@ public class UserService {
         entity.setUid(user.getId().toString());
         entity.setFullname(user.getFullname());
         entity.setSessionid(encodeSessionid(user.getId().toString()));
+        entity.setQq(user.getQq());
         return entity;
+    }
+
+    public ReturnEntity modifyQQ(Integer uid,String qq){
+        UserVO user = new UserVO();
+        user.setId(uid);
+        user.setQq(qq);
+        ReturnEntity ret = userDao.updateQQ(user);
+        return ret;
     }
 
     public LoginEntity login(String email,String pwd){
@@ -61,6 +70,7 @@ public class UserService {
             entity.setUid(ret.getId().toString());
             entity.setFullname(ret.getFullname());
             entity.setSessionid(encodeSessionid(ret.getId().toString()));
+            entity.setQq(ret.getQq());
         }else {
             entity.setResult(ReturnEntity.RETURN_FAILED);
             entity.setError_code("110006");
@@ -92,6 +102,7 @@ public class UserService {
                 entity.setUid(ret.getId().toString());
                 entity.setFullname(ret.getFullname());
                 entity.setSessionid(encodeSessionid(ret.getId().toString()));
+                entity.setQq(ret.getQq());
             }else{
                 entity = addUser(json.getString("nickname"),accesstoken,json.getString("nickname"),null,openid);
             }
@@ -133,13 +144,5 @@ public class UserService {
 
     }
 
-
-    public static void main(String[] args) {
-        String sessionid = UserService.encodeSessionid("666");
-        System.out.println("sessionid = "+sessionid);
-        System.out.println("777 is valid "+UserService.isSessionidValid("777",sessionid));
-        System.out.println("666 is valid "+UserService.isSessionidValid("666",sessionid));
-
-    }
 
 }

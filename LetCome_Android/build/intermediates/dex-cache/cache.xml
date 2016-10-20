@@ -1,2 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.flyco.dialog/FlycoDialog_Lib/1.3.2/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="df48f74b021b90bfdd5b5ca21935cf9453c282f0">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/com.flyco.dialog-FlycoDialog_Lib-1.3.2_5824727eb9c4186bee9a08d84713ad94b704b38f.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/libs/baidumapapi_search_v4_0_0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="08f97ee0e35fb17d405d29bf62eef305faffffcc">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/baidumapapi_search_v4_0_0_9fde558fc8ce6defed5467c089f081c52bb6cf2e.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.4.0_ff32ffe82978c581d8ca24b46ed12f1d7ec4526d.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a07818a1ecabdb149998823429cce555af4b9cba">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/com.jakewharton-butterknife-8.4.0_60f17e3c4121e98d8a352cd5ce30fa4aff1cb11e.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/libs/mta-sdk-1.6.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c184c69f43b1fe46390f7123717c65bd844bccb6">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/mta-sdk-1.6.2_0934550300df79b1ee75461438c88ab55604b2f9.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/gridlayout-v7/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="7c4c1fcc34aca536e3389c31527fb3c941b80266">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/com.android.support-gridlayout-v7-23.4.0_fbc52fe8529b9dc2a360b4058597b816e88ef64f.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient-android/4.3.5/82edcaec6c7b4599eaeaaf11167ceea41db42f33/httpclient-android-4.3.5.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="82edcaec6c7b4599eaeaaf11167ceea41db42f33">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/httpclient-android-4.3.5_f913f6c487c56ea0c2fe11045e4b577351f65f58.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/libs/locSDK_6.13.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2cdb37444b41b42e1ce5a8a27e5d3c22e1c57479">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/locSDK_6.13_ff4c08af8bcf0776dbaf90194dfd9bfd30477d31.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.4.0_b48a382a670d60ee57abcb6cf5e503dcfe391b35.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/gson-2.2.4_edfb544ad2d397b967b08df292bcec04b63351a8.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/libs/baidumapapi_radar_v4_0_0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="81b00e6e2da11e12554d8cbf0acc23627fd1225b">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/baidumapapi_radar_v4_0_0_378429dfa2750409b551e91dcd419725267185e8.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.github.channguyen/rsv/1.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d469860a6431289f4be06e5e23a774f57e115966">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/com.github.channguyen-rsv-1.0.1_274615781e26c5f4db30b1e7cbe1cab328dc14f8.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.clj/memory_spinner/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c34dcfb18f23c6d663c2ff28cda1a216e5018d55">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/com.clj-memory_spinner-1.0.0_22a1a45aedf2011cf4edc7d66303767b645a7c17.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.3.6/cf8bacbf0d476c7f2221f861269365b66447f7ec/httpmime-4.3.6.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="cf8bacbf0d476c7f2221f861269365b66447f7ec">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/httpmime-4.3.6_eac8bca1d7405a0f08339a0b9baee9faaaed9430.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/LetCome_Android/PinterestLikeAdapterView/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="003c3465f8e661c1f5af82bbcc9846f137505a0e">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/LetCome_Android-PinterestLikeAdapterView-unspecified_3ab08dc1bfd4f5ae470d2253df029422de4e1c94.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.4.0/ea392375cf9ff59234a82e7928a204215ccc98cd/butterknife-annotations-8.4.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="ea392375cf9ff59234a82e7928a204215ccc98cd">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/butterknife-annotations-8.4.0_a7dd76fc97561b91485e728f01fbfcef32cc2f74.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.1.0/support-annotations-24.1.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8a23146e1a8c7cb4758e3d3f62449213f1e51f67">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/support-annotations-24.1.0_4a146308affc6430e2a734e1729a9e5f00830a03.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/cn.pedant.sweetalert/library/1.3/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="0c3529d9491be892952749d252ae1defa9b1f937">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/cn.pedant.sweetalert-library-1.3_7843d46f58dda050ad78500d408304b811a7d206.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.pnikosis/materialish-progress/1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="57487745ce450899f9f250d5ae5c092a682cd041">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/com.pnikosis-materialish-progress-1.0_e39094410c4a0eace4b34314aa775a853ec3b326.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/libs/baidumapapi_cloud_v4_0_0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e2aca735ca322917c5ee5fd40d663773391cf0a6">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/baidumapapi_cloud_v4_0_0_035cb3889071eb765260c1767ad249d1863a8f3e.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/internal_impl-23.4.0_dc6066301db31c1b1ba32dc0d87351719b1ff8f2.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/libs/baidumapapi_base_v4_0_0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="dc207932ddfb65566a157ca311a6a6dffc7fccab">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/baidumapapi_base_v4_0_0_b545c5dae48f4733bddd0f68c9e0d918dd31b17e.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.4.0_4c495df6799922295db30a97b200dd9ed4b798af.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/libs/baidumapapi_util_v4_0_0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1e9069435803e5a4f32dc429906def33a95aaf17">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/baidumapapi_util_v4_0_0_fe27a3e13eec8ff916e5c5b88fd6bdf7c9734e6b.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.4.0_756845a45ab2a7b0e69c155839f7a8273cf331d1.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/libs/universal-image-loader-1.9.5.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="442dbfb517b9ab5cb5c6da7ebf8cc28ec5bd0375">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/universal-image-loader-1.9.5_9105557a2040b4ef19e786dbed18c39c6844f58c.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/libs/open_sdk_r5756.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="7f7bf100e53d9099032f113728725e1843e1fbe2">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/open_sdk_r5756_2ff936b057fe20e1641c606829e9db726ca55e00.jar" />
+    </item>
+    <item
+        jar="/Users/rjt/GitHub/LetCome/LetCome_Android/app/libs/baidumapapi_map_v4_0_0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="db4a1025ee9c6f95747aab4a69baa1391534d80e">
+        <dex dex="/Users/rjt/GitHub/LetCome/LetCome_Android/app/build/intermediates/pre-dexed/debug/baidumapapi_map_v4_0_0_914c8b49c407e0216c61c419216688b97fbda1c6.jar" />
+    </item>
+
+</items>

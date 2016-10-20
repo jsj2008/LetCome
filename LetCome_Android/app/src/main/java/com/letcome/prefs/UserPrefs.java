@@ -18,6 +18,7 @@ public class UserPrefs extends BasePrefs {
 	private static final String OPEN_UDID 				= "open_udid";//设备唯一标示
 	private static final String SESSION 				= "session_id";//网络请求session
 	private static final String UID 					= "uid";//用户Id
+	private static final String QQ 					= "QQ";//用户Id
 	private static final String RID 					= "rid";//本地request编号
 	private static final String KEY 					= "key_crypt";//本地request编号
 	private static final String IS_NEED_VERIFY 			= "is_need_verify";//是否需要验证码
@@ -71,11 +72,16 @@ public class UserPrefs extends BasePrefs {
 		return getString(SESSION, "");
 	}
 
-	
+	public void setQq(String v) {
+		putString(QQ, v);
+	}
+
+	public String getQq() {
+        return getString(QQ, "");
+	}
+
 	public void setUid(String v) {
 		putString(UID, v);
-		
-//		mLogin = v != 0;
 	}
 
 	public String getUid() {
@@ -103,6 +109,11 @@ public class UserPrefs extends BasePrefs {
 		String session = getSession();
 		return getSession()!=null && session.length() > 0;
 	}
+
+    public boolean hasQQ() {
+        String qq = getQq();
+        return qq !=null && qq.length() > 0;
+    }
 	
 	public boolean hasPhoneLogin() {
 		return Util.checkMoblie(getLoginID());

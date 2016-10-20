@@ -23,7 +23,8 @@ public enum RequestInfo {
 	CATEGORIES("/categories", Link.PLATFORM, Type.GET, Certify.NO, "获取产品目录"),
 	DOFAVORITE("/product/favorite", Link.PLATFORM, Type.GET, Certify.NO, "点赞"),
 	UNFAVORITE("/product/unfavorite", Link.PLATFORM, Type.GET, Certify.NO, "取消收藏"),
-	SSO("/user/sso", Link.PLATFORM, Type.GET, Certify.NO, "SSO获取信息");
+	SSO("/user/sso", Link.PLATFORM, Type.GET, Certify.NO, "SSO获取信息"),
+	MODIFY_QQ("/user/modifyqq", Link.PLATFORM, Type.POST, Certify.NO, "修改qq");
 	private String mOperationType;
 	private Link mLink;
 	private Type mRequestType;

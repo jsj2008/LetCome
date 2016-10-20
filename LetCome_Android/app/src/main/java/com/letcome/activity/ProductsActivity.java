@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.flyco.animation.BounceEnter.BounceTopEnter;
 import com.gxq.tpm.activity.SuperActivity;
 import com.gxq.tpm.mode.BaseRes;
 import com.gxq.tpm.network.RequestInfo;
@@ -18,9 +19,13 @@ import com.letcome.R;
 import com.letcome.mode.DoFavoriteRes;
 import com.letcome.mode.ProductsRes;
 import com.letcome.mode.UnFavoriteRes;
+import com.letcome.ui.ShareBottomDialog;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ProductsActivity extends SuperActivity {
 
@@ -32,13 +37,15 @@ public class ProductsActivity extends SuperActivity {
     Long mCurrentID;
     Integer mPosition;
     Bitmap mBitmap;
-
+    @BindView(R.id.share_btn) Button mShareBtn;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
+        ButterKnife.bind(this);
+
         mRecords = (List<ProductsRes.Record>) getIntent().getSerializableExtra("records");
         mCurrentID = (Long) getIntent().getSerializableExtra("id");
         mPosition = (Integer) getIntent().getSerializableExtra("position");
@@ -124,9 +131,23 @@ public class ProductsActivity extends SuperActivity {
             }
         });
 
+        mShareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                share();
+            }
+        });
+
         String imageUri = record.getImagepath();
         imageLoader.displayImage(imageUri, mImageView);
 
+    }
+
+    void share(){
+        ProductsRes.Record record = mRecords.get(mPosition);
+        final ShareBottomDialog dialog = new ShareBottomDialog(this,record.getDescription(),record.getThumbpath());
+        dialog.showAnim(new BounceTopEnter())
+                .show();//
     }
 
     void doFavorite(){

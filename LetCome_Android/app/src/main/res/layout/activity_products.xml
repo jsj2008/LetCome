@@ -96,6 +96,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:background="@drawable/ic_action_navigation_close_white" />
+
     <Button
         android:id="@+id/favorite_btn"
         android:layout_width="28dp"
@@ -113,5 +114,12 @@
         android:layout_alignParentRight="true"
         android:visibility="gone"
         android:background="@drawable/ic_favorite_active" />
-
+    <Button
+        android:id="@+id/share_btn"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@id/favorite_btn"
+        android:background="@drawable/abc_ic_menu_share_mtrl_alpha" />
 </RelativeLayout>

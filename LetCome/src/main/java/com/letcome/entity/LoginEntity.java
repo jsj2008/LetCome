@@ -12,6 +12,8 @@ public class LoginEntity extends ReturnEntity{
 
     @JsonInclude(JsonInclude.Include.NON_NULL) private String sessionid;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL) private String qq;
+
     public String getUid() {
         return uid;
     }
@@ -34,5 +36,13 @@ public class LoginEntity extends ReturnEntity{
 
     public void setSessionid(String sessionid) {
         this.sessionid = sessionid;
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
     }
 }

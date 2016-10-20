@@ -65,11 +65,13 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
     @SuppressLint("ValidFragment")
     public MeFragment(int markId) {
         super(markId);
+        mCameraShow = true;
     }
 
     @SuppressLint("ValidFragment")
     public MeFragment(WaterFallsRes.Params params) {
         this(params,true);
+        mCameraShow = true;
     }
 
 
@@ -128,12 +130,9 @@ public class MeFragment extends FragmentBase implements WaterFallsView.OnRefresh
             mSellBtnArea.setVisibility(View.GONE);
         }
 
-
         mCategoryFilter = (LinearLayout)view.findViewById(R.id.category_filter);
         mCategoryFilterClose = (TextView)view.findViewById(R.id.category_filter_close);
         mCategoryFilterImg = (ImageView)view.findViewById(R.id.category_filter_img);
-
-
 
 //        queryMediaImages();
     }

@@ -1,6 +1,7 @@
 package com.letcome.activity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -29,8 +30,10 @@ import com.letcome.fragement.MeFragment;
 import com.letcome.fragement.ProfileFragment;
 import com.letcome.fragement.SellFragment;
 import com.letcome.mode.CategoriesRes;
+import com.letcome.mode.ModifyQQRes;
 import com.letcome.mode.UploadRes;
 import com.letcome.prefs.UserPrefs;
+import com.letcome.ui.QQDialog;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -60,6 +63,8 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 
 	private long mMineClickTime = 0;
     String mFilePath;
+
+    private String mQQ;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -226,20 +231,35 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 
 	void gotoCamera(View v){
 
-		if(App.getUserPrefs().hasUserLogin()) {
+		if(!App.getUserPrefs().hasUserLogin()) {
+			gotoLogin();
+		}else if(!App.getUserPrefs().hasQQ()){
+            QQDialog dialog = new QQDialog(this);
+            dialog.show();
+            dialog.setCanceledOnTouchOutside(true);
+            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    QQDialog qqD = (QQDialog)dialog;
+                    if (qqD.getQQ()!=null && !qqD.getQQ().isEmpty()){
+                        modifyQQ(qqD.getQQ());
+                    }
+                }
+            });
+		}else {
 			mPopupWindow = new CPopupWindow(this);
 			mPopupWindow.setContentView(R.layout.sell_choose);
 			mPopupWindow.showAtLocation(v, Gravity.BOTTOM, 0, 0);
 			mPopupWindow.findViewById(R.id.goto_camera).setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-                    mPopupWindow.dismiss();
+					mPopupWindow.dismiss();
 					// 利用系统自带的相机应用:拍照
 					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    // 加载路径
-                    Uri uri = Uri.fromFile(new File(mFilePath));
-                    // 指定存储路径，这样就可以保存原图了
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+					// 加载路径
+					Uri uri = Uri.fromFile(new File(mFilePath));
+					// 指定存储路径，这样就可以保存原图了
+					intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
 					startActivityForResult(intent, IMAGE_FROM_CAMERA);
 					mPopupWindow.dismiss();
 				}
@@ -253,8 +273,6 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 					mPopupWindow.dismiss();
 				}
 			});
-		}else{
-			gotoLogin();
 		}
 
 	}
@@ -316,6 +334,14 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 		}
 	}
 
+    public void modifyQQ(String qq){
+        ModifyQQRes.Params p = new ModifyQQRes.Params();
+        p.setQq(qq);
+        mQQ = qq;
+        ModifyQQRes.doRequest(p, this);
+        showWaitDialog(RequestInfo.MODIFY_QQ);
+    }
+
 	public void uploadImage(byte[] bytes){
 		UploadRes.Params p = new UploadRes.Params();
 		p.setMyfile(bytes);
@@ -340,6 +366,14 @@ public class MainActivity extends SuperActivity implements View.OnClickListener{
 			prefs.setCategories(c);
 			prefs.save();
 		}
+        if (info==RequestInfo.MODIFY_QQ){
+            ModifyQQRes modifyQQRes = (ModifyQQRes)res;
+            if(modifyQQRes.getResult().equals(ModifyQQRes.RESULT_OK)) {
+                UserPrefs prefs = App.getUserPrefs();
+                prefs.setQq(mQQ);
+                prefs.save();
+            }
+        }
 		super.netFinishOk(info, res, tag);
 	}
 
