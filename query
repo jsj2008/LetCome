@@ -1,0 +1,31 @@
+insert into users(email,fullname,openid,pwd,qq) values('ttt','ttt','','123456','17645998');
+insert into categories(category_name) values('电子产品');
+insert into categories(category_name) values('汽车');
+insert into categories(category_name) values('运动与娱乐');
+insert into categories(category_name) values('家具');
+insert into categories(category_name) values('影音与书籍')
+insert into categories(category_name) values('时尚与配饰');
+insert into categories(category_name) values('婴幼儿');
+insert into categories(category_name) values('其他');
+
+create or replace view image_v
+as 
+select * from images group by productid;
+
+create or replace view products_v
+as 
+select p.id,p.description,p.created_at,p.updated_at,p.longitude,p.latitude,p.city,p.status,p.price,p.category_id,p.uid,u.fullname,u.qq,p.contact_info,imagename,imagepath,i.id as image_id,imageheight,imagewidth,thumbheight,thumbwidth,thumbpath
+from products p
+inner join users u on u.id = p.uid
+left join image_v i on p.id = i.productid ;
+
+delimiter $$
+CREATE FUNCTION FUN_JW_DIST(lng1 double(15,9), lat1 double(15, 9), lng2 double(15,9), lat2 double(15,9))
+  RETURNS int
+BEGIN
+ DECLARE dist int;
+   
+ SET dist = round(6378.138*2*asin(sqrt(pow(sin((lat1*pi()/180-lat2*pi()/180)/2),2)+cos(lat1*pi()/180)*cos(lat2*pi()/180)* pow(sin((lng1*pi()/180-lng2*pi()/180)/2),2)))*1000);
+   
+ RETURN (dist);
+END$$

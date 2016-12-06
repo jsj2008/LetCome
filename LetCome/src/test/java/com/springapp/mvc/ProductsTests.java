@@ -69,7 +69,7 @@ public class ProductsTests {
     static String contact = "13912345678";
     static Integer category_id = 1;
     static Integer testUID = 9999;
-    static Integer favoritUID = 9998;
+    static Integer favoritUID = 10000;
 
     private MockMvc mockMvc;
 
@@ -181,6 +181,8 @@ public class ProductsTests {
         requestBuilder.header("let_come_uid", favoritUID.toString());
         requestBuilder.param("pid", String.valueOf(pid));
 
+        System.out.println(favoritUID.toString() + "---------" + String.valueOf(pid));
+
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
         String str = result.getResponse().getContentAsString();
         System.out.println("str = " + str);
@@ -217,45 +219,22 @@ public class ProductsTests {
         assertThat(l2.getIs_favorite(), equalTo("Y"));
     }
 
-    @Test
-    public void test_G_UpdateProductStatus() throws Exception{
-        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/product/update");
-        requestBuilder.header("Content-Type", "application/json");
-        requestBuilder.header("let_come_uid", testUID.toString());
-        Map<String,String> param = new HashMap<String,String>();
-        status = ProductVO.STATUS_SOLD;
-        param.put("id", pid.toString());
-        param.put("status", status);
 
-        ObjectMapper pMapper = new ObjectMapper();
-        String pStr = pMapper.writeValueAsString(param);
-        System.out.println(pStr);
-
-        requestBuilder.content(pStr);
-        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-        String str = result.getResponse().getContentAsString();
-        System.out.println("str = " + str);
-        ObjectMapper mapper = new ObjectMapper();
-        ReturnEntity l2 = mapper.readValue(str, ReturnEntity.class);
-        Assert.assertEquals(l2.getResult(), ReturnEntity.RETURN_SUCCESS);
-
-        test_F_GetProductDetail();
-    }
 
     @Test
     public void test_H_GetWallFalls() throws Exception{
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/waterfalls");
 //        requestBuilder.header("Content-Type", "application/json");
 //        requestBuilder.header("let_come_uid", testUID.toString());
-        requestBuilder.param("longitude","121.530079");
-        requestBuilder.param("latitude", "31.216000");
-        requestBuilder.param("distance", "100000");
-        requestBuilder.param("cid","1,2");
+//        requestBuilder.param("longitude","121.530079");
+//        requestBuilder.param("latitude", "31.216000");
+//        requestBuilder.param("distance", "100000");
+        requestBuilder.param("cid", "1,2");
 //        requestBuilder.param("pricerank","desc");
 //        requestBuilder.param("productname","让人");1475043822000
 //        http://115.159.194.244:8080/LetCome/waterf1476081046514&pno=1&pricerank=desc&starttime=1477784013810
         requestBuilder.param("starttime", "1473493866");
-        requestBuilder.param("endtime","1476085866");
+//        requestBuilder.param("endtime","1476085866");
         requestBuilder.param("pno", "1");
         requestBuilder.param("limit", "5");
 
@@ -281,8 +260,8 @@ public class ProductsTests {
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/myproducts");
 //        requestBuilder.header("Content-Type", "application/json");
         requestBuilder.header("let_come_uid", testUID.toString());
-        requestBuilder.param("status", ProductVO.STATUS_PUBLISH);
-        requestBuilder.param("pno","2");
+        requestBuilder.param("status", ProductVO.STATUS_SELLING);
+        requestBuilder.param("pno","1");
         requestBuilder.param("limit", "3");
 
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -299,7 +278,7 @@ public class ProductsTests {
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/products");
 //        requestBuilder.header("Content-Type", "application/json");
         requestBuilder.header("let_come_uid", testUID.toString());
-//        requestBuilder.param("status",ProductVO.STATUS_PUBLISH);
+//        requestBuilder.param("status",ProductVO.STATUS_SELLING);
         requestBuilder.param("pno","1");
         requestBuilder.param("limit","20");
         requestBuilder.param("uid",testUID.toString());
@@ -312,12 +291,12 @@ public class ProductsTests {
     }
 
     @Test
-    public void test_J_GetMyFavorites() throws Exception{
+    public void test_L_GetMyFavorites() throws Exception{
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/myfavorites");
 //        requestBuilder.header("Content-Type", "application/json");
         requestBuilder.header("let_come_uid", favoritUID.toString());
 //        requestBuilder.param("status",ProductVO.STATUS_PUBLISH);
-        requestBuilder.param("pno","2");
+        requestBuilder.param("pno","1");
         requestBuilder.param("limit","2");
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
         String str = result.getResponse().getContentAsString();
@@ -329,7 +308,7 @@ public class ProductsTests {
     }
 
     @Test
-    public void test_L_UnFavorite() throws Exception{
+    public void test_M_UnFavorite() throws Exception{
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/unfavorite");
 //        requestBuilder.header("Content-Type", "application/json");
         requestBuilder.header("let_come_uid", favoritUID.toString());
@@ -341,6 +320,31 @@ public class ProductsTests {
         ObjectMapper mapper = new ObjectMapper();
         ReturnEntity l2 = mapper.readValue(str, ReturnEntity.class);
         Assert.assertEquals(l2.getResult(), ReturnEntity.RETURN_SUCCESS);
+    }
+
+    @Test
+    public void test_N_UpdateProductStatus() throws Exception{
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/product/update");
+        requestBuilder.header("Content-Type", "application/json");
+        requestBuilder.header("let_come_uid", testUID.toString());
+        Map<String,String> param = new HashMap<String,String>();
+        status = ProductVO.STATUS_SELLING;
+        param.put("id", pid.toString());
+        param.put("status", status);
+
+        ObjectMapper pMapper = new ObjectMapper();
+        String pStr = pMapper.writeValueAsString(param);
+        System.out.println(pStr);
+
+        requestBuilder.content(pStr);
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        String str = result.getResponse().getContentAsString();
+        System.out.println("str = " + str);
+        ObjectMapper mapper = new ObjectMapper();
+        ReturnEntity l2 = mapper.readValue(str, ReturnEntity.class);
+        Assert.assertEquals(l2.getResult(), ReturnEntity.RETURN_SUCCESS);
+
+        test_F_GetProductDetail();
     }
 
 }

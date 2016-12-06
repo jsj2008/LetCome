@@ -131,7 +131,7 @@ public class MessageTests {
         ObjectMapper mapper = new ObjectMapper();
         UserEntity l2 = mapper.readValue(str, UserEntity.class);
         Assert.assertEquals(l2.getResult(), ReturnEntity.RETURN_SUCCESS);
-        assertThat(l2.getRecords().size(),greaterThan(1));
+        assertThat(l2.getRecords().size(),greaterThan(0));
 //        action.andExpect(content());
     }
 
