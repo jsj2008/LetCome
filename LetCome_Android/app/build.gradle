@@ -49,10 +49,10 @@ android {
             buildConfigField("boolean","IS_TEST", "true")
         }
         debug {
-            buildConfigField("String","SERVICE_PLATFORM", "\"http://115.159.194.244:8080/LetCome\"")
-            buildConfigField("String","SERVICE_H5", "\"http://115.159.194.244:8080/LetCome\"")
-//            buildConfigField("String","SERVICE_PLATFORM", "\"http://192.168.4.105:8080\"")
-//            buildConfigField("String","SERVICE_H5", "\"http://192.168.4.105:8080\"")
+//            buildConfigField("String","SERVICE_PLATFORM", "\"http://115.159.194.244:8080/LetCome\"")
+//            buildConfigField("String","SERVICE_H5", "\"http://115.159.194.244:8080/LetCome\"")
+            buildConfigField("String","SERVICE_PLATFORM", "\"http://192.168.4.105:8080\"")
+            buildConfigField("String","SERVICE_H5", "\"http://192.168.4.105:8080\"")
             buildConfigField("boolean","IS_ENCRYPT", "false")
             buildConfigField("boolean","IS_TEST", "true")
         }

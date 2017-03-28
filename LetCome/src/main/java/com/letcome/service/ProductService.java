@@ -1,10 +1,8 @@
 package com.letcome.service;
 
+import com.letcome.dao.ImageDAO;
 import com.letcome.dao.ProductDAO;
-import com.letcome.entity.ImageEntity;
-import com.letcome.entity.ProductEntity;
-import com.letcome.entity.ProductViewEntity;
-import com.letcome.entity.ReturnEntity;
+import com.letcome.entity.*;
 import com.letcome.vo.FavoriteVO;
 import com.letcome.vo.ImageVO;
 import com.letcome.vo.ProductVO;
@@ -29,6 +27,16 @@ public class ProductService {
 
     public void setProductDao(ProductDAO productDao) {
         this.productDao = productDao;
+    }
+
+    private ImageDAO imageDao;
+
+    public ImageDAO getImageDao() {
+        return imageDao;
+    }
+
+    public void setImageDao(ImageDAO imageDao) {
+        this.imageDao = imageDao;
     }
 
     //创建新的产品
@@ -140,6 +148,7 @@ public class ProductService {
         e.setStatus(vo.getStatus());
         e.setUpdated_at(vo.getUpdated_at());
         e.setContact_info(vo.getContact_info());
+        e.setPhone_num(vo.getPhone_num());
         e.setIs_favorite(list.length > 1 ? "Y" : "N");
         List<ImageEntity> l = new ArrayList<ImageEntity>();
         for(ImageVO image : vo.getImages()){
@@ -156,6 +165,27 @@ public class ProductService {
             l.add(entity);
         }
         e.setImages(l);
+        return e;
+    }
+
+    public ImagesEntity getAllImages(Integer pid,String downloadPath){
+        List<ImageVO> list = imageDao.getImages(pid);
+        ImagesEntity e = new ImagesEntity();
+        List<ImageEntity> l = new ArrayList<ImageEntity>();
+        for(ImageVO image : list){
+            ImageEntity entity = new ImageEntity();
+            entity.setId(image.getId());
+            entity.setUid(image.getUid());
+            entity.setImageheight(image.getImageheight());
+            entity.setImagewidth(image.getImagewidth());
+            entity.setThumbheight(image.getThumbheight());
+            entity.setThumbwidth(image.getThumbwidth());
+            entity.setImagename(image.getImagename());
+            entity.setImagepath(downloadPath + image.getId());
+            entity.setThumbpath(downloadPath + image.getId() + "&type=" + ImageVO.IMAGE_TYPE_THUMB);
+            l.add(entity);
+        }
+        e.setRecords(l);
         return e;
     }
 }

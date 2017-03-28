@@ -138,6 +138,79 @@ public class ImageService {
         return ret;
     }
 
+    public ReturnEntity attachImage(Integer uid,Integer pid,String imagename,byte[] bytes,int plateform){
+        long time = (new Date()).getTime();
+        File file = new File("/upload/img/"+imagename);
+        while (file.exists()){
+            file = new File("/upload/img/"+time+imagename);
+        }
+        File fileThumb = new File("/upload/img/"+ImageVO.IMAGE_TYPE_THUMB+"_"+imagename);
+        while (file.exists()){
+            fileThumb = new File("/upload/img/"+ImageVO.IMAGE_TYPE_THUMB+"_"+time+imagename);
+        }
+        OutputStream fop = null;
+        ReturnEntity ret = new ReturnEntity();
+        try {
+            System.out.println(file.getAbsolutePath());
+            file.createNewFile();
+            fop = new FileOutputStream(file);
+            fop.write(bytes);
+            fop.flush();
+            fop.close();
+
+            BufferedImage sourceImg =ImageIO.read(new FileInputStream(file));
+
+            fop = new FileOutputStream(fileThumb);
+            Thumbnails.of(file).scale(0.1).toOutputStream(fop);
+            fop.flush();
+            fop.close();
+
+            if (pid>0){
+                ImageVO vo = new ImageVO();
+                vo.setImagename(imagename);
+                vo.setImagepath(file.getAbsolutePath());
+                vo.setThumbpath(fileThumb.getAbsolutePath());
+                //相反？
+                System.out.println("getHeight=" + sourceImg.getHeight() + ";getWidth=" + sourceImg.getWidth());
+                if (plateform == SystemUtil.PLATEFORM_IOS) {
+                    vo.setThumbwidth(sourceImg.getHeight()/10);
+                    vo.setThumbheight( sourceImg.getWidth()/10);
+                    vo.setImagewidth(sourceImg.getHeight());
+                    vo.setImageheight(sourceImg.getWidth());
+                }else{
+                    vo.setThumbwidth(sourceImg.getWidth()/10);
+                    vo.setThumbheight( sourceImg.getHeight()/10);
+                    vo.setImagewidth(sourceImg.getWidth());
+                    vo.setImageheight(sourceImg.getHeight());
+                }
+
+                vo.setUid(uid);
+                vo.setProductid(pid);
+                ret = imageDao.insertImage(vo);
+                ret.setRetVal(pid.toString());
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            ret.setResult(ReturnEntity.RETURN_FAILED);
+            ret.setError_msg(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+            ret.setResult(ReturnEntity.RETURN_FAILED);
+            ret.setError_msg(e.getMessage());
+        } finally {
+            try {
+                if (fop != null) {
+                    fop.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
+        }
+        return ret;
+    }
+
     public ImageEntity getImage(Integer id,String type){
         ImageVO vo  = new ImageVO();
         vo.setId(id);

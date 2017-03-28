@@ -71,6 +71,8 @@ public class ProductViewVO implements Serializable {
 
     private String contact_info;
 
+    private String phone_num;
+
 //    @Column(name="price")
     private float price;
 
@@ -295,4 +297,11 @@ public class ProductViewVO implements Serializable {
         this.qq = qq;
     }
 
+    public String getPhone_num() {
+        return phone_num;
+    }
+
+    public void setPhone_num(String phone_num) {
+        this.phone_num = phone_num;
+    }
 }

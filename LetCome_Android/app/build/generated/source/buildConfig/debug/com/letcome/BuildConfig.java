@@ -13,6 +13,6 @@ public final class BuildConfig {
   // Fields from build type: debug
   public static final boolean IS_ENCRYPT = false;
   public static final boolean IS_TEST = true;
-  public static final String SERVICE_H5 = "http://115.159.194.244:8080/LetCome";
-  public static final String SERVICE_PLATFORM = "http://115.159.194.244:8080/LetCome";
+  public static final String SERVICE_H5 = "http://192.168.4.105:8080";
+  public static final String SERVICE_PLATFORM = "http://192.168.4.105:8080";
 }

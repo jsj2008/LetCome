@@ -34,7 +34,7 @@ public class ProductDAO extends BaseDAO{
 
 
         Session session = sessionFactory.getCurrentSession();
-        StringBuffer hql = new StringBuffer("SELECT p.id,p.description,p.created_at,p.updated_at,p.longitude,p.latitude,p.city,p.status,p.price,p.category_id,p.uid,p.fullname,p.qq,imagename,imagepath,image_id,imageheight,imagewidth,thumbheight,thumbwidth,thumbpath,contact_info,case when f.id>0 then \"Y\" else \"N\" end as is_favorite from products_v p " +
+        StringBuffer hql = new StringBuffer("SELECT p.id,p.description,p.created_at,p.updated_at,p.longitude,p.latitude,p.city,p.status,p.price,p.category_id,p.uid,p.fullname,p.qq,imagename,imagepath,image_id,imageheight,imagewidth,thumbheight,thumbwidth,thumbpath,contact_info,phone_num,case when f.id>0 then \"Y\" else \"N\" end as is_favorite from products_v p " +
                 "left join favorites f on f.uid = ? and p.id = f.pid where 1=1");
 
         if (longitude!=0 && latitude!=0 && distance>0){
@@ -99,7 +99,7 @@ public class ProductDAO extends BaseDAO{
 
     public List<ProductViewVO > selectProducts(Integer uid,String status,long start,long limit){
         Session session = sessionFactory.getCurrentSession();
-        String hql = "SELECT p.id,p.description,p.created_at,p.updated_at,p.longitude,p.latitude,p.city,p.status,p.price,p.category_id,p.uid,p.fullname,p.qq,imagename,imagepath,image_id,imageheight,imagewidth,thumbheight,thumbwidth,thumbpath,contact_info from products_v p\n" +
+        String hql = "SELECT p.id,p.description,p.created_at,p.updated_at,p.longitude,p.latitude,p.city,p.status,p.price,p.category_id,p.uid,p.fullname,p.qq,imagename,imagepath,image_id,imageheight,imagewidth,thumbheight,thumbwidth,thumbpath,contact_info,phone_num from products_v p\n" +
                 " where p.uid = ? ";
         if(status !=null ){
             hql+= "and p.status = ? ";
@@ -124,7 +124,7 @@ public class ProductDAO extends BaseDAO{
 
     public List<ProductViewVO > selectFavorites(Integer uid,String status,long start,long limit){
         Session session = sessionFactory.getCurrentSession();
-        String hql = "SELECT p.id,p.description,p.created_at,p.updated_at,p.longitude,p.latitude,p.city,p.status,p.price,p.category_id,p.uid,p.fullname,p.qq,imagename,imagepath,image_id,imageheight,imagewidth,thumbheight,thumbwidth,thumbpath,contact_info from favorites f" +
+        String hql = "SELECT p.id,p.description,p.created_at,p.updated_at,p.longitude,p.latitude,p.city,p.status,p.price,p.category_id,p.uid,p.fullname,p.qq,imagename,imagepath,image_id,imageheight,imagewidth,thumbheight,thumbwidth,thumbpath,contact_info,phone_num from favorites f" +
                 " left join  products_v p on p.id = f.pid " +
                 " where f.uid = ? and p.id>0 ";
         if(status !=null ){
@@ -218,6 +218,9 @@ public class ProductDAO extends BaseDAO{
 
             if(productVO.getContact_info()!=null){
                 vo.setContact_info(productVO.getContact_info());
+            }
+            if(productVO.getPhone_num()!=null){
+                vo.setPhone_num(productVO.getPhone_num());
             }
             vo.setUpdated_at(new Date());
             session.update(vo);

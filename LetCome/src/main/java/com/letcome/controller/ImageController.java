@@ -108,6 +108,48 @@ public class ImageController {
 //        }
 
     }
+    @RequestMapping("/attach")
+    @ResponseBody
+    public ReturnEntity attachImage(
+            @RequestHeader(value = "User-Agent" ,required = false,defaultValue = "") String ua ,
+            @RequestHeader("let_come_uid") String uid ,
+            @RequestParam("myfiles") MultipartFile file,
+            HttpServletRequest request){
+
+//        if(files!=null && files.length>0 ) {
+//            CommonsMultipartFile file = files[0];
+        System.out.println("fileName---------->" + file.getOriginalFilename());
+        String pid = request.getParameter("pid");
+        System.out.println("pid---------->" + pid);
+
+        if (!file.isEmpty() && pid!=null && pid.length()>0 ) {
+            try {
+                int platform = SystemUtil.PLATEFORM_IOS;
+                if(ua.indexOf("Android")>0){
+                    platform = SystemUtil.PLATEFORM_ANDROID;
+                }
+                return service.attachImage(Integer.valueOf(uid), Integer.valueOf(pid),file.getOriginalFilename(), file.getBytes(), platform);
+            } catch (Exception e) {
+                e.printStackTrace();
+                ReturnEntity ret = new ReturnEntity();
+                ret.setResult(ReturnEntity.RETURN_FAILED);
+                ret.setError_msg(e.getMessage());
+                return ret;
+            }
+        }else{
+            ReturnEntity ret = new ReturnEntity();
+            ret.setResult(ReturnEntity.RETURN_FAILED);
+            ret.setError_msg("上传文件为空");
+            return ret;
+        }
+//        }else{
+//            ReturnEntity ret = new ReturnEntity();
+//            ret.setResult(ReturnEntity.RETURN_FAILED);
+//            ret.setError_msg("上传文件为空");
+//            return ret;
+//        }
+
+    }
 
 //    @RequestMapping(value = "getimg", method = RequestMethod.GET)
 //    @ResponseBody

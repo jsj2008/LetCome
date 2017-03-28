@@ -52,6 +52,9 @@ public class ProductVO {
     @Column(name="contact_info")
     private String contact_info;
 
+    @Column(name="phone_num")
+    private String phone_num;
+
     @Column(name="uid",nullable = false)
     private Integer uid;
 
@@ -174,6 +177,13 @@ public class ProductVO {
         this.category_id = category_id;
     }
 
+    public String getPhone_num() {
+        return phone_num;
+    }
+
+    public void setPhone_num(String phone_num) {
+        this.phone_num = phone_num;
+    }
 
     final public static String STATUS_PUBLISH = "0";
     final public static String STATUS_SELLING = "1";

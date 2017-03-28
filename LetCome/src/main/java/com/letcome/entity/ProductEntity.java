@@ -34,6 +34,8 @@ public class ProductEntity extends ReturnEntity {
 
     private String contact_info;
 
+    private String phone_num;
+
     private String is_favorite;
 
     public String getContact_info() {
@@ -146,5 +148,13 @@ public class ProductEntity extends ReturnEntity {
 
     public void setImages(List<ImageEntity> images) {
         this.images = images;
+    }
+
+    public String getPhone_num() {
+        return phone_num;
+    }
+
+    public void setPhone_num(String phone_num) {
+        this.phone_num = phone_num;
     }
 }

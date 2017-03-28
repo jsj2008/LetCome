@@ -1,9 +1,6 @@
 package com.letcome.controller;
 
-import com.letcome.entity.CategoryEntity;
-import com.letcome.entity.ProductEntity;
-import com.letcome.entity.ProductViewEntity;
-import com.letcome.entity.ReturnEntity;
+import com.letcome.entity.*;
 import com.letcome.service.CategoryService;
 import com.letcome.service.ProductService;
 import com.letcome.vo.ProductVO;
@@ -86,7 +83,7 @@ public class ProductController {
                                         @RequestParam(value="limit",required = false,defaultValue = "25") String limit,
                                         HttpServletRequest request) {
 
-        return service.getMyFavorites(Integer.valueOf(uid), status,Long.valueOf(pno), Long.valueOf(limit), "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/image/getimg?id=");
+        return service.getMyFavorites(Integer.valueOf(uid), status, Long.valueOf(pno), Long.valueOf(limit), "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/image/getimg?id=");
 
     }
 
@@ -110,6 +107,14 @@ public class ProductController {
                                         @RequestParam(value="limit",required = false,defaultValue = "25") String limit,
                                         HttpServletRequest request) {
         return service.getProducts(Integer.valueOf(uid), status, Long.valueOf(pno), Long.valueOf(limit), "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/image/getimg?id=");
+
+    }
+
+    @RequestMapping(value = "/allimages",method = RequestMethod.GET)
+    @ResponseBody
+    public ImagesEntity findAllImages(@RequestParam(value="pid",required = false) String pid,
+                                     HttpServletRequest request) {
+        return service.getAllImages(Integer.valueOf(pid), "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/image/getimg?id=");
 
     }
 

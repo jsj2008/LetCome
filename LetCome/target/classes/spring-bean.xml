@@ -34,6 +34,7 @@
     </bean>
     <bean id="productService" class="com.letcome.service.ProductService">
         <property name="productDao" ref="productDAO"></property>
+        <property name="imageDao" ref="imagesDAO"></property>
     </bean>
     <bean id="messageService" class="com.letcome.service.MessageService">
         <property name="messageDao" ref="messageDAO"></property>

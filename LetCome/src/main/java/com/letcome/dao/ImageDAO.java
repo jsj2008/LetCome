@@ -7,6 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.transform.Transformers;
 
 import java.io.InputStream;
 import java.sql.Blob;
@@ -47,10 +48,14 @@ public class ImageDAO extends BaseDAO{
         }
     }
 
-    public List<ImageVO> getImages(long start,long end) {
+    public List<ImageVO> getImages(Integer pid) {
         Session session = sessionFactory.getCurrentSession();
-        String hql = "from images";
-        Query query = session.createQuery(hql);
-        return query.list();
+        String hql = "select * from images where productid = ? ";
+        int index = 0;
+        Query query = session.createSQLQuery(hql)
+                .setInteger(index++, pid);
+        query.setResultTransformer(Transformers.aliasToBean(ImageVO.class));
+        List<ImageVO> list = query.list();
+        return list;
     }
 }
